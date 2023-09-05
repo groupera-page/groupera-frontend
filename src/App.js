@@ -1,8 +1,19 @@
-import logo from "./logo.svg";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import About from "./pages/About";
 import "./App.css";
 
 function App() {
-  return <h1 className="text-1xl font-weight underline">Hello tailwind!</h1>;
+  return (
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;

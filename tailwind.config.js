@@ -5,4 +5,12 @@ module.exports = {
     extend: {},
   },
   plugins: [],
+
+  "tailwindCSS.includeLanguages": {
+    javascript: "javascript",
+    html: "HTML",
+  },
+  "editor.quickSuggestions": {
+    strings: true,
+  },
 };
