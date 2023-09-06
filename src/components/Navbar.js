@@ -17,7 +17,7 @@ export default function Navbar() {
         <div>{openMenu ? "❎" : "🟰"}</div>
       </div>
       <ul
-        className={`list-none md:flex md:gap-5 p-8 md:p-0 absolute top-full left-0 md:static md:left-auto 
+        className={`bg-slate-50 list-none md:flex md:gap-5 p-8 md:p-0 absolute top-full left-0 md:static md:left-auto 
       md:top-auto md:pl-0 rounded ${
         openMenu
           ? "transition-all duration-200 ease-in opacity-100"
@@ -43,20 +43,21 @@ export default function Navbar() {
         />
       </ul>
       <div>WeTo</div>
-      <ul className="list-none flex gap-4">
+      <ul className="list-none flex gap-4 items-center">
         <li>
           <Searchbox title="Gruppe Suchen" />
         </li>
-        <li>
-          <Linkbutton title="Anmelden" route="/"></Linkbutton>
+
+        <li className="md:my-0  ">
+          <Linkbutton title="Anmelden" route="/" />
         </li>
-        <li>
+        <li className="md:my-0 ">
           <Linkbutton
             title="Mitglied Werden"
             route="/"
             bgColor="bg-primarybutton"
             textColor="text-white"
-          ></Linkbutton>
+          />
         </li>
       </ul>
     </div>
