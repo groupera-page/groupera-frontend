@@ -1,51 +1,62 @@
 import React, { useState } from "react";
 import Linkbutton from "./Linkbutton";
-import Navbutton from "./Navbutton";
-// import About from "../pages/About";
+import NavlinkItem from "./NavlinkItem";
+import Searchbox from "./Searchbox";
+
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false);
+  const handleMenuClick = () => {
+    setOpenMenu(false);
+  };
   return (
-    <div className="relative bg-neutral-100/90 flex justify-between items-center p-5 gap-2">
-      <div onClick={() => setOpen(!open)} className="cursor-pointer md:hidden">
-        <div>{open ? "❎" : "🟰"}</div>
+    <div className="relative bg-slate-50 flex justify-between items-center p-5 gap-2 text-gray-600">
+      <div
+        onClick={() => setOpenMenu(!openMenu)}
+        className="cursor-pointer md:hidden"
+      >
+        <div>{openMenu ? "❎" : "🟰"}</div>
       </div>
       <ul
         className={`list-none md:flex md:gap-5 p-8 md:p-0 absolute top-full left-0 md:static md:left-auto 
-      md:top-auto bg-neutral-100/90 md:pl-0  transition-all duration-200 ease-in rounded md:text-base text-lg ${
-        open
-          ? "opacity-100"
-          : "md:opacity-100 opacity-0 transition-all duration-0"
+      md:top-auto md:pl-0 rounded ${
+        openMenu
+          ? "transition-all duration-200 ease-in opacity-100"
+          : "md:opacity-100 opacity-0"
       }`}
       >
-        <li onClick={() => setOpen(false)} className="md:my-0 my-0">
-          <Navbutton title="Startseite" route="/"></Navbutton>
-        </li>
-        <li onClick={() => setOpen(false)} className="md:my-0 my-7">
-          <Navbutton title="Gruppen" route="/groups"></Navbutton>
-        </li>
-        <li onClick={() => setOpen(false)} className="md:my-0 my-7">
-          <Navbutton title="Blog" route="/blog"></Navbutton>
-        </li>
-        <li onClick={() => setOpen(false)} className="md:my-0 my-7">
-          <Navbutton title="Priceübersicht" route="/price-overview"></Navbutton>
-        </li>
-        <li onClick={() => setOpen(false)} className="md:my-0 my-7">
-          <Navbutton title="Über uns" route="/about"></Navbutton>
-        </li>
+        <NavlinkItem onClick={handleMenuClick} title="Startseite" route="/" />
+        <NavlinkItem
+          onClick={handleMenuClick}
+          title="Gruppen"
+          route="/groups"
+        />
+        <NavlinkItem onClick={handleMenuClick} title="Blog" route="/blog" />
+        <NavlinkItem
+          onClick={handleMenuClick}
+          title="Priceübersicht"
+          route="/price-overview"
+        />
+        <NavlinkItem
+          onClick={handleMenuClick}
+          title="Über uns"
+          route="/about"
+        />
       </ul>
-      <div>We.To</div>
+      <div>WeTo</div>
       <ul className="list-none flex gap-4">
         <li>
-          <input
-            type="search"
-            className="border-gray-500 border-2 rounded text-sm px-2 py-0.5"
-          />
+          <Searchbox title="Gruppe Suchen" />
         </li>
         <li>
-          <Linkbutton title="Anmelden"></Linkbutton>
+          <Linkbutton title="Anmelden" route="/"></Linkbutton>
         </li>
         <li>
-          <Linkbutton title="Mitglied Werden"></Linkbutton>
+          <Linkbutton
+            title="Mitglied Werden"
+            route="/"
+            bgColor="bg-primarybutton"
+            textColor="text-white"
+          ></Linkbutton>
         </li>
       </ul>
     </div>
