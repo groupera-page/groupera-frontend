@@ -1,9 +1,5 @@
 import { NavLink as Link } from "react-router-dom";
 
-export default function Navbutton({ title }) {
-  return (
-    <Link to="/About" className="navbar-left-nav-link">
-      {title}
-    </Link>
-  );
+export default function Navbutton({ title, route }) {
+  return <Link to={route}>{title}</Link>;
 }
