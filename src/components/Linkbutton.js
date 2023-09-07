@@ -8,7 +8,7 @@ export default function Linkbutton({ title, route, bgColor, textColor }) {
       {" "}
       <Link
         to={route}
-        className={`${bgColor} ${textColor} p-3 rounded whitespace-nowrap hover:text-${hoverText}`}
+        className={`${bgColor} ${textColor} p-2 rounded whitespace-nowrap hover:text-${hoverText}`}
       >
         {title}
       </Link>

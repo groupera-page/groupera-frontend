@@ -53,7 +53,7 @@ export default function Navbar() {
       <div className="text-sm">WeTo</div>{" "}
       {/* Smaller font size on smaller screens */}
       <ul className="list-none flex gap-2 items-center text-xs lg:text-base">
-        <li className="absolute left-1/2 -translate-x-1/2 translate-y-14 md:translate-y-0 md:-translate-x-0 md:left-0 md:relative  ">
+        <li className="absolute translate-x-4 translate-y-14 md:translate-y-0 md:-translate-x-0 md:left-0 md:relative  ">
           <Searchbox title="Gruppe Suchen" />
         </li>
 
