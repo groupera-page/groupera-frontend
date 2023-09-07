@@ -11,7 +11,7 @@ export default function Navbar() {
     setOpenMenu(false);
   };
   return (
-    <div className="fixed bg-slate-50 flex justify-between items-center p-5 gap-2 text-gray-600 w-full">
+    <div className="fixed bg-slate-50/90 flex justify-between items-center p-5 gap-2 text-gray-600 w-full">
       <div
         onClick={() => setOpenMenu(!openMenu)}
         className="cursor-pointer md:hidden"

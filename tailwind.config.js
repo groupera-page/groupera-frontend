@@ -5,6 +5,8 @@ module.exports = {
     extend: {
       colors: {
         primarybutton: "#A64D79",
+        secondarybutton: "#ACD7EB",
+        customYellow: "#F9F5E6",
         darkgreyCustom: "#A64D79",
       },
     },
