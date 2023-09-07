@@ -28,27 +28,28 @@ export default function Home() {
         </div>
         <div className="flex-row m-2">
           <div className="flex-col">
-            <div className="bg-secondarybutton rounded h-16 m-1"></div>
-            <div className="m-1">
+            <div className="bg-secondarybutton rounded h-20  mb-4"></div>
+            <div className="mb-4">
               <img src={laptopPH} alt="Laptop PH" className="w-full" />
             </div>
-            <div className="m-1">
+            <div className="mb-4">
               <img src={bildSchirm} alt="Bildschirm" className="w-full" />
             </div>
           </div>
         </div>
-        <div className="m-1">
-          <div className="m-1">
+        <div className="mb-3">
+          <div className="mb-4">
             <img src={laptop} alt="Laptop" className="w-full" />
           </div>
-          <div className="bg-customYellow rounded h-16 m-1"></div>
+          <div className="bg-customYellow rounded h-20 mb-4"></div>
         </div>
       </div>
-      <div className="m-20"></div>
-      <h1 className="text-4xl md:text-lg font-bold text-gray-800 ml-4">
-        Gefördert dursch
-      </h1>
-      <img src={firmas} alt="Firmas" className="w-full" />
+      <div className="m-1">
+        <h1 className="md:text-4xl text-lg font-bold text-gray-800">
+          Gefördert dursch
+        </h1>
+        <img src={firmas} alt="Firmas" className="w-full" />
+      </div>
     </div>
   );
 }
