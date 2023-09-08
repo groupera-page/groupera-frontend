@@ -5,6 +5,7 @@ import laptop from "../assets/laptop.png";
 import firmas from "../assets/firmas.png";
 import sunlight from "../assets/sunlight.png";
 import hands from "../assets/hands.png";
+import Gridlist from "../components/Gridlist";
 
 export default function Home() {
   return (
@@ -47,7 +48,7 @@ export default function Home() {
         </div>
       </div>
       <div className="m-4">
-        <h1 className="md:text-4xl text-lg font-semibold text-gray-800">
+        <h1 className="md:text-3xl text-lg font-semibold text-gray-800">
           Gefördert dursch
         </h1>
         <img src={firmas} alt="Firmas" className="w-full" />
@@ -75,7 +76,7 @@ export default function Home() {
               tausche Dich online, in regelmäßigen Terminen, mit anderen
               Betroffene aus, die in der gleichen Situation sind wie Du.
             </p>
-            <div className="pt-4">
+            <div className="py-4">
               <Linkbutton
                 title="Gruppe finden"
                 route="/"
@@ -97,7 +98,7 @@ export default function Home() {
               Hilfe in nur vier Schritten deine Selbsthilfegruppe. We.together
               ist für Gruppen ModeratorInnen komplett kostenlos.
             </p>
-            <div className="pt-6">
+            <div className="py-6">
               <Linkbutton
                 title="Gruppe starten"
                 route="/"
@@ -109,6 +110,25 @@ export default function Home() {
           <div className="mb-4 lg:w-1/2">
             <img src={hands} alt="Sunlight PH" className="w-full" />
           </div>
+        </div>
+        <div className="px-4">
+          <h2 className="md:text-3xl text-lg font-semibold text-gray-800 mb-8">
+            Deine Vorteile mit we.together
+          </h2>
+          <Gridlist />
+        </div>
+        <div className="bg-customYellow rounded my-4">
+          <div className="p-40 text-center">Placeholder Payment Wall</div>
+        </div>
+        <div className="px-4">
+          <h2 className="md:text-3xl text-lg font-semibold text-gray-800 mb-8">
+            Finde Die richtige Gruppe für Dich
+          </h2>
+        </div>
+        <div className="px-4">
+          <h2 className="md:text-3xl text-lg font-semibold text-gray-800 mb-8">
+            Gemeinsam Selbsthilfe ermöglichen{" "}
+          </h2>
         </div>
       </div>
     </div>

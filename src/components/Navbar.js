@@ -26,7 +26,7 @@ export default function Navbar() {
         </div>
       </div>
       <ul
-        className={` list-none md:flex md:gap-5 p-8 md:p-0 absolute top-full left-0 md:static md:left-auto md:top-auto md:pl-0 rounded ${
+        className={` bg-slate-50/95 md:bg-slate-50/0 list-none md:flex md:gap-5 p-8 md:p-0 absolute top-full left-0 md:static md:left-auto md:top-auto md:pl-0 rounded ${
           openMenu
             ? "transition-all duration-300 ease-in opacity-100"
             : "md:opacity-100 opacity-0"
