@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Blog from "./pages/Blog";
@@ -21,6 +22,7 @@ function App() {
         <Route path="/groups" element={<Groups />} />
         <Route path="/price-overview" element={<PriceOverview />} />
       </Routes>
+      <Footer />
     </Router>
   );
 }

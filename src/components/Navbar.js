@@ -4,6 +4,7 @@ import NavlinkItem from "./NavlinkItem";
 import Searchbox from "./Searchbox";
 import { ReactComponent as CloseOutline } from "../assets/close-outline.svg";
 import { ReactComponent as MenuOutline } from "../assets/menu-outline.svg";
+import logo from "../assets/logo.png";
 
 export default function Navbar() {
   const [openMenu, setOpenMenu] = useState(false);
@@ -11,7 +12,7 @@ export default function Navbar() {
     setOpenMenu(false);
   };
   return (
-    <div className="fixed bg-slate-50/90 flex justify-between items-center p-5 gap-2 text-gray-600 w-full">
+    <div className="fixed bg-slate-50/95 flex justify-between items-center p-5 gap-2 text-gray-600 w-full">
       <div
         onClick={() => setOpenMenu(!openMenu)}
         className="cursor-pointer md:hidden"
@@ -25,7 +26,7 @@ export default function Navbar() {
         </div>
       </div>
       <ul
-        className={`bg-slate-50/95 list-none md:flex md:gap-5 p-8 md:p-0 absolute top-full left-0 md:static md:left-auto md:top-auto md:pl-0 rounded ${
+        className={` list-none md:flex md:gap-5 p-8 md:p-0 absolute top-full left-0 md:static md:left-auto md:top-auto md:pl-0 rounded ${
           openMenu
             ? "transition-all duration-300 ease-in opacity-100"
             : "md:opacity-100 opacity-0"
@@ -50,7 +51,8 @@ export default function Navbar() {
           route="/about"
         />
       </ul>
-      <div className="text-sm">WeTo</div>{" "}
+      <img src={logo} alt="logo" />
+      {/* <div className="text-sm">WeTo</div>{" "} */}
       {/* Smaller font size on smaller screens */}
       <ul className="list-none flex gap-2 items-center text-xs lg:text-base">
         <li className="absolute translate-x-4 translate-y-14 md:translate-y-0 md:-translate-x-0 md:left-0 md:relative  ">
