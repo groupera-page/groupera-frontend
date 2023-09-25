@@ -4,14 +4,19 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primarybutton: "#A64D79",
-        secondarybutton: "#ACD7EB",
-        customYellow: "#F9F5E6",
-        darkgreyCustom: "#A64D79",
+        primarypurple: "#A64D79",
+        primaryblue: "#ACD7EB",
+        primaryyellow: "#F9F5E6",
+        primaryBg: "#FCFCFC",
+        textLightGray: "#9ca3af",
+        secondaryText: "#8590A6",
+        primaryText: "#212529",
+
+        // darkgreyCustom: "#A64D79",
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar-hide")],
 
   "tailwindCSS.includeLanguages": {
     javascript: "javascript",
