@@ -1,6 +1,7 @@
-import Signup from "../components/SignupCard";
+import Logincard from "../components/LoginCard";
 import backgroundImage from "../assets/hands4.jpg";
-function SignupPage() {
+
+export default function Login() {
   return (
     <div className="h-screen">
       <div
@@ -9,10 +10,8 @@ function SignupPage() {
           backgroundImage: `url(${backgroundImage})`,
         }}
       >
-        <Signup />
+        <Logincard />
       </div>
     </div>
   );
 }
-
-export default SignupPage;

@@ -40,9 +40,9 @@ export default function LandingCard({ page, id }) {
   };
 
   return (
-    <div className="flex justify-center bg-primaryBg rounded p-12 bg-primaryBg/90">
+    <div className="flex justify-center bg-primaryBg rounded p-12 bg-primaryBg/90 ">
       <div className="lg:flex  justify-center">
-      {/* <div className="lg:flex lg:w-1/2 justify-center"> */}
+        {/* <div className="lg:flex lg:w-1/2 justify-center"> */}
         <div className="flex flex-col items-center mt-10 gap-5">
           <img src={logoSvg} alt="logo" className="w-60 mb-12" />
           <h2 className="mb-5">Anmelden</h2>
@@ -71,19 +71,19 @@ export default function LandingCard({ page, id }) {
               />
             </div>
             <div className="flex flex-col items-center ">
-            <p className="my-8 ">
-              Du hast noch kein Konto?{" "}
-              <Link to={"/signup"} className="text-primarypurple">
-                Jetzt Registrieren
-              </Link>
-            </p>
+              <p className="my-8 ">
+                Du hast noch kein Konto?{" "}
+                <Link to={"/signup"} className="text-primarypurple">
+                  Jetzt Registrieren
+                </Link>
+              </p>
 
-            <button
-              type="submit"
-              className={` items-center bg-primarypurple text-slate-100 hover:text-white p-2 rounded-md whitespace-nowrap transition-color duration-300 ease-in-out lg:text-base text-1xl`}
-            >
-              Anmelden
-            </button>
+              <button
+                type="submit"
+                className={` items-center bg-primarypurple text-slate-100 hover:text-white p-2 rounded-md whitespace-nowrap transition-color duration-300 ease-in-out lg:text-base text-1xl`}
+              >
+                Anmelden
+              </button>
             </div>
           </form>
 
