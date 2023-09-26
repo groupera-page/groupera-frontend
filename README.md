@@ -1,1 +1,1 @@
-# we-frontend
+# groupera-frontend
