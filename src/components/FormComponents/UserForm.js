@@ -6,7 +6,7 @@ export default function UserForm({ username, email, password, updateFields }) {
   return (
     <div>
       {" "}
-      <h2 className="">Erstelle jetzt dein Nutzerprofil</h2>
+      <h2 className="my-3">Erstelle jetzt dein Nutzerprofil</h2>
       <p>Du kannst deine Informationen jederzeit in den Einstellungen ändern</p>
       <div className="my-4 relative">
         <input

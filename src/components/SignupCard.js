@@ -34,7 +34,15 @@ export default function Signup() {
   const handleSignupSubmit = (e) => {
     e.preventDefault();
     if (!isLastStep) {
+      if (!isValidEmail(data.email)) {
+        setErrorMessage("Invalid email address");
+        return;
+      }
       return next();
+    }
+    function isValidEmail(email) {
+      const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+      return emailRegex.test(email);
     }
     // const requestBody = { username, email, password, goals, experience };
     const requestBody = {
@@ -47,7 +55,7 @@ export default function Signup() {
     axios
       .post(`http://localhost:5005/user/signup`, requestBody)
       .then((response) => {
-        navigate("/login");
+        navigate("/");
       })
       .catch((error) => {
         const errorDescription = error.response.data.message;
@@ -57,12 +65,12 @@ export default function Signup() {
 
   return (
     <div className="w-1/2 h-4/5 justify-center rounded p-12 bg-primaryBg/90 ">
-      <div className="lg:flex justify-center">
-        <div className="flex flex-col  mt-10 gap-5">
+      <div className="lg:flex ">
+        <div className="flex flex-col  mt-2 gap-5">
+          <img src={logoSvg} alt="logo" className="w-60 mb-4" />
           <RegStepper currentStep={currentStepIndex + 1} steps={steps.length} />
           {currentStepIndex + 1} von {steps.length}
-          <img src={logoSvg} alt="logo" className="w-60 mb-12" />
-          <form onSubmit={handleSignupSubmit} className="mt-4">
+          <form onSubmit={handleSignupSubmit} className="">
             {step}
             <div className="flex gap-4">
               {currentStepIndex !== 0 && (
