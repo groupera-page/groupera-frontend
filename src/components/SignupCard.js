@@ -11,7 +11,10 @@ const initData = {
   username: "",
   email: "",
   password: "",
+  passwordCheck: "",
   experience: "",
+  gender: "",
+  isAccepted: "",
 };
 export default function Signup() {
   const [data, setData] = useState(initData);
@@ -38,6 +41,10 @@ export default function Signup() {
         setErrorMessage("Invalid email address");
         return;
       }
+      if (data.password !== data.passwordCheck) {
+        setErrorMessage("Passwörter stimmen nicht überein");
+        return;
+      }
       return next();
     }
     function isValidEmail(email) {
@@ -50,6 +57,8 @@ export default function Signup() {
       email: data.email,
       password: data.password,
       experience: data.experience,
+      gender: data.gender,
+      isAccepted: data.isAccepted,
     };
 
     axios
@@ -58,21 +67,27 @@ export default function Signup() {
         navigate("/");
       })
       .catch((error) => {
+        // Delete this catch?
         const errorDescription = error.response.data.message;
         setErrorMessage(errorDescription);
       });
   };
 
   return (
-    <div className="w-1/2 h-4/5 justify-center rounded p-12 bg-primaryBg/90 ">
-      <div className="lg:flex ">
-        <div className="flex flex-col  mt-2 gap-5">
-          <img src={logoSvg} alt="logo" className="w-60 mb-4" />
-          <RegStepper currentStep={currentStepIndex + 1} steps={steps.length} />
-          {currentStepIndex + 1} von {steps.length}
-          <form onSubmit={handleSignupSubmit} className="">
+    <div className=" w-full h-full md:h-9/11 lg:h-5/6 xl:h-4/5 md:w-1/2 justify-center md:h-9/11 fixed px-4 py-2 rounded  bg-primaryBg/90 ">
+      <div className=" ">
+        <div className="flex flex-col gap-2">
+          <img src={logoSvg} alt="logo" className="lg:w-40 w-32 p-2" />
+          <div className="flex flex-col p-2 text-xs gap-2">
+            <RegStepper
+              currentStep={currentStepIndex + 1}
+              steps={steps.length}
+            />
+            {currentStepIndex + 1} von {steps.length}
+          </div>
+          <form onSubmit={handleSignupSubmit} className="relative pb-4 ">
             {step}
-            <div className="flex gap-4">
+            <div className="flex gap-2 absolute bottom-0 right-0 ">
               {currentStepIndex !== 0 && (
                 <button
                   type="button"
@@ -84,27 +99,10 @@ export default function Signup() {
               )}
               <button
                 type="submit"
-                className={`text-slate-100 hover:text-white bg-primarypurple hover:bg-primarypurple-hover px-4 py-2 rounded-lg`}
+                className={`text-slate-100 hover:text-white bg-primarypurple hover:bg-primarypurple-hover px-6 mx-2 py-2 rounded-lg`}
               >
                 {isLastStep ? "Absenden" : "Weiter"}
               </button>
-            </div>
-            {/*  */}
-
-            <div className="flex items-center">
-              {/* <p className="my-8 mr-4">
-                Ich habe bereits ein Account.{" "}
-                <Link to={"/login"} className="text-primarypurple">
-                  Hier anmelden
-                </Link>
-              </p> */}
-
-              {/* <button
-                type="submit"
-                className={` ml-12 flex items-center justify-center bg-primarypurple text-slate-100 hover:text-white p-2 px-5 rounded-md whitespace-nowrap transition-color duration-300 ease-in-out lg:text-base text-1xl`}
-              >
-                Weiter
-              </button> */}
             </div>
           </form>
           {errorMessage && <p className="text-red-500 mt-4">{errorMessage}</p>}

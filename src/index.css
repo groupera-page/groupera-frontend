@@ -1,15 +1,14 @@
 body {
   margin: 0;
-  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-family: "Helvetica Neue", "Arial", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
-
 
 @tailwind base;
 @tailwind components;
@@ -17,11 +16,11 @@ code {
 
 @layer base {
   h1 {
-    @apply text-4xl md:text-5xl xl:text-7xl text-primaryText ;
+    @apply text-4xl md:text-5xl xl:text-7xl text-primaryText;
   }
 
   h2 {
-    @apply md:text-4xl text-3xl text-primaryText font-medium;
+    @apply lg:text-3xl md:text-2xl text-xl text-primaryText font-medium;
   }
 
   h3 {
@@ -37,11 +36,10 @@ code {
   }
 
   p {
-    @apply text-primaryText ;
+    @apply text-primaryText md:text-primaryText text-sm;
   }
 
   section {
     @apply pt-28 md:pt-32 lg:pt-24 px-6 lg:px-32 bg-primaryBg;
-
   }
 }
