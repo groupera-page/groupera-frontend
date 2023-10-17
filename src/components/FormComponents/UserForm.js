@@ -13,96 +13,113 @@ export default function UserForm({
 }) {
   return (
     <div>
-      <h2 className="my- mx-2">Erstelle jetzt Dein Nutzerprofil</h2>
-      <p className="text-sm m-2">
+      <h2 className=" mx-2">Erstelle jetzt Dein Nutzerprofil</h2>
+      <p className=" m-2 ">
         Du kannst Deine Informationen jederzeit in den Einstellungen ändern.
       </p>
-      <div className="my-4 relative">
-        <input
-          required
-          type="text"
-          name="username"
-          value={username}
-          onChange={(e) => updateFields({ username: e.target.value })}
-          className="w-full border rounded-md p-2 "
-          placeholder="Name"
-        />
-        <p className="text-xs my-2 text-textLightGray px-2">
+      <div>
+        <div className="mt-4 text-sm border border-primaryblue rounded-md">
+          <input
+            required
+            type="text"
+            name="username"
+            value={username}
+            onChange={(e) => updateFields({ username: e.target.value })}
+            className="w-full border rounded-md p-2 placeholder-primaryText"
+            placeholder="Name"
+          />
+        </div>
+        <p className=" mb-2 text-textLightGray px-2">
           Bitte gib hier Deinen Namen ein, mit dem Du in der Gruppe angesprochen
           werden möchtest und der für andere Mitglieder:innen angezeigt werden
           darf.
         </p>
       </div>
-      <div className="mb-4 relative">
+      <div className="mt-4 text-sm border border-primaryblue rounded-md">
         <input
           required
           type="text"
           name="email"
           value={email}
           onChange={(e) => updateFields({ email: e.target.value })}
-          className="w-full p-2 border rounded-md  "
+          className="w-full p-2 border rounded-md placeholder-primaryText "
           placeholder="Email"
         />
       </div>
-      <div className="mb-2 relative">
+      <div>
+        <div className="mt-4 text-sm border border-primaryblue rounded-md">
+          <input
+            required
+            type="password"
+            name="password"
+            value={password}
+            onChange={(e) => updateFields({ password: e.target.value })}
+            className="w-full p-2 border rounded-md placeholder-primaryText "
+            placeholder="Passwort"
+          />
+        </div>
+        <p className=" px-2 text-textLightGray">Min 8 Zeichen.</p>
+      </div>
+      <div className="mt-4 text-sm border border-primaryblue rounded-md">
         <input
           required
           type="password"
-          name="password"
-          value={password}
-          onChange={(e) => updateFields({ password: e.target.value })}
-          className="w-full p-2 border rounded-md  "
-          placeholder="Passwort"
-        />
-        <p className="text-xs px-2 text-textLightGray">Min 8 Zeichen.</p>
-      </div>
-      <div className="mb-4 relative">
-        <input
-          required
-          type="passwordCheck"
           name="passwordCheck"
           // value={passwordCheck}
           onChange={(e) => updateFields({ passwordCheck: e.target.value })}
-          className="w-full p-2 border rounded-md  "
+          className="w-full p-2 border rounded-md placeholder-primaryText "
           placeholder="Passwort erneut eingeben"
         />
       </div>
-      <div className="flex justify-between gap-2 text-sm">
-        <div className="border border-gray-300 p-2 w-1/3 rounded-lg flex items-center">
+      <div className="flex justify-between gap-2 text-sm mt-4">
+        <label
+          htmlFor="radioOption1"
+          className="w-1/3 cursor-pointer border border-primaryblue rounded-md text-sm p-2 pl-4 flex items-center gap-4 "
+        >
+          <div>Weiblich</div>
           <input
             type="radio"
+            id="radioOption1"
             name="options"
             value="option1"
             checked={gender === "option1"}
             onChange={(e) => updateFields({ gender: e.target.value })}
             className="mr-2"
           />
-          <label>Weiblich</label>
-        </div>
-        <div className="border border-gray-300 px-4  w-1/3 rounded-lg flex items-center">
+        </label>
+        <label
+          htmlFor="radioOption2"
+          className="w-1/3 cursor-pointer border border-primaryblue rounded-md text-sm p-2 pl-4 flex items-center gap-4 "
+        >
+          <div>Männlich</div>
           <input
             type="radio"
+            id="radioOption2"
             name="options"
             value="option2"
             checked={gender === "option2"}
             onChange={(e) => updateFields({ gender: e.target.value })}
             className="mr-2"
           />
-          <label>Männlich</label>
-        </div>
-        <div className="border border-gray-300 px-3 w-1/3 rounded-lg flex items-center">
+        </label>
+
+        <label
+          htmlFor="radioOption3"
+          className="w-1/3 cursor-pointer border border-primaryblue rounded-md text-sm p-2 pl-4 flex items-center gap-4 "
+        >
+          <div>Divers</div>
           <input
             type="radio"
+            id="radioOption3"
             name="options"
             value="option3"
             checked={gender === "option3"}
             onChange={(e) => updateFields({ gender: e.target.value })}
             className="mr-2"
           />
-          <label>Divers</label>
-        </div>
+        </label>
       </div>
-      <div className="flex flex-row items-start ">
+      <div className="flex flex-row items-start my-5">
         <div className=" flex flex-row  mt-4 ">
           <input
             type="checkbox"
@@ -113,7 +130,8 @@ export default function UserForm({
             className="self-left"
           />
         </div>
-        <div className="pt-3 px-3">
+
+        <div className="pt-3 px-3 ">
           <p className="text-xs">
             Ich akzeptiere die{" "}
             <Link to={"/login"} className="text-primarypurple">
@@ -127,14 +145,14 @@ export default function UserForm({
           </p>
         </div>
       </div>
-      <div className="flex flex-col ">
-        <p className=" pt-5">
+      {/* <div className="flex flex-col ">
+        <p className=" my-5">
           Bereits registriert?{" "}
           <Link to={"/login"} className="text-primarypurple">
             Hier anmelden.
           </Link>
         </p>
-      </div>
+      </div> */}
     </div>
   );
 }

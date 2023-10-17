@@ -76,10 +76,15 @@ export default function Signup() {
   };
 
   return (
-    <div className=" md:h-9/11 lg:h-5/6 xl:h-4/5 md:w-1/2  md:h-9/11 fixed px-4 py-2 rounded  bg-primaryBg/90 ">
-      <div className=" ">
-        <div className="flex flex-col gap-2">
-          <img src={logoSvg} alt="logo" className="lg:w-40 w-32 p-2" />
+    <div
+      className="h-full w-full md:h-4/5 md:w-1/2 
+      px-4 rounded  bg-primaryBg/90 "
+    >
+      <div className="pb-3">
+        <img src={logoSvg} alt="logo" className="lg:w-40 w-28 p-2 pt-3" />
+      </div>
+      <div className="flex flex-col gap-2">
+        <div className="flex justify-center">
           <div className="flex flex-col p-2 text-xs gap-2">
             <RegStepper
               currentStep={currentStepIndex + 1}
@@ -87,28 +92,28 @@ export default function Signup() {
             />
             {currentStepIndex + 1} von {steps.length}
           </div>
-          <form onSubmit={handleSignupSubmit} className=" pb-4 ">
-            {step}
-            <div className="flex gap-2 absolute bottom-0 right-0 ">
-              {currentStepIndex !== 0 && (
-                <button
-                  type="button"
-                  onClick={back}
-                  className={`text-slate-100 hover:text-white bg-primarypurple hover:bg-primarypurple-hover px-4 py-2 rounded-lg`}
-                >
-                  Zurück
-                </button>
-              )}
-              <button
-                type="submit"
-                className={`text-slate-100 hover:text-white bg-primarypurple hover:bg-primarypurple-hover px-6 mx-2 py-2 rounded-lg`}
-              >
-                {isLastStep ? "Absenden" : "Weiter"}
-              </button>
-            </div>
-          </form>
-          {errorMessage && <p className="text-red-500 mt-4">{errorMessage}</p>}
         </div>
+        <form onSubmit={handleSignupSubmit} className=" pb-4 ">
+          {step}
+          <div className="flex gap-2 justify-center">
+            {currentStepIndex !== 0 && (
+              <button
+                type="button"
+                onClick={back}
+                className={`text-slate-100 hover:text-white bg-primarypurple hover:bg-primarypurple-hover px-4 py-2 rounded-lg`}
+              >
+                Zurück
+              </button>
+            )}
+            <button
+              type="submit"
+              className={`text-slate-100 hover:text-white bg-primarypurple hover:bg-primarypurple-hover px-6 mx-2 py-2 rounded-lg`}
+            >
+              {isLastStep ? "Absenden" : "Weiter"}
+            </button>
+          </div>
+        </form>
+        {errorMessage && <p className="text-red-500 mt-4">{errorMessage}</p>}
       </div>
     </div>
   );

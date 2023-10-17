@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
+import { useNavigate, Link } from "react-router-dom";
 
-export default function VerifyCodeForm() {
+export default function VerifyCodeForm({ email }) {
   const [verificationCode, setVerificationCode] = useState(["", "", "", ""]);
   const inputRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
 
@@ -21,12 +22,11 @@ export default function VerifyCodeForm() {
 
   return (
     <div>
-      <h2 className="my- mx-2">Verifiziere deine Email adresse</h2>
-      <p className="text-sm m-2">
-        Wir haben Dir einen 4 stelligen Verifizierungscode per E-Mail an
-        j**.***@outlook.com geschickt
+      <h2 className="mx-2 mt-10">Verifiziere deine Email adresse</h2>
+      <p className=" m-2">
+        Wir haben Dir einen 4 stelligen Verifizierungscode per E-Mail geschickt.
       </p>
-      <div className="flex justify-center m-5 gap-2">
+      <div className="flex justify-center m-12 gap-2">
         {verificationCode.map((value, index) => (
           <input
             key={index}

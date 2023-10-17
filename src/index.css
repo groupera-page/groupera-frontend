@@ -36,7 +36,7 @@ code {
   }
 
   p {
-    @apply text-primaryText md:text-primaryText text-sm;
+    @apply text-primaryText md:text-primaryText text-xs;
   }
 
   section {

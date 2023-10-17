@@ -2,7 +2,7 @@ import Signup from "../components/SignupCard";
 import backgroundImage from "../assets/hands4.jpg";
 function SignupPage() {
   return (
-    <div className="h-screen">
+    <div className="">
       <div
         className="bg-cover bg-center h-screen flex items-center justify-center"
         style={{
