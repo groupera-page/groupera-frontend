@@ -1,4 +1,4 @@
-import { ReactElement, useState } from "react";
+import { useState } from "react";
 
 export default function useMultiStepForm(steps) {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 
@@ -11,6 +11,10 @@ export default function UserForm({
   gender,
   isAccepted,
 }) {
+  useEffect(() => {
+    updateFields({ email: "" });
+  }, []);
+
   return (
     <div>
       <h2 className=" mx-2">Erstelle jetzt Dein Nutzerprofil</h2>
@@ -81,8 +85,8 @@ export default function UserForm({
             type="radio"
             id="radioOption1"
             name="options"
-            value="option1"
-            checked={gender === "option1"}
+            value="Weiblich"
+            checked={gender === "Weiblich"}
             onChange={(e) => updateFields({ gender: e.target.value })}
             className="mr-2"
           />
@@ -96,8 +100,8 @@ export default function UserForm({
             type="radio"
             id="radioOption2"
             name="options"
-            value="option2"
-            checked={gender === "option2"}
+            value="Mannlich"
+            checked={gender === "Mannlich"}
             onChange={(e) => updateFields({ gender: e.target.value })}
             className="mr-2"
           />
@@ -112,8 +116,8 @@ export default function UserForm({
             type="radio"
             id="radioOption3"
             name="options"
-            value="option3"
-            checked={gender === "option3"}
+            value="Divers"
+            checked={gender === "Divers"}
             onChange={(e) => updateFields({ gender: e.target.value })}
             className="mr-2"
           />
@@ -124,9 +128,9 @@ export default function UserForm({
           <input
             type="checkbox"
             name="isAccepted"
-            value="checked"
-            // checked={isAccepted === true}
-            onChange={(e) => updateFields({ isAccepted: e.target.value })}
+            onChange={(e) =>
+              updateFields({ isAccepted: e.target.checked ? "Accepted" : "" })
+            }
             className="self-left"
           />
         </div>

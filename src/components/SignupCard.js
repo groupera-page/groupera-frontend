@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import logoSvg from "../assets/imgLogos/logoNoBg.svg";
@@ -13,7 +13,7 @@ const initData = {
   email: "",
   password: "",
   passwordCheck: "",
-  experience: "",
+  code: "",
   gender: "",
   isAccepted: "",
 };
@@ -32,41 +32,63 @@ export default function Signup() {
     });
   }
 
+  function handleBackButton() {
+    //If index is signup - delete the user from DB
+    back();
+    setErrorMessage("");
+  }
+
   const [errorMessage, setErrorMessage] = useState(undefined);
 
   const navigate = useNavigate();
 
   const handleSignupSubmit = (e) => {
     e.preventDefault();
-    if (!isLastStep) {
-      if (!isValidEmail(data.email)) {
-        setErrorMessage("Invalid email address");
+
+    if (data.isAccepted === "") {
+      setErrorMessage("Check the box");
+      return;
+    }
+
+    //Move to update later
+    if (currentStepIndex === 1) {
+      if (data.code !== "") {
+        setErrorMessage("Wrong verification code");
+        console.log(data.code);
         return;
       }
-      if (data.password !== data.passwordCheck) {
-        setErrorMessage("Passwörter stimmen nicht überein");
-        return;
-      }
-      return next();
     }
-    function isValidEmail(email) {
-      const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-      return emailRegex.test(email);
-    }
+    console.log("CURRENT INDEX: ", currentStepIndex);
+    // Change to no form interaction
+    // if (!isLastStep) {
+    //   if (!isValidEmail(data.email)) {
+    //     setErrorMessage("Invalid email address");
+    //     return;
+    //   }
+    //   if (data.password !== data.passwordCheck) {
+    //     setErrorMessage("Passwörter stimmen nicht überein");
+    //     return;
+    //   }
+    //   return next();
+    // }
+    // function isValidEmail(email) {
+    //   const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    //   return emailRegex.test(email);
+    // }
     // const requestBody = { username, email, password, goals, experience };
     const requestBody = {
       username: data.username,
       email: data.email,
       password: data.password,
-      experience: data.experience,
       gender: data.gender,
-      isAccepted: data.isAccepted,
+      isAccepted: data.terms,
     };
 
     axios
       .post(`http://localhost:5005/user/signup`, requestBody)
       .then((response) => {
-        navigate("/");
+        return next();
+        // navigate("/");
       })
       .catch((error) => {
         // Delete this catch?
@@ -99,7 +121,7 @@ export default function Signup() {
             {currentStepIndex !== 0 && (
               <button
                 type="button"
-                onClick={back}
+                onClick={handleBackButton}
                 className={`text-slate-100 hover:text-white bg-primarypurple hover:bg-primarypurple-hover px-4 py-2 rounded-lg`}
               >
                 Zurück
