@@ -4,6 +4,7 @@ import axios from "axios";
 import logoSvg from "../assets/imgLogos/logoNoBg.svg";
 import UserForm from "./FormComponents/UserForm";
 import ExperienceForm from "./FormComponents/ExpForm";
+import VerifyCodeForm from "./FormComponents/VerifyCodeForm";
 import RegStepper from "./FormComponents/RegStepper";
 import useMultiStepForm from "./FormComponents/useMultiStepForm";
 
@@ -21,6 +22,7 @@ export default function Signup() {
   const { steps, currentStepIndex, step, back, next, isLastStep } =
     useMultiStepForm([
       <UserForm {...data} updateFields={updateFields} />,
+      <VerifyCodeForm {...data} updateFields={updateFields} />,
       <ExperienceForm {...data} updateFields={updateFields} />,
     ]);
 
@@ -74,7 +76,7 @@ export default function Signup() {
   };
 
   return (
-    <div className=" w-full h-full md:h-9/11 lg:h-5/6 xl:h-4/5 md:w-1/2 justify-center md:h-9/11 fixed px-4 py-2 rounded  bg-primaryBg/90 ">
+    <div className=" md:h-9/11 lg:h-5/6 xl:h-4/5 md:w-1/2  md:h-9/11 fixed px-4 py-2 rounded  bg-primaryBg/90 ">
       <div className=" ">
         <div className="flex flex-col gap-2">
           <img src={logoSvg} alt="logo" className="lg:w-40 w-32 p-2" />
@@ -85,7 +87,7 @@ export default function Signup() {
             />
             {currentStepIndex + 1} von {steps.length}
           </div>
-          <form onSubmit={handleSignupSubmit} className="relative pb-4 ">
+          <form onSubmit={handleSignupSubmit} className=" pb-4 ">
             {step}
             <div className="flex gap-2 absolute bottom-0 right-0 ">
               {currentStepIndex !== 0 && (

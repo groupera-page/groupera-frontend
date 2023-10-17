@@ -61,7 +61,7 @@ export default function UserForm({
           required
           type="passwordCheck"
           name="passwordCheck"
-          value={passwordCheck}
+          // value={passwordCheck}
           onChange={(e) => updateFields({ passwordCheck: e.target.value })}
           className="w-full p-2 border rounded-md  "
           placeholder="Passwort erneut eingeben"
