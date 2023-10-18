@@ -89,7 +89,7 @@ export default function UserForm({
             value="Weiblich"
             checked={gender === "Weiblich"}
             onChange={(e) => updateFields({ gender: e.target.value })}
-            className="mr-2 absolute end-2"
+            className="mr-1 absolute end-1 md:end-6"
           />
         </label>
         <label
@@ -104,7 +104,7 @@ export default function UserForm({
             value="Mannlich"
             checked={gender === "Mannlich"}
             onChange={(e) => updateFields({ gender: e.target.value })}
-            className="mr-2 absolute end-2"
+            className="mr-1 absolute end-1 md:end-6"
           />
         </label>
 
@@ -120,7 +120,7 @@ export default function UserForm({
             value="Divers"
             checked={gender === "Divers"}
             onChange={(e) => updateFields({ gender: e.target.value })}
-            className="mr-2 absolute end-2"
+            className="mr-1 absolute end-1 md:end-6"
           />
         </label>
       </div>
