@@ -10,12 +10,17 @@ export default function UserForm({
   updateFields,
   gender,
   isAccepted,
+  isVerified,
 }) {
   useEffect(() => {
-    updateFields({ email: "" });
+    // if (!isVerified) {
+    //   updateFields({ email: "" });
+    // }
+
     updateFields({ isAccepted: "" });
   }, []);
 
+  console.log("isVerified", isVerified);
   return (
     <div>
       <h2 className=" mx-2">Erstelle jetzt Dein Nutzerprofil</h2>
@@ -47,8 +52,11 @@ export default function UserForm({
           name="email"
           value={email}
           onChange={(e) => updateFields({ email: e.target.value })}
-          className="w-full p-2 border rounded-md placeholder-primaryText "
+          className={`w-full p-2 border rounded-md placeholder-primaryText ${
+            isVerified ? "text-gray-500" : ""
+          }`}
           placeholder="Email"
+          disabled={isVerified ? true : false}
         />
       </div>
       <div>

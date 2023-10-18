@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import logoSvg from "../assets/imgLogos/logoNoBg.svg";
 import UserForm from "./FormComponents/UserForm";
@@ -16,15 +16,26 @@ const initData = {
   code: "",
   gender: "",
   isAccepted: "",
-  experience: "",
+  experience: "no experience",
 };
 export default function Signup() {
   const [data, setData] = useState(initData);
   const [errorMessage, setErrorMessage] = useState(undefined);
+  const [isVerified, setisVerified] = useState(false);
+  const [currentUser, setCurrentUser] = useState("");
+  //const randomCode = Math.floor(1000 + Math.random() * 9000).toString();
+  const [randomCode, setRandomCode] = useState(
+    Math.floor(1000 + Math.random() * 9000).toString()
+  );
+
   const navigate = useNavigate();
   const { steps, currentStepIndex, step, back, next, isLastStep } =
     useMultiStepForm([
-      <UserForm {...data} updateFields={updateFields} />,
+      <UserForm
+        {...data}
+        updateFields={updateFields}
+        isVerified={isVerified}
+      />,
       <VerifyCodeForm {...data} updateFields={updateFields} />,
       <ExperienceForm {...data} updateFields={updateFields} />,
     ]);
@@ -49,22 +60,33 @@ export default function Signup() {
     setErrorMessage("");
   }
 
-  const handleSignupSubmit = (e) => {
+  const handleSignupSubmit = async (e) => {
     e.preventDefault();
-
+    //setRandomCode(Math.floor(1000 + Math.random() * 9000).toString());
     if (data.isAccepted === "") {
       setErrorMessage("Bitte akzeptieren Sie die Bedingungen");
       return;
     }
+    console.log("Random code", randomCode);
 
-    //Move to update later
     if (currentStepIndex === 1) {
-      const codeString = data.code.join();
-      if (codeString !== "1,1,1,1") {
+      const codeString = data.code.join("");
+      console.log("My code", codeString);
+      if (codeString === randomCode) {
+        const userInfo = await axios.get(
+          `http://localhost:5005/user/verified/${codeString}`
+        );
+        setCurrentUser(userInfo.data._id);
+        setisVerified(true);
+        return next(1);
+      } else {
         setErrorMessage("Wrong verification code");
         return;
       }
-      return next();
+      // if (codeString !== "1,1,1,1") {
+      //   setErrorMessage("Wrong verification code");
+      //   return;
+      // }
     }
 
     const requestBody = {
@@ -73,20 +95,37 @@ export default function Signup() {
       password: data.password,
       gender: data.gender,
       isAccepted: data.terms,
-      // experience: data.experience,
+      experience: data.experience,
+      code: randomCode,
     };
-
-    axios
-      .post(`http://localhost:5005/user/signup`, requestBody)
-      .then((response) => {
-        return next();
-        // navigate("/");
-      })
-      .catch((error) => {
-        // Delete this catch?
-        const errorDescription = error.response.data.message;
-        setErrorMessage(errorDescription);
-      });
+    console.log("VERIFIED? - ", isVerified);
+    //If update step
+    if (isVerified) {
+      axios
+        .put(`http://localhost:5005/user/${currentUser}`, requestBody)
+        .then((response) => {
+          return next(2);
+          // navigate("/");
+        })
+        .catch((error) => {
+          // Delete this catch?
+          const errorDescription = error.response.data.message;
+          setErrorMessage(errorDescription);
+        });
+    } else {
+      //If post step
+      axios
+        .post(`http://localhost:5005/user/signup`, requestBody)
+        .then((response) => {
+          return next(1);
+          // navigate("/");
+        })
+        .catch((error) => {
+          // Delete this catch?
+          const errorDescription = error.response.data.message;
+          setErrorMessage(errorDescription);
+        });
+    }
   };
 
   return (
