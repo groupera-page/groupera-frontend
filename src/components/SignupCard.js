@@ -16,9 +16,12 @@ const initData = {
   code: "",
   gender: "",
   isAccepted: "",
+  experience: "",
 };
 export default function Signup() {
   const [data, setData] = useState(initData);
+  const [errorMessage, setErrorMessage] = useState(undefined);
+  const navigate = useNavigate();
   const { steps, currentStepIndex, step, back, next, isLastStep } =
     useMultiStepForm([
       <UserForm {...data} updateFields={updateFields} />,
@@ -34,54 +37,43 @@ export default function Signup() {
 
   function handleBackButton() {
     //If index is signup - delete the user from DB
-    back();
+    if (currentStepIndex === 2) {
+      back(2);
+    } else {
+      back(1);
+    }
     setErrorMessage("");
   }
 
-  const [errorMessage, setErrorMessage] = useState(undefined);
-
-  const navigate = useNavigate();
+  function handleNextButton() {
+    setErrorMessage("");
+  }
 
   const handleSignupSubmit = (e) => {
     e.preventDefault();
 
     if (data.isAccepted === "") {
-      setErrorMessage("Check the box");
+      setErrorMessage("Bitte akzeptieren Sie die Bedingungen");
       return;
     }
 
     //Move to update later
     if (currentStepIndex === 1) {
-      if (data.code !== "") {
+      const codeString = data.code.join();
+      if (codeString !== "1,1,1,1") {
         setErrorMessage("Wrong verification code");
-        console.log(data.code);
         return;
       }
+      return next();
     }
-    console.log("CURRENT INDEX: ", currentStepIndex);
-    // Change to no form interaction
-    // if (!isLastStep) {
-    //   if (!isValidEmail(data.email)) {
-    //     setErrorMessage("Invalid email address");
-    //     return;
-    //   }
-    //   if (data.password !== data.passwordCheck) {
-    //     setErrorMessage("Passwörter stimmen nicht überein");
-    //     return;
-    //   }
-    //   return next();
-    // }
-    // function isValidEmail(email) {
-    //   const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-    //   return emailRegex.test(email);
-    // }
-    // const requestBody = { username, email, password, goals, experience };
+
     const requestBody = {
       username: data.username,
       email: data.email,
       password: data.password,
       gender: data.gender,
       isAccepted: data.terms,
+      // experience: data.experience,
     };
 
     axios
@@ -99,8 +91,8 @@ export default function Signup() {
 
   return (
     <div
-      className="h-full w-full md:h-4/5 md:w-1/2 
-      px-4 rounded  bg-primaryBg/90 "
+      className="h-full w-full md:h-fit md:w-1/2 
+      px-4 rounded  bg-primaryBg/90 md:p-8"
     >
       <div className="pb-3">
         <img src={logoSvg} alt="logo" className="lg:w-40 w-28 p-2 pt-3" />
@@ -115,27 +107,41 @@ export default function Signup() {
             {currentStepIndex + 1} von {steps.length}
           </div>
         </div>
-        <form onSubmit={handleSignupSubmit} className=" pb-4 ">
+        <form onSubmit={handleSignupSubmit} className="pb-4">
           {step}
           <div className="flex gap-2 justify-center">
-            {currentStepIndex !== 0 && (
-              <button
-                type="button"
-                onClick={handleBackButton}
-                className={`text-slate-100 hover:text-white bg-primarypurple hover:bg-primarypurple-hover px-4 py-2 rounded-lg`}
+            <div className="flex flex-col w-full ">
+              <div
+                className={`flex transition-all ease-in-out duration-500 px-2 rounded justify-center ${
+                  errorMessage ? "opacity-100" : "opacity-0"
+                }`}
               >
-                Zurück
-              </button>
-            )}
-            <button
-              type="submit"
-              className={`text-slate-100 hover:text-white bg-primarypurple hover:bg-primarypurple-hover px-6 mx-2 py-2 rounded-lg`}
-            >
-              {isLastStep ? "Absenden" : "Weiter"}
-            </button>
+                <div className="border-2 border-primaryblue rounded-md my-2  w-full">
+                  <p className="text-red-500 text-center p-2">{errorMessage}</p>
+                </div>
+              </div>
+              <div className="flex gap-2 justify-center">
+                {currentStepIndex !== 0 && (
+                  <button
+                    type="button"
+                    onClick={handleBackButton}
+                    className={`text-slate-100 hover:text-white bg-primarypurple hover:bg-primarypurple-hover px-4 py-2 rounded-lg`}
+                  >
+                    Zurück
+                  </button>
+                )}
+
+                <button
+                  type="submit"
+                  onClick={handleNextButton}
+                  className={`text-slate-100 hover:text-white bg-primarypurple hover-bg-primarypurple-hover px-4 py-2 rounded-lg`}
+                >
+                  {isLastStep ? "Absenden" : "Weiter"}
+                </button>
+              </div>
+            </div>
           </div>
         </form>
-        {errorMessage && <p className="text-red-500 mt-4">{errorMessage}</p>}
       </div>
     </div>
   );

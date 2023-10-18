@@ -10,6 +10,7 @@ export default function VerifyCodeForm({ email, code, updateFields }) {
     updatedCode[index] = value;
     setVerificationCode(updatedCode);
     updateFields({ code: updatedCode });
+    
     if (value !== "" && index < 3) {
       inputRefs[index + 1].current.focus();
     }

@@ -12,12 +12,12 @@ export default function useMultiStepForm(steps) {
     });
   }
 
-  function back() {
+  function back(numberOfSteps) {
     setCurrentStepIndex((i) => {
       if (i <= 0) {
         return i;
       }
-      return i - 1;
+      return i - numberOfSteps;
     });
   }
 

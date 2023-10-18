@@ -13,6 +13,7 @@ export default function UserForm({
 }) {
   useEffect(() => {
     updateFields({ email: "" });
+    updateFields({ isAccepted: "" });
   }, []);
 
   return (
@@ -123,7 +124,7 @@ export default function UserForm({
           />
         </label>
       </div>
-      <div className="flex flex-row items-start my-5">
+      <div className="flex flex-row items-start my-2">
         <div className=" flex flex-row  mt-4 ">
           <input
             type="checkbox"
