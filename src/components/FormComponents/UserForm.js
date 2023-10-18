@@ -79,7 +79,7 @@ export default function UserForm({
       <div className="flex justify-between gap-2 text-sm mt-4">
         <label
           htmlFor="radioOption1"
-          className="w-1/3 cursor-pointer border border-primaryblue rounded-md text-sm p-2 pl-4 flex items-center gap-4 "
+          className="relative w-1/3 cursor-pointer border border-primaryblue rounded-md text-sm p-2 pl-4 flex items-center gap-4 "
         >
           <div>Weiblich</div>
           <input
@@ -89,12 +89,12 @@ export default function UserForm({
             value="Weiblich"
             checked={gender === "Weiblich"}
             onChange={(e) => updateFields({ gender: e.target.value })}
-            className="mr-2"
+            className="mr-2 absolute end-2"
           />
         </label>
         <label
           htmlFor="radioOption2"
-          className="w-1/3 cursor-pointer border border-primaryblue rounded-md text-sm p-2 pl-4 flex items-center gap-4 "
+          className="relative w-1/3 cursor-pointer border border-primaryblue rounded-md text-sm p-2 pl-4 flex items-center gap-4 "
         >
           <div>Männlich</div>
           <input
@@ -104,13 +104,13 @@ export default function UserForm({
             value="Mannlich"
             checked={gender === "Mannlich"}
             onChange={(e) => updateFields({ gender: e.target.value })}
-            className="mr-2"
+            className="mr-2 absolute end-2"
           />
         </label>
 
         <label
           htmlFor="radioOption3"
-          className="w-1/3 cursor-pointer border border-primaryblue rounded-md text-sm p-2 pl-4 flex items-center gap-4 "
+          className="relative w-1/3 cursor-pointer border border-primaryblue rounded-md text-sm p-2 pl-4 flex items-center gap-4 "
         >
           <div>Divers</div>
           <input
@@ -120,7 +120,7 @@ export default function UserForm({
             value="Divers"
             checked={gender === "Divers"}
             onChange={(e) => updateFields({ gender: e.target.value })}
-            className="mr-2"
+            className="mr-2 absolute end-2"
           />
         </label>
       </div>
