@@ -8,6 +8,7 @@ import VerifyCodeForm from "./FormComponents/VerifyCodeForm";
 import RegStepper from "./FormComponents/RegStepper";
 import useMultiStepForm from "./FormComponents/useMultiStepForm";
 import ThemesForm from "./FormComponents/ThemesForm";
+import GroupInfoForm from "./FormComponents/GroupInfoForm";
 
 const initData = {
   username: "",
@@ -19,21 +20,37 @@ const initData = {
   isAccepted: "",
   experience: "no experience",
 };
+
+const initGroupData = {
+  name: "",
+  description: "",
+  users: "",
+  img: "",
+  time: "",
+  freq: "",
+  when: "",
+  day: "",
+  length: "",
+  token: "",
+};
+
 export default function Funnel({ FunnelIndex }) {
   const [data, setData] = useState(initData);
+  const [groupData, setGroupData] = useState(initGroupData);
   const [errorMessage, setErrorMessage] = useState(undefined);
   const [isEditing, setisIsEditing] = useState(false);
   const [isVerified, setisVerified] = useState(false);
   const [currentUser, setCurrentUser] = useState("");
+  const navigate = useNavigate();
   //const randomCode = Math.floor(1000 + Math.random() * 9000).toString();
   const [randomCode, setRandomCode] = useState(
     Math.floor(1000 + Math.random() * 9000).toString()
   );
-
   let funnelSteps = [];
   let userFormIndex;
   let verifyCodeIndex;
   let elementAfterVerify = false;
+  let groupInfoindex;
   switch (FunnelIndex) {
     case 1:
       funnelSteps = [
@@ -65,14 +82,32 @@ export default function Funnel({ FunnelIndex }) {
       verifyCodeIndex = 3;
       break;
     case 3:
+      funnelSteps = [
+        <ExperienceForm {...data} updateFields={updateFields} />,
+        <ThemesForm {...data} updateFields={updateFields} />,
+        <GroupInfoForm
+          {...data}
+          updateFields={updateFields}
+          updateGroupFields={updateGroupFields}
+        />,
+
+        <UserForm
+          {...data}
+          updateFields={updateFields}
+          isVerified={isVerified}
+        />,
+        <VerifyCodeForm {...data} updateFields={updateFields} />,
+      ];
+      elementAfterVerify = false;
+      userFormIndex = 2;
+      verifyCodeIndex = 3;
+      groupInfoindex = 2;
       break;
     case 4:
       break;
     default:
       console.log("No funnel");
   }
-
-  const navigate = useNavigate();
   const { steps, currentStepIndex, step, back, next, isLastStep } =
     useMultiStepForm(funnelSteps);
 
@@ -81,9 +116,16 @@ export default function Funnel({ FunnelIndex }) {
       return { ...prev, ...fields };
     });
   }
+  function updateGroupFields(fields) {
+    setGroupData((prev) => {
+      return { ...prev, ...fields };
+    });
+  }
+
   function handleBackButton() {
-    //If index is signup - delete the user from DB
-    setisIsEditing(true);
+    if (!userFormIndex) {
+      setisIsEditing(true);
+    }
     if (elementAfterVerify) {
       back(2);
     } else {
@@ -91,8 +133,28 @@ export default function Funnel({ FunnelIndex }) {
     }
     setErrorMessage("");
   }
+
+  // Depending on INDEX change the button on click call
+  const handleGroup = async (e) => {
+    e.preventDefault();
+    try {
+      const url = `http://localhost:5005/group/create`;
+      const { groupData: res } = await axios.post(url, groupData);
+      console.log(groupData);
+    } catch (error) {
+      if (
+        error.response &&
+        error.response.status >= 400 &&
+        error.response.status <= 500
+      ) {
+        setErrorMessage(error.response.data.message);
+      }
+    }
+  };
+
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
+
     //setRandomCode(Math.floor(1000 + Math.random() * 9000).toString());
     if (currentStepIndex === userFormIndex) {
       if (data.isAccepted === "") {
@@ -102,6 +164,7 @@ export default function Funnel({ FunnelIndex }) {
     }
 
     if (!isVerified && currentStepIndex !== userFormIndex && !isLastStep) {
+      setisIsEditing(false);
       next(1);
       return;
     }
@@ -213,7 +276,14 @@ export default function Funnel({ FunnelIndex }) {
             {currentStepIndex + 1} von {steps.length}
           </div>
         </div>
-        <form onSubmit={handleSignupSubmit} className="pb-4">
+        <form
+          onSubmit={
+            groupInfoindex === currentStepIndex
+              ? handleGroup
+              : handleSignupSubmit
+          }
+          className="pb-4"
+        >
           {step}
           <div className="flex gap-2 justify-center">
             <div className="flex flex-col w-full ">

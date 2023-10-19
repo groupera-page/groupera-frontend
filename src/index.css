@@ -25,11 +25,11 @@ code {
   }
 
   h3 {
-    @apply md:text-2xl text-lg text-primaryText font-medium;
+    @apply md:text-2xl text-lg text-primaryText font-light;
   }
 
   h4 {
-    @apply md:text-xl font-medium text-primaryText;
+    @apply md:text-xl text-primaryText;
   }
 
   h5 {
