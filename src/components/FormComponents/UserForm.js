@@ -132,26 +132,24 @@ export default function UserForm({
           />
         </label>
       </div>
-      <div className="flex flex-row items-start my-2">
-        <div className=" flex flex-row  mt-4 ">
+      <div className="flex flex-row items-star my-2">
+        <div className="pt-3 px-3 flex gap-3">
           <input
             type="checkbox"
             name="isAccepted"
             onChange={(e) =>
               updateFields({ isAccepted: e.target.checked ? "Accepted" : "" })
             }
-            className="self-left"
+            className=""
           />
-        </div>
 
-        <div className="pt-3 px-3 ">
           <p className="text-xs">
             Ich akzeptiere die{" "}
-            <Link to={"/login"} className="text-primarypurple">
+            <Link to={"/"} className="text-primarypurple">
               Allgemeinen Geschäftsbedingungen
             </Link>{" "}
             und die{" "}
-            <Link to={"/login"} className="text-primarypurple">
+            <Link to={"/"} className="text-primarypurple">
               Datenschutzerkärung{" "}
             </Link>
             von Groupera

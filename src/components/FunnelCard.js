@@ -13,7 +13,7 @@ const initData = {
   email: "",
   password: "",
   passwordCheck: "",
-  code: "",
+  code: [],
   gender: "",
   isAccepted: "",
   experience: "no experience",
@@ -45,7 +45,6 @@ export default function Signup() {
       return { ...prev, ...fields };
     });
   }
-
   function handleBackButton() {
     //If index is signup - delete the user from DB
     if (currentStepIndex === 2) {
@@ -55,11 +54,6 @@ export default function Signup() {
     }
     setErrorMessage("");
   }
-
-  function handleNextButton() {
-    setErrorMessage("");
-  }
-
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
     //setRandomCode(Math.floor(1000 + Math.random() * 9000).toString());
@@ -78,15 +72,12 @@ export default function Signup() {
         );
         setCurrentUser(userInfo.data._id);
         setisVerified(true);
+        setErrorMessage("");
         return next(1);
       } else {
-        setErrorMessage("Wrong verification code");
+        setErrorMessage("Falscher Verifizierungscode.");
         return;
       }
-      // if (codeString !== "1,1,1,1") {
-      //   setErrorMessage("Wrong verification code");
-      //   return;
-      // }
     }
 
     const requestBody = {
@@ -99,13 +90,17 @@ export default function Signup() {
       code: randomCode,
     };
     console.log("VERIFIED? - ", isVerified);
-    //If update step
+
+    //UPDATE
     if (isVerified) {
       axios
-        .put(`http://localhost:5005/user/${currentUser}`, requestBody)
+        .put(`http://localhost:5005/user/edit/${currentUser}`, requestBody)
         .then((response) => {
-          return next(2);
-          // navigate("/");
+          if (isLastStep) {
+            navigate("/login");
+          } else {
+            return next(2);
+          }
         })
         .catch((error) => {
           // Delete this catch?
@@ -113,10 +108,11 @@ export default function Signup() {
           setErrorMessage(errorDescription);
         });
     } else {
-      //If post step
+      //POST
       axios
         .post(`http://localhost:5005/user/signup`, requestBody)
         .then((response) => {
+          setErrorMessage("");
           return next(1);
           // navigate("/");
         })
@@ -151,20 +147,30 @@ export default function Signup() {
           <div className="flex gap-2 justify-center">
             <div className="flex flex-col w-full ">
               <div
-                className={`flex transition-all ease-in-out duration-500 px-2 rounded justify-center ${
+                className={`flex transition-all ease-in-out duration-500 justify-center ${
                   errorMessage ? "opacity-100" : "opacity-0"
                 }`}
               >
-                <div className="border-2 border-primaryblue rounded-md my-2  w-full">
-                  <p className="text-red-500 text-center p-2">{errorMessage}</p>
-                </div>
+                {errorMessage && (
+                  <div
+                    className={`flex transition-all ease-in-out duration-500 justify-center `}
+                  >
+                    <div className="border-2 border-primaryblue rounded-md mb-2 ">
+                      <p className="text-red-500 text-center p-2">
+                        {errorMessage}
+                      </p>
+                    </div>
+                  </div>
+                )}
               </div>
-              <div className="flex gap-2 justify-center">
+              <div className="flex gap-4 justify-center">
                 {currentStepIndex !== 0 && (
                   <button
                     type="button"
                     onClick={handleBackButton}
-                    className={`text-slate-100 hover:text-white bg-primarypurple hover:bg-primarypurple-hover px-4 py-2 rounded-lg`}
+                    className={`text-slate-100 hover:text-white bg-primarypurple hover-bg-primarypurple-hover px-4 py-2 ${
+                      errorMessage ? "mt-0" : "mt-4"
+                    } rounded-lg`}
                   >
                     Zurück
                   </button>
@@ -172,8 +178,10 @@ export default function Signup() {
 
                 <button
                   type="submit"
-                  onClick={handleNextButton}
-                  className={`text-slate-100 hover:text-white bg-primarypurple hover-bg-primarypurple-hover px-4 py-2 rounded-lg`}
+                  // onClick={handleNextButton}
+                  className={`text-slate-100 hover:text-white bg-primarypurple hover-bg-primarypurple-hover px-4 py-2 ${
+                    errorMessage ? "mt-0" : "mt-4"
+                  } rounded-lg`}
                 >
                   {isLastStep ? "Absenden" : "Weiter"}
                 </button>

@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import "./App.css";
 import Login from "./pages/LoginPage";
-import SignupPage from "./pages/SignupPage";
+import SignupPage from "./pages/RegistrationPage";
 import EmailVerify from "./components/EmailVerify";
 
 function App() {
@@ -12,7 +12,6 @@ function App() {
       {/* <Navbar/> */}
       <Routes>
         <Route exact path="/" element={<Home />} />
-
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/user/:id/verify/:token" element={<EmailVerify />} />

@@ -1,4 +1,4 @@
-import Signup from "../components/SignupCard";
+import Signup from "../components/FunnelCard";
 import backgroundImage from "../assets/hands4.jpg";
 function SignupPage() {
   return (

@@ -8,6 +8,7 @@ module.exports = {
         primaryblue: "#ACD7EB",
         primaryyellow: "#F9F5E6",
         primaryBg: "#FCFCFC",
+        secondaryBg: "rgb(154, 192, 209)",
         textLightGray: "#9ca3af",
         secondaryText: "#8590A6",
         primaryText: "#212529",

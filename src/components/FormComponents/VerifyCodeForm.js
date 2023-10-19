@@ -10,31 +10,31 @@ export default function VerifyCodeForm({ email, code, updateFields }) {
     updatedCode[index] = value;
     setVerificationCode(updatedCode);
     updateFields({ code: updatedCode });
-    
+
     if (value !== "" && index < 3) {
       inputRefs[index + 1].current.focus();
     }
-    if (value === "") {
-      if (index !== 0) {
-        inputRefs[index - 1].current.focus();
-      }
-    }
+    // if (value === "") {
+    //   if (index !== 0) {
+    //     inputRefs[index - 1].current.focus();
+    //   }
+    // }
   };
 
   return (
     <div>
-      <h2 className="mx-2 mt-8">Verifiziere deine Email adresse</h2>
-      <p className=" m-2">
+      <h2 className=" mt-8">Verifiziere deine Email adresse</h2>
+      <p className=" my-4">
         Wir haben Dir einen 4 stelligen Verifizierungscode per E-Mail geschickt.
       </p>
-      <div className="flex justify-center m-10 gap-2">
+      <div className="flex justify-center mx-10 gap-2 my-6">
         {verificationCode.map((value, index) => (
           <input
             key={index}
             ref={inputRefs[index]}
             type="text"
             name="codebox"
-            className="border rounded-md p-2 w-20 border-primaryblue"
+            className="border rounded-md p-1 w-20 border-primaryblue text-lg text-center"
             placeholder=""
             value={value}
             maxLength="1"
