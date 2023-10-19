@@ -1,4 +1,4 @@
-import Signup from "../components/FunnelCard";
+import Funnel from "../components/FunnelCard";
 import backgroundImage from "../assets/hands4.jpg";
 function SignupPage() {
   return (
@@ -9,7 +9,7 @@ function SignupPage() {
           backgroundImage: `url(${backgroundImage})`,
         }}
       >
-        <Signup />
+        <Funnel FunnelIndex={2} />
       </div>
     </div>
   );

@@ -7,6 +7,7 @@ import ExperienceForm from "./FormComponents/ExpForm";
 import VerifyCodeForm from "./FormComponents/VerifyCodeForm";
 import RegStepper from "./FormComponents/RegStepper";
 import useMultiStepForm from "./FormComponents/useMultiStepForm";
+import ThemesForm from "./FormComponents/ThemesForm";
 
 const initData = {
   username: "",
@@ -18,9 +19,10 @@ const initData = {
   isAccepted: "",
   experience: "no experience",
 };
-export default function Signup() {
+export default function Funnel({ FunnelIndex }) {
   const [data, setData] = useState(initData);
   const [errorMessage, setErrorMessage] = useState(undefined);
+  const [isEditing, setisIsEditing] = useState(false);
   const [isVerified, setisVerified] = useState(false);
   const [currentUser, setCurrentUser] = useState("");
   //const randomCode = Math.floor(1000 + Math.random() * 9000).toString();
@@ -28,17 +30,51 @@ export default function Signup() {
     Math.floor(1000 + Math.random() * 9000).toString()
   );
 
+  let funnelSteps = [];
+  let userFormIndex;
+  let verifyCodeIndex;
+  let elementAfterVerify = false;
+  switch (FunnelIndex) {
+    case 1:
+      funnelSteps = [
+        <UserForm
+          {...data}
+          updateFields={updateFields}
+          isVerified={isVerified}
+        />,
+        <VerifyCodeForm {...data} updateFields={updateFields} />,
+        <ExperienceForm {...data} updateFields={updateFields} />,
+      ];
+      elementAfterVerify = true;
+      userFormIndex = 0;
+      verifyCodeIndex = 1;
+      break;
+    case 2:
+      funnelSteps = [
+        <ThemesForm {...data} updateFields={updateFields} />,
+        <ExperienceForm {...data} updateFields={updateFields} />,
+        <UserForm
+          {...data}
+          updateFields={updateFields}
+          isVerified={isVerified}
+        />,
+        <VerifyCodeForm {...data} updateFields={updateFields} />,
+      ];
+      elementAfterVerify = false;
+      userFormIndex = 2;
+      verifyCodeIndex = 3;
+      break;
+    case 3:
+      break;
+    case 4:
+      break;
+    default:
+      console.log("No funnel");
+  }
+
   const navigate = useNavigate();
   const { steps, currentStepIndex, step, back, next, isLastStep } =
-    useMultiStepForm([
-      <UserForm
-        {...data}
-        updateFields={updateFields}
-        isVerified={isVerified}
-      />,
-      <VerifyCodeForm {...data} updateFields={updateFields} />,
-      <ExperienceForm {...data} updateFields={updateFields} />,
-    ]);
+    useMultiStepForm(funnelSteps);
 
   function updateFields(fields) {
     setData((prev) => {
@@ -47,7 +83,8 @@ export default function Signup() {
   }
   function handleBackButton() {
     //If index is signup - delete the user from DB
-    if (currentStepIndex === 2) {
+    setisIsEditing(true);
+    if (elementAfterVerify) {
       back(2);
     } else {
       back(1);
@@ -57,13 +94,21 @@ export default function Signup() {
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
     //setRandomCode(Math.floor(1000 + Math.random() * 9000).toString());
-    if (data.isAccepted === "") {
-      setErrorMessage("Bitte akzeptieren Sie die Bedingungen");
+    if (currentStepIndex === userFormIndex) {
+      if (data.isAccepted === "") {
+        setErrorMessage("Bitte akzeptieren Sie die Bedingungen");
+        return;
+      }
+    }
+
+    if (!isVerified && currentStepIndex !== userFormIndex && !isLastStep) {
+      next(1);
       return;
     }
     console.log("Random code", randomCode);
 
-    if (currentStepIndex === 1) {
+    // CODE check
+    if (currentStepIndex === verifyCodeIndex) {
       const codeString = data.code.join("");
       console.log("My code", codeString);
       if (codeString === randomCode) {
@@ -73,6 +118,9 @@ export default function Signup() {
         setCurrentUser(userInfo.data._id);
         setisVerified(true);
         setErrorMessage("");
+        if (isLastStep) {
+          navigate("/login");
+        }
         return next(1);
       } else {
         setErrorMessage("Falscher Verifizierungscode.");
@@ -92,10 +140,11 @@ export default function Signup() {
     console.log("VERIFIED? - ", isVerified);
 
     //UPDATE
-    if (isVerified) {
+    if (currentUser) {
       axios
         .put(`http://localhost:5005/user/edit/${currentUser}`, requestBody)
         .then((response) => {
+          setisIsEditing(false);
           if (isLastStep) {
             navigate("/login");
           } else {
@@ -107,11 +156,12 @@ export default function Signup() {
           const errorDescription = error.response.data.message;
           setErrorMessage(errorDescription);
         });
-    } else {
+    } else if (!isEditing) {
       //POST
       axios
         .post(`http://localhost:5005/user/signup`, requestBody)
         .then((response) => {
+          setisIsEditing(false);
           setErrorMessage("");
           return next(1);
           // navigate("/");
@@ -122,6 +172,27 @@ export default function Signup() {
           setErrorMessage(errorDescription);
         });
     }
+
+    // if (isEditing) {
+    //   const userInfo = await axios.get(
+    //     `http://localhost:5005/user/${randomCode}`
+    //   );
+
+    //   axios
+    //     .put(`http://localhost:5005/user/edit/${userInfo}`, requestBody)
+    //     .then((response) => {
+    //       if (isLastStep) {
+    //         navigate("/login");
+    //       } else {
+    //         return next(2);
+    //       }
+    //     })
+    //     .catch((error) => {
+    //       // Delete this catch?
+    //       const errorDescription = error.response.data.message;
+    //       setErrorMessage(errorDescription);
+    //     });
+    // }
   };
 
   return (

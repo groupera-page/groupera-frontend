@@ -20,7 +20,6 @@ export default function UserForm({
     updateFields({ isAccepted: "" });
   }, []);
 
-  console.log("isVerified", isVerified);
   return (
     <div>
       <h2 className=" mx-2">Erstelle jetzt Dein Nutzerprofil</h2>
