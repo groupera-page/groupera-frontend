@@ -7,8 +7,9 @@ import ExperienceForm from "./FormComponents/ExpForm";
 import VerifyCodeForm from "./FormComponents/VerifyCodeForm";
 import RegStepper from "./FormComponents/RegStepper";
 import useMultiStepForm from "./FormComponents/useMultiStepForm";
-import ThemesForm from "./FormComponents/ThemesForm";
+import GroupThemesForm from "./FormComponents/GroupThemesForm";
 import GroupInfoForm from "./FormComponents/GroupInfoForm";
+import FunnelSwitch from "./FunnelSwitch";
 
 const initData = {
   username: "",
@@ -22,11 +23,12 @@ const initData = {
 };
 
 const initGroupData = {
+  theme: "",
   name: "",
   description: "",
   users: "",
   img: "",
-  time: "",
+  time: "12:00:13:00",
   freq: "",
   when: "",
   day: "",
@@ -42,75 +44,31 @@ export default function Funnel({ FunnelIndex }) {
   const [isVerified, setisVerified] = useState(false);
   const [currentUser, setCurrentUser] = useState("");
   const [currentUserEmail, setCurrentUserEmail] = useState("");
-
   const navigate = useNavigate();
-  //const randomCode = Math.floor(1000 + Math.random() * 9000).toString();
   const [randomCode, setRandomCode] = useState(
     Math.floor(1000 + Math.random() * 9000).toString()
   );
-  let funnelSteps = [];
-  let userFormIndex;
-  let verifyCodeIndex;
-  let elementAfterVerify;
-  let groupInfoindex;
-  switch (FunnelIndex) {
-    case 1:
-      funnelSteps = [
-        <UserForm
-          {...data}
-          updateFields={updateFields}
-          isVerified={isVerified}
-        />,
-        <VerifyCodeForm {...data} updateFields={updateFields} />,
-        <ExperienceForm {...data} updateFields={updateFields} />,
-      ];
-      //Delete ?
-      elementAfterVerify = 2;
-      userFormIndex = 0;
-      verifyCodeIndex = 1;
-      break;
-    case 2:
-      funnelSteps = [
-        <ThemesForm {...data} updateFields={updateFields} />,
-        <ExperienceForm {...data} updateFields={updateFields} />,
-        <UserForm
-          {...data}
-          updateFields={updateFields}
-          isVerified={isVerified}
-        />,
-        <VerifyCodeForm {...data} updateFields={updateFields} />,
-      ];
-      elementAfterVerify = 99;
-      userFormIndex = 2;
-      verifyCodeIndex = 3;
-      break;
-    case 3:
-      funnelSteps = [
-        <ExperienceForm {...data} updateFields={updateFields} />,
-        <ThemesForm {...data} updateFields={updateFields} />,
-        <GroupInfoForm
-          {...data}
-          updateFields={updateFields}
-          updateGroupFields={updateGroupFields}
-        />,
+  const funnelSteps = FunnelSwitch(
+    FunnelIndex,
+    data,
+    updateFields,
+    updateGroupFields,
+    isVerified,
+    groupData
+  );
+  const userFormIndex = funnelSteps.findIndex(
+    (component) => component.type === UserForm
+  );
+  const verifyCodeIndex = funnelSteps.findIndex(
+    (component) => component.type === VerifyCodeForm
+  );
+  const groupInfoindex = funnelSteps.findIndex(
+    (component) => component.type === GroupInfoForm
+  );
+  const stepAfterVerify = verifyCodeIndex + 1;
 
-        <UserForm
-          {...data}
-          updateFields={updateFields}
-          isVerified={isVerified}
-        />,
-        <VerifyCodeForm {...data} updateFields={updateFields} />,
-      ];
-      elementAfterVerify = false;
-      userFormIndex = 2;
-      verifyCodeIndex = 3;
-      groupInfoindex = 2;
-      break;
-    case 4:
-      break;
-    default:
-      console.log("No funnel");
-  }
+  console.log(userFormIndex);
+
   const { steps, currentStepIndex, step, back, next, isLastStep } =
     useMultiStepForm(funnelSteps);
 
@@ -131,7 +89,7 @@ export default function Funnel({ FunnelIndex }) {
     setisIsEditing(true);
     if (!userFormIndex) {
     }
-    if (elementAfterVerify === currentStepIndex) {
+    if (stepAfterVerify === currentStepIndex) {
       back(2);
     } else {
       back(1);
@@ -305,11 +263,7 @@ export default function Funnel({ FunnelIndex }) {
           </div>
         </div>
         <form
-          onSubmit={
-            groupInfoindex === currentStepIndex
-              ? handleGroup
-              : handleSignupSubmit
-          }
+          onSubmit={groupInfoindex === 10000 ? handleGroup : handleSignupSubmit}
           className="pb-4"
         >
           {step}
@@ -337,14 +291,13 @@ export default function Funnel({ FunnelIndex }) {
                   <button
                     type="button"
                     onClick={handleBackButton}
-                    className={`text-slate-100 hover:text-white bg-primarypurple hover-bg-primarypurple-hover px-4 py-2 ${
+                    className={` hover:text-white text-primarypurple hover-bg-primarypurple-hover px-4 py-2 ${
                       errorMessage ? "mt-0" : "mt-4"
                     } rounded-lg`}
                   >
                     Zurück
                   </button>
                 )}
-
                 <button
                   type="submit"
                   // onClick={handleNextButton}

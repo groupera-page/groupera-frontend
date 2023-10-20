@@ -1,4 +1,4 @@
-export default function ThemesForm({ experience, updateFields }) {
+export default function GrouThemesForm({ theme, updateGroupFields }) {
   return (
     <div className="">
       <h2 className="my-2">Für welche Themen suchst du Gruppen?</h2>
@@ -14,8 +14,8 @@ export default function ThemesForm({ experience, updateFields }) {
             id="radioOption1"
             name="options"
             value="option1"
-            checked={experience === "option1"}
-            onChange={(e) => updateFields({ experience: e.target.value })}
+            checked={theme === "option1"}
+            onChange={(e) => updateGroupFields({ theme: e.target.value })}
             className="mr-1 absolute end-1 md:end-16"
           />
         </label>
@@ -29,8 +29,8 @@ export default function ThemesForm({ experience, updateFields }) {
             id="radioOption2"
             name="options"
             value="option2"
-            checked={experience === "option2"}
-            onChange={(e) => updateFields({ experience: e.target.value })}
+            checked={theme === "option2"}
+            onChange={(e) => updateGroupFields({ theme: e.target.value })}
             className="mr-1 absolute end-1 md:end-16"
           />
         </label>
@@ -44,8 +44,8 @@ export default function ThemesForm({ experience, updateFields }) {
             id="radioOption3"
             name="options"
             value="option3"
-            checked={experience === "option3"}
-            onChange={(e) => updateFields({ experience: e.target.value })}
+            checked={theme === "option3"}
+            onChange={(e) => updateGroupFields({ theme: e.target.value })}
             className="mr-1 absolute end-1 md:end-16"
           />
         </label>
@@ -59,8 +59,8 @@ export default function ThemesForm({ experience, updateFields }) {
             id="radioOption4"
             name="options"
             value="option4"
-            checked={experience === "option4"}
-            onChange={(e) => updateFields({ experience: e.target.value })}
+            checked={theme === "option4"}
+            onChange={(e) => updateGroupFields({ theme: e.target.value })}
             className="mr-1 absolute end-1 md:end-16"
           />
         </label>
@@ -74,8 +74,8 @@ export default function ThemesForm({ experience, updateFields }) {
             id="radioOption5"
             name="options"
             value="option5"
-            checked={experience === "option5"}
-            onChange={(e) => updateFields({ experience: e.target.value })}
+            checked={theme === "option5"}
+            onChange={(e) => updateGroupFields({ theme: e.target.value })}
             className="mr-1 absolute end-1 md:end-16"
           />
         </label>
@@ -89,8 +89,8 @@ export default function ThemesForm({ experience, updateFields }) {
             id="radioOption6"
             name="options"
             value="option6"
-            checked={experience === "option6"}
-            onChange={(e) => updateFields({ experience: e.target.value })}
+            checked={theme === "option6"}
+            onChange={(e) => updateGroupFields({ theme: e.target.value })}
             className="mr-1 absolute end-1 md:end-16"
           />
         </label>
@@ -104,8 +104,8 @@ export default function ThemesForm({ experience, updateFields }) {
             id="radioOption7"
             name="options"
             value="option7"
-            checked={experience === "option7"}
-            onChange={(e) => updateFields({ experience: e.target.value })}
+            checked={theme === "option7"}
+            onChange={(e) => updateGroupFields({ theme: e.target.value })}
             className="mr-1 absolute end-1 md:end-16"
           />
         </label>
@@ -119,8 +119,8 @@ export default function ThemesForm({ experience, updateFields }) {
             id="radioOption8"
             name="options"
             value="option8"
-            checked={experience === "option8"}
-            onChange={(e) => updateFields({ experience: e.target.value })}
+            checked={theme === "option8"}
+            onChange={(e) => updateGroupFields({ theme: e.target.value })}
             className="mr-1 absolute end-1 md:end-16"
           />
         </label>
@@ -134,8 +134,8 @@ export default function ThemesForm({ experience, updateFields }) {
             id="radioOption9"
             name="options"
             value="option9"
-            checked={experience === "option9"}
-            onChange={(e) => updateFields({ experience: e.target.value })}
+            checked={theme === "option9"}
+            onChange={(e) => updateGroupFields({ theme: e.target.value })}
             className="mr-1 absolute end-1 md:end-16"
           />
         </label>

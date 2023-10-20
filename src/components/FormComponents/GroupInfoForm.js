@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
-export default function GroupInfoForm({ updateFields }) {
+export default function GroupInfoForm({
+  name,
+  description,
+  updateGroupFields,
+}) {
   const [text, setText] = useState("");
   const maxCharacters = 200;
   const [groupImage, setGroupImage] = useState("");
 
   const handleChange = (e) => {
     const inputText = e.target.value;
-
+    updateGroupFields({ description: e.target.value });
     if (inputText.length <= maxCharacters) {
       setText(inputText);
     }
@@ -16,15 +20,12 @@ export default function GroupInfoForm({ updateFields }) {
 
   const handleGroupImage = (e) => {
     e.preventDefault();
-
     const file = e.target.files[0];
-
     TransformFile(file);
   };
 
   const TransformFile = (file) => {
     const reader = new FileReader();
-
     if (file) {
       reader.readAsDataURL(file);
       reader.onloadend = () => {
@@ -45,8 +46,8 @@ export default function GroupInfoForm({ updateFields }) {
           required
           type="text"
           name="username"
-          // value={text}
-          // onChange={(e) => updateFields({ username: e.target.value })}
+          value={name}
+          onChange={(e) => updateGroupFields({ name: e.target.value })}
           className="w-full border rounded-md p-2 placeholder-primaryText"
           placeholder="Name"
         />
@@ -56,7 +57,7 @@ export default function GroupInfoForm({ updateFields }) {
         <textarea
           required
           name="username"
-          value={text}
+          value={description}
           onChange={handleChange}
           className="w-full border border-primaryblue rounded-md p-2 placeholder-primaryText h-20 resize-none text-sm"
           placeholder="Kurze Gruppenbeschreibung"
