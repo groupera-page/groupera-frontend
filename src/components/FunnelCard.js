@@ -41,6 +41,8 @@ export default function Funnel({ FunnelIndex }) {
   const [isEditing, setisIsEditing] = useState(false);
   const [isVerified, setisVerified] = useState(false);
   const [currentUser, setCurrentUser] = useState("");
+  const [currentUserEmail, setCurrentUserEmail] = useState("");
+
   const navigate = useNavigate();
   //const randomCode = Math.floor(1000 + Math.random() * 9000).toString();
   const [randomCode, setRandomCode] = useState(
@@ -49,7 +51,7 @@ export default function Funnel({ FunnelIndex }) {
   let funnelSteps = [];
   let userFormIndex;
   let verifyCodeIndex;
-  let elementAfterVerify = false;
+  let elementAfterVerify;
   let groupInfoindex;
   switch (FunnelIndex) {
     case 1:
@@ -62,7 +64,8 @@ export default function Funnel({ FunnelIndex }) {
         <VerifyCodeForm {...data} updateFields={updateFields} />,
         <ExperienceForm {...data} updateFields={updateFields} />,
       ];
-      elementAfterVerify = true;
+      //Delete ?
+      elementAfterVerify = 2;
       userFormIndex = 0;
       verifyCodeIndex = 1;
       break;
@@ -77,7 +80,7 @@ export default function Funnel({ FunnelIndex }) {
         />,
         <VerifyCodeForm {...data} updateFields={updateFields} />,
       ];
-      elementAfterVerify = false;
+      elementAfterVerify = 99;
       userFormIndex = 2;
       verifyCodeIndex = 3;
       break;
@@ -123,10 +126,12 @@ export default function Funnel({ FunnelIndex }) {
   }
 
   function handleBackButton() {
+    setRandomCode(Math.floor(1000 + Math.random() * 9000).toString());
+    console.log("Randomcode", randomCode);
+    setisIsEditing(true);
     if (!userFormIndex) {
-      setisIsEditing(true);
     }
-    if (elementAfterVerify) {
+    if (elementAfterVerify === currentStepIndex) {
       back(2);
     } else {
       back(1);
@@ -152,28 +157,18 @@ export default function Funnel({ FunnelIndex }) {
     }
   };
 
+  console.log("Randomcode", randomCode);
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
-
-    //setRandomCode(Math.floor(1000 + Math.random() * 9000).toString());
     if (currentStepIndex === userFormIndex) {
       if (data.isAccepted === "") {
         setErrorMessage("Bitte akzeptieren Sie die Bedingungen");
         return;
       }
     }
-
-    if (!isVerified && currentStepIndex !== userFormIndex && !isLastStep) {
-      setisIsEditing(false);
-      next(1);
-      return;
-    }
-    console.log("Random code", randomCode);
-
     // CODE check
     if (currentStepIndex === verifyCodeIndex) {
       const codeString = data.code.join("");
-      console.log("My code", codeString);
       if (codeString === randomCode) {
         const userInfo = await axios.get(
           `http://localhost:5005/user/verified/${codeString}`
@@ -191,6 +186,13 @@ export default function Funnel({ FunnelIndex }) {
       }
     }
 
+    //PREVENT db request
+    if (currentStepIndex !== userFormIndex && !isLastStep) {
+      setisIsEditing(false);
+      next(1);
+      return;
+    }
+
     const requestBody = {
       username: data.username,
       email: data.email,
@@ -202,8 +204,26 @@ export default function Funnel({ FunnelIndex }) {
     };
     console.log("VERIFIED? - ", isVerified);
 
-    //UPDATE
-    if (currentUser) {
+    //POST
+    if (!isVerified && !isEditing) {
+      console.log("CREATE new user");
+      axios
+        .post(`http://localhost:5005/user/signup`, requestBody)
+        .then((response) => {
+          setisIsEditing(false);
+          setErrorMessage("");
+          setCurrentUserEmail(data.email);
+          return next(1);
+        })
+        .catch((error) => {
+          const errorDescription = error.response.data.message;
+          setErrorMessage(errorDescription);
+        });
+    }
+
+    //UPDATE after verification step, handle final multistep
+    if (isVerified && !isEditing) {
+      console.log("Updating");
       axios
         .put(`http://localhost:5005/user/edit/${currentUser}`, requestBody)
         .then((response) => {
@@ -211,51 +231,59 @@ export default function Funnel({ FunnelIndex }) {
           if (isLastStep) {
             navigate("/login");
           } else {
-            return next(2);
+            return next(1);
           }
         })
         .catch((error) => {
-          // Delete this catch?
-          const errorDescription = error.response.data.message;
-          setErrorMessage(errorDescription);
-        });
-    } else if (!isEditing) {
-      //POST
-      axios
-        .post(`http://localhost:5005/user/signup`, requestBody)
-        .then((response) => {
-          setisIsEditing(false);
-          setErrorMessage("");
-          return next(1);
-          // navigate("/");
-        })
-        .catch((error) => {
-          // Delete this catch?
           const errorDescription = error.response.data.message;
           setErrorMessage(errorDescription);
         });
     }
+    //Update user if using the same email, otherwise create new user
+    if (isEditing) {
+      console.log("current email", currentUserEmail);
+      console.log("data email", data.email);
+      if (currentUserEmail === data.email) {
+        console.log("Editing current user");
+        const userInfo = await axios.get(
+          `http://localhost:5005/user/notverified/${data.email}`
+        );
+        axios
+          .put(
+            `http://localhost:5005/user/edit/${userInfo.data._id}`,
+            requestBody
+          )
+          .then((response) => {
+            setisIsEditing(false);
+            if (currentStepIndex === userFormIndex && isVerified) {
+              return next(2);
+            }
+            // Send new email code
+            return next(1);
+          })
+          .catch((error) => {
+            const errorDescription = error.response.data.message;
+            setErrorMessage(errorDescription);
+          });
+      } else {
+        console.log("Editing/ Creating new user");
+        axios
+          .post(`http://localhost:5005/user/signup`, requestBody)
+          .then((response) => {
+            setisIsEditing(false);
+            setErrorMessage("");
+            setCurrentUserEmail(data.email);
 
-    // if (isEditing) {
-    //   const userInfo = await axios.get(
-    //     `http://localhost:5005/user/${randomCode}`
-    //   );
-
-    //   axios
-    //     .put(`http://localhost:5005/user/edit/${userInfo}`, requestBody)
-    //     .then((response) => {
-    //       if (isLastStep) {
-    //         navigate("/login");
-    //       } else {
-    //         return next(2);
-    //       }
-    //     })
-    //     .catch((error) => {
-    //       // Delete this catch?
-    //       const errorDescription = error.response.data.message;
-    //       setErrorMessage(errorDescription);
-    //     });
-    // }
+            return next(1);
+            // navigate("/");
+          })
+          .catch((error) => {
+            // Delete this catch?
+            const errorDescription = error.response.data.message;
+            setErrorMessage(errorDescription);
+          });
+      }
+    }
   };
 
   return (
