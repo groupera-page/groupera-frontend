@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import logoSvg from "../assets/imgLogos/logoNoBg.svg";
-import UserForm from "./FormComponents/UserForm";
-import ExperienceForm from "./FormComponents/ExpForm";
-import VerifyCodeForm from "./FormComponents/VerifyCodeForm";
+import UserInfoStep from "./FormComponents/UserInfoStep";
+import ExpStep from "./FormComponents/ExpStep";
+import VerifyCodeStep from "./FormComponents/VerifyCodeStep";
 import RegStepper from "./FormComponents/RegStepper";
 import useMultiStepForm from "./FormComponents/useMultiStepForm";
-import GroupThemesForm from "./FormComponents/GroupThemesForm";
-import GroupInfoForm from "./FormComponents/GroupInfoForm";
+import GroupThemesStep from "./FormComponents/GroupThemesStep";
+import GroupInfoStep from "./FormComponents/GroupInfoStep";
 import FunnelSwitch from "./FunnelSwitch";
 
 const initData = {
@@ -56,18 +56,18 @@ export default function Funnel({ FunnelIndex }) {
     isVerified,
     groupData
   );
-  const userFormIndex = funnelSteps.findIndex(
-    (component) => component.type === UserForm
+  const UserInfoStepIndex = funnelSteps.findIndex(
+    (component) => component.type === UserInfoStep
   );
   const verifyCodeIndex = funnelSteps.findIndex(
-    (component) => component.type === VerifyCodeForm
+    (component) => component.type === VerifyCodeStep
   );
   const groupInfoindex = funnelSteps.findIndex(
-    (component) => component.type === GroupInfoForm
+    (component) => component.type === GroupInfoStep
   );
   const stepAfterVerify = verifyCodeIndex + 1;
 
-  console.log(userFormIndex);
+  console.log(UserInfoStepIndex);
 
   const { steps, currentStepIndex, step, back, next, isLastStep } =
     useMultiStepForm(funnelSteps);
@@ -87,7 +87,7 @@ export default function Funnel({ FunnelIndex }) {
     setRandomCode(Math.floor(1000 + Math.random() * 9000).toString());
     console.log("Randomcode", randomCode);
     setisIsEditing(true);
-    if (!userFormIndex) {
+    if (!UserInfoStepIndex) {
     }
     if (stepAfterVerify === currentStepIndex) {
       back(2);
@@ -118,7 +118,7 @@ export default function Funnel({ FunnelIndex }) {
   console.log("Randomcode", randomCode);
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
-    if (currentStepIndex === userFormIndex) {
+    if (currentStepIndex === UserInfoStepIndex) {
       if (data.isAccepted === "") {
         setErrorMessage("Bitte akzeptieren Sie die Bedingungen");
         return;
@@ -145,7 +145,7 @@ export default function Funnel({ FunnelIndex }) {
     }
 
     //PREVENT db request
-    if (currentStepIndex !== userFormIndex && !isLastStep) {
+    if (currentStepIndex !== UserInfoStepIndex && !isLastStep) {
       setisIsEditing(false);
       next(1);
       return;
@@ -213,7 +213,7 @@ export default function Funnel({ FunnelIndex }) {
           )
           .then((response) => {
             setisIsEditing(false);
-            if (currentStepIndex === userFormIndex && isVerified) {
+            if (currentStepIndex === UserInfoStepIndex && isVerified) {
               return next(2);
             }
             // Send new email code

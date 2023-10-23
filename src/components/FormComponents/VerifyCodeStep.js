@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
-export default function VerifyCodeForm({ email, code, updateFields }) {
+export default function VerifyCodeStep({ email, code, updateFields }) {
   const [verificationCode, setVerificationCode] = useState(["", "", "", ""]);
   const inputRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
 

@@ -1,10 +1,10 @@
 import React from "react";
-import UserForm from "./FormComponents/UserForm";
-import VerifyCodeForm from "./FormComponents/VerifyCodeForm";
-import ExperienceForm from "./FormComponents/ExpForm";
-import GroupThemesForm from "./FormComponents/GroupThemesForm";
-import GroupInfoForm from "./FormComponents/GroupInfoForm";
-import GroupPlanForm from "./FormComponents/GroupPlanForm";
+import UserInfoStep from "./FormComponents/UserInfoStep";
+import VerifyCodeStep from "./FormComponents/VerifyCodeStep";
+import ExperienceStep from "./FormComponents/ExpStep";
+import GroupThemesStep from "./FormComponents/GroupThemesStep";
+import GroupInfoStep from "./FormComponents/GroupInfoStep";
+import GroupPlanStep from "./FormComponents/GroupPlanStep";
 
 function generateFunnelSteps(
   FunnelIndex,
@@ -19,45 +19,45 @@ function generateFunnelSteps(
   switch (FunnelIndex) {
     case 1:
       funnelSteps = [
-        <UserForm
+        <UserInfoStep
           {...data}
           updateFields={updateFields}
           isVerified={isVerified}
         />,
-        <VerifyCodeForm {...data} updateFields={updateFields} />,
-        <ExperienceForm {...data} updateFields={updateFields} />,
+        <VerifyCodeStep {...data} updateFields={updateFields} />,
+        <ExperienceStep {...data} updateFields={updateFields} />,
       ];
       break;
     case 2:
       funnelSteps = [
-        <GroupThemesForm
+        <GroupThemesStep
           {...groupData}
           updateGroupFields={updateGroupFields}
         />,
-        <ExperienceForm {...data} updateFields={updateFields} />,
-        <UserForm
+        <ExperienceStep {...data} updateFields={updateFields} />,
+        <UserInfoStep
           {...data}
           updateFields={updateFields}
           isVerified={isVerified}
         />,
-        <VerifyCodeForm {...data} updateFields={updateFields} />,
+        <VerifyCodeStep {...data} updateFields={updateFields} />,
       ];
       break;
     case 3:
       funnelSteps = [
-        <ExperienceForm {...data} updateFields={updateFields} />,
-        <GroupThemesForm
+        <ExperienceStep {...data} updateFields={updateFields} />,
+        <GroupThemesStep
           {...groupData}
           updateGroupFields={updateGroupFields}
         />,
-        <GroupInfoForm {...groupData} updateGroupFields={updateGroupFields} />,
-        <GroupPlanForm {...groupData} updateGroupFields={updateGroupFields} />,
-        <UserForm
+        <GroupInfoStep {...groupData} updateGroupFields={updateGroupFields} />,
+        <GroupPlanStep {...groupData} updateGroupFields={updateGroupFields} />,
+        <UserInfoStep
           {...data}
           updateFields={updateFields}
           isVerified={isVerified}
         />,
-        <VerifyCodeForm {...data} updateFields={updateFields} />,
+        <VerifyCodeStep {...data} updateFields={updateFields} />,
       ];
       break;
     default:

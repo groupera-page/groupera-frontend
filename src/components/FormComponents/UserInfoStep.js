@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 
-export default function UserForm({
+export default function UserInfoStep({
   username,
   email,
   password,

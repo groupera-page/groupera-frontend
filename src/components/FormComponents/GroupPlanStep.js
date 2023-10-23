@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function GroupPlanForm({ freq, day, time, updateGroupFields }) {
+export default function GroupPlanStep({ freq, day, time, updateGroupFields }) {
   const [fromTime, setFromTime] = useState("12:00");
   const [toTime, setToTime] = useState("13:00");
 
