@@ -3,6 +3,7 @@ import React, { useState } from "react";
 export default function GroupPlanStep({ freq, day, time, updateGroupFields }) {
   const [fromTime, setFromTime] = useState("12:00");
   const [toTime, setToTime] = useState("13:00");
+  const weekdays = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"];
 
   const handleHoursFromChange = (e) => {
     const newTime = `${e.target.value}:${fromTime.split(":")[1]}`;
@@ -36,7 +37,6 @@ export default function GroupPlanStep({ freq, day, time, updateGroupFields }) {
     }
   };
 
-  let height = 12;
   return (
     <div className="">
       <h2 className="my-2">Gruppentreffen planen</h2>
@@ -107,126 +107,27 @@ export default function GroupPlanStep({ freq, day, time, updateGroupFields }) {
         </label>
       </div>
       <h4 className="my-4">An welchen Tagen soll die Gruppe sich treffen?</h4>
-      <div className="flex justify-between  my-4 ">
-        <label
-          htmlFor="radioOption1Day"
-          className={`relative w-${height} h-${height} cursor-pointer border border-primaryblue rounded-full text-xs p-4 pl-4 flex items-center justify-center gap-4 ${
-            day === "option1Day" ? "bg-primaryblue" : "bg-white"
-          }`}
-        >
-          <div cals>Mo</div>
-          <input
-            type="radio"
-            id="radioOption1Day"
-            name="optionsDays"
-            value="option1Day"
-            checked={day === "option1Day"}
-            onChange={(e) => updateGroupFields({ day: e.target.value })}
-            className="mr-1 absolute end-4 md:end-16 hidden"
-          />
-        </label>
-        <label
-          htmlFor="radioOption2Day"
-          className={`relative w-${height} h-${height} cursor-pointer border border-primaryblue rounded-full text-xs p-4 pl-4 flex items-center justify-center gap-4 ${
-            day === "option2Day" ? "bg-primaryblue" : "bg-white"
-          }`}
-        >
-          <div> Di</div>
-          <input
-            type="radio"
-            id="radioOption2Day"
-            name="optionsDays"
-            value="option2Day"
-            checked={day === "option2Day"}
-            onChange={(e) => updateGroupFields({ day: e.target.value })}
-            className="hidden"
-          />
-        </label>
-        <label
-          htmlFor="radioOption3Day"
-          className={`relative w-${height} h-${height} cursor-pointer border border-primaryblue rounded-full text-xs p-4 pl-4 flex items-center justify-center gap-4 ${
-            day === "option3Day" ? "bg-primaryblue" : "bg-white"
-          }`}
-        >
-          <div> Mi</div>
-          <input
-            type="radio"
-            id="radioOption3Day"
-            name="optionsDays"
-            value="option3Day"
-            checked={day === "option3Day"}
-            onChange={(e) => updateGroupFields({ day: e.target.value })}
-            className="hidden"
-          />
-        </label>
-        <label
-          htmlFor="radioOption4Day"
-          className={`relative w-${height} h-${height} cursor-pointer border border-primaryblue rounded-full text-xs p-4 pl-4 flex items-center justify-center gap-4 ${
-            day === "option4Day" ? "bg-primaryblue" : "bg-white"
-          }`}
-        >
-          <div> Do</div>
-          <input
-            type="radio"
-            id="radioOption4Day"
-            name="optionsDays"
-            value="option4Day"
-            checked={day === "option4Day"}
-            onChange={(e) => updateGroupFields({ day: e.target.value })}
-            className="hidden"
-          />
-        </label>
-        <label
-          htmlFor="radioOption5Day"
-          className={`relative w-${height} h-${height} cursor-pointer border border-primaryblue rounded-full text-xs p-4 pl-4 flex items-center justify-center gap-4 ${
-            day === "option5Day" ? "bg-primaryblue" : "bg-white"
-          }`}
-        >
-          <div> Fr</div>
-          <input
-            type="radio"
-            id="radioOption5Day"
-            name="optionsDays"
-            value="option5Day"
-            checked={day === "option5Day"}
-            onChange={(e) => updateGroupFields({ day: e.target.value })}
-            className="hidden"
-          />
-        </label>
-        <label
-          htmlFor="radioOption6Day"
-          className={`relative w-${height} h-${height} cursor-pointer border border-primaryblue rounded-full text-xs p-4 pl-4 flex items-center justify-center gap-4 ${
-            day === "option6Day" ? "bg-primaryblue" : "bg-white"
-          }`}
-        >
-          <div> Sa</div>
-          <input
-            type="radio"
-            id="radioOption6Day"
-            name="optionsDays"
-            value="option6Day"
-            checked={day === "option6Day"}
-            onChange={(e) => updateGroupFields({ day: e.target.value })}
-            className="hidden"
-          />
-        </label>
-        <label
-          htmlFor="radioOption7Day"
-          className={`relative w-${height} h-${height} cursor-pointer border border-primaryblue rounded-full text-xs p-4 pl-4 flex items-center justify-center gap-4 ${
-            day === "option7Day" ? "bg-primaryblue" : "bg-white"
-          }`}
-        >
-          <div> So</div>
-          <input
-            type="radio"
-            id="radioOption7Day"
-            name="optionsDays"
-            value="option7Day"
-            checked={day === "option7Day"}
-            onChange={(e) => updateGroupFields({ day: e.target.value })}
-            className="hidden"
-          />
-        </label>
+      <div className="flex justify-between my-4">
+        {weekdays.map((dayLabel, index) => (
+          <label
+            key={index}
+            htmlFor={`radioOption${index + 1}Day`}
+            className={`relative cursor-pointer border border-primaryblue text-xs p-4 pl-4 flex items-center justify-center gap-4 w-12 h-12 rounded-full ${
+              day === `option${index + 1}Day` ? "bg-primaryblue" : "bg-white"
+            }`}
+          >
+            <div>{dayLabel}</div>
+            <input
+              type="radio"
+              id={`radioOption${index + 1}Day`}
+              name="optionsDays"
+              value={`option${index + 1}Day`}
+              checked={day === `option${index + 1}Day`}
+              onChange={(e) => updateGroupFields({ day: e.target.value })}
+              className="hidden"
+            />
+          </label>
+        ))}
       </div>
       <h4 className="my-4">Zu welcher Uhrzeit?</h4>
       <div className="flex my-4 border border-primaryblue rounded-md p-2 w-fit">

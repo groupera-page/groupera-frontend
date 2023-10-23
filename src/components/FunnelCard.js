@@ -10,6 +10,8 @@ import useMultiStepForm from "./FormComponents/useMultiStepForm";
 import GroupThemesStep from "./FormComponents/GroupThemesStep";
 import GroupInfoStep from "./FormComponents/GroupInfoStep";
 import FunnelSwitch from "./FunnelSwitch";
+import { BsArrowLeft } from "react-icons/bs";
+import { BsArrowRight } from "react-icons/bs";
 
 const initData = {
   username: "",
@@ -34,6 +36,7 @@ const initGroupData = {
   day: "",
   length: "",
   token: "",
+  moderator: "",
 };
 
 export default function Funnel({ FunnelIndex }) {
@@ -291,21 +294,33 @@ export default function Funnel({ FunnelIndex }) {
                   <button
                     type="button"
                     onClick={handleBackButton}
-                    className={` hover:text-white text-primarypurple hover-bg-primarypurple-hover px-4 py-2 ${
+                    className={` hover:text-white text-primarypurple hover-bg-primarypurple-hover px-4 py-1 ${
                       errorMessage ? "mt-0" : "mt-4"
                     } rounded-lg`}
                   >
-                    Zurück
+                    <div className="flex items-center">
+                      <BsArrowLeft
+                        className="w-5 mr-3 text-primarypurple"
+                        size={32}
+                      />
+                      Zurück
+                    </div>
                   </button>
                 )}
                 <button
                   type="submit"
                   // onClick={handleNextButton}
-                  className={`text-slate-100 hover:text-white bg-primarypurple hover-bg-primarypurple-hover px-4 py-2 ${
+                  className={`text-slate-100 hover:text-white  bg-primarypurple hover-bg-primarypurple-hover px-4 py-1 ${
                     errorMessage ? "mt-0" : "mt-4"
                   } rounded-lg`}
                 >
-                  {isLastStep ? "Absenden" : "Weiter"}
+                  <div className="flex items-center">
+                    {isLastStep ? "Absenden" : "Weiter"}
+                    <BsArrowRight
+                      className="w-5 ml-3 text-primarybg"
+                      size={32}
+                    />
+                  </div>
                 </button>
               </div>
             </div>

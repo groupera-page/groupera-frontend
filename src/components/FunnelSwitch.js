@@ -5,6 +5,8 @@ import ExperienceStep from "./FormComponents/ExpStep";
 import GroupThemesStep from "./FormComponents/GroupThemesStep";
 import GroupInfoStep from "./FormComponents/GroupInfoStep";
 import GroupPlanStep from "./FormComponents/GroupPlanStep";
+import GroupSettingStep from "./FormComponents/GroupSettingStep";
+import GroupDownloadStep from "./FormComponents/GroupDownloadStep";
 
 function generateFunnelSteps(
   FunnelIndex,
@@ -58,6 +60,8 @@ function generateFunnelSteps(
           isVerified={isVerified}
         />,
         <VerifyCodeStep {...data} updateFields={updateFields} />,
+        <GroupDownloadStep {...data} updateFields={updateFields} />,
+        <GroupSettingStep {...data} updateFields={updateFields} />,
       ];
       break;
     default:
