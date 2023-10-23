@@ -3,12 +3,11 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import logoSvg from "../assets/imgLogos/logoNoBg.svg";
 import UserInfoStep from "./FormComponents/UserInfoStep";
-import ExpStep from "./FormComponents/ExpStep";
 import VerifyCodeStep from "./FormComponents/VerifyCodeStep";
 import RegStepper from "./FormComponents/RegStepper";
 import useMultiStepForm from "./FormComponents/useMultiStepForm";
-import GroupThemesStep from "./FormComponents/GroupThemesStep";
 import GroupInfoStep from "./FormComponents/GroupInfoStep";
+import GroupSettingStep from "./FormComponents/GroupSettingStep";
 import FunnelSwitch from "./FunnelSwitch";
 import { BsArrowLeft } from "react-icons/bs";
 import { BsArrowRight } from "react-icons/bs";
@@ -68,6 +67,9 @@ export default function Funnel({ FunnelIndex }) {
   const groupInfoindex = funnelSteps.findIndex(
     (component) => component.type === GroupInfoStep
   );
+  const GroupSettingIndex = funnelSteps.findIndex(
+    (component) => component.type === GroupSettingStep
+  );
   const stepAfterVerify = verifyCodeIndex + 1;
 
   console.log(UserInfoStepIndex);
@@ -100,9 +102,9 @@ export default function Funnel({ FunnelIndex }) {
     setErrorMessage("");
   }
 
-  // Depending on INDEX change the button on click call
   const handleGroup = async (e) => {
     e.preventDefault();
+    console.log("CREATING GROUP");
     try {
       const url = `http://localhost:5005/group/create`;
       const { groupData: res } = await axios.post(url, groupData);
@@ -121,6 +123,23 @@ export default function Funnel({ FunnelIndex }) {
   console.log("Randomcode", randomCode);
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
+
+    // if (currentStepIndex === GroupSettingIndex) {
+    //   console.log("CREATING GROUP");
+    //   axios
+    //     .post(`http://localhost:5005/group/create`, groupData)
+    //     .then((response) => {
+    //       // return next(1);
+    //       navigate("/");
+    //       return;
+    //     })
+    //     .catch((error) => {
+    //       // Delete this catch?
+    //       const errorDescription = error.response.data.message;
+    //       setErrorMessage(errorDescription);
+    //     });
+    // }
+
     if (currentStepIndex === UserInfoStepIndex) {
       if (data.isAccepted === "") {
         setErrorMessage("Bitte akzeptieren Sie die Bedingungen");
@@ -129,6 +148,7 @@ export default function Funnel({ FunnelIndex }) {
     }
     // CODE check
     if (currentStepIndex === verifyCodeIndex) {
+      console.log("CODE CHECK");
       const codeString = data.code.join("");
       if (codeString === randomCode) {
         const userInfo = await axios.get(
@@ -163,7 +183,6 @@ export default function Funnel({ FunnelIndex }) {
       experience: data.experience,
       code: randomCode,
     };
-    console.log("VERIFIED? - ", isVerified);
 
     //POST
     if (!isVerified && !isEditing) {
@@ -266,7 +285,11 @@ export default function Funnel({ FunnelIndex }) {
           </div>
         </div>
         <form
-          onSubmit={groupInfoindex === 10000 ? handleGroup : handleSignupSubmit}
+          onSubmit={
+            currentStepIndex === GroupSettingIndex
+              ? handleGroup
+              : handleSignupSubmit
+          }
           className="pb-4"
         >
           {step}
@@ -294,7 +317,7 @@ export default function Funnel({ FunnelIndex }) {
                   <button
                     type="button"
                     onClick={handleBackButton}
-                    className={` hover:text-white text-primarypurple hover-bg-primarypurple-hover px-4 py-1 ${
+                    className={` text-primarypurple hover-bg-primarypurple-hover px-4 py-1 ${
                       errorMessage ? "mt-0" : "mt-4"
                     } rounded-lg`}
                   >
