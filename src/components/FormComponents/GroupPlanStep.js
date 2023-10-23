@@ -1,40 +1,42 @@
 import React, { useState } from "react";
+import { BsArrowRight } from "react-icons/bs";
+import { BsClock } from "react-icons/bs";
+import TimePicker from "./TimePicker";
 
 export default function GroupPlanStep({ freq, day, time, updateGroupFields }) {
   const [fromTime, setFromTime] = useState("12:00");
   const [toTime, setToTime] = useState("13:00");
   const weekdays = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"];
 
-  const handleHoursFromChange = (e) => {
-    const newTime = `${e.target.value}:${fromTime.split(":")[1]}`;
-    if (newTime <= toTime) {
+  const handleTimeChange = (newTime, isFrom) => {
+    const [hours, minutes] = newTime.split(":").map((str) => parseInt(str));
+
+    // Ensure toTime is between 30 minutes and 2 hours later than fromTime
+    if (isFrom) {
       setFromTime(newTime);
-      updateGroupFields({ time: `${newTime}:${toTime}` });
+      const newToHours = hours + 1;
+      const newToMinutes = minutes;
+      if (newToHours <= 22) {
+        const newToTime = `${newToHours
+          .toString()
+          .padStart(2, "0")}:${newToMinutes.toString().padStart(2, "0")}`;
+        setToTime(newToTime);
+      }
+    } else {
+      if (hours > 0 || (hours === 0 && minutes >= 30)) {
+        setToTime(newTime);
+      } else {
+        // If the selected toTime is not within the range, set it to one hour later than fromTime
+        const newToHours = hours + 1;
+        const newToMinutes = minutes;
+        const newToTime = `${newToHours
+          .toString()
+          .padStart(2, "0")}:${newToMinutes.toString().padStart(2, "0")}`;
+        setToTime(newToTime);
+      }
     }
-  };
 
-  const handleMinutesFromChange = (e) => {
-    const newTime = `${fromTime.split(":")[0]}:${e.target.value}`;
-    if (newTime <= toTime) {
-      setFromTime(newTime);
-      updateGroupFields({ time: `${newTime}:${toTime}` });
-    }
-  };
-
-  const handleHoursToChange = (e) => {
-    const newTime = `${e.target.value}:${toTime.split(":")[1]}`;
-    if (newTime >= fromTime) {
-      setToTime(newTime);
-      updateGroupFields({ time: `${fromTime}:${newTime}` });
-    }
-  };
-
-  const handleMinutesToChange = (e) => {
-    const newTime = `${toTime.split(":")[0]}:${e.target.value}`;
-    if (newTime >= fromTime) {
-      setToTime(newTime);
-      updateGroupFields({ time: `${fromTime}:${newTime}` });
-    }
+    updateGroupFields({ time: fromTime + toTime });
   };
 
   return (
@@ -131,68 +133,31 @@ export default function GroupPlanStep({ freq, day, time, updateGroupFields }) {
       </div>
       <h4 className="my-4">Zu welcher Uhrzeit?</h4>
       <div className="flex my-4 border border-primaryblue rounded-md p-2 w-fit">
-        <div className=" pr-1">
-          <div className="">
-            <select
-              id="hoursFrom"
-              name="hoursFrom"
-              className=" rounded text-xs py-1 px-1 bg-primaryBg"
-              value={parseInt(time.split(":")[0], 10)} // Extract hours and convert to a number
-              onChange={handleHoursFromChange}
-            >
-              {Array.from({ length: 24 }, (_, i) => (
-                <option key={i} value={i}>
-                  {i.toString().padStart(2, "0")}
-                </option>
-              ))}
-            </select>
-            <select
-              id="minutesFrom"
-              name="minutesFrom"
-              className="rounded text-xs py-1 px-1 right-0 bg-primaryBg"
-              value={parseInt(time.split(":")[1], 10)} // Extract minutes and convert to a number
-              onChange={handleMinutesFromChange}
-            >
-              {Array.from({ length: 4 }, (_, i) => (
-                <option key={i} value={i * 15}>
-                  {(i * 15).toString().padStart(2, "0")}
-                </option>
-              ))}
-            </select>
-          </div>
+        <div className=" px-1">
+          <TimePicker
+            selectedTime={fromTime}
+            onSelectTime={(newTime) => {
+              handleTimeChange(newTime, true); // Pass 'true' to indicate 'From' time
+            }}
+            label="From"
+          />
         </div>
-        <div className="mx-4">→</div>
-        <div className=" pr-1">
-          <div className="">
-            <select
-              id="hoursTo"
-              name="hoursTo"
-              className="rounded text-xs py-1 px-1 bg-primaryBg"
-              value={parseInt(time.split(":")[2], 10)} // Extract hours and convert to a number
-              onChange={handleHoursToChange}
-            >
-              {Array.from({ length: 24 }, (_, i) => (
-                <option key={i} value={i}>
-                  {i.toString().padStart(2, "0")}
-                </option>
-              ))}
-            </select>
-            <select
-              id="minutesTo"
-              name="minutesTo"
-              className=" rounded text-xs py-1 px-1 right-0 bg-primaryBg"
-              value={parseInt(time.split(":")[3], 10)} // Extract minutes and convert to a number
-              onChange={handleMinutesToChange}
-            >
-              {Array.from({ length: 4 }, (_, i) => (
-                <option key={i} value={i * 15}>
-                  {(i * 15).toString().padStart(2, "0")}
-                </option>
-              ))}
-            </select>
-          </div>
+        <div className="mx-4 flex items-center">
+          <BsArrowRight className="w-5  text-primarybg" />
         </div>
-        <div className="ml-4">🕑</div>
+        <div className=" px-1">
+          <TimePicker
+            selectedTime={toTime}
+            onSelectTime={(newTime) => {
+              handleTimeChange(newTime, false); // Pass 'false' to indicate 'To' time
+            }}
+            label="To"
+            fromTime={fromTime}
+          />
+        </div>
+        <div className="mx-4 flex items-center">
+          <BsClock className="w-5  text-primarybg" />
+        </div>
       </div>
     </div>
   );
