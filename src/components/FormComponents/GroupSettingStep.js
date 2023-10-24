@@ -1,4 +1,13 @@
-export default function GroupSettingStep({ data, updateGroupFields }) {
+import React, { useState } from "react";
+
+export default function GroupSettingStep({ moderator, updateGroupFields }) {
+  const [showMessage, setShowMessage] = useState(false);
+
+  const handleNoModerator = (e) => {
+    setShowMessage(true);
+    updateGroupFields({ moderator: e.target.value });
+  };
+
   return (
     <div className="">
       <h2 className="my-2">Pass die Einstellungen deiner Gruppe an.</h2>
@@ -17,9 +26,9 @@ export default function GroupSettingStep({ data, updateGroupFields }) {
             type="radio"
             id="radioOption1"
             name="options"
-            value="option1"
-            // checked={theme === "option1"}
-            // onChange={(e) => updateGroupFields({ theme: e.target.value })}
+            value="ja"
+            checked={moderator === "Ja"}
+            onChange={(e) => updateGroupFields({ moderator: e.target.value })}
             className="mr-1 absolute end-1 md:end-16"
           />
         </label>
@@ -32,9 +41,9 @@ export default function GroupSettingStep({ data, updateGroupFields }) {
             type="radio"
             id="radioOption2"
             name="options"
-            value="option2"
-            // checked={theme === "option2"}
-            // onChange={(e) => updateGroupFields({ theme: e.target.value })}
+            value="Ja, aber mit Unterstützung"
+            checked={moderator === "Ja, aber mit Unterstützung"}
+            onChange={(e) => updateGroupFields({ moderator: e.target.value })}
             className="mr-1 absolute end-1 md:end-16"
           />
         </label>
@@ -42,17 +51,22 @@ export default function GroupSettingStep({ data, updateGroupFields }) {
           htmlFor="radioOption3"
           className="relative w-full cursor-pointer border border-primaryblue rounded-md text-xs p-2 pl-4 flex items-center gap-4"
         >
-          <div> No</div>
+          <div> Nein</div>
           <input
             type="radio"
             id="radioOption3"
             name="options"
             value="option3"
-            // checked={theme === "option2"}
-            // onChange={(e) => updateGroupFields({ theme: e.target.value })}
+            checked={moderator === "Nein"}
+            onChange={handleNoModerator}
             className="mr-1 absolute end-1 md:end-16"
           />
         </label>
+        {showMessage && (
+          <div className="relative w-full cursor-pointer border border-primaryblue rounded-md text-xs p-2 pl-4 flex items-center gap-4">
+            Wir werden Ihnen eine E-Mail senden{" "}
+          </div>
+        )}
       </div>
     </div>
   );

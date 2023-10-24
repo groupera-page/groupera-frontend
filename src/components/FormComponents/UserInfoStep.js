@@ -22,12 +22,12 @@ export default function UserInfoStep({
 
   return (
     <div>
-      <h2 className=" mx-2">Erstelle jetzt Dein Nutzerprofil</h2>
-      <p className=" m-2 ">
+      <h2 className="">Erstelle jetzt Dein Nutzerprofil</h2>
+      <p className="mb-4 text-textLightGray">
         Du kannst Deine Informationen jederzeit in den Einstellungen ändern.
       </p>
       <div>
-        <div className="mt-4 text-sm border border-primaryblue rounded-md">
+        <div className=" text-sm border border-primaryblue rounded-md">
           <input
             required
             type="text"
@@ -38,7 +38,7 @@ export default function UserInfoStep({
             placeholder="Name"
           />
         </div>
-        <p className=" mb-2 text-textLightGray px-2">
+        <p className="px-1 mb-2 text-textLightGray ">
           Bitte gib hier Deinen Namen ein, mit dem Du in der Gruppe angesprochen
           werden möchtest und der für andere Mitglieder:innen angezeigt werden
           darf.
@@ -70,7 +70,7 @@ export default function UserInfoStep({
             placeholder="Passwort"
           />
         </div>
-        <p className=" px-2 text-textLightGray">Min 8 Zeichen.</p>
+        <p className=" px-1 text-textLightGray">Min 8 Zeichen.</p>
       </div>
       <div className="mt-4 text-sm border border-primaryblue rounded-md">
         <input

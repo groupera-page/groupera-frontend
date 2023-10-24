@@ -61,7 +61,10 @@ function generateFunnelSteps(
         />,
         <VerifyCodeStep {...data} updateFields={updateFields} />,
         <GroupDownloadStep {...data} updateFields={updateFields} />,
-        <GroupSettingStep {...data} updateFields={updateFields} />,
+        <GroupSettingStep
+          {...groupData}
+          updateGroupFields={updateGroupFields}
+        />,
       ];
       break;
     case 4:
@@ -79,7 +82,10 @@ function generateFunnelSteps(
         />,
         <VerifyCodeStep {...data} updateFields={updateFields} />,
         <GroupDownloadStep {...data} updateFields={updateFields} />,
-        <GroupSettingStep {...data} updateFields={updateFields} />,
+        <GroupSettingStep
+          {...groupData}
+          updateGroupFields={updateGroupFields}
+        />,
       ];
       break;
 

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
 
 export default function GroupInfoForm({
   name,
@@ -30,18 +29,20 @@ export default function GroupInfoForm({
       reader.readAsDataURL(file);
       reader.onloadend = () => {
         setGroupImage(reader.result);
+        updateGroupFields(reader.result);
+        console.log("Groupinfo", groupImage);
       };
     }
   };
 
   return (
     <div>
-      <h2 className=" mt-8">Beschreibe Deine Gruppe</h2>
-      <p className=" my-4">
+      <h2 className="">Beschreibe Deine Gruppe</h2>
+      <p className=" text-textLightGray">
         Du kannst alle Angaben jederzeit in den Gruppeneinstellungen ändern
       </p>
-      <h4 className=" mt-8">Wie soll deine Gruppe heißen?</h4>
-      <div className="mt-4 text-sm border border-primaryblue rounded-md">
+      <h4 className=" mt-4">Wie soll deine Gruppe heißen?</h4>
+      <div className="mt-2 text-sm border border-primaryblue rounded-md">
         <input
           required
           type="text"
@@ -50,10 +51,14 @@ export default function GroupInfoForm({
           onChange={(e) => updateGroupFields({ name: e.target.value })}
           className="w-full border rounded-md p-2 placeholder-primaryText"
           placeholder="Name"
+          pattern=".{3,}"
+          title="Bitte geben Sie mindestens drei Zeichen ein"
         />
       </div>
-      <h4 className=" mt-8">Wie würdest du deine Gruppe beschreiben?</h4>
-      <div className="mt-4 text-smrounded-md">
+      <p className=" px-1 text-textLightGray">Min 3 Zeichen.</p>
+
+      <h4 className=" mt-4">Wie würdest du deine Gruppe beschreiben?</h4>
+      <div className="mt-2 text-smrounded-md">
         <textarea
           required
           name="username"
@@ -64,14 +69,14 @@ export default function GroupInfoForm({
         ></textarea>
       </div>
       <div className="flex text-xs text-gray-500 mt-1 justify-end">
-        {text.length}/{maxCharacters}
+        {description.length}/{maxCharacters}
       </div>
 
-      <p className=" my-4">
+      <p className="my-2">
         Lade ein Bild für die Gruppe hoch. Du kannst auch ein Bild aus unseren
         Vorschlägen aussuchen.{" "}
       </p>
-      <div>
+      <div className="mb-4">
         <label className="relative cursor-pointer hover:bg-primaryblue-hover border border-primaryblue px-4 py-2 rounded-md text-sm">
           <span>Eigene Datei auswählen</span>
           <input

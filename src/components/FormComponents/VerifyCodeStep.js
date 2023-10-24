@@ -23,7 +23,7 @@ export default function VerifyCodeStep({ email, code, updateFields }) {
 
   return (
     <div>
-      <h2 className=" mt-8">Verifiziere deine Email adresse</h2>
+      <h2 className=" mt-">Verifiziere deine Email adresse</h2>
       <p className=" my-4">
         Wir haben Dir einen 4 stelligen Verifizierungscode per E-Mail geschickt.
       </p>

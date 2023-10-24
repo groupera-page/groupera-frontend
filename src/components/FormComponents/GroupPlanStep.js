@@ -54,8 +54,10 @@ export default function GroupPlanStep({
 
   return (
     <div className="">
-      <h2 className="my-2">Gruppentreffen planen</h2>
-      <p>Du kannst alle Angaben jederzeit in den Gruppeneinstellungen ändern</p>
+      <h2 className="">Gruppentreffen planen</h2>
+      <p className=" text-textLightGray">
+        Du kannst alle Angaben jederzeit in den Gruppeneinstellungen ändern
+      </p>
       <h4 className="my-4">An welchen Tagen soll die Gruppe sich treffen?</h4>
       <div className="flex gap-4 my-4 ">
         <label

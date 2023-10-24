@@ -18,13 +18,13 @@ const initData = {
   password: "",
   passwordCheck: "",
   code: [],
-  gender: "",
+  gender: "Weiblich",
   isAccepted: "",
   experience: "no experience",
 };
 
 const initGroupData = {
-  theme: "",
+  theme: "Andere*",
   name: "",
   description: "",
   users: [],
@@ -35,7 +35,7 @@ const initGroupData = {
   day: "",
   length: "",
   token: "",
-  moderator: "",
+  moderator: "Ja",
 };
 
 export default function Funnel({ FunnelIndex }) {
@@ -89,11 +89,11 @@ export default function Funnel({ FunnelIndex }) {
   }
 
   function handleBackButton() {
+    console.log("Current step index", currentStepIndex);
+    console.log("step after index index", stepAfterVerify);
     setRandomCode(Math.floor(1000 + Math.random() * 9000).toString());
     console.log("Randomcode", randomCode);
     setisIsEditing(true);
-    if (!UserInfoStepIndex) {
-    }
     if (stepAfterVerify === currentStepIndex) {
       back(2);
     } else {
@@ -104,58 +104,46 @@ export default function Funnel({ FunnelIndex }) {
 
   const handleGroup = async (e) => {
     e.preventDefault();
+    console.log("CLICKED - CREATING GROUP");
+    // Calculate length
+    const startTime = groupData.time.slice(0, 5);
+    const endTime = groupData.time.slice(6);
+    const [startHours, startMinutes] = startTime.split(":").map(Number);
+    const [endHours, endMinutes] = endTime.split(":").map(Number);
+    const totalStartMinutes = startHours * 60 + startMinutes;
+    const totalEndMinutes = endHours * 60 + endMinutes;
+    const differenceMinutes = totalEndMinutes - totalStartMinutes;
+    const hours = Math.floor(differenceMinutes / 60);
+    const minutes = differenceMinutes % 60;
+    const timeDifference = `${hours}:${minutes.toString().padStart(2, "0")}`;
 
-    const requestBody = {
+    const requestGroupBody = {
       name: groupData.name,
       description: groupData.description,
+      time: groupData.time.slice(0, 5),
+      length: timeDifference,
+      img: groupData.img,
+      day: groupData.day,
+      frenquency: groupData.freq,
+      when: groupData.when,
     };
 
-    axios
-      .post(`http://localhost:5005/group/create`, requestBody)
+    await axios
+      .post(`http://localhost:5005/group/create`, requestGroupBody)
       .then((response) => {
-        console.log("CREATING GROUP");
-        // return next(1);
+        console.log("CREATING GROUP!");
+        return next(1);
       })
       .catch((error) => {
+        console.log("ERROR");
         const errorDescription = error.response.data.message;
         setErrorMessage(errorDescription);
       });
-
-    // try {
-    //   const url = `http://localhost:5005/group/create`;
-
-    //   const { groupData: res } = await axios.post(url, requestBody);
-    //   console.log(groupData);
-    // } catch (error) {
-    //   if (
-    //     error.response &&
-    //     error.response.status >= 400 &&
-    //     error.response.status <= 500
-    //   ) {
-    //     setErrorMessage(error.response.data.message);
-    //   }
-    // }
   };
 
   console.log("Randomcode", randomCode);
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
-
-    // if (currentStepIndex === GroupSettingIndex) {
-    //   console.log("CREATING GROUP");
-    //   axios
-    //     .post(`http://localhost:5005/group/create`, groupData)
-    //     .then((response) => {
-    //       // return next(1);
-    //       navigate("/");
-    //       return;
-    //     })
-    //     .catch((error) => {
-    //       // Delete this catch?
-    //       const errorDescription = error.response.data.message;
-    //       setErrorMessage(errorDescription);
-    //     });
-    // }
 
     if (currentStepIndex === UserInfoStepIndex) {
       if (data.isAccepted === "") {
@@ -187,6 +175,7 @@ export default function Funnel({ FunnelIndex }) {
     //PREVENT db request
     if (currentStepIndex !== UserInfoStepIndex && !isLastStep) {
       setisIsEditing(false);
+      setErrorMessage("");
       next(1);
       return;
     }
@@ -228,6 +217,7 @@ export default function Funnel({ FunnelIndex }) {
           if (isLastStep) {
             navigate("/login");
           } else {
+            setErrorMessage("");
             return next(1);
           }
         })
@@ -252,10 +242,12 @@ export default function Funnel({ FunnelIndex }) {
           )
           .then((response) => {
             setisIsEditing(false);
+            setErrorMessage("");
             if (currentStepIndex === UserInfoStepIndex && isVerified) {
               return next(2);
             }
             // Send new email code
+
             return next(1);
           })
           .catch((error) => {
@@ -330,7 +322,7 @@ export default function Funnel({ FunnelIndex }) {
                   </div>
                 )}
               </div>
-              <div className="flex gap-4 justify-center">
+              <div className="flex gap-4 justify-end">
                 {currentStepIndex !== 0 && (
                   <button
                     type="button"

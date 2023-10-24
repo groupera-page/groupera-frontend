@@ -5,11 +5,11 @@ import axios from "axios";
 export default function ExperienceForm({ experience, updateFields }) {
   return (
     <div className="">
-      <h2 className="my-2">
+      <h2 className="mb-6">
         Hast Du bereist Erfahrung mit Selbsthilfegruppen?
       </h2>
       <p>Wähle eine der folgenden Optionen.</p>
-      <div className="flex flex-col gap-4 my-4 ">
+      <div className="flex flex-col gap-4 my-2 ">
         <label
           htmlFor="radioOption1"
           className="relative w-full cursor-pointer border border-primaryblue rounded-md text-xs p-2 pl-4 flex items-center gap-4"
