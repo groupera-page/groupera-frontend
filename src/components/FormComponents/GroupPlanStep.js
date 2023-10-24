@@ -1,43 +1,56 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BsArrowRight } from "react-icons/bs";
 import { BsClock } from "react-icons/bs";
 import TimePicker from "./TimePicker";
 
-export default function GroupPlanStep({ freq, day, time, updateGroupFields }) {
-  const [fromTime, setFromTime] = useState("12:00");
-  const [toTime, setToTime] = useState("13:00");
+export default function GroupPlanStep({
+  freq,
+  day,
+  time,
+  length,
+  updateGroupFields,
+}) {
+  const [fromTime, setFromTime] = useState(time.slice(0, 3) + time.slice(3, 5));
+  const [toTime, setToTime] = useState(time.slice(5, 7) + time.slice(7, 11));
   const weekdays = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"];
-
+  console.log("TIME:", { time });
   const handleTimeChange = (newTime, isFrom) => {
     const [hours, minutes] = newTime.split(":").map((str) => parseInt(str));
 
-    // Ensure toTime is between 30 minutes and 2 hours later than fromTime
+    // Calculate newToTime based on isFrom flag and constraints
+    let newToTime;
+
     if (isFrom) {
-      setFromTime(newTime);
       const newToHours = hours + 1;
       const newToMinutes = minutes;
       if (newToHours <= 22) {
-        const newToTime = `${newToHours
+        newToTime = `${newToHours.toString().padStart(2, "0")}:${newToMinutes
           .toString()
-          .padStart(2, "0")}:${newToMinutes.toString().padStart(2, "0")}`;
-        setToTime(newToTime);
+          .padStart(2, "0")}`;
       }
+      console.log("change from time also");
+      setFromTime(newTime);
+      updateGroupFields({ time: newTime + toTime });
     } else {
       if (hours > 0 || (hours === 0 && minutes >= 30)) {
-        setToTime(newTime);
+        newToTime = newTime;
       } else {
-        // If the selected toTime is not within the range, set it to one hour later than fromTime
         const newToHours = hours + 1;
         const newToMinutes = minutes;
-        const newToTime = `${newToHours
+        newToTime = `${newToHours.toString().padStart(2, "0")}:${newToMinutes
           .toString()
-          .padStart(2, "0")}:${newToMinutes.toString().padStart(2, "0")}`;
-        setToTime(newToTime);
+          .padStart(2, "0")}`;
       }
+      setToTime(newToTime);
+      updateGroupFields({ time: fromTime + newToTime });
     }
 
-    updateGroupFields({ time: fromTime + toTime });
+    console.log("TIME:", { time });
   };
+
+  // useEffect(() => {
+  //   console.log("NEW TIME", fromTime + toTime);
+  // }, [fromTime, toTime]);
 
   return (
     <div className="">
@@ -140,6 +153,7 @@ export default function GroupPlanStep({ freq, day, time, updateGroupFields }) {
               handleTimeChange(newTime, true); // Pass 'true' to indicate 'From' time
             }}
             label="From"
+            toTime={toTime}
           />
         </div>
         <div className="mx-4 flex items-center">

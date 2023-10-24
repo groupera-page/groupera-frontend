@@ -64,6 +64,25 @@ function generateFunnelSteps(
         <GroupSettingStep {...data} updateFields={updateFields} />,
       ];
       break;
+    case 4:
+      funnelSteps = [
+        <GroupThemesStep
+          {...groupData}
+          updateGroupFields={updateGroupFields}
+        />,
+        <GroupInfoStep {...groupData} updateGroupFields={updateGroupFields} />,
+        <GroupPlanStep {...groupData} updateGroupFields={updateGroupFields} />,
+        <UserInfoStep
+          {...data}
+          updateFields={updateFields}
+          isVerified={isVerified}
+        />,
+        <VerifyCodeStep {...data} updateFields={updateFields} />,
+        <GroupDownloadStep {...data} updateFields={updateFields} />,
+        <GroupSettingStep {...data} updateFields={updateFields} />,
+      ];
+      break;
+
     default:
       console.log("No funnel");
   }

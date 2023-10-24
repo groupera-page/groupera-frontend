@@ -27,9 +27,9 @@ const initGroupData = {
   theme: "",
   name: "",
   description: "",
-  users: "",
+  users: [],
   img: "",
-  time: "12:00:13:00",
+  time: "12:0013:00",
   freq: "",
   when: "",
   day: "",
@@ -104,20 +104,37 @@ export default function Funnel({ FunnelIndex }) {
 
   const handleGroup = async (e) => {
     e.preventDefault();
-    console.log("CREATING GROUP");
-    try {
-      const url = `http://localhost:5005/group/create`;
-      const { groupData: res } = await axios.post(url, groupData);
-      console.log(groupData);
-    } catch (error) {
-      if (
-        error.response &&
-        error.response.status >= 400 &&
-        error.response.status <= 500
-      ) {
-        setErrorMessage(error.response.data.message);
-      }
-    }
+
+    const requestBody = {
+      name: groupData.name,
+      description: groupData.description,
+    };
+
+    axios
+      .post(`http://localhost:5005/group/create`, requestBody)
+      .then((response) => {
+        console.log("CREATING GROUP");
+        // return next(1);
+      })
+      .catch((error) => {
+        const errorDescription = error.response.data.message;
+        setErrorMessage(errorDescription);
+      });
+
+    // try {
+    //   const url = `http://localhost:5005/group/create`;
+
+    //   const { groupData: res } = await axios.post(url, requestBody);
+    //   console.log(groupData);
+    // } catch (error) {
+    //   if (
+    //     error.response &&
+    //     error.response.status >= 400 &&
+    //     error.response.status <= 500
+    //   ) {
+    //     setErrorMessage(error.response.data.message);
+    //   }
+    // }
   };
 
   console.log("Randomcode", randomCode);
@@ -184,10 +201,10 @@ export default function Funnel({ FunnelIndex }) {
       code: randomCode,
     };
 
-    //POST
+    //POST TODO - render signing up waiting card. Post is a bit slow
     if (!isVerified && !isEditing) {
       console.log("CREATE new user");
-      axios
+      await axios
         .post(`http://localhost:5005/user/signup`, requestBody)
         .then((response) => {
           setisIsEditing(false);
@@ -246,8 +263,9 @@ export default function Funnel({ FunnelIndex }) {
             setErrorMessage(errorDescription);
           });
       } else {
+        // Make this async
         console.log("Editing/ Creating new user");
-        axios
+        await axios
           .post(`http://localhost:5005/user/signup`, requestBody)
           .then((response) => {
             setisIsEditing(false);

@@ -5,6 +5,7 @@ export default function TimePicker({
   onSelectTime,
   label,
   fromTime,
+  toTime,
 }) {
   const timeOptions = Array.from({ length: 24 * 2 }, (_, i) => {
     const hours = Math.floor(i / 2);
@@ -15,17 +16,13 @@ export default function TimePicker({
     return formattedTime;
   });
 
-  const handleTimeChange = (e) => {
-    const newTime = e.target.value;
-    onSelectTime(newTime);
-  };
-
-  const isToTimePicker = label === "To"; // Check if it's the "To" time picker
-
   return (
     <select
       value={selectedTime}
-      onChange={handleTimeChange}
+      onChange={(e) => {
+        const newTime = e.target.value;
+        onSelectTime(newTime, label === "To");
+      }}
       className="rounded text-sm py-1 bg-primaryBg"
       style={{ WebkitAppearance: "none", appearance: "none" }}
     >
@@ -33,11 +30,24 @@ export default function TimePicker({
         <option
           key={timeOption}
           value={timeOption}
-          disabled={isToTimePicker && timeOption <= fromTime}
+          disabled={isTimeOptionDisabled(label, timeOption, fromTime, toTime)}
+          className={
+            isTimeOptionDisabled(label, timeOption, fromTime, toTime)
+              ? "disabled-option"
+              : ""
+          }
         >
           {timeOption}
         </option>
       ))}
     </select>
   );
+}
+
+function isTimeOptionDisabled(label, timeOption, fromTime, toTime) {
+  if (label === "To") {
+    return timeOption <= fromTime || timeOption >= toTime;
+  } else {
+    return timeOption >= toTime;
+  }
 }
