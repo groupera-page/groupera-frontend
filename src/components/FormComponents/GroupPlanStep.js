@@ -2,24 +2,28 @@ import React, { useState, useEffect } from "react";
 import { BsArrowRight } from "react-icons/bs";
 import { BsClock } from "react-icons/bs";
 import TimePicker from "./TimePicker";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import de from "date-fns/locale/de";
 
-export default function GroupPlanStep({
-  freq,
-  day,
-  time,
-  length,
-  updateGroupFields,
-}) {
+export default function GroupPlanStep({ freq, day, time, updateGroupFields }) {
   const [fromTime, setFromTime] = useState(time.slice(0, 3) + time.slice(3, 5));
   const [toTime, setToTime] = useState(time.slice(5, 7) + time.slice(7, 11));
-  const weekdays = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"];
-  console.log("TIME:", { time });
+
+  const today = new Date();
+  const thirtyDaysFromNow = new Date(today);
+  thirtyDaysFromNow.setDate(today.getDate() + 30);
+  if (day === "") {
+    updateGroupFields({ day: today });
+  }
+
+  console.log("SENT DAY", day);
+  // const weekdays = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"];
+  // console.log("TIME:", { time });
   const handleTimeChange = (newTime, isFrom) => {
     const [hours, minutes] = newTime.split(":").map((str) => parseInt(str));
-
     // Calculate newToTime based on isFrom flag and constraints
     let newToTime;
-
     if (isFrom) {
       const newToHours = hours + 1;
       const newToMinutes = minutes;
@@ -44,13 +48,7 @@ export default function GroupPlanStep({
       setToTime(newToTime);
       updateGroupFields({ time: fromTime + newToTime });
     }
-
-    console.log("TIME:", { time });
   };
-
-  // useEffect(() => {
-  //   console.log("NEW TIME", fromTime + toTime);
-  // }, [fromTime, toTime]);
 
   return (
     <div className="">
@@ -58,8 +56,23 @@ export default function GroupPlanStep({
       <p className=" text-textLightGray">
         Du kannst alle Angaben jederzeit in den Gruppeneinstellungen ändern
       </p>
-      <h4 className="my-4">An welchen Tagen soll die Gruppe sich treffen?</h4>
-      <div className="flex gap-4 my-4 ">
+      <h4 className="mt-4 mb-2">Startdatum</h4>
+      <div>
+        <DatePicker
+          selected={day}
+          dateFormat="dd MMM yyyy"
+          onChange={(e) => updateGroupFields({ day: e })}
+          default={day}
+          className="w-full px-4 py-2 border rounded-md border-primaryblue text-sm "
+          minDate={today}
+          maxDate={thirtyDaysFromNow}
+          locale={de}
+        />
+      </div>
+      <h4 className="mt-4 mb-2">
+        An welchen Tagen soll die Gruppe sich treffen?
+      </h4>
+      <div className="flex gap-4 ">
         <label
           htmlFor="radioOption1"
           className="relative w-full cursor-pointer border border-primaryblue rounded-md text-xs p-4 pl-4 flex items-center gap-4"
@@ -69,8 +82,8 @@ export default function GroupPlanStep({
             type="radio"
             id="radioOption1"
             name="options"
-            value="option1"
-            checked={freq === "option1"}
+            value="Einmalig"
+            checked={freq === "Einmalig"}
             onChange={(e) => updateGroupFields({ freq: e.target.value })}
             className="mr-1 absolute end-4 md:end-16 "
           />
@@ -84,8 +97,8 @@ export default function GroupPlanStep({
             type="radio"
             id="radioOption2"
             name="options"
-            value="option2"
-            checked={freq === "option2"}
+            value="Wöchentlich"
+            checked={freq === "Wöchentlich"}
             onChange={(e) => updateGroupFields({ freq: e.target.value })}
             className="mr-1 absolute end-4 md:end-16"
           />
@@ -101,8 +114,8 @@ export default function GroupPlanStep({
             type="radio"
             id="radioOption3"
             name="options"
-            value="option3"
-            checked={freq === "option3"}
+            value="Alle 2 Wochen"
+            checked={freq === "Alle 2 Wochen"}
             onChange={(e) => updateGroupFields({ freq: e.target.value })}
             className="mr-1 absolute end-4 md:end-16"
           />
@@ -116,15 +129,16 @@ export default function GroupPlanStep({
             type="radio"
             id="radioOption4"
             name="options"
-            value="option4"
-            checked={freq === "option4"}
+            value="Monatlich"
+            checked={freq === "Monatlich"}
             onChange={(e) => updateGroupFields({ freq: e.target.value })}
             className="mr-1 absolute end-4 md:end-16"
           />
         </label>
       </div>
-      <h4 className="my-4">An welchen Tagen soll die Gruppe sich treffen?</h4>
-      <div className="flex justify-between my-4">
+
+      {/* <h4 className="my-4">An welchen Tagen soll die Gruppe sich treffen?</h4> */}
+      {/* <div className="flex justify-between my-4">
         {weekdays.map((dayLabel, index) => (
           <label
             key={index}
@@ -145,9 +159,10 @@ export default function GroupPlanStep({
             />
           </label>
         ))}
-      </div>
-      <h4 className="my-4">Zu welcher Uhrzeit?</h4>
-      <div className="flex my-4 border border-primaryblue rounded-md p-2 w-fit">
+      </div> */}
+
+      <h4 className="">Zu welcher Uhrzeit?</h4>
+      <div className="flex my-2 border border-primaryblue rounded-md p-2 w-fit">
         <div className=" px-1">
           <TimePicker
             selectedTime={fromTime}

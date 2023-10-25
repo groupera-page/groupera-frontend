@@ -30,7 +30,7 @@ const initGroupData = {
   users: [],
   img: "",
   time: "12:0013:00",
-  freq: "",
+  freq: "Einmalig",
   when: "",
   day: "",
   length: "",
