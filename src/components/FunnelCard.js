@@ -116,6 +116,13 @@ export default function Funnel({ FunnelIndex }) {
     const hours = Math.floor(differenceMinutes / 60);
     const minutes = differenceMinutes % 60;
     const timeDifference = `${hours}:${minutes.toString().padStart(2, "0")}`;
+    // Format date string
+    const dateString = groupData.day;
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    const newFormatDay = `${year}-${month}-${day}`;
 
     const requestGroupBody = {
       name: groupData.name,
@@ -123,7 +130,7 @@ export default function Funnel({ FunnelIndex }) {
       time: groupData.time.slice(0, 5),
       length: timeDifference,
       img: groupData.img,
-      day: groupData.day,
+      date: newFormatDay,
       frenquency: groupData.freq,
       when: groupData.when,
     };

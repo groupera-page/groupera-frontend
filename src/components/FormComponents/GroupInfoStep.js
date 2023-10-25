@@ -6,7 +6,7 @@ export default function GroupInfoForm({
   updateGroupFields,
 }) {
   const [text, setText] = useState("");
-  const maxCharacters = 200;
+  const maxCharacters = 500;
   const [groupImage, setGroupImage] = useState("");
 
   const handleChange = (e) => {

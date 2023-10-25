@@ -9,7 +9,7 @@ function SignupPage() {
           backgroundImage: `url(${backgroundImage})`,
         }}
       >
-        <Funnel FunnelIndex={3} />
+        <Funnel FunnelIndex={4} />
       </div>
     </div>
   );

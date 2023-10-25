@@ -1,7 +1,3 @@
-import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import axios from "axios";
-
 export default function ExperienceForm({ experience, updateFields }) {
   return (
     <div className="">
@@ -19,8 +15,11 @@ export default function ExperienceForm({ experience, updateFields }) {
             type="radio"
             id="radioOption1"
             name="options"
-            value="option1"
-            checked={experience === "option1"}
+            value="Nein, ich hab noch nie an einer Gruppe teilgenommen."
+            checked={
+              experience ===
+              "Nein, ich hab noch nie an einer Gruppe teilgenommen."
+            }
             onChange={(e) => updateFields({ experience: e.target.value })}
             className="mr-1 absolute end-1 md:end-16"
           />
@@ -34,8 +33,11 @@ export default function ExperienceForm({ experience, updateFields }) {
             type="radio"
             id="radioOption2"
             name="options"
-            value="option2"
-            checked={experience === "option2"}
+            value="Ein wenig, ich habe schonmal an einer Gruppe teilgenommen."
+            checked={
+              experience ===
+              "Ein wenig, ich habe schonmal an einer Gruppe teilgenommen."
+            }
             onChange={(e) => updateFields({ experience: e.target.value })}
             className="mr-1 absolute end-1 md:end-16"
           />
@@ -49,8 +51,10 @@ export default function ExperienceForm({ experience, updateFields }) {
             type="radio"
             id="radioOption3"
             name="options"
-            value="option3"
-            checked={experience === "option3"}
+            value="Ja, ich habe regelmäßig an Gruppen teilgenommen."
+            checked={
+              experience === "Ja, ich habe regelmäßig an Gruppen teilgenommen."
+            }
             onChange={(e) => updateFields({ experience: e.target.value })}
             className="mr-1 absolute end-1 md:end-16"
           />
@@ -59,20 +63,18 @@ export default function ExperienceForm({ experience, updateFields }) {
           htmlFor="radioOption4"
           className="relative w-full cursor-pointer border border-primaryblue rounded-md text-xs p-2 pl-4 flex items-center gap-4"
         >
-          <div> Ja, ich habe regelmäßig an Gruppen teilgenommen.</div>
+          <div> Ja, ich habe bereits Gruppen organisiert.</div>
           <input
             type="radio"
             id="radioOption4"
             name="options"
-            value="option4"
-            checked={experience === "option4"}
+            value="Ja, ich habe bereits Gruppen organisiert."
+            checked={experience === "Ja, ich habe bereits Gruppen organisiert."}
             onChange={(e) => updateFields({ experience: e.target.value })}
             className="mr-1 absolute end-1 md:end-16"
           />
         </label>
       </div>
-
-      {/* Rest of your form elements */}
     </div>
   );
 }

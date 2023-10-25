@@ -70,7 +70,10 @@ export default function UserInfoStep({
             placeholder="Passwort"
           />
         </div>
-        <p className=" px-1 text-textLightGray">Min 8 Zeichen.</p>
+        <p className=" px-1 text-textLightGray">
+          Mindestens 8 Zeichen, mindestens eine Zahl, ein Großbuchstabe und ein
+          Sonderzeichen.
+        </p>
       </div>
       <div className="mt-4 text-sm border border-primaryblue rounded-md">
         <input
