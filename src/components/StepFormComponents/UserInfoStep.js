@@ -34,7 +34,7 @@ export default function UserInfoStep({
             name="username"
             value={username}
             onChange={(e) => updateFields({ username: e.target.value })}
-            className="w-full border rounded-md p-2 placeholder-primaryText"
+            className="w-full border rounded-md p-2 placeholder-primaryText bg-primaryBg"
             placeholder="Name"
           />
         </div>
@@ -51,7 +51,7 @@ export default function UserInfoStep({
           name="email"
           value={email}
           onChange={(e) => updateFields({ email: e.target.value })}
-          className={`w-full p-2 border rounded-md placeholder-primaryText ${
+          className={`w-full p-2 border rounded-md placeholder-primaryText bg-primaryBg${
             isVerified ? "text-gray-500" : ""
           }`}
           placeholder="Email"
@@ -66,7 +66,7 @@ export default function UserInfoStep({
             name="password"
             value={password}
             onChange={(e) => updateFields({ password: e.target.value })}
-            className="w-full p-2 border rounded-md placeholder-primaryText "
+            className="w-full p-2 border rounded-md placeholder-primaryText bg-primaryBg"
             placeholder="Passwort"
           />
         </div>
@@ -82,7 +82,7 @@ export default function UserInfoStep({
           name="passwordCheck"
           // value={passwordCheck}
           onChange={(e) => updateFields({ passwordCheck: e.target.value })}
-          className="w-full p-2 border rounded-md placeholder-primaryText "
+          className="w-full p-2 border rounded-md placeholder-primaryText bg-primaryBg"
           placeholder="Passwort erneut eingeben"
         />
       </div>

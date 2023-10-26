@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import logoSvg from "../assets/imgLogos/logoNoBg.svg";
-import UserInfoStep from "./FormComponents/UserInfoStep";
-import VerifyCodeStep from "./FormComponents/VerifyCodeStep";
-import RegStepper from "./FormComponents/RegStepper";
-import useMultiStepForm from "./FormComponents/useMultiStepForm";
-import GroupInfoStep from "./FormComponents/GroupInfoStep";
-import GroupSettingStep from "./FormComponents/GroupSettingStep";
+import UserInfoStep from "./StepFormComponents/UserInfoStep";
+import VerifyCodeStep from "./StepFormComponents/VerifyCodeStep";
+import RegStepper from "./StepFormComponents/RegStepper";
+import useMultiStepForm from "./StepFormComponents/useMultiStepForm";
+import GroupInfoStep from "./StepFormComponents/GroupInfoStep";
+import GroupSettingStep from "./StepFormComponents/GroupSettingStep";
 import FunnelSwitch from "./FunnelSwitch";
 import { BsArrowLeft } from "react-icons/bs";
 import { BsArrowRight } from "react-icons/bs";
@@ -64,9 +64,7 @@ export default function Funnel({ FunnelIndex }) {
   const verifyCodeIndex = funnelSteps.findIndex(
     (component) => component.type === VerifyCodeStep
   );
-  const groupInfoindex = funnelSteps.findIndex(
-    (component) => component.type === GroupInfoStep
-  );
+
   const GroupSettingIndex = funnelSteps.findIndex(
     (component) => component.type === GroupSettingStep
   );
@@ -286,7 +284,7 @@ export default function Funnel({ FunnelIndex }) {
   return (
     <div
       className="h-full w-full md:h-fit md:w-1/2 
-      px-4 rounded  bg-primaryBg/90 md:p-8"
+      px-4 rounded bg-primaryBg md:p-8"
     >
       <div className="pb-3">
         <img src={logoSvg} alt="logo" className="lg:w-40 w-28 p-2 pt-3" />
@@ -330,23 +328,24 @@ export default function Funnel({ FunnelIndex }) {
                 )}
               </div>
               <div className="flex gap-4 justify-end">
-                {currentStepIndex !== 0 && (
-                  <button
-                    type="button"
-                    onClick={handleBackButton}
-                    className={` text-primarypurple hover-bg-primarypurple-hover px-4 py-1 ${
-                      errorMessage ? "mt-0" : "mt-4"
-                    } rounded-lg`}
-                  >
-                    <div className="flex items-center">
-                      <BsArrowLeft
-                        className="w-5 mr-3 text-primarypurple"
-                        size={32}
-                      />
-                      Zurück
-                    </div>
-                  </button>
-                )}
+                {currentStepIndex !== 0 &&
+                  stepAfterVerify !== currentStepIndex && (
+                    <button
+                      type="button"
+                      onClick={handleBackButton}
+                      className={` text-primarypurple hover-bg-primarypurple-hover px-4 py-1 ${
+                        errorMessage ? "mt-0" : "mt-4"
+                      } rounded-lg`}
+                    >
+                      <div className="flex items-center">
+                        <BsArrowLeft
+                          className="w-5 mr-3 text-primarypurple"
+                          size={32}
+                        />
+                        Zurück
+                      </div>
+                    </button>
+                  )}
                 <button
                   type="submit"
                   // onClick={handleNextButton}

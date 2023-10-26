@@ -63,7 +63,7 @@ export default function GroupPlanStep({ freq, day, time, updateGroupFields }) {
           dateFormat="dd MMM yyyy"
           onChange={(e) => updateGroupFields({ day: e })}
           default={day}
-          className="w-full px-4 py-2 border rounded-md border-primaryblue text-sm "
+          className="w-full px-4 py-2 border rounded-md border-primaryblue text-sm bg-primaryBg"
           minDate={today}
           maxDate={thirtyDaysFromNow}
           locale={de}

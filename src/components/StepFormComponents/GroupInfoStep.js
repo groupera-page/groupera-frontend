@@ -49,7 +49,7 @@ export default function GroupInfoForm({
           name="username"
           value={name}
           onChange={(e) => updateGroupFields({ name: e.target.value })}
-          className="w-full border rounded-md p-2 placeholder-primaryText"
+          className="w-full border rounded-md p-2 placeholder-primaryText bg-primaryBg"
           placeholder="Name"
           pattern=".{3,}"
           title="Bitte geben Sie mindestens drei Zeichen ein"
@@ -64,7 +64,7 @@ export default function GroupInfoForm({
           name="username"
           value={description}
           onChange={handleChange}
-          className="w-full border border-primaryblue rounded-md p-2 placeholder-primaryText h-20 resize-none text-sm"
+          className="w-full border border-primaryblue rounded-md p-2 placeholder-primaryText h-20 resize-none text-sm bg-primaryBg"
           placeholder="Kurze Gruppenbeschreibung"
         ></textarea>
       </div>

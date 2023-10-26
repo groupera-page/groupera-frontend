@@ -1,5 +1,4 @@
 import React, { useState, useRef } from "react";
-import { useNavigate, Link } from "react-router-dom";
 
 export default function VerifyCodeStep({ email, code, updateFields }) {
   const [verificationCode, setVerificationCode] = useState(["", "", "", ""]);
@@ -14,18 +13,14 @@ export default function VerifyCodeStep({ email, code, updateFields }) {
     if (value !== "" && index < 3) {
       inputRefs[index + 1].current.focus();
     }
-    // if (value === "") {
-    //   if (index !== 0) {
-    //     inputRefs[index - 1].current.focus();
-    //   }
-    // }
   };
 
   return (
     <div>
-      <h2 className=" mt-">Verifiziere deine Email adresse</h2>
+      <h2 className=" mt-">Verifiziere deine Emailadresse</h2>
       <p className=" my-4">
         Wir haben Dir einen 4 stelligen Verifizierungscode per E-Mail geschickt.
+        Bitte schau auch in deinem Spam nach.
       </p>
       <div className="flex justify-center mx-10 gap-2 my-6">
         {verificationCode.map((value, index) => (
@@ -34,7 +29,7 @@ export default function VerifyCodeStep({ email, code, updateFields }) {
             ref={inputRefs[index]}
             type="text"
             name="codebox"
-            className="border rounded-md p-1 w-20 border-primaryblue text-lg text-center"
+            className="border rounded-md p-1 w-20 border-primaryblue text-lg text-center bg-primaryBg"
             placeholder=""
             value={value}
             maxLength="1"
