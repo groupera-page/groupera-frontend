@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import logoSvg from "../assets/imgLogos/logoNoBg.svg";
-import UserInfoStep from "./StepFormComponents/UserInfoStep";
-import VerifyCodeStep from "./StepFormComponents/VerifyCodeStep";
+import UserInfoStep from "./StepFormComponents/UserSteps/UserInfoStep";
+import VerifyCodeStep from "./StepFormComponents/UserSteps/VerifyCodeStep";
 import RegStepper from "./StepFormComponents/RegStepper";
 import useMultiStepForm from "./StepFormComponents/useMultiStepForm";
-import GroupInfoStep from "./StepFormComponents/GroupInfoStep";
-import GroupSettingStep from "./StepFormComponents/GroupSettingStep";
+import GroupInfoStep from "./StepFormComponents/GroupSteps/GroupInfoStep";
+import GroupSettingStep from "./StepFormComponents/GroupSteps/GroupSettingStep";
 import FunnelSwitch from "./FunnelSwitch";
 import { BsArrowLeft } from "react-icons/bs";
 import { BsArrowRight } from "react-icons/bs";
 
-const initData = {
+const initUserData = {
   username: "",
   email: "",
   password: "",
@@ -39,7 +39,7 @@ const initGroupData = {
 };
 
 export default function Funnel({ FunnelIndex }) {
-  const [data, setData] = useState(initData);
+  const [userData, setUserData] = useState(initUserData);
   const [groupData, setGroupData] = useState(initGroupData);
   const [errorMessage, setErrorMessage] = useState(undefined);
   const [isEditing, setisIsEditing] = useState(false);
@@ -52,7 +52,7 @@ export default function Funnel({ FunnelIndex }) {
   );
   const funnelSteps = FunnelSwitch(
     FunnelIndex,
-    data,
+    userData,
     updateFields,
     updateGroupFields,
     isVerified,
@@ -70,13 +70,11 @@ export default function Funnel({ FunnelIndex }) {
   );
   const stepAfterVerify = verifyCodeIndex + 1;
 
-  console.log(UserInfoStepIndex);
-
   const { steps, currentStepIndex, step, back, next, isLastStep } =
     useMultiStepForm(funnelSteps);
 
   function updateFields(fields) {
-    setData((prev) => {
+    setUserData((prev) => {
       return { ...prev, ...fields };
     });
   }
@@ -143,6 +141,7 @@ export default function Funnel({ FunnelIndex }) {
         console.log("ERROR");
         const errorDescription = error.response.data.message;
         setErrorMessage(errorDescription);
+        return;
       });
   };
 
@@ -151,7 +150,7 @@ export default function Funnel({ FunnelIndex }) {
     e.preventDefault();
 
     if (currentStepIndex === UserInfoStepIndex) {
-      if (data.isAccepted === "") {
+      if (userData.isAccepted === "") {
         setErrorMessage("Bitte akzeptieren Sie die Bedingungen");
         return;
       }
@@ -159,7 +158,7 @@ export default function Funnel({ FunnelIndex }) {
     // CODE check
     if (currentStepIndex === verifyCodeIndex) {
       console.log("CODE CHECK");
-      const codeString = data.code.join("");
+      const codeString = userData.code.join("");
       if (codeString === randomCode) {
         const userInfo = await axios.get(
           `http://localhost:5005/user/verified/${codeString}`
@@ -186,12 +185,12 @@ export default function Funnel({ FunnelIndex }) {
     }
 
     const requestBody = {
-      username: data.username,
-      email: data.email,
-      password: data.password,
-      gender: data.gender,
-      isAccepted: data.terms,
-      experience: data.experience,
+      username: userData.username,
+      email: userData.email,
+      password: userData.password,
+      gender: userData.gender,
+      isAccepted: userData.terms,
+      experience: userData.experience,
       code: randomCode,
     };
 
@@ -203,7 +202,7 @@ export default function Funnel({ FunnelIndex }) {
         .then((response) => {
           setisIsEditing(false);
           setErrorMessage("");
-          setCurrentUserEmail(data.email);
+          setCurrentUserEmail(userData.email);
           return next(1);
         })
         .catch((error) => {
@@ -234,11 +233,11 @@ export default function Funnel({ FunnelIndex }) {
     //Update user if using the same email, otherwise create new user
     if (isEditing) {
       console.log("current email", currentUserEmail);
-      console.log("data email", data.email);
-      if (currentUserEmail === data.email) {
+      console.log("data email", userData.email);
+      if (currentUserEmail === userData.email) {
         console.log("Editing current user");
         const userInfo = await axios.get(
-          `http://localhost:5005/user/notverified/${data.email}`
+          `http://localhost:5005/user/notverified/${userData.email}`
         );
         axios
           .put(
@@ -260,14 +259,13 @@ export default function Funnel({ FunnelIndex }) {
             setErrorMessage(errorDescription);
           });
       } else {
-        // Make this async
         console.log("Editing/ Creating new user");
         await axios
           .post(`http://localhost:5005/user/signup`, requestBody)
           .then((response) => {
             setisIsEditing(false);
             setErrorMessage("");
-            setCurrentUserEmail(data.email);
+            setCurrentUserEmail(userData.email);
 
             return next(1);
             // navigate("/");

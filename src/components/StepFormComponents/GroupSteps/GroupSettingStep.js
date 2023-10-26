@@ -26,7 +26,7 @@ export default function GroupSettingStep({ moderator, updateGroupFields }) {
             type="radio"
             id="radioOption1"
             name="options"
-            value="ja"
+            value="Ja"
             checked={moderator === "Ja"}
             onChange={(e) => updateGroupFields({ moderator: e.target.value })}
             className="mr-1 absolute end-1 md:end-16"
@@ -56,7 +56,7 @@ export default function GroupSettingStep({ moderator, updateGroupFields }) {
             type="radio"
             id="radioOption3"
             name="options"
-            value="option3"
+            value="Nein"
             checked={moderator === "Nein"}
             onChange={handleNoModerator}
             className="mr-1 absolute end-1 md:end-16"

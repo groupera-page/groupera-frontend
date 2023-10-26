@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
+
 import Home from "./pages/Home";
-import "./App.css";
+// import "./App.css";
 import Login from "./pages/LoginPage";
 import SignupPage from "./pages/RegistrationPage";
 import EmailVerify from "./components/EmailVerify";
@@ -9,7 +9,6 @@ import EmailVerify from "./components/EmailVerify";
 function App() {
   return (
     <Router>
-      {/* <Navbar/> */}
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/signup" element={<SignupPage />} />

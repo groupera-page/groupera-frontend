@@ -3,8 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import authService from "../services/auth.service";
 import logoSvg from "../assets/imgLogos/logoNoBg.svg";
-import tree_lowres from "../assets/tree_lowres.png";
-import Linkbutton from "./Linkbutton";
 
 export default function LandingCard({ page, id }) {
   const [email, setEmail] = useState("");

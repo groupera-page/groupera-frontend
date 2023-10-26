@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BsArrowRight } from "react-icons/bs";
 import { BsClock } from "react-icons/bs";
-import TimePicker from "./TimePicker";
+import TimePicker from "../TimePicker";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import de from "date-fns/locale/de";

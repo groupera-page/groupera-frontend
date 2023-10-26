@@ -1,4 +1,4 @@
-import testManual from "../../assets/manual.pdf";
+import testManual from "../../../assets/manual.pdf";
 import { Link } from "react-router-dom";
 import { BsDownload } from "react-icons/bs";
 
