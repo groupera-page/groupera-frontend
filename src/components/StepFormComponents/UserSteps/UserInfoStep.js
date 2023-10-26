@@ -6,17 +6,11 @@ export default function UserInfoStep({
   username,
   email,
   password,
-  passwordCheck,
   updateFields,
   gender,
-  isAccepted,
   isVerified,
 }) {
   useEffect(() => {
-    // if (!isVerified) {
-    //   updateFields({ email: "" });
-    // }
-
     updateFields({ isAccepted: "" });
   }, []);
 

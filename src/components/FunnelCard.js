@@ -19,7 +19,7 @@ now.setHours(now.getHours() + 1);
 const endHour = now.getHours().toString().padStart(2, "0");
 const timeSlot = `${startHour}:00${endHour}:00`;
 
-localStorage.clear();
+//localStorage.clear();
 const initUserData = {
   username: "",
   email: "",
@@ -86,7 +86,6 @@ export default function Funnel({ FunnelIndex }) {
   const verifyCodeIndex = funnelSteps.findIndex(
     (component) => component.type === VerifyCodeStep
   );
-
   const GroupSettingIndex = funnelSteps.findIndex(
     (component) => component.type === GroupSettingStep
   );
@@ -112,8 +111,6 @@ export default function Funnel({ FunnelIndex }) {
   }
 
   function handleBackButton() {
-    console.log("Current step index", currentStepIndex);
-    console.log("step after index index", stepAfterVerify);
     setRandomCode(Math.floor(1000 + Math.random() * 9000).toString());
     console.log("Randomcode", randomCode);
     setisIsEditing(true);
@@ -249,8 +246,6 @@ export default function Funnel({ FunnelIndex }) {
     }
     //Update user if using the same email, otherwise create new user
     if (isEditing) {
-      console.log("current email", currentUserEmail);
-      console.log("data email", userData.email);
       if (currentUserEmail === userData.email) {
         console.log("Editing current user");
         const userInfo = await axios.get(
@@ -264,9 +259,9 @@ export default function Funnel({ FunnelIndex }) {
           .then((response) => {
             setisIsEditing(false);
             setErrorMessage("");
-            if (currentStepIndex === UserInfoStepIndex && isVerified) {
-              return next(2);
-            }
+            // if (currentStepIndex === UserInfoStepIndex && isVerified) {
+            //   return next(2);
+            // }
             // Send new email code
 
             return next(1);
@@ -311,7 +306,9 @@ export default function Funnel({ FunnelIndex }) {
               currentStep={currentStepIndex + 1}
               steps={steps.length}
             />
-            {currentStepIndex + 1} von {steps.length}
+            <div style={{ marginLeft: `${currentStepIndex * 44}px` }}>
+              {currentStepIndex + 1} von {steps.length}
+            </div>
           </div>
         </div>
         <form

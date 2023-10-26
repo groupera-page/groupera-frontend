@@ -20,26 +20,20 @@ export default function GroupPlanStep({ freq, day, time, updateGroupFields }) {
   const handleTimeChange = (newTime, isFrom) => {
     let updatedFromTime = fromTime;
     let updatedToTime = toTime;
-
     if (isFrom) {
       updatedFromTime = newTime;
     } else {
       updatedToTime = newTime;
     }
-
     // Check if fromTime is later than toTime and adjust if needed
     if (updatedFromTime > updatedToTime) {
       updatedToTime = updatedFromTime;
     }
-
     const updatedTime = updatedFromTime + updatedToTime;
-    console.log(updatedTime);
-
-    // Calculate time difference directly from updatedFromTime and updatedToTime
+    // Calculate time difference for backend
     const startTime = updatedFromTime.slice(0, 2);
     const endTime = updatedToTime.slice(0, 2);
     const timeDifference = endTime - startTime;
-
     updateGroupFields({
       time: updatedTime,
       length:

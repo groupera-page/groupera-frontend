@@ -5,16 +5,12 @@ export default function GroupInfoForm({
   description,
   updateGroupFields,
 }) {
-  const [text, setText] = useState("");
+  const maxNameCharacters = 70;
   const maxCharacters = 500;
   const [groupImage, setGroupImage] = useState("");
 
   const handleChange = (e) => {
-    const inputText = e.target.value;
     updateGroupFields({ description: e.target.value });
-    if (inputText.length <= maxCharacters) {
-      setText(inputText);
-    }
   };
 
   const handleGroupImage = (e) => {
@@ -53,6 +49,7 @@ export default function GroupInfoForm({
           placeholder="Name"
           pattern=".{3,}"
           title="Bitte geben Sie mindestens drei Zeichen ein"
+          maxLength={maxNameCharacters}
         />
       </div>
       <p className=" px-1 text-textLightGray">Min 3 Zeichen.</p>
@@ -66,6 +63,7 @@ export default function GroupInfoForm({
           onChange={handleChange}
           className="w-full border border-primaryblue rounded-md p-2 placeholder-primaryText h-20 resize-none text-sm bg-primaryBg"
           placeholder="Kurze Gruppenbeschreibung"
+          maxLength={maxCharacters}
         ></textarea>
       </div>
       <div className="flex text-xs text-gray-500 mt-1 justify-end">
