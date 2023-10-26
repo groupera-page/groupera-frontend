@@ -1,0 +1,224 @@
+{
+  "Instructions content file": "Replace text string within quotations. Delete content by leaving empty quotations ",
+  "example": [
+    {
+      "id": "dont't change",
+      "header": ["I am a header", "I am the next header"],
+      "deleted - (keep the quotations)": ["", "", "", "", ""]
+    }
+  ],
+  "navbar": [
+    {
+      "id": "navbar",
+      "header": ["Startseite", "Gruppen", "Blog", "Preis", "Über uns"]
+    }
+  ],
+  "landingpage": [
+    {
+      "id": "landingcard",
+      "header": ["Online Selbsthilfegruppen"],
+      "text": [
+        "Tausche Dich mit anderen Betroffenen aus oder starte eine neue Gruppe. Unabhängig von deinem Wohnort und passend zu deiner Lebenssituation. "
+      ],
+      "buttonText": ["Kostenlos starten"],
+      "buttonType": ["primary"]
+    },
+    {
+      "id": "sponsorheader",
+      "header": ["Gefördert durch"]
+    },
+    {
+      "id": "infocardheader",
+      "header": ["So funktioniert we.together"]
+    },
+    {
+      "id": "infoCard1",
+      "header": ["Finde deine Gruppe"],
+      "text": [
+        "Finde aus zahlreichen Gruppen, die passende(n) für Dich und tausche Dich online, in regelmäßigen Terminen, mit anderen Betroffene aus, die in der gleichen Situation sind wie Du."
+      ],
+      "buttonText": ["Gruppe finden"],
+      "buttonType": ["secondary"]
+    },
+    {
+      "id": "infoCard2",
+      "header": ["Starte neue Gruppen"],
+      "text": [
+        "Zu jedem beliebigen Thema hast du die Möglichkeit eine Gruppe zu eröffnen und Menschen zusammenzubringen. Erstelle mit unserer Hilfe in nur vier Schritten deine Selbsthilfegruppe. We.together ist für Gruppen ModeratorInnen komplett kostenlos."
+      ],
+      "buttonText": ["Gruppe starten"],
+      "buttonType": ["secondary"]
+    },
+    {
+      "id": "gridheader",
+      "header": ["Deine Vorteile mit we.together"],
+      "gridData": [
+        {
+          "title": "Fortlaufende Gruppen",
+          "text": "Tausch Dich regelmäßig mit Menschen aus, die in einer ähnlichen Situation sind wie Du um gemeinsam zu heilen."
+        },
+        {
+          "title": "Anonymität",
+          "text": "Deine Sicherheit liegt uns besonders am Herzen, deshalb achten wir sehr auf Deine Anonymität auf der Plattform."
+        },
+        {
+          "title": "Jederzeit zugänglich",
+          "text": "Alle Gruppen finden online per Video-Call statt. Unabhängig von deinem Wohnort und passend zu deiner Lebenssituation."
+        },
+        {
+          "title": "Von Psychologen entwickelt",
+          "text": "Unsere Gruppen-Konzepte werden von Psycholog/innen mit dem Feedback von Betroffenen entwickelt."
+        },
+        {
+          "title": "Kostenlos ausprobieren",
+          "text": "Um zu schauen, ob dir we.together hilft, hast du die Möglichkeit es kostenlos in 5 Terminen unverbindlich auszuprobieren."
+        },
+        {
+          "title": "Keine Wartezeit",
+          "text": "Auf we.together findest Du zahlreiche Selbsthilfegruppen zu verschiedenen Themen mit täglichen Angeboten."
+        }
+      ]
+    },
+
+    {
+      "id": "paywall",
+      "header": [
+        "Ein monatlicher Preis - unlimitierter Zugang zu Gruppen",
+        "5 Teilnahme"
+      ],
+      "text": [
+        "Teste 5 Gruppen-Termine jetzt kostenlos, danach kannst Du für 19,95 € / Monat an unbegrenzt vielen Gruppen teilnehmen.",
+        "Danach 9,95 € / Monat. Jederzeit kündbar",
+        "We.together ist kostenlos für Gruppenmoderatoren",
+        " - Jetzt mehr erfahren."
+      ],
+      "buttonText": ["Kostenlos testen"],
+      "buttonType": ["primary"]
+    },
+    {
+      "id": "carouselheader",
+      "header": ["Finde Die richtige Gruppe für Dich"]
+    },
+    {
+      "id": "aboutusheader",
+      "header": ["Gemeinsam Selbsthilfe ermöglichen"]
+    },
+    {
+      "id": "aboutuspreview",
+      "header": ["Unsere Vision", "Unsere Einstellung", "Unser Team"],
+      "text": [
+        "Wir wollen mit we.together Deutschlands führende digitale Selbsthilfe Plattform schaffen, die jedem den Zugang zu der richtigen Selbsthilfegruppe ermöglicht.",
+        "Wir glauben daran, dass jeder Mensch glücklich sein darf und die Lösung, um das zu erreichen, in sich trägt. Wir bieten mit we.together eine Möglichkeit und einen Weg zu dieser Lösung zu kommen.",
+        "We.together wird auch bei uns im Team groß geschrieben. Gemeinsam haben wir es uns zur Aufgabe gemacht Menschen in schwierigen Lebenssituationen zu unterstützen."
+      ]
+    }
+  ],
+  "aboutUsPage": [
+    {
+      "id": "landingcard-row",
+      "header": ["Wir ermöglichen den Zugang zu Selbsthilfegruppen"],
+      "text": [
+        "Gemeinsam haben wir es uns zur Aufgabe gemacht Menschen in schwierigen Lebenssituationen zu unterstützen und haben damit auch eine Lebensaufgabe gewählt."
+      ]
+    },
+    {
+      "id": "aboutUsLadder",
+      "header": ["Unsere Mission", "Unsere Vision", "Unser Team"],
+      "text": [
+        "ist es, Menschen zu verbinden und ihnen Zugang zur richtigen Selbsthilfegruppe zu ermöglichen. Durch unsere Online-Plattform schaffen wir eine sichere und unterstützende Umgebung, in der Menschen ihre Herausforderungen teilen können, um Heilung, Stärke und gemeinsamen Fortschritt zu finden. Bei we.together sind wir bestrebt, jedem die Möglichkeit zu geben, sich selbst zu helfen und gemeinsam zu wachsen.",
+        "ist es, dass jeder Mensch den Zugang zu psychologischer Unterstützung bekommt. Wir streben danach, eine Gemeinschaft zu schaffen, in der Menschen Unterstützung, Inspiration und Ressourcen finden, um ihr Potenzial zu entfalten. Durch unsere innovative Plattform möchten wir eine Brücke bauen, die Menschen zusammenführt, um sich gegenseitig zu stärken, zu ermutigen und gemeinsam zu wachsen. ",
+        "besteht aus Expertinnen und Experten, die stetig die Bedürfnisse unsere NutzerInnen im Blick haben und dahingehend we.together kontinuierlich weiterentwickeln. Unser Team zeichnet sich vor allem durch hohe Motivation aus sowie Empathie und Verständnis für psychische Erkrankungen. "
+      ]
+    },
+    {
+      "id": "sponsorheader",
+      "header": ["Unsere Partner uns Förderer"],
+      "text": [
+        "Hier findet ihr eine Liste unserer Partner mit denen wir zusammen daran arbeiten Menschen miteinander zu verbinden und ihnen Zugang zu Selbsthilfegruppen zu ermöglichen."
+      ]
+    },
+    {
+      "id": "infoCard1",
+      "header": ["Du möchtest Teil des Teams werden?"],
+      "text": [
+        "Schicke uns gerne deine Bewerbungsunterlagen zu an bewerbung@hellowetogether.de"
+      ]
+    },
+    {
+      "id": "infoCard2",
+      "header": [
+        "Ihr seid ein Unternehmen und wollt mit uns in Kontakt treten?"
+      ],
+      "text": ["Schreibt uns gerne eine Nachricht an info@hellowetogether.de "]
+    }
+  ],
+  "priceOverview": [
+    {
+      "id": "landingcard-row",
+      "header": ["Unsere Preise"],
+      "text": [
+        "Bezahlbare Begleitung auf dem Weg zur mentalen Stärke durch die we.together Community."
+      ]
+    },
+    {
+      "id": "gridheader",
+      "header": ["Deine Vorteile mit we.together"],
+      "gridData": [
+        {
+          "title": "Kostenlos starten",
+          "text": "Damit du schauen kannst, ob we.together etwas für dich kannst du 5 Termine kostenlos wahrnehmen"
+        },
+        {
+          "title": "Gruppe finden",
+          "text": "Du hast dich Möglichkeit aus verschiedenen Gruppen, deine richtige zu finden und dich mit anderen Betroffenen auszutauschens"
+        },
+        {
+          "title": "Gemeinsam wachsen",
+          "text": "Innerhalb der Community erfährst du halt und verstanden. Das ermöglicht es dir zu heilen und dein Wohlbefinden zu steigern."
+        }
+      ]
+    },
+    {
+      "id": "memberCardHeader",
+      "header": ["we.together Mitglied werden"],
+      "text": [
+        "Du kannst we.together unverbindlich mit 5 Probesessions testen und Dich danach entscheiden."
+      ]
+    },
+    {
+      "id": "memberCard",
+      "header": ["9,95€ im Monat"],
+      "text": [
+        "5 Sessions kostenlos",
+        "monatlich kündbar",
+        "Unbegrenzt an Selbsthilfegruppe teilnehmen"
+      ],
+      "buttonText": ["Kostenlos testen"],
+      "buttonType": ["primary"]
+    },
+    {
+      "id": "memberCard2",
+      "header": ["0€ im Monat für Gruppenmoderatoren"],
+      "text": [
+        "Wenn du eine neue Gruppe eröffnest und diese regelmäßig moderierst kannst du kostenlos we.together nutzen.",
+        "unbegrenzt an anderen Selbsthilfegruppen teilnehmen",
+        "monatlich kündbar"
+      ],
+      "buttonText": ["Jetzt starten"],
+      "buttonType": ["primary"]
+    }
+  ],
+  "blogPage": [
+    {
+      "id": "landingcard",
+      "header": ["Unser Blog", "weil wir lange genug still waren..."],
+      "text": [
+        "Unsere Blogartikel stammen alle von we.together Mitgliederinnen und Mitgliedern. Wir wollen mit unseren Geschichten und Erfahrungen nach draußen gehen. Wir wollen Mut machen und anderen zeigen, dass sie nicht alleine sind. "
+      ]
+    },
+    {
+      "id": "previewheader",
+      "header": ["Beiträge"]
+    }
+  ]
+}

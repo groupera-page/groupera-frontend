@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { BsArrowRight } from "react-icons/bs";
 import { BsClock } from "react-icons/bs";
 import TimePicker from "../TimePicker";
@@ -9,45 +9,47 @@ import de from "date-fns/locale/de";
 export default function GroupPlanStep({ freq, day, time, updateGroupFields }) {
   const [fromTime, setFromTime] = useState(time.slice(0, 3) + time.slice(3, 5));
   const [toTime, setToTime] = useState(time.slice(5, 7) + time.slice(7, 11));
-
   const today = new Date();
   const thirtyDaysFromNow = new Date(today);
-  thirtyDaysFromNow.setDate(today.getDate() + 30);
-  if (day === "") {
-    updateGroupFields({ day: today });
+  let dateDay = day;
+  if (typeof dateDay === "string") {
+    dateDay = new Date(day);
   }
+  thirtyDaysFromNow.setDate(today.getDate() + 30);
 
-  console.log("SENT DAY", day);
-  // const weekdays = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"];
-  // console.log("TIME:", { time });
   const handleTimeChange = (newTime, isFrom) => {
-    const [hours, minutes] = newTime.split(":").map((str) => parseInt(str));
-    // Calculate newToTime based on isFrom flag and constraints
-    let newToTime;
+    let updatedFromTime = fromTime;
+    let updatedToTime = toTime;
+
     if (isFrom) {
-      const newToHours = hours + 1;
-      const newToMinutes = minutes;
-      if (newToHours <= 22) {
-        newToTime = `${newToHours.toString().padStart(2, "0")}:${newToMinutes
-          .toString()
-          .padStart(2, "0")}`;
-      }
-      console.log("change from time also");
-      setFromTime(newTime);
-      updateGroupFields({ time: newTime + toTime });
+      updatedFromTime = newTime;
     } else {
-      if (hours > 0 || (hours === 0 && minutes >= 30)) {
-        newToTime = newTime;
-      } else {
-        const newToHours = hours + 1;
-        const newToMinutes = minutes;
-        newToTime = `${newToHours.toString().padStart(2, "0")}:${newToMinutes
-          .toString()
-          .padStart(2, "0")}`;
-      }
-      setToTime(newToTime);
-      updateGroupFields({ time: fromTime + newToTime });
+      updatedToTime = newTime;
     }
+
+    // Check if fromTime is later than toTime and adjust if needed
+    if (updatedFromTime > updatedToTime) {
+      updatedToTime = updatedFromTime;
+    }
+
+    const updatedTime = updatedFromTime + updatedToTime;
+    console.log(updatedTime);
+
+    // Calculate time difference directly from updatedFromTime and updatedToTime
+    const startTime = updatedFromTime.slice(0, 2);
+    const endTime = updatedToTime.slice(0, 2);
+    const timeDifference = endTime - startTime;
+
+    updateGroupFields({
+      time: updatedTime,
+      length:
+        timeDifference +
+        ":" +
+        (updatedToTime.slice(3, 5) - updatedFromTime.slice(3, 5)),
+    });
+
+    setFromTime(updatedFromTime);
+    setToTime(updatedToTime);
   };
 
   return (
@@ -59,16 +61,17 @@ export default function GroupPlanStep({ freq, day, time, updateGroupFields }) {
       <h4 className="mt-4 mb-2">Startdatum</h4>
       <div>
         <DatePicker
-          selected={day}
+          selected={dateDay}
           dateFormat="dd MMM yyyy"
           onChange={(e) => updateGroupFields({ day: e })}
-          default={day}
+          default={dateDay}
           className="w-full px-4 py-2 border rounded-md border-primaryblue text-sm bg-primaryBg"
           minDate={today}
           maxDate={thirtyDaysFromNow}
           locale={de}
         />
       </div>
+
       <h4 className="mt-4 mb-2">
         An welchen Tagen soll die Gruppe sich treffen?
       </h4>
@@ -167,7 +170,7 @@ export default function GroupPlanStep({ freq, day, time, updateGroupFields }) {
           <TimePicker
             selectedTime={fromTime}
             onSelectTime={(newTime) => {
-              handleTimeChange(newTime, true); // Pass 'true' to indicate 'From' time
+              handleTimeChange(newTime, true);
             }}
             label="From"
             toTime={toTime}
@@ -180,7 +183,7 @@ export default function GroupPlanStep({ freq, day, time, updateGroupFields }) {
           <TimePicker
             selectedTime={toTime}
             onSelectTime={(newTime) => {
-              handleTimeChange(newTime, false); // Pass 'false' to indicate 'To' time
+              handleTimeChange(newTime, false);
             }}
             label="To"
             fromTime={fromTime}

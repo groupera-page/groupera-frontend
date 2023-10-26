@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import logoSvg from "../assets/imgLogos/logoNoBg.svg";
@@ -6,12 +6,20 @@ import UserInfoStep from "./StepFormComponents/UserSteps/UserInfoStep";
 import VerifyCodeStep from "./StepFormComponents/UserSteps/VerifyCodeStep";
 import RegStepper from "./StepFormComponents/RegStepper";
 import useMultiStepForm from "./StepFormComponents/useMultiStepForm";
-import GroupInfoStep from "./StepFormComponents/GroupSteps/GroupInfoStep";
 import GroupSettingStep from "./StepFormComponents/GroupSteps/GroupSettingStep";
 import FunnelSwitch from "./FunnelSwitch";
 import { BsArrowLeft } from "react-icons/bs";
 import { BsArrowRight } from "react-icons/bs";
+const today = new Date();
+const now = new Date();
+// Create default time slot 2 hours ahead of now
+now.setHours(now.getHours() + 2);
+const startHour = now.getHours().toString().padStart(2, "0");
+now.setHours(now.getHours() + 1);
+const endHour = now.getHours().toString().padStart(2, "0");
+const timeSlot = `${startHour}:00${endHour}:00`;
 
+localStorage.clear();
 const initUserData = {
   username: "",
   email: "",
@@ -29,11 +37,11 @@ const initGroupData = {
   description: "",
   users: [],
   img: "",
-  time: "12:0013:00",
+  time: timeSlot,
   freq: "Einmalig",
   when: "",
-  day: "",
-  length: "",
+  day: today,
+  length: "1:00",
   token: "",
   moderator: "Ja",
 };
@@ -47,6 +55,20 @@ export default function Funnel({ FunnelIndex }) {
   const [currentUser, setCurrentUser] = useState("");
   const [currentUserEmail, setCurrentUserEmail] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Retrieve user data from localStorage or use the initial data
+    const storedUserData =
+      JSON.parse(localStorage.getItem("userData")) || initUserData;
+    setUserData(storedUserData);
+
+    // Retrieve group data from localStorage or use the initial data
+    const storedGroupData =
+      JSON.parse(localStorage.getItem("groupData")) || initGroupData;
+    setGroupData(storedGroupData);
+  }, []);
+
+  //Delete when backend is updated
   const [randomCode, setRandomCode] = useState(
     Math.floor(1000 + Math.random() * 9000).toString()
   );
@@ -75,12 +97,17 @@ export default function Funnel({ FunnelIndex }) {
 
   function updateFields(fields) {
     setUserData((prev) => {
-      return { ...prev, ...fields };
+      const updatedData = { ...prev, ...fields };
+      localStorage.setItem("userData", JSON.stringify(updatedData));
+      return updatedData;
     });
   }
+
   function updateGroupFields(fields) {
     setGroupData((prev) => {
-      return { ...prev, ...fields };
+      const updatedData = { ...prev, ...fields };
+      localStorage.setItem("groupData", JSON.stringify(updatedData));
+      return updatedData;
     });
   }
 
@@ -101,18 +128,8 @@ export default function Funnel({ FunnelIndex }) {
   const handleGroup = async (e) => {
     e.preventDefault();
     console.log("CLICKED - CREATING GROUP");
-    // Calculate length
-    const startTime = groupData.time.slice(0, 5);
-    const endTime = groupData.time.slice(6);
-    const [startHours, startMinutes] = startTime.split(":").map(Number);
-    const [endHours, endMinutes] = endTime.split(":").map(Number);
-    const totalStartMinutes = startHours * 60 + startMinutes;
-    const totalEndMinutes = endHours * 60 + endMinutes;
-    const differenceMinutes = totalEndMinutes - totalStartMinutes;
-    const hours = Math.floor(differenceMinutes / 60);
-    const minutes = differenceMinutes % 60;
-    const timeDifference = `${hours}:${minutes.toString().padStart(2, "0")}`;
-    // Format date string
+
+    // Format date string to backend
     const dateString = groupData.day;
     const date = new Date(dateString);
     const year = date.getFullYear();
@@ -124,7 +141,7 @@ export default function Funnel({ FunnelIndex }) {
       name: groupData.name,
       description: groupData.description,
       time: groupData.time.slice(0, 5),
-      length: timeDifference,
+      length: groupData.length,
       img: groupData.img,
       date: newFormatDay,
       frenquency: groupData.freq,
