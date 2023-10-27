@@ -8,12 +8,13 @@ import RegStepper from "./StepFormComponents/RegStepper";
 import useMultiStepForm from "./StepFormComponents/useMultiStepForm";
 import GroupSettingStep from "./StepFormComponents/GroupSteps/GroupSettingStep";
 import FunnelSwitch from "./FunnelSwitch";
-import { initUserData, initGroupData } from "./StepFormComponents/initData";
+import { userDataInit, groupDataInit } from "./StepFormComponents/initData";
+
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 
 export default function Funnel({ FunnelIndex }) {
-  const [userData, setUserData] = useState(initUserData);
-  const [groupData, setGroupData] = useState(initGroupData);
+  const [userData, setUserData] = useState(userDataInit);
+  const [groupData, setGroupData] = useState(groupDataInit);
   const [errorMessage, setErrorMessage] = useState(undefined);
   const [isEditing, setIsEditing] = useState(false);
   const [isVerified, setisVerified] = useState(false);
@@ -24,14 +25,12 @@ export default function Funnel({ FunnelIndex }) {
 
   //localStorage.clear();
 
+  // console.log(userData);
   useEffect(() => {
-    const storedUserData =
-      JSON.parse(localStorage.getItem("userData")) || initUserData;
-
-    setUserData(storedUserData);
-    const storedGroupData =
-      JSON.parse(localStorage.getItem("groupData")) || initGroupData;
-    setGroupData(storedGroupData);
+    // setUserData({});
+    // const userData = JSON.parse(localStorage.getItem("userData")) || {};
+    // console.log(userData);
+    // setUserData(userData);
     const isVerified = JSON.parse(localStorage.getItem("isVerified")) || false;
     setisVerified(isVerified);
     const isEditing = JSON.parse(localStorage.getItem("isEditing")) || false;
@@ -97,10 +96,6 @@ export default function Funnel({ FunnelIndex }) {
   function handleBackButton() {
     setIsEditing(true);
     localStorage.setItem("isEditing", JSON.stringify(true));
-    // if (stepAfterVerify === currentStepIndex) {
-    //   back(2);
-    // } else {
-    // }
     back(1);
     setErrorMessage("");
   }
@@ -158,7 +153,18 @@ export default function Funnel({ FunnelIndex }) {
         setErrorMessage("");
         if (isLastStep) {
           localStorage.clear();
-          // initUserData();
+          localStorage.removeItem("userData");
+          const userDataBlank = {
+            username: "",
+            email: "",
+            password: "",
+            passwordCheck: "",
+            code: [],
+            gender: "Weiblich",
+            isAccepted: "",
+            experience: "no experience",
+          };
+          setUserData(userDataBlank);
           navigate("/login");
         }
         return next(1);
@@ -211,7 +217,18 @@ export default function Funnel({ FunnelIndex }) {
           // setisIsEditing(false);
           if (isLastStep) {
             localStorage.clear();
-            // initUserData();
+            localStorage.removeItem("userData");
+            const userDataBlank = {
+              username: "",
+              email: "",
+              password: "",
+              passwordCheck: "",
+              code: [],
+              gender: "Weiblich",
+              isAccepted: "",
+              experience: "no experience",
+            };
+            setUserData(userDataBlank);
             navigate("/login");
           } else {
             setErrorMessage("");

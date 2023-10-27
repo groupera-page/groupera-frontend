@@ -1,5 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import de from "date-fns/locale/de";
+import { range, getYear, getMonth } from "date-fns";
 
 export default function UserInfoStep({
   username,
@@ -12,6 +16,31 @@ export default function UserInfoStep({
   useEffect(() => {
     updateFields({ isAccepted: "" });
   }, []);
+
+  const today = new Date();
+  const twentyYearsAgo = new Date(today);
+  twentyYearsAgo.setFullYear(today.getFullYear() - 20);
+  const currentYear = new Date().getFullYear();
+  const years = [];
+  for (let year = 1920; year <= currentYear; year++) {
+    years.push(year);
+  }
+  const months = [
+    "Januar",
+    "Februar",
+    "März",
+    "April",
+    "Mai",
+    "Juni",
+    "Juli",
+    "August",
+    "September",
+    "Oktober",
+    "November",
+    "Dezember",
+  ];
+
+  const [selectedDate, setSelectedDate] = useState(twentyYearsAgo);
 
   return (
     <div>
@@ -31,7 +60,7 @@ export default function UserInfoStep({
             placeholder="Name"
           />
         </div>
-        <p className="px-1 mb-2 text-textLightGray ">
+        <p className="px-1 mb-2 text-textLightGray">
           Bitte gib hier Deinen Namen ein, mit dem Du in der Gruppe angesprochen
           werden möchtest und der für andere Mitglieder:innen angezeigt werden
           darf.
@@ -127,6 +156,59 @@ export default function UserInfoStep({
           />
         </label>
       </div>
+      <h4 className="pt-2">Geburtsdatum</h4>
+      <div>
+        <DatePicker
+          selected={selectedDate}
+          onChange={(date) => setSelectedDate(date)}
+          dateFormat="dd.MM.yyyy"
+          showMonthDropdown
+          showYearDropdown
+          scrollableYearDropdown
+          yearDropdownItemNumber={100}
+          className="w-full px-4 py-2 border rounded-md border-primaryblue text-sm bg-primaryBg"
+          locale={de}
+          calendarClassName="hidden-month-title"
+          renderCustomHeader={({
+            date,
+            changeYear,
+            changeMonth,
+            decreaseMonth,
+            increaseMonth,
+            prevMonthButtonDisabled,
+            nextMonthButtonDisabled,
+          }) => (
+            <div className="flex gap-3 justify-center p-1 bg-primaryBg absolute w-full text-sm ">
+              <div>
+                <select
+                  value={getYear(date)}
+                  onChange={({ target: { value } }) => changeYear(value)}
+                >
+                  {years.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <select
+                  value={months[getMonth(date)]}
+                  onChange={({ target: { value } }) =>
+                    changeMonth(months.indexOf(value))
+                  }
+                >
+                  {months.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          )}
+        />
+      </div>
       <div className="flex flex-row items-star my-2">
         <div className="pt-3 px-3 flex gap-3">
           <input
@@ -145,7 +227,7 @@ export default function UserInfoStep({
             </Link>{" "}
             und die{" "}
             <Link to={"/"} className="text-primarypurple">
-              Datenschutzerkärung{" "}
+              Datenschutzerklärung{" "}
             </Link>
             von Groupera
           </p>
