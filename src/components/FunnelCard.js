@@ -65,6 +65,7 @@ export default function Funnel({ FunnelIndex }) {
     setUserData((prev) => {
       const updatedData = { ...prev, ...fields };
       localStorage.setItem("userData", JSON.stringify(updatedData));
+      console.log(updatedData);
       return updatedData;
     });
   }
@@ -153,18 +154,9 @@ export default function Funnel({ FunnelIndex }) {
         setErrorMessage("");
         if (isLastStep) {
           localStorage.clear();
-          localStorage.removeItem("userData");
-          const userDataBlank = {
-            username: "",
-            email: "",
-            password: "",
-            passwordCheck: "",
-            code: [],
-            gender: "Weiblich",
-            isAccepted: "",
-            experience: "no experience",
-          };
-          setUserData(userDataBlank);
+          updateFields({ username: "new user name" });
+          console.log("New user data", userData);
+          console.log("New user name", userData.username);
           navigate("/login");
         }
         return next(1);
@@ -217,18 +209,8 @@ export default function Funnel({ FunnelIndex }) {
           // setisIsEditing(false);
           if (isLastStep) {
             localStorage.clear();
-            localStorage.removeItem("userData");
-            const userDataBlank = {
-              username: "",
-              email: "",
-              password: "",
-              passwordCheck: "",
-              code: [],
-              gender: "Weiblich",
-              isAccepted: "",
-              experience: "no experience",
-            };
-            setUserData(userDataBlank);
+            updateFields({ username: "" });
+            console.log(userData);
             navigate("/login");
           } else {
             setErrorMessage("");

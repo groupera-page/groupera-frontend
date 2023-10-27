@@ -1,0 +1,10 @@
+/* Custom styles for React DatePicker */
+.react-datepicker-year-dropdown {
+    font-size: 20px;
+    /* Adjust the year font size as needed */
+}
+
+.react-datepicker-month-text {
+    font-size: 12px;
+    /* Adjust the month font size as needed */
+}

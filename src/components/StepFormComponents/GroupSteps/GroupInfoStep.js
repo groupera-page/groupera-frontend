@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import Carousel from "../Carousel";
 export default function GroupInfoForm({
   name,
   description,
@@ -13,23 +13,23 @@ export default function GroupInfoForm({
     updateGroupFields({ description: e.target.value });
   };
 
-  const handleGroupImage = (e) => {
-    e.preventDefault();
-    const file = e.target.files[0];
-    TransformFile(file);
-  };
+  // const handleGroupImage = (e) => {
+  //   e.preventDefault();
+  //   const file = e.target.files[0];
+  //   TransformFile(file);
+  // };
 
-  const TransformFile = (file) => {
-    const reader = new FileReader();
-    if (file) {
-      reader.readAsDataURL(file);
-      reader.onloadend = () => {
-        setGroupImage(reader.result);
-        updateGroupFields(reader.result);
-        console.log("Groupinfo", groupImage);
-      };
-    }
-  };
+  // const TransformFile = (file) => {
+  //   const reader = new FileReader();
+  //   if (file) {
+  //     reader.readAsDataURL(file);
+  //     reader.onloadend = () => {
+  //       setGroupImage(reader.result);
+  //       updateGroupFields(reader.result);
+  //       console.log("Groupinfo", groupImage);
+  //     };
+  //   }
+  // };
 
   return (
     <div>
@@ -69,13 +69,13 @@ export default function GroupInfoForm({
       <div className="flex text-xs text-gray-500 mt-1 justify-end">
         {description.length}/{maxCharacters}
       </div>
-
       <p className="my-2">
-        Lade ein Bild für die Gruppe hoch. Du kannst auch ein Bild aus unseren
-        Vorschlägen aussuchen.{" "}
+        Du kannst ein Bild aus unseren Vorschlägen aussuchen.{" "}
       </p>
+      <Carousel></Carousel>
+
       <div className="mb-4">
-        <label className="relative cursor-pointer hover:bg-primaryblue-hover border border-primaryblue px-4 py-2 rounded-md text-sm">
+        {/* <label className="relative cursor-pointer hover:bg-primaryblue-hover border border-primaryblue px-4 py-2 rounded-md text-sm">
           <span>Eigene Datei auswählen</span>
           <input
             type="file"
@@ -83,7 +83,7 @@ export default function GroupInfoForm({
             onChange={handleGroupImage}
             className="hidden"
           />
-        </label>
+        </label> */}
       </div>
     </div>
   );
