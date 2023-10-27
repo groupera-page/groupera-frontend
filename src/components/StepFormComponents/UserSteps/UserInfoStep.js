@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import de from "date-fns/locale/de";
-import { range, getYear, getMonth } from "date-fns";
+import { getYear, getMonth } from "date-fns";
 
 export default function UserInfoStep({
   username,
@@ -17,6 +17,7 @@ export default function UserInfoStep({
     updateFields({ isAccepted: "" });
   }, []);
 
+  console.log("DATA", JSON.parse(localStorage.getItem("userData")));
   const today = new Date();
   const twentyYearsAgo = new Date(today);
   twentyYearsAgo.setFullYear(today.getFullYear() - 20);
@@ -169,15 +170,7 @@ export default function UserInfoStep({
           className="w-full px-4 py-2 border rounded-md border-primaryblue text-sm bg-primaryBg"
           locale={de}
           calendarClassName="hidden-month-title"
-          renderCustomHeader={({
-            date,
-            changeYear,
-            changeMonth,
-            decreaseMonth,
-            increaseMonth,
-            prevMonthButtonDisabled,
-            nextMonthButtonDisabled,
-          }) => (
+          renderCustomHeader={({ date, changeYear, changeMonth }) => (
             <div className="flex gap-3 justify-center p-1 bg-primaryBg absolute w-full text-sm ">
               <div>
                 <select

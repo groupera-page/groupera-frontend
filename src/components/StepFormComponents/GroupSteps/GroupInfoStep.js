@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Carousel from "../Carousel";
+import { Image } from "cloudinary-react";
+
 export default function GroupInfoForm({
   name,
   description,
@@ -33,6 +35,12 @@ export default function GroupInfoForm({
 
   return (
     <div>
+      <div>
+        <Image
+          cloudName="di8ujuqae"
+          publicId="Grouptitel%20pictures/pexels-akil-mazumder-1072824_1_tdw8si.jpg"
+        />
+      </div>
       <h2 className="">Beschreibe Deine Gruppe</h2>
       <p className=" text-textLightGray">
         Du kannst alle Angaben jederzeit in den Gruppeneinstellungen ändern

@@ -65,7 +65,6 @@ export default function Funnel({ FunnelIndex }) {
     setUserData((prev) => {
       const updatedData = { ...prev, ...fields };
       localStorage.setItem("userData", JSON.stringify(updatedData));
-      console.log(updatedData);
       return updatedData;
     });
   }

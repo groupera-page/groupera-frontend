@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Cloudinary } from "@cloudinary/url-gen";
 
 import Home from "./pages/Home";
 // import "./App.css";
