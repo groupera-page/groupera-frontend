@@ -14,7 +14,8 @@ function generateFunnelSteps(
   updateFields,
   updateGroupFields,
   isVerified,
-  groupData
+  groupData,
+  resendCode
 ) {
   let funnelSteps = [];
 
@@ -26,7 +27,11 @@ function generateFunnelSteps(
           updateFields={updateFields}
           isVerified={isVerified}
         />,
-        <VerifyCodeStep {...data} updateFields={updateFields} />,
+        <VerifyCodeStep
+          {...data}
+          updateFields={updateFields}
+          resendCode={resendCode}
+        />,
         <ExperienceStep {...data} updateFields={updateFields} />,
       ];
       break;
@@ -42,7 +47,11 @@ function generateFunnelSteps(
           updateFields={updateFields}
           isVerified={isVerified}
         />,
-        <VerifyCodeStep {...data} updateFields={updateFields} />,
+        <VerifyCodeStep
+          {...data}
+          updateFields={updateFields}
+          resendCode={resendCode}
+        />,
       ];
       break;
     case 3:
@@ -59,7 +68,11 @@ function generateFunnelSteps(
           updateFields={updateFields}
           isVerified={isVerified}
         />,
-        <VerifyCodeStep {...data} updateFields={updateFields} />,
+        <VerifyCodeStep
+          {...data}
+          updateFields={updateFields}
+          resendCode={resendCode}
+        />,
         <GroupDownloadStep {...data} updateFields={updateFields} />,
         <GroupSettingStep
           {...groupData}
@@ -80,7 +93,11 @@ function generateFunnelSteps(
           updateFields={updateFields}
           isVerified={isVerified}
         />,
-        <VerifyCodeStep {...data} updateFields={updateFields} />,
+        <VerifyCodeStep
+          {...data}
+          updateFields={updateFields}
+          resendCode={resendCode}
+        />,
         <GroupDownloadStep {...data} updateFields={updateFields} />,
         <GroupSettingStep
           {...groupData}

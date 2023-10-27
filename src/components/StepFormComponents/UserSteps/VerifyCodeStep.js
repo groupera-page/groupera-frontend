@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 
-export default function VerifyCodeStep({ email, code, updateFields }) {
+export default function VerifyCodeStep({ updateFields, resendCode }) {
   const [verificationCode, setVerificationCode] = useState(["", "", "", ""]);
   const inputRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
 
@@ -37,6 +37,12 @@ export default function VerifyCodeStep({ email, code, updateFields }) {
           />
         ))}
       </div>
+      <div className="flex justify-center">
+        <span className="text-linkblue" onClick={resendCode}>
+          Code erneut senden
+        </span>
+      </div>
+      Placeholder code for testing: 0000
     </div>
   );
 }

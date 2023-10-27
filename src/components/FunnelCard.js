@@ -8,81 +8,81 @@ import RegStepper from "./StepFormComponents/RegStepper";
 import useMultiStepForm from "./StepFormComponents/useMultiStepForm";
 import GroupSettingStep from "./StepFormComponents/GroupSteps/GroupSettingStep";
 import FunnelSwitch from "./FunnelSwitch";
-import { BsArrowLeft } from "react-icons/bs";
-import { BsArrowRight } from "react-icons/bs";
-const today = new Date();
-const now = new Date();
-// Create default time slot 2 hours ahead of now
-now.setHours(now.getHours() + 2);
-const startHour = now.getHours().toString().padStart(2, "0");
-now.setHours(now.getHours() + 1);
-const endHour = now.getHours().toString().padStart(2, "0");
-const timeSlot = `${startHour}:00${endHour}:00`;
-
-//localStorage.clear();
-const initUserData = {
-  username: "",
-  email: "",
-  password: "",
-  passwordCheck: "",
-  code: [],
-  gender: "Weiblich",
-  isAccepted: "",
-  experience: "no experience",
-};
-
-const initGroupData = {
-  theme: "Andere*",
-  name: "",
-  description: "",
-  users: [],
-  img: "",
-  time: timeSlot,
-  freq: "Einmalig",
-  when: "",
-  day: today,
-  length: "1:00",
-  token: "",
-  moderator: "Ja",
-};
+import { initUserData, initGroupData } from "./StepFormComponents/initData";
+import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 
 export default function Funnel({ FunnelIndex }) {
   const [userData, setUserData] = useState(initUserData);
   const [groupData, setGroupData] = useState(initGroupData);
   const [errorMessage, setErrorMessage] = useState(undefined);
-  const [isEditing, setisIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   const [isVerified, setisVerified] = useState(false);
   const [currentUser, setCurrentUser] = useState("");
   const [currentUserEmail, setCurrentUserEmail] = useState("");
   const navigate = useNavigate();
+  const placeHolderVerificationCode = "0000";
+
+  //localStorage.clear();
 
   useEffect(() => {
-    // Retrieve user data from localStorage or use the initial data
     const storedUserData =
       JSON.parse(localStorage.getItem("userData")) || initUserData;
-    setUserData(storedUserData);
 
-    // Retrieve group data from localStorage or use the initial data
+    setUserData(storedUserData);
     const storedGroupData =
       JSON.parse(localStorage.getItem("groupData")) || initGroupData;
     setGroupData(storedGroupData);
+    const isVerified = JSON.parse(localStorage.getItem("isVerified")) || false;
+    setisVerified(isVerified);
+    const isEditing = JSON.parse(localStorage.getItem("isEditing")) || false;
+    setIsEditing(isEditing);
+    const currentUser = JSON.parse(localStorage.getItem("currentUser")) || "";
+    setCurrentUser(currentUser);
+    const currentUserEmail =
+      JSON.parse(localStorage.getItem("currentUserEmail")) || "";
+    setCurrentUserEmail(currentUserEmail);
     const storedStepIndex = JSON.parse(localStorage.getItem("stepIndex"));
-    console.log("step", storedStepIndex);
     goTo(storedStepIndex);
   }, []);
 
-  //Delete when backend is updated
-  const [randomCode, setRandomCode] = useState(
-    Math.floor(1000 + Math.random() * 9000).toString()
-  );
   const funnelSteps = FunnelSwitch(
     FunnelIndex,
     userData,
     updateFields,
     updateGroupFields,
     isVerified,
-    groupData
+    groupData,
+    resendCode
   );
+
+  const { steps, currentStepIndex, step, back, next, goTo, isLastStep } =
+    useMultiStepForm(funnelSteps);
+
+  useEffect(() => {
+    localStorage.setItem("stepIndex", JSON.stringify(currentStepIndex));
+  }, [currentStepIndex]);
+
+  function updateFields(fields) {
+    setUserData((prev) => {
+      const updatedData = { ...prev, ...fields };
+      localStorage.setItem("userData", JSON.stringify(updatedData));
+      return updatedData;
+    });
+  }
+  function updateGroupFields(fields) {
+    setGroupData((prev) => {
+      const updatedData = { ...prev, ...fields };
+      localStorage.setItem("groupData", JSON.stringify(updatedData));
+      return updatedData;
+    });
+  }
+
+  function resendCode() {
+    //Implement when backend is done
+    console.log("Resent code - 0000");
+  }
+
+  // Get indexes from the current funnel
   const UserInfoStepIndex = funnelSteps.findIndex(
     (component) => component.type === UserInfoStep
   );
@@ -94,38 +94,14 @@ export default function Funnel({ FunnelIndex }) {
   );
   const stepAfterVerify = verifyCodeIndex + 1;
 
-  const { steps, currentStepIndex, step, back, next, goTo, isLastStep } =
-    useMultiStepForm(funnelSteps);
-
-  function updateFields(fields) {
-    setUserData((prev) => {
-      const updatedData = { ...prev, ...fields };
-      localStorage.setItem("userData", JSON.stringify(updatedData));
-      return updatedData;
-    });
-  }
-
-  function updateGroupFields(fields) {
-    setGroupData((prev) => {
-      const updatedData = { ...prev, ...fields };
-      localStorage.setItem("groupData", JSON.stringify(updatedData));
-      return updatedData;
-    });
-  }
-
-  useEffect(() => {
-    localStorage.setItem("stepIndex", JSON.stringify(currentStepIndex));
-  }, [currentStepIndex]);
-
   function handleBackButton() {
-    setRandomCode(Math.floor(1000 + Math.random() * 9000).toString());
-    console.log("Randomcode", randomCode);
-    setisIsEditing(true);
-    if (stepAfterVerify === currentStepIndex) {
-      back(2);
-    } else {
-      back(1);
-    }
+    setIsEditing(true);
+    localStorage.setItem("isEditing", JSON.stringify(true));
+    // if (stepAfterVerify === currentStepIndex) {
+    //   back(2);
+    // } else {
+    // }
+    back(1);
     setErrorMessage("");
   }
 
@@ -134,13 +110,7 @@ export default function Funnel({ FunnelIndex }) {
     console.log("CLICKED - CREATING GROUP");
 
     // Format date string to backend
-    const dateString = groupData.day;
-    const date = new Date(dateString);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
-    const newFormatDay = `${year}-${month}-${day}`;
-
+    const newFormatDay = new Date(groupData.day).toISOString().slice(0, 10);
     const requestGroupBody = {
       name: groupData.name,
       description: groupData.description,
@@ -166,28 +136,29 @@ export default function Funnel({ FunnelIndex }) {
       });
   };
 
-  console.log("Randomcode", randomCode);
-  const handleSignupSubmit = async (e) => {
+  const handleUser = async (e) => {
     e.preventDefault();
 
-    if (currentStepIndex === UserInfoStepIndex) {
-      if (userData.isAccepted === "") {
-        setErrorMessage("Bitte akzeptieren Sie die Bedingungen");
-        return;
-      }
+    if (currentStepIndex === UserInfoStepIndex && userData.isAccepted === "") {
+      setErrorMessage("Bitte akzeptieren Sie die Bedingungen");
+      return;
     }
-    // CODE check
+
+    const codeString = userData.code.join("");
+
     if (currentStepIndex === verifyCodeIndex) {
-      console.log("CODE CHECK");
-      const codeString = userData.code.join("");
-      if (codeString === randomCode) {
+      if (codeString === placeHolderVerificationCode) {
         const userInfo = await axios.get(
           `http://localhost:5005/user/verified/${codeString}`
         );
         setCurrentUser(userInfo.data._id);
+        localStorage.setItem("currentUser", JSON.stringify(userInfo.data._id));
         setisVerified(true);
+        localStorage.setItem("isVerified", JSON.stringify(true));
         setErrorMessage("");
         if (isLastStep) {
+          localStorage.clear();
+          // initUserData();
           navigate("/login");
         }
         return next(1);
@@ -197,12 +168,11 @@ export default function Funnel({ FunnelIndex }) {
       }
     }
 
-    //PREVENT db request
     if (currentStepIndex !== UserInfoStepIndex && !isLastStep) {
-      setisIsEditing(false);
+      setIsEditing(false);
+      localStorage.setItem("isEditing", JSON.stringify(false));
       setErrorMessage("");
-      next(1);
-      return;
+      return next(1);
     }
 
     const requestBody = {
@@ -212,89 +182,74 @@ export default function Funnel({ FunnelIndex }) {
       gender: userData.gender,
       isAccepted: userData.terms,
       experience: userData.experience,
-      code: randomCode,
+      code: placeHolderVerificationCode,
     };
 
-    //POST TODO - render signing up waiting card. Post is a bit slow
-    if (!isVerified && !isEditing) {
-      console.log("CREATE new user");
-      await axios
-        .post(`http://localhost:5005/user/signup`, requestBody)
-        .then((response) => {
-          setisIsEditing(false);
+    try {
+      if (!isEditing) {
+        if (!isVerified) {
+          console.log("CREATE new user");
+          const response = await axios.post(
+            `http://localhost:5005/user/signup`,
+            requestBody
+          );
+          // setisIsEditing(false);
           setErrorMessage("");
           setCurrentUserEmail(userData.email);
-          return next(1);
-        })
-        .catch((error) => {
-          const errorDescription = error.response.data.message;
-          setErrorMessage(errorDescription);
-        });
-    }
+          localStorage.setItem(
+            "currentUserEmail",
+            JSON.stringify(userData.email)
+          );
 
-    //UPDATE after verification step, handle final multistep
-    if (isVerified && !isEditing) {
-      console.log("Updating");
-      axios
-        .put(`http://localhost:5005/user/edit/${currentUser}`, requestBody)
-        .then((response) => {
-          setisIsEditing(false);
+          return next(1);
+        } else {
+          console.log("Updating");
+          const response = await axios.put(
+            `http://localhost:5005/user/edit/${currentUser}`,
+            requestBody
+          );
+          // setisIsEditing(false);
           if (isLastStep) {
+            localStorage.clear();
+            // initUserData();
             navigate("/login");
           } else {
             setErrorMessage("");
             return next(1);
           }
-        })
-        .catch((error) => {
-          const errorDescription = error.response.data.message;
-          setErrorMessage(errorDescription);
-        });
-    }
-    //Update user if using the same email, otherwise create new user
-    if (isEditing) {
-      if (currentUserEmail === userData.email) {
-        console.log("Editing current user");
-        const userInfo = await axios.get(
-          `http://localhost:5005/user/notverified/${userData.email}`
-        );
-        axios
-          .put(
+        }
+      } else {
+        console.log(currentUserEmail);
+        console.log(userData.email);
+        if (currentUserEmail === userData.email) {
+          console.log("Editing current user");
+          const userInfo = await axios.get(
+            `http://localhost:5005/user/notverified/${userData.email}`
+          );
+          const response = await axios.put(
             `http://localhost:5005/user/edit/${userInfo.data._id}`,
             requestBody
-          )
-          .then((response) => {
-            setisIsEditing(false);
-            setErrorMessage("");
-            // if (currentStepIndex === UserInfoStepIndex && isVerified) {
-            //   return next(2);
-            // }
-            // Send new email code
-
-            return next(1);
-          })
-          .catch((error) => {
-            const errorDescription = error.response.data.message;
-            setErrorMessage(errorDescription);
-          });
-      } else {
-        console.log("Editing/ Creating new user");
-        await axios
-          .post(`http://localhost:5005/user/signup`, requestBody)
-          .then((response) => {
-            setisIsEditing(false);
-            setErrorMessage("");
-            setCurrentUserEmail(userData.email);
-
-            return next(1);
-            // navigate("/");
-          })
-          .catch((error) => {
-            // Delete this catch?
-            const errorDescription = error.response.data.message;
-            setErrorMessage(errorDescription);
-          });
+          );
+          setIsEditing(false);
+          localStorage.setItem("isEditing", JSON.stringify(false));
+          setErrorMessage("");
+          return next(1);
+        } else {
+          console.log("Editing/ Creating new user");
+          const response = await axios.post(
+            `http://localhost:5005/user/signup`,
+            requestBody
+          );
+          setIsEditing(false);
+          localStorage.setItem("isEditing", JSON.stringify(false));
+          setErrorMessage("");
+          setCurrentUserEmail(userData.email);
+          return next(1);
+        }
       }
+    } catch (error) {
+      const errorDescription = error.response.data.message;
+      setErrorMessage(errorDescription);
     }
   };
 
@@ -320,9 +275,7 @@ export default function Funnel({ FunnelIndex }) {
         </div>
         <form
           onSubmit={
-            currentStepIndex === GroupSettingIndex
-              ? handleGroup
-              : handleSignupSubmit
+            currentStepIndex === GroupSettingIndex ? handleGroup : handleUser
           }
           className="pb-4"
         >

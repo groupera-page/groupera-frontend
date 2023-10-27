@@ -9,6 +9,7 @@ module.exports = {
         primaryyellow: "#F9F5E6",
         primaryBg: "#FCFCFC",
         secondaryBg: "rgb(154, 192, 209)",
+        linkblue: "rgb(24, 24, 125)",
         textLightGray: "#9ca3af",
         secondaryText: "#8590A6",
         primaryText: "#212529",
