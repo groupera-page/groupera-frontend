@@ -1,7 +1,9 @@
 import { useState } from "react";
 
 export default function useMultiStepForm(steps) {
-  const [currentStepIndex, setCurrentStepIndex] = useState(0);
+  const startIndex = JSON.parse(localStorage.getItem("stepIndex")) || 0;
+
+  const [currentStepIndex, setCurrentStepIndex] = useState(startIndex);
 
   function next(numberOfSteps) {
     setCurrentStepIndex((i) => {

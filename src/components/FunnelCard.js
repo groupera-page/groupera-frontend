@@ -66,6 +66,9 @@ export default function Funnel({ FunnelIndex }) {
     const storedGroupData =
       JSON.parse(localStorage.getItem("groupData")) || initGroupData;
     setGroupData(storedGroupData);
+    const storedStepIndex = JSON.parse(localStorage.getItem("stepIndex"));
+    console.log("step", storedStepIndex);
+    goTo(storedStepIndex);
   }, []);
 
   //Delete when backend is updated
@@ -91,7 +94,7 @@ export default function Funnel({ FunnelIndex }) {
   );
   const stepAfterVerify = verifyCodeIndex + 1;
 
-  const { steps, currentStepIndex, step, back, next, isLastStep } =
+  const { steps, currentStepIndex, step, back, next, goTo, isLastStep } =
     useMultiStepForm(funnelSteps);
 
   function updateFields(fields) {
@@ -109,6 +112,10 @@ export default function Funnel({ FunnelIndex }) {
       return updatedData;
     });
   }
+
+  useEffect(() => {
+    localStorage.setItem("stepIndex", JSON.stringify(currentStepIndex));
+  }, [currentStepIndex]);
 
   function handleBackButton() {
     setRandomCode(Math.floor(1000 + Math.random() * 9000).toString());
