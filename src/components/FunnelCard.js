@@ -22,7 +22,7 @@ export default function Funnel({ FunnelIndex }) {
   const navigate = useNavigate();
   const placeHolderVerificationCode = "0000";
 
-  //localStorage.clear();
+  localStorage.clear();
 
   useEffect(() => {
     const isVerified = JSON.parse(localStorage.getItem("isVerified")) || false;
@@ -139,24 +139,34 @@ export default function Funnel({ FunnelIndex }) {
     }
 
     const codeString = userData.code.join("");
-
     if (currentStepIndex === verifyCodeIndex) {
-      if (codeString === placeHolderVerificationCode) {
-        const userInfo = await axios.get(
-          `http://localhost:5005/user/verified/${codeString}`
-        );
-        setCurrentUser(userInfo.data._id);
-        localStorage.setItem("currentUser", JSON.stringify(userInfo.data._id));
-        setisVerified(true);
-        localStorage.setItem("isVerified", JSON.stringify(true));
-        setErrorMessage("");
-        if (isLastStep) {
-          localStorage.clear();
-          navigate("/login");
+      try {
+        console.log("My code -", codeString);
+        const url = `http://localhost:5005/user/verified`;
+        const response = await axios.post(url, { code: codeString });
+
+        if (response.status === 200) {
+          const userInfo = response.data;
+          console.log("User found");
+          setCurrentUser(userInfo._id);
+          localStorage.setItem("currentUser", JSON.stringify(userInfo._id));
+          setisVerified(true);
+          localStorage.setItem("isVerified", JSON.stringify(true));
+          setErrorMessage("");
+
+          if (isLastStep) {
+            localStorage.clear();
+            navigate("/login");
+          }
+          return next(1);
+        } else {
+          setErrorMessage("Falscher Verifizierungscode.");
+          return;
         }
-        return next(1);
-      } else {
-        setErrorMessage("Falscher Verifizierungscode.");
+      } catch (error) {
+        // Handle error if the request fails
+        console.error("Error:", error);
+        setErrorMessage("Error occurred during verification.");
         return;
       }
     }
@@ -172,10 +182,10 @@ export default function Funnel({ FunnelIndex }) {
       username: userData.username,
       email: userData.email,
       password: userData.password,
-      gender: userData.gender,
-      isAccepted: userData.terms,
-      experience: userData.experience,
-      code: placeHolderVerificationCode,
+      // gender: userData.gender,
+      // isAccepted: userData.terms,
+      // experience: userData.experience,
+      // code: placeHolderVerificationCode,
     };
 
     try {
@@ -212,8 +222,6 @@ export default function Funnel({ FunnelIndex }) {
           }
         }
       } else {
-        console.log(currentUserEmail);
-        console.log(userData.email);
         if (currentUserEmail === userData.email) {
           console.log("Editing current user");
           const userInfo = await axios.get(

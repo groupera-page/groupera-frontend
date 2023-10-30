@@ -19,6 +19,7 @@ export default function UserInfoStep({
 
   useEffect(() => {
     updateFields({ isAccepted: "" });
+    //Clear fields, if no local storage
     // const storedUsername = JSON.parse(localStorage.getItem("username")) || "";
     // updateFields({ username: storedUsername });
   }, []);
