@@ -20,7 +20,6 @@ export default function Funnel({ FunnelIndex }) {
   const [currentUser, setCurrentUser] = useState("");
   const [currentUserEmail, setCurrentUserEmail] = useState("");
   const navigate = useNavigate();
-  const placeHolderVerificationCode = "0000";
 
   localStorage.clear();
 
@@ -72,7 +71,7 @@ export default function Funnel({ FunnelIndex }) {
 
   function resendCode() {
     //Implement when backend is done
-    console.log("Resent code - 0000");
+    console.log("Resent code -");
   }
 
   // Get indexes from the current funnel
@@ -107,32 +106,51 @@ export default function Funnel({ FunnelIndex }) {
       length: groupData.length,
       img: groupData.img,
       date: newFormatDay,
-      frenquency: groupData.freq,
-      when: groupData.when,
+      frequency: groupData.freq,
+      // when: groupData.when,
     };
 
-    await axios
-      .post(`http://localhost:5005/group/create`, requestGroupBody)
-      .then((response) => {
-        console.log("CREATING GROUP!");
-        return next(1);
-      })
-      .catch((error) => {
-        console.log("ERROR");
-        const errorDescription = error.response.data.message;
-        setErrorMessage(errorDescription);
-        return;
-      });
+    try {
+      const url = `http://localhost:5005/group/create/${userData.email}`;
+      await axios.post(url, requestGroupBody);
+      console.log(groupData);
+      return next(1);
+    } catch (error) {
+      if (
+        error.response &&
+        error.response.status >= 400 &&
+        error.response.status <= 500
+      ) {
+        setErrorMessage(error.response.data.message);
+      }
+    }
   };
+
+  //   await axios
+  //     .post(`http://localhost:5005/group/create`, requestGroupBody)
+  //     .then((response) => {
+  //       console.log("CREATING GROUP!");
+  //       return next(1);
+  //     })
+  //     .catch((error) => {
+  //       console.log("ERROR");
+  //       const errorDescription = error.response.data.message;
+  //       setErrorMessage(errorDescription);
+  //       return;
+  //     });
+  // };
 
   const handleUser = async (e) => {
     e.preventDefault();
 
-    if (currentStepIndex === UserInfoStepIndex && userData.isAccepted === "") {
+    if (
+      currentStepIndex === UserInfoStepIndex &&
+      userData.isAccepted === false
+    ) {
       setErrorMessage("Bitte akzeptieren Sie die Bedingungen");
       return;
     }
-
+    console.log("Minor? - ", userData.isMinor);
     if (currentStepIndex === UserInfoStepIndex && userData.isMinor === true) {
       setErrorMessage("Du musst älter als 18 Jahre sein.");
       return;
@@ -183,9 +201,9 @@ export default function Funnel({ FunnelIndex }) {
       email: userData.email,
       password: userData.password,
       // gender: userData.gender,
-      // isAccepted: userData.terms,
+      moderator: userData.moderator,
+      isAccepted: userData.terms,
       // experience: userData.experience,
-      // code: placeHolderVerificationCode,
     };
 
     try {
@@ -207,7 +225,7 @@ export default function Funnel({ FunnelIndex }) {
           return next(1);
         } else {
           console.log("Updating");
-          const response = await axios.put(
+          await axios.put(
             `http://localhost:5005/user/edit/${currentUser}`,
             requestBody
           );
@@ -237,10 +255,7 @@ export default function Funnel({ FunnelIndex }) {
           return next(1);
         } else {
           console.log("Editing/ Creating new user");
-          const response = await axios.post(
-            `http://localhost:5005/user/signup`,
-            requestBody
-          );
+          await axios.post(`http://localhost:5005/user/signup`, requestBody);
           setIsEditing(false);
           localStorage.setItem("isEditing", JSON.stringify(false));
           setErrorMessage("");

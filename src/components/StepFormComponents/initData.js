@@ -20,6 +20,7 @@ const userDataBlank = {
   experience: "no experience",
   age: "",
   isMinor: true,
+  moderator: "One",
 };
 
 const groupDataBlank = {

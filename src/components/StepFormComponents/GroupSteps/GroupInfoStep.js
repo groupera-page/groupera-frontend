@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Carousel from "../Carousel";
+import axios from "axios";
 
 export default function GroupInfoForm({
   name,
   description,
   updateGroupFields,
   img,
+  preventNext,
 }) {
   const maxNameCharacters = 70;
   const maxCharacters = 500;
+  const [groupNames, setGroupNames] = useState([]);
+  const [nameError, setNameError] = useState("");
+
   //const [groupImage, setGroupImage] = useState("");
 
   const handleChange = (e) => {
@@ -27,6 +32,24 @@ export default function GroupInfoForm({
     "Grouptitel%20pictures/pexels-eberhard-grossgasteiger-6_abiqd5.jpg",
     "Grouptitel%20pictures/pexels-pixabay-416117_hz1ccg.jpg",
   ];
+
+  const isGroupNameExists = (name) => {
+    return groupNames.includes(name);
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5005/group/groups`);
+        const names = response.data.map((group) => group.name);
+        setGroupNames(names);
+      } catch (error) {
+        console.error(error.response.data.message);
+      }
+    };
+
+    fetchData(); // Fetch data when the component mounts
+  }, []);
 
   // const handleGroupImage = (e) => {
   //   e.preventDefault();
@@ -53,22 +76,38 @@ export default function GroupInfoForm({
         Du kannst alle Angaben jederzeit in den Gruppeneinstellungen ändern
       </p>
       <h4 className=" mt-4">Wie soll deine Gruppe heißen?</h4>
-      <div className="mt-2 text-sm border border-primaryblue rounded-md">
+
+      <div className="mt-2 text-sm border-0 rounded-md">
         <input
           required
           type="text"
           name="username"
           value={name}
-          onChange={(e) => updateGroupFields({ name: e.target.value })}
-          className="w-full border rounded-md p-2 placeholder-primaryText bg-primaryBg"
+          onChange={(e) => {
+            const newName = e.target.value;
+            if (isGroupNameExists(newName)) {
+              setNameError("Group name already exists!");
+              updateGroupFields({ name: newName });
+            } else {
+              setNameError("");
+              updateGroupFields({ name: newName });
+            }
+          }}
+          className="w-full border rounded-md p-2 placeholder-primaryText bg-primaryBg border-primaryblue"
           placeholder="Name"
           pattern=".{3,}"
           title="Bitte geben Sie mindestens drei Zeichen ein"
           maxLength={maxNameCharacters}
         />
       </div>
-      <p className=" px-1 text-textLightGray">Min 3 Zeichen.</p>
-
+      <div className="flex">
+        <p className=" px-1 text-textLightGray">Min 3 Zeichen.</p>
+        <div className="">
+          {nameError && (
+            <p className="text-red-500 text-xs ml-5">{nameError}</p>
+          )}
+        </div>
+      </div>
       <h4 className=" mt-4">Wie würdest du deine Gruppe beschreiben?</h4>
       <div className="mt-2 text-smrounded-md">
         <textarea

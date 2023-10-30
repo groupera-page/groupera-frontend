@@ -1,0 +1,65 @@
+/* Add custom styles to override the default react-datepicker styles */
+
+/* datepicker.css */
+
+/* Style the datepicker container */
+.react-datepicker {
+  font-family: Arial, sans-serif;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+  display: inline-block;
+}
+
+/* Style the header where the month and year are displayed */
+.react-datepicker__header {
+  background-color: #f0f0f0;
+  color: #333;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Style the weekdays */
+.react-datepicker__day-name {
+  color: #333;
+}
+
+/* Style the individual day */
+.react-datepicker__day {
+  color: #333;
+
+  &:hover {
+    background-color: #f0f0f0;
+    border-radius: 50%;
+  }
+}
+
+/* Style the selected day */
+.react-datepicker__day--selected {
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 50%;
+}
+
+/* Style the range of dates when selecting a range */
+.react-datepicker__day--in-range {
+  background-color: #bfe1ff;
+}
+
+/* Style the today's date */
+.react-datepicker__day--today {
+  font-weight: bold;
+}
+
+
+.react-datepicker__day--keyboard-selected {
+  border-radius: 0.3rem;
+  background-color: transparent;
+  color: rgb(0, 0, 0);
+}
+
+.react-datepicker__day--today {
+  background-color: transparent;
+  color: black;
+  font-weight: normal;
+}
+

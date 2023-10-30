@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import "./datepicker-override.css";
 import de from "date-fns/locale/de";
 import { getYear, getMonth, differenceInYears } from "date-fns";
 
@@ -14,6 +15,7 @@ export default function UserInfoStep({
   isVerified,
   age,
   isMinor,
+  isAccepted,
 }) {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
@@ -191,7 +193,7 @@ export default function UserInfoStep({
           yearDropdownItemNumber={100}
           className="w-full px-4 py-2 border rounded-md border-primaryblue text-sm bg-primaryBg"
           locale={de}
-          calendarClassName="hidden-month-title"
+          calendarClassName="hidden-month-title "
           renderCustomHeader={({ date, changeYear, changeMonth }) => (
             <div className="flex gap-3 justify-center p-1 bg-primaryBg absolute w-full text-sm ">
               <div>
@@ -229,8 +231,9 @@ export default function UserInfoStep({
           <input
             type="checkbox"
             name="isAccepted"
+            value={isAccepted}
             onChange={(e) =>
-              updateFields({ isAccepted: e.target.checked ? "Accepted" : "" })
+              updateFields({ isAccepted: e.target.checked ? true : false })
             }
             className=""
           />
