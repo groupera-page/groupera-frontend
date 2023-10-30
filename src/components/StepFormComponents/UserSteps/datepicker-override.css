@@ -4,62 +4,77 @@
 
 /* Style the datepicker container */
 .react-datepicker {
-  font-family: Arial, sans-serif;
-  border: 1px solid #ccc;
+
   border-radius: 4px;
-  padding: 8px;
   display: inline-block;
 }
 
 /* Style the header where the month and year are displayed */
 .react-datepicker__header {
   background-color: #f0f0f0;
-  color: #333;
+  color: transparent;
   border-bottom: 1px solid #ccc;
+  font-size: 10px;
 }
 
-/* Style the weekdays */
-.react-datepicker__day-name {
+/* datepicker.css */
+
+/* Container style */
+.react-datepicker-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* Style for the datepicker input field */
+.react-datepicker__input-container input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 14px;
+  width: 200px;
+  border-color: #ACD7EB;
+  /* Adjust as needed */
   color: #333;
 }
 
-/* Style the individual day */
-.react-datepicker__day {
-  color: #333;
-
-  &:hover {
-    background-color: #f0f0f0;
-    border-radius: 50%;
-  }
-}
-
-/* Style the selected day */
-.react-datepicker__day--selected {
-  background-color: #007bff;
-  color: #fff;
-  border-radius: 50%;
-}
-
-/* Style the range of dates when selecting a range */
-.react-datepicker__day--in-range {
-  background-color: #bfe1ff;
-}
-
-/* Style the today's date */
-.react-datepicker__day--today {
-  font-weight: bold;
+/* Calendar style */
+.react-datepicker {
+  font-family: 'Helvetica Neue';
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  color: #f0f0f0;
 }
 
 
-.react-datepicker__day--keyboard-selected {
-  border-radius: 0.3rem;
-  background-color: transparent;
-  color: rgb(0, 0, 0);
+.react-datepicker__header {
+  background-color: #f0f0f0;
+  background-color: white;
+  border-bottom: 1px solid #A64D79;
 }
+
+.react-datepicker__navigation--previous {
+  border-right-color: #333;
+}
+
+.react-datepicker__navigation--next {
+  border-left-color: #333;
+}
+
+
 
 .react-datepicker__day--today {
-  background-color: transparent;
-  color: black;
   font-weight: normal;
 }
 
+.react-datepicker__navigation {
+  top: 22px;
+}
+
+.react-datepicker__current-month {
+  font-size: 18px;
+  font-weight: light;
+  /* Adjust the font size as needed */
+}

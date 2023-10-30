@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Carousel from "../Carousel";
 import axios from "axios";
+import { AiOutlineWarning } from "react-icons/ai";
 
 export default function GroupInfoForm({
   name,
@@ -77,37 +78,49 @@ export default function GroupInfoForm({
       </p>
       <h4 className=" mt-4">Wie soll deine Gruppe heißen?</h4>
 
-      <div className="mt-2 text-sm border-0 rounded-md">
-        <input
-          required
-          type="text"
-          name="username"
-          value={name}
-          onChange={(e) => {
-            const newName = e.target.value;
-            if (isGroupNameExists(newName)) {
-              setNameError("Group name already exists!");
-              updateGroupFields({ name: newName });
-            } else {
-              setNameError("");
-              updateGroupFields({ name: newName });
-            }
-          }}
-          className="w-full border rounded-md p-2 placeholder-primaryText bg-primaryBg border-primaryblue"
-          placeholder="Name"
-          pattern=".{3,}"
-          title="Bitte geben Sie mindestens drei Zeichen ein"
-          maxLength={maxNameCharacters}
-        />
-      </div>
-      <div className="flex">
-        <p className=" px-1 text-textLightGray">Min 3 Zeichen.</p>
-        <div className="">
+      <div className="relative">
+        <div className="mt-2 text-sm border-0 rounded-md relative">
+          <input
+            required
+            type="text"
+            name="username"
+            value={name}
+            onChange={(e) => {
+              const newName = e.target.value;
+              if (isGroupNameExists(newName)) {
+                setNameError("Gruppenname existiert bereits.");
+                updateGroupFields({ name: newName });
+              } else {
+                setNameError("");
+                updateGroupFields({ name: newName });
+              }
+            }}
+            className="w-full border rounded-md p-2 placeholder-primaryText bg-primaryBg border-primaryblue"
+            placeholder="Name"
+            pattern=".{3,}"
+            title="Bitte geben Sie mindestens drei Zeichen ein"
+            maxLength={maxNameCharacters}
+          />
           {nameError && (
-            <p className="text-red-500 text-xs ml-5">{nameError}</p>
+            <div className="absolute -bottom-12 left-1/3 transform -translate-x-1/2 rounded-md border-2">
+              <div className="bg-white p-2 text-primarypurple text-sm">
+                <div className="flex items-center">
+                  {" "}
+                  {/* Added 'items-center' to align content */}
+                  <AiOutlineWarning
+                    className="text-red text-primarybg"
+                    size={32}
+                  />
+                  <span className="ml-2">{nameError}</span>{" "}
+                  {/* Replaced 'div' with 'span' */}
+                </div>
+              </div>
+            </div>
           )}
         </div>
+        <p className="px-1 text-textLightGray">Min 3 Zeichen.</p>
       </div>
+
       <h4 className=" mt-4">Wie würdest du deine Gruppe beschreiben?</h4>
       <div className="mt-2 text-smrounded-md">
         <textarea

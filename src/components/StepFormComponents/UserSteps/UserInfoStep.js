@@ -5,6 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./datepicker-override.css";
 import de from "date-fns/locale/de";
 import { getYear, getMonth, differenceInYears } from "date-fns";
+import CustomDatePicker from "./customDatePicker";
 
 export default function UserInfoStep({
   username,
@@ -29,15 +30,13 @@ export default function UserInfoStep({
   const checkAge = (date) => {
     const today = new Date();
     const userAge = differenceInYears(today, date);
-
+    updateFields({ age: userAge });
     if (userAge < 18) {
       console.log("18-");
       updateFields({ isMinor: true });
-      updateFields({ age: userAge });
     } else {
       console.log("18+");
       updateFields({ isMinor: false });
-      updateFields({ age: userAge });
     }
   };
 
@@ -182,50 +181,12 @@ export default function UserInfoStep({
         </label>
       </div>
       <h4 className="pt-2">Geburtsdatum</h4>
-      <div>
-        <DatePicker
-          selected={selectedDate}
-          onChange={handleDateChange}
-          dateFormat="dd.MM.yyyy"
-          showMonthDropdown
-          showYearDropdown
-          scrollableYearDropdown
-          yearDropdownItemNumber={100}
-          className="w-full px-4 py-2 border rounded-md border-primaryblue text-sm bg-primaryBg"
-          locale={de}
-          calendarClassName="hidden-month-title "
-          renderCustomHeader={({ date, changeYear, changeMonth }) => (
-            <div className="flex gap-3 justify-center p-1 bg-primaryBg absolute w-full text-sm ">
-              <div>
-                <select
-                  value={getYear(date)}
-                  onChange={({ target: { value } }) => changeYear(value)}
-                >
-                  {years.map((option) => (
-                    <option key={option} value={option}>
-                      {option}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div>
-                <select
-                  value={months[getMonth(date)]}
-                  onChange={({ target: { value } }) =>
-                    changeMonth(months.indexOf(value))
-                  }
-                >
-                  {months.map((option) => (
-                    <option key={option} value={option}>
-                      {option}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-          )}
-        />
-      </div>
+
+      <CustomDatePicker
+        selectedDate={selectedDate}
+        handleDateChange={handleDateChange}
+      />
+
       <div className="flex flex-row items-star my-2">
         <div className="pt-3 px-3 flex gap-3">
           <input
