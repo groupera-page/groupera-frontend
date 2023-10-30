@@ -18,6 +18,8 @@ const userDataBlank = {
   gender: "Weiblich",
   isAccepted: "",
   experience: "no experience",
+  age: "",
+  isMinor: true,
 };
 
 const groupDataBlank = {
@@ -25,7 +27,7 @@ const groupDataBlank = {
   name: "",
   description: "",
   users: [],
-  img: "",
+  img: "Grouptitel%20pictures/pexels-akil-mazumder-1072824_1_tdw8si.jpg",
   time: timeSlot,
   freq: "Einmalig",
   when: "",

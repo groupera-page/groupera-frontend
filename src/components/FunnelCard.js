@@ -9,7 +9,6 @@ import useMultiStepForm from "./StepFormComponents/useMultiStepForm";
 import GroupSettingStep from "./StepFormComponents/GroupSteps/GroupSettingStep";
 import FunnelSwitch from "./FunnelSwitch";
 import { userDataInit, groupDataInit } from "./StepFormComponents/initData";
-
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 
 export default function Funnel({ FunnelIndex }) {
@@ -25,12 +24,7 @@ export default function Funnel({ FunnelIndex }) {
 
   //localStorage.clear();
 
-  // console.log(userData);
   useEffect(() => {
-    // setUserData({});
-    // const userData = JSON.parse(localStorage.getItem("userData")) || {};
-    // console.log(userData);
-    // setUserData(userData);
     const isVerified = JSON.parse(localStorage.getItem("isVerified")) || false;
     setisVerified(isVerified);
     const isEditing = JSON.parse(localStorage.getItem("isEditing")) || false;
@@ -139,6 +133,11 @@ export default function Funnel({ FunnelIndex }) {
       return;
     }
 
+    if (currentStepIndex === UserInfoStepIndex && userData.isMinor === true) {
+      setErrorMessage("Du musst älter als 18 Jahre sein.");
+      return;
+    }
+
     const codeString = userData.code.join("");
 
     if (currentStepIndex === verifyCodeIndex) {
@@ -153,9 +152,6 @@ export default function Funnel({ FunnelIndex }) {
         setErrorMessage("");
         if (isLastStep) {
           localStorage.clear();
-          updateFields({ username: "new user name" });
-          console.log("New user data", userData);
-          console.log("New user name", userData.username);
           navigate("/login");
         }
         return next(1);
@@ -208,8 +204,7 @@ export default function Funnel({ FunnelIndex }) {
           // setisIsEditing(false);
           if (isLastStep) {
             localStorage.clear();
-            updateFields({ username: "" });
-            console.log(userData);
+
             navigate("/login");
           } else {
             setErrorMessage("");

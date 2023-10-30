@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import de from "date-fns/locale/de";
-import { getYear, getMonth } from "date-fns";
+import { getYear, getMonth, differenceInYears } from "date-fns";
 
 export default function UserInfoStep({
   username,
@@ -12,20 +12,43 @@ export default function UserInfoStep({
   updateFields,
   gender,
   isVerified,
+  age,
+  isMinor,
 }) {
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
   useEffect(() => {
     updateFields({ isAccepted: "" });
+    // const storedUsername = JSON.parse(localStorage.getItem("username")) || "";
+    // updateFields({ username: storedUsername });
   }, []);
 
-  console.log("DATA", JSON.parse(localStorage.getItem("userData")));
-  const today = new Date();
-  const twentyYearsAgo = new Date(today);
-  twentyYearsAgo.setFullYear(today.getFullYear() - 20);
-  const currentYear = new Date().getFullYear();
+  const checkAge = (date) => {
+    const today = new Date();
+    const userAge = differenceInYears(today, date);
+
+    if (userAge < 18) {
+      console.log("18-");
+      updateFields({ isMinor: true });
+      updateFields({ age: userAge });
+    } else {
+      console.log("18+");
+      updateFields({ isMinor: false });
+      updateFields({ age: userAge });
+    }
+  };
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+    checkAge(date);
+  };
+
   const years = [];
+  const currentYear = new Date().getFullYear();
   for (let year = 1920; year <= currentYear; year++) {
     years.push(year);
   }
+
   const months = [
     "Januar",
     "Februar",
@@ -40,8 +63,6 @@ export default function UserInfoStep({
     "November",
     "Dezember",
   ];
-
-  const [selectedDate, setSelectedDate] = useState(twentyYearsAgo);
 
   return (
     <div>
@@ -161,7 +182,7 @@ export default function UserInfoStep({
       <div>
         <DatePicker
           selected={selectedDate}
-          onChange={(date) => setSelectedDate(date)}
+          onChange={handleDateChange}
           dateFormat="dd.MM.yyyy"
           showMonthDropdown
           showYearDropdown

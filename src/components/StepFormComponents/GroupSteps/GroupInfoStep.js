@@ -1,19 +1,32 @@
 import React, { useState } from "react";
 import Carousel from "../Carousel";
-import { Image } from "cloudinary-react";
 
 export default function GroupInfoForm({
   name,
   description,
   updateGroupFields,
+  img,
 }) {
   const maxNameCharacters = 70;
   const maxCharacters = 500;
-  const [groupImage, setGroupImage] = useState("");
+  //const [groupImage, setGroupImage] = useState("");
 
   const handleChange = (e) => {
     updateGroupFields({ description: e.target.value });
   };
+
+  const imageData = [
+    "Grouptitel%20pictures/pexels-akil-mazumder-1072824_1_tdw8si.jpg",
+    "Grouptitel%20pictures/pexels-ghida-basma-609749_yy95mt.jpg",
+    "Grouptitel%20pictures/pexels-pixabay-326235_juvylz.jpg",
+    "Grouptitel%20pictures/pexels-pixabay-273886_dygqro.jpg",
+    "Grouptitel%20pictures/pexels-johannes-plenio-1690355_bj811s.jpg",
+    "Grouptitel%20pictures/pexels-nandhu-kumar-1661296_ttr2gf.jpg",
+    "Grouptitel%20pictures/pexels-javier-gonzalez-108303_iwxfil.jpg",
+    "Grouptitel%20pictures/pexels-taylor-hunt-2902440_xvgnuq.jpg",
+    "Grouptitel%20pictures/pexels-eberhard-grossgasteiger-6_abiqd5.jpg",
+    "Grouptitel%20pictures/pexels-pixabay-416117_hz1ccg.jpg",
+  ];
 
   // const handleGroupImage = (e) => {
   //   e.preventDefault();
@@ -35,12 +48,6 @@ export default function GroupInfoForm({
 
   return (
     <div>
-      <div>
-        <Image
-          cloudName="di8ujuqae"
-          publicId="Grouptitel%20pictures/pexels-akil-mazumder-1072824_1_tdw8si.jpg"
-        />
-      </div>
       <h2 className="">Beschreibe Deine Gruppe</h2>
       <p className=" text-textLightGray">
         Du kannst alle Angaben jederzeit in den Gruppeneinstellungen ändern
@@ -80,7 +87,11 @@ export default function GroupInfoForm({
       <p className="my-2">
         Du kannst ein Bild aus unseren Vorschlägen aussuchen.{" "}
       </p>
-      <Carousel></Carousel>
+      <Carousel
+        imageData={imageData}
+        img={img}
+        updateGroupFields={updateGroupFields}
+      />
 
       <div className="mb-4">
         {/* <label className="relative cursor-pointer hover:bg-primaryblue-hover border border-primaryblue px-4 py-2 rounded-md text-sm">

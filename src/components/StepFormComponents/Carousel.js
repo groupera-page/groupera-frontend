@@ -1,15 +1,10 @@
-import React, { useRef } from "react";
-import groupimage from "../../assets/hands4.jpg";
+import React, { useState, useRef } from "react";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+import { Image } from "cloudinary-react";
 
-export default function Carousel() {
-  // Placeholder
-  const imageData = Array(15).fill({
-    image: groupimage,
-    title: "Group",
-  });
-
-  //Get slider from DOM
+export default function Carousel({ imageData, img, updateGroupFields }) {
+  const groupIndex = imageData.indexOf(img) ? imageData.indexOf(img) : 0;
+  const [selectedImage, setSelectedImage] = useState(imageData[groupIndex]);
   const sliderRef = useRef(null);
 
   function slideScroll(direction) {
@@ -26,7 +21,7 @@ export default function Carousel() {
   return (
     <div className="flex">
       <MdChevronLeft
-        className=" cursor-pointer opacity-60 hover:opacity-100 z-10 hidden lg:block translate-y-20"
+        className="cursor-pointer opacity-60 hover:opacity-100 z-10 hidden lg:block translate-y-20"
         size={150}
         onClick={() => slideScroll("left")}
       />
@@ -37,24 +32,27 @@ export default function Carousel() {
         <div className="flex gap-5 ">
           {imageData.map((item, index) => (
             <div key={index} className="text-center">
-              <div className="w-36 h-36 lg:w-80 lg:h-80 mb-10">
-                <img
-                  src={item.image}
-                  alt="Profile"
-                  className="w-full h-full"
-                  loading="lazy"
+              <div className="w-36 h-30 lg:w-80 lg:h-80">
+                <Image
+                  cloudName="di8ujuqae"
+                  publicId={item}
+                  className={
+                    selectedImage === item
+                      ? "rounded-md border-2 border-blue-500"
+                      : "rounded-md"
+                  }
+                  onClick={() => {
+                    updateGroupFields({ img: item });
+                    setSelectedImage(item);
+                  }}
                 />
               </div>
-              <p className="">
-                {item.title}
-                {index} &rarr;
-              </p>
             </div>
           ))}
         </div>
       </div>
       <MdChevronRight
-        className=" cursor-pointer opacity-60 hover:opacity-100 hidden lg:block translate-y-20"
+        className="cursor-pointer opacity-60 hover:opacity-100 hidden lg:block translate-y-20"
         size={150}
         onClick={() => slideScroll("right")}
       />
