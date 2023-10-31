@@ -42,7 +42,6 @@ export default function VerifyCodeStep({ updateFields, resendCode }) {
           Code erneut senden
         </span>
       </div>
-      Placeholder code for testing: 0000
     </div>
   );
 }

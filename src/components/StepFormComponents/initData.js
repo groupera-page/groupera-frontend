@@ -21,6 +21,7 @@ const userDataBlank = {
   age: "",
   isMinor: true,
   moderator: "One",
+  emailError: "",
 };
 
 const groupDataBlank = {

@@ -8,8 +8,8 @@ export default function GroupInfoForm({
   description,
   updateGroupFields,
   img,
-  errorText,
-  errorGroup,
+  errorGroupName,
+  errorGroupDescription,
 }) {
   const maxNameCharacters = 70;
   const maxCharacters = 500;
@@ -104,7 +104,7 @@ export default function GroupInfoForm({
           />
           {nameError && (
             <div className="absolute -bottom-12 left-1/3 transform -translate-x-1/2 rounded-md border-2">
-              <div className="bg-white p-2 text-primarypurple text-sm">
+              <div className="bg-white p-1  text-primarypurple text-sm">
                 <div className="flex items-center">
                   <AiOutlineWarning
                     className="text-red text-primarybg"
@@ -116,15 +116,15 @@ export default function GroupInfoForm({
             </div>
           )}
 
-          {errorGroup && name.length < 3 && (
+          {errorGroupName && name.length < 3 && (
             <div className="absolute -bottom-12 left-1/3 transform -translate-x-1/2 rounded-md border-2">
-              <div className="bg-white p-2 text-primarypurple text-sm">
+              <div className="bg-white p-1 text-primarypurple text-sm">
                 <div className="flex items-center">
                   <AiOutlineWarning
                     className="text-red text-primarybg"
                     size={32}
                   />
-                  <span className="ml-2">{errorGroup}</span>{" "}
+                  <span className="ml-2">{errorGroupName}</span>{" "}
                 </div>
               </div>
             </div>
@@ -146,17 +146,17 @@ export default function GroupInfoForm({
       <div className="flex text-xs text-gray-500 mt-1 justify-end">
         {description.length}/{maxCharacters}
       </div>
-      asdjnasdkjansdkjasn
+
       <div className="relative">
-        {errorGroup && description.length < 3 && (
-          <div className="absolute -bottom-2 left-1/3 transform -translate-x-1/2 rounded-md border-2">
-            <div className="bg-white p-2 text-primarypurple text-sm">
+        {errorGroupDescription && description.length < 3 && (
+          <div className="absolute -top-16 left-1/3 transform -translate-x-1/2 rounded-md border-2">
+            <div className="bg-white p-1 text-primarypurple text-sm">
               <div className="flex items-center">
                 <AiOutlineWarning
                   className="text-red text-primarybg"
                   size={32}
                 />
-                <span className="ml-2">{errorGroup}</span>{" "}
+                <span className="ml-2">{errorGroupDescription}</span>{" "}
               </div>
             </div>
           </div>

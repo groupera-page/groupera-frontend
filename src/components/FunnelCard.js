@@ -8,6 +8,7 @@ import RegStepper from "./StepFormComponents/RegStepper";
 import useMultiStepForm from "./StepFormComponents/useMultiStepForm";
 import GroupSettingStep from "./StepFormComponents/GroupSteps/GroupSettingStep";
 import GroupInfoStep from "./StepFormComponents/GroupSteps/GroupInfoStep";
+import { AiOutlineWarning } from "react-icons/ai";
 
 import FunnelSwitch from "./FunnelSwitch";
 import { userDataInit, groupDataInit } from "./StepFormComponents/initData";
@@ -22,7 +23,12 @@ export default function Funnel({ FunnelIndex }) {
   const [currentUser, setCurrentUser] = useState("");
   const [currentUserEmail, setCurrentUserEmail] = useState("");
   const navigate = useNavigate();
-  const [errorGroup, setErrorGroup] = useState("");
+  const [errorGroupDescription, setErrorGroupDescription] = useState("");
+  const [errorGroupName, setErrorGroupName] = useState("");
+  const [errorUserName, setErrorUserName] = useState("");
+  const [errorUserEmail, setErrorUserEmail] = useState("");
+  const [errorUserPass, setErrorUserPass] = useState("");
+  const [errorUserSecondPass, setErrorUserSecondPass] = useState("");
 
   localStorage.clear();
 
@@ -48,7 +54,12 @@ export default function Funnel({ FunnelIndex }) {
     isVerified,
     groupData,
     resendCode,
-    errorGroup
+    errorGroupDescription,
+    errorGroupName,
+    errorUserName,
+    errorUserEmail,
+    errorUserPass,
+    errorUserSecondPass
   );
 
   const { steps, currentStepIndex, step, back, next, goTo, isLastStep } =
@@ -99,7 +110,12 @@ export default function Funnel({ FunnelIndex }) {
     localStorage.setItem("isEditing", JSON.stringify(true));
     back(1);
     setErrorMessage("");
-    setErrorGroup(null);
+    setErrorGroupDescription(null);
+    setErrorGroupName(null);
+    setErrorUserEmail(null);
+    setErrorUserPass(null);
+    setErrorUserSecondPass(null);
+    setErrorUserName(null);
   }
 
   const handleGroup = async (e) => {
@@ -138,38 +154,58 @@ export default function Funnel({ FunnelIndex }) {
   const handleUser = async (e) => {
     e.preventDefault();
 
-    if (groupData.preventNext === true) {
-      return;
+    if (currentStepIndex === GroupInfoIndex) {
+      // if (groupData.preventNext === true) {
+      //   return;
+      // }
+
+      if (groupData.name.length < 3) {
+        setErrorGroupName("Bitte geben Sie Ihren Gruppenname an.");
+
+        return;
+      }
+
+      if (groupData.description.length < 3) {
+        setErrorGroupDescription("Bitte geben Sie mindestens drei Zeichen ein");
+        return;
+      }
     }
 
-    if (groupData.name.length < 3 && currentStepIndex === GroupInfoIndex) {
-      setErrorGroup("Bitte geben Sie mindestens drei Zeichen ein");
-      return;
+    if (currentStepIndex === UserInfoStepIndex) {
+      if (userData.username.length < 3) {
+        setErrorUserName("Bitte geben Sie Ihren Username an");
+        return;
+      }
+
+      if (userData.email.length < 1) {
+        setErrorUserEmail("Bitte geben Sie eine E-Mail Adresse ein");
+        return;
+      }
+
+      if (userData.password.length < 1) {
+        setErrorUserPass("Bitte geben Sie Ihr Passwort an.");
+        return;
+      }
+
+      if (userData.isMinor === true) {
+        setErrorMessage("Du musst älter als 18 Jahre sein.");
+        return;
+      }
+
+      // const isPasswordStrong = isStrongPassword(userData.password);
+      // if (!isPasswordStrong) {
+      //   console.log("HERE");
+      //   setErrorUserPass("CAP LETTER.....");
+      //   return;
+      // }
+      if (userData.isAccepted !== "accepted") {
+        setErrorMessage("Bitte akzeptieren Sie die Bedingungen");
+        return;
+      }
     }
 
-    if (
-      groupData.description.length < 3 &&
-      currentStepIndex === GroupInfoIndex
-    ) {
-      setErrorGroup("Bitte geben Sie mindestens drei Zeichen ein");
-      return;
-    }
-
-    if (
-      currentStepIndex === UserInfoStepIndex &&
-      userData.isAccepted === false
-    ) {
-      setErrorMessage("Bitte akzeptieren Sie die Bedingungen");
-      return;
-    }
-    console.log("Minor? - ", userData.isMinor);
-    if (currentStepIndex === UserInfoStepIndex && userData.isMinor === true) {
-      setErrorMessage("Du musst älter als 18 Jahre sein.");
-      return;
-    }
-
-    const codeString = userData.code.join("");
     if (currentStepIndex === verifyCodeIndex) {
+      const codeString = userData.code.join("");
       try {
         console.log("My code -", codeString);
         const url = `http://localhost:5005/user/verified`;
@@ -195,6 +231,7 @@ export default function Funnel({ FunnelIndex }) {
         }
       } catch (error) {
         // Handle error if the request fails
+        console.log("ERROR EMAIL");
         console.error("Error:", error);
         setErrorMessage("Error occurred during verification.");
         return;
@@ -222,10 +259,7 @@ export default function Funnel({ FunnelIndex }) {
       if (!isEditing) {
         if (!isVerified) {
           console.log("CREATE new user");
-          const response = await axios.post(
-            `http://localhost:5005/user/signup`,
-            requestBody
-          );
+          await axios.post(`http://localhost:5005/user/signup`, requestBody);
           // setisIsEditing(false);
           setErrorMessage("");
           setCurrentUserEmail(userData.email);
@@ -276,8 +310,10 @@ export default function Funnel({ FunnelIndex }) {
         }
       }
     } catch (error) {
+      console.log("ERROR EMAIL?");
       const errorDescription = error.response.data.message;
       setErrorMessage(errorDescription);
+      // setErrorUser(errorDescription);
     }
   };
 
@@ -319,10 +355,16 @@ export default function Funnel({ FunnelIndex }) {
                   <div
                     className={`flex transition-all ease-in-out duration-500 justify-center `}
                   >
-                    <div className="border-2 border-primaryblue rounded-md mb-2 ">
-                      <p className="text-red-500 text-center p-2">
-                        {errorMessage}
-                      </p>
+                    <div className="border-2  rounded-md mb-2 px-2">
+                      <div className="flex items-center text-primarypurple">
+                        <AiOutlineWarning
+                          className="text-red text-primarybg"
+                          size={32}
+                        />
+                        <p className="bg-white p-2 text-primarypurple text-sm">
+                          {errorMessage}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 )}

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { AiOutlineWarning } from "react-icons/ai";
+
 import "react-datepicker/dist/react-datepicker.css";
 import "./datepicker-override.css";
 import { differenceInYears } from "date-fns";
@@ -15,8 +17,15 @@ export default function UserInfoStep({
   age,
   isMinor,
   isAccepted,
+  errorUserName,
+  errorUserEmail,
+  errorUserPass,
+  errorUserSecondPass,
 }) {
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [isUnderEighteen, setisUnderEighteen] = useState(true);
+  const [passwordError, setPasswordError] = useState("");
+  const [passwordCheck, setPasswordCheck] = useState(false);
 
   useEffect(() => {
     updateFields({ isAccepted: "" });
@@ -25,6 +34,7 @@ export default function UserInfoStep({
     // updateFields({ username: storedUsername });
   }, []);
 
+  //isMinor state variable instead?
   const checkAge = (date) => {
     const today = new Date();
     const userAge = differenceInYears(today, date);
@@ -32,9 +42,11 @@ export default function UserInfoStep({
     if (userAge < 18) {
       console.log("18-");
       updateFields({ isMinor: true });
+      setisUnderEighteen(true);
     } else {
       console.log("18+");
       updateFields({ isMinor: false });
+      setisUnderEighteen(false);
     }
   };
 
@@ -49,16 +61,20 @@ export default function UserInfoStep({
     years.push(year);
   }
 
+  function isStrongPassword(password) {
+    const strongPasswordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+    return strongPasswordRegex.test(password);
+  }
+
   return (
     <div>
       <h2 className="">Erstelle jetzt Dein Nutzerprofil</h2>
       <p className="mb-4 text-textLightGray">
         Du kannst Deine Informationen jederzeit in den Einstellungen ändern.
       </p>
-      <div>
+      <div className="relative">
         <div className=" text-sm border border-primaryblue rounded-md">
           <input
-            required
             type="text"
             name="username"
             value={username}
@@ -72,29 +88,64 @@ export default function UserInfoStep({
           werden möchtest und der für andere Mitglieder:innen angezeigt werden
           darf.
         </p>
+        {errorUserName && username.length < 3 && (
+          <div className="absolute -bottom-2 left-1/3 transform -translate-x-1/2 rounded-md border-2">
+            <div className="bg-white p-2 text-primarypurple text-sm">
+              <div className="flex items-center">
+                <AiOutlineWarning
+                  className="text-red text-primarybg"
+                  size={32}
+                />
+                <span className="ml-2">{errorUserName}</span>{" "}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
-      <div className="mt-4 text-sm border border-primaryblue rounded-md">
-        <input
-          required
-          type="text"
-          name="email"
-          value={email}
-          onChange={(e) => updateFields({ email: e.target.value })}
-          className={`w-full p-2 border rounded-md placeholder-primaryText bg-primaryBg${
-            isVerified ? "text-gray-500" : ""
-          }`}
-          placeholder="Email"
-          disabled={isVerified ? true : false}
-        />
-      </div>
-      <div>
+      <div className="relative">
         <div className="mt-4 text-sm border border-primaryblue rounded-md">
           <input
-            required
+            type="text"
+            name="email"
+            value={email}
+            onChange={(e) => updateFields({ email: e.target.value })}
+            className={`w-full p-2 border rounded-md placeholder-primaryText bg-primaryBg${
+              isVerified ? "text-gray-500" : ""
+            }`}
+            placeholder="Email"
+            disabled={isVerified ? true : false}
+          />
+        </div>
+        {errorUserEmail && email.length < 1 && (
+          <div className="transform w-4/5 rounded-md border-2">
+            <div className="bg-white p-1 text-primarypurple text-sm">
+              <div className="flex items-center">
+                <AiOutlineWarning
+                  className="text-red text-primarybg"
+                  size={32}
+                />
+                <span className="ml-2">{errorUserEmail}</span>{" "}
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+      <div className="relative">
+        <div className="mt-4 text-sm border border-primaryblue rounded-md">
+          <input
             type="password"
             name="password"
             value={password}
-            onChange={(e) => updateFields({ password: e.target.value })}
+            onChange={(e) => {
+              console.log(e.target.value);
+              if (!isStrongPassword(e.target.value)) {
+                setPasswordError(true);
+              } else {
+                setPasswordError(false);
+              }
+
+              updateFields({ password: e.target.value });
+            }}
             className="w-full p-2 border rounded-md placeholder-primaryText bg-primaryBg"
             placeholder="Passwort"
           />
@@ -103,17 +154,66 @@ export default function UserInfoStep({
           Mindestens 8 Zeichen, mindestens eine Zahl, ein Großbuchstabe und ein
           Sonderzeichen.
         </p>
+        {errorUserPass && password.length < 8 && (
+          <div className="transform w-4/5 rounded-md border-2">
+            <div className="bg-white p-2 text-primarypurple text-sm">
+              <div className="flex items-center">
+                <AiOutlineWarning
+                  className="text-red text-primarybg"
+                  size={32}
+                />
+                <span className="ml-2">{errorUserPass}</span>{" "}
+              </div>
+            </div>
+          </div>
+        )}
+        {passwordError && password.length > 7 && (
+          <div className="absolute w-4/5 -bottom-7 transform rounded-md border-2 z-20">
+            <div className="bg-white p-2 text-primarypurple text-sm">
+              <div className="flex items-center">
+                <AiOutlineWarning
+                  className="text-red text-primarybg"
+                  size={32}
+                />
+                <span className="ml-2">
+                  Mindestens eine Zahl, ein Großbuchstabe und ein Sonderzeichen.
+                </span>{" "}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
-      <div className="mt-4 text-sm border border-primaryblue rounded-md">
-        <input
-          required
-          type="password"
-          name="passwordCheck"
-          // value={passwordCheck}
-          onChange={(e) => updateFields({ passwordCheck: e.target.value })}
-          className="w-full p-2 border rounded-md placeholder-primaryText bg-primaryBg"
-          placeholder="Passwort erneut eingeben"
-        />
+      <div className="relative z-10">
+        <div className="mt-4 text-sm border border-primaryblue rounded-md">
+          <input
+            type="password"
+            name="passwordCheck"
+            // value={passwordCheck}
+            onChange={(e) => {
+              if (e.target.value !== password) {
+                setPasswordCheck(true);
+              } else {
+                setPasswordCheck(false);
+              }
+              updateFields({ passwordCheck: e.target.value });
+            }}
+            className="w-full p-2 border rounded-md placeholder-primaryText bg-primaryBg"
+            placeholder="Passwort erneut eingeben"
+          />
+        </div>
+        {passwordCheck && (
+          <div className="absolute w-4/5  bg-whitetransform rounded-md border-2">
+            <div className="bg-white p-2 text-primarypurple text-sm">
+              <div className="flex items-center">
+                <AiOutlineWarning
+                  className="text-red text-primarybg"
+                  size={32}
+                />
+                <span className="ml-2">passwords do not match</span>{" "}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
       <div className="flex justify-between gap-2 text-sm mt-4">
         <label
@@ -164,12 +264,27 @@ export default function UserInfoStep({
         </label>
       </div>
       <h4 className="pt-2">Geburtsdatum</h4>
-
-      <CustomDatePicker
-        selectedDate={selectedDate}
-        handleDateChange={handleDateChange}
-      />
-
+      <div className="flex gap-2 ">
+        <CustomDatePicker
+          selectedDate={selectedDate}
+          handleDateChange={handleDateChange}
+        />
+        {isMinor && (
+          <div className=" rounded-md border-2">
+            <div className="bg-white px-1 text-primarypurple text-xs">
+              <div className="flex items-center">
+                <AiOutlineWarning
+                  className="text-red text-primarybg"
+                  size={42}
+                />
+                <span className="ml-2">
+                  Um teilzunehmen, musst du über 18 Jahre alt sein.
+                </span>{" "}
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
       <div className="flex flex-row items-star my-2">
         <div className="pt-3 px-3 flex gap-3">
           <input
@@ -177,7 +292,7 @@ export default function UserInfoStep({
             name="isAccepted"
             value={isAccepted}
             onChange={(e) =>
-              updateFields({ isAccepted: e.target.checked ? true : false })
+              updateFields({ isAccepted: e.target.checked ? "accepted" : "" })
             }
             className=""
           />

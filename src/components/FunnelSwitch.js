@@ -16,7 +16,12 @@ function generateFunnelSteps(
   isVerified,
   groupData,
   resendCode,
-  errorGroup
+  errorGroupDescription,
+  errorGroupName,
+  errorUserName,
+  errorUserEmail,
+  errorUserPass,
+  errorUserSecondPass
 ) {
   let funnelSteps = [];
 
@@ -27,6 +32,10 @@ function generateFunnelSteps(
           {...data}
           updateFields={updateFields}
           isVerified={isVerified}
+          errorUserName={errorUserName}
+          errorUserEmail={errorUserEmail}
+          errorUserPass={errorUserPass}
+          errorUserSecondPass={errorUserSecondPass}
         />,
         <VerifyCodeStep
           {...data}
@@ -47,6 +56,10 @@ function generateFunnelSteps(
           {...data}
           updateFields={updateFields}
           isVerified={isVerified}
+          errorUserName={errorUserName}
+          errorUserEmail={errorUserEmail}
+          errorUserPass={errorUserPass}
+          errorUserSecondPass={errorUserSecondPass}
         />,
         <VerifyCodeStep
           {...data}
@@ -65,13 +78,18 @@ function generateFunnelSteps(
         <GroupInfoStep
           {...groupData}
           updateGroupFields={updateGroupFields}
-          errorGroup={errorGroup}
+          errorGroupDescription={errorGroupDescription}
+          errorGroupName={errorGroupName}
         />,
         <GroupPlanStep {...groupData} updateGroupFields={updateGroupFields} />,
         <UserInfoStep
           {...data}
           updateFields={updateFields}
           isVerified={isVerified}
+          errorUserName={errorUserName}
+          errorUserEmail={errorUserEmail}
+          errorUserPass={errorUserPass}
+          errorUserSecondPass={errorUserSecondPass}
         />,
         <VerifyCodeStep
           {...data}
@@ -91,12 +109,21 @@ function generateFunnelSteps(
           {...groupData}
           updateGroupFields={updateGroupFields}
         />,
-        <GroupInfoStep {...groupData} updateGroupFields={updateGroupFields} />,
+        <GroupInfoStep
+          {...groupData}
+          updateGroupFields={updateGroupFields}
+          errorGroupDescription={errorGroupDescription}
+          errorGroupName={errorGroupName}
+        />,
         <GroupPlanStep {...groupData} updateGroupFields={updateGroupFields} />,
         <UserInfoStep
           {...data}
           updateFields={updateFields}
           isVerified={isVerified}
+          errorUserName={errorUserName}
+          errorUserEmail={errorUserEmail}
+          errorUserPass={errorUserPass}
+          errorUserSecondPass={errorUserSecondPass}
         />,
         <VerifyCodeStep
           {...data}

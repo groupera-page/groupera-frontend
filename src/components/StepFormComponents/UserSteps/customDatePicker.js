@@ -62,7 +62,7 @@ export default function CustomDatePicker({ selectedDate, handleDateChange }) {
   };
 
   return (
-    <div className="flex flex-between  border border-primaryblue rounded-md p-2 w-fit gap-4 text-sm">
+    <div className="flex flex-between my- border border-primaryblue rounded-md p-2 py-3 w-fit gap-4 text-sm">
       <select
         value={new Date(selectedDate).getDate()}
         onChange={handleDayChange}
