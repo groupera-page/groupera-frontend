@@ -1,11 +1,12 @@
-import Funnel from "../components/FunnelCard";
-import backgroundImage from "../assets/hands4.jpg";
 import {useLocation} from "react-router-dom";
-import MultiStepForm from "../components/FormWrapper";
-import getFunnelSteps from "../util/getFunnelSteps"
+
+// import Funnel from "../FunnelCard";
+import backgroundImage from "../../assets/hands4.jpg";
+import FormWrapper from "./FormWrapper";
+import getFunnelSteps from "../../util/getFunnelSteps"
 const SignupPage = () => {
   const location = useLocation()
-  const steps = getFunnelSteps()
+  const steps = getFunnelSteps(location.search.slice(1))
 
   return (
     <div>
@@ -15,9 +16,7 @@ const SignupPage = () => {
           backgroundImage: `url(${backgroundImage})`,
         }}
       >
-        <MultiStepForm>
-          
-        </MultiStepForm>
+        <FormWrapper steps={steps} />
         {/*<Funnel FunnelIndex={3} />*/}
       </div>
     </div>

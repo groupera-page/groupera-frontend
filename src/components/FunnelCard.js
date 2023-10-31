@@ -7,11 +7,11 @@ import VerifyCodeStep from "./StepFormComponents/UserSteps/VerifyCodeStep";
 import RegStepper from "./StepFormComponents/RegStepper";
 import useMultiStepForm from "./StepFormComponents/useMultiStepForm";
 import GroupSettingStep from "./StepFormComponents/GroupSteps/GroupSettingStep";
-import FunnelSwitch from "./FunnelSwitch";
+import funnelSwitch from "./FunnelSwitch";
 import { userDataInit, groupDataInit } from "./StepFormComponents/initData";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 
-export default function Funnel({ FunnelIndex }) {
+export default function Funnel({ funnelIndex=1 }) {
   const [userData, setUserData] = useState(userDataInit);
   const [groupData, setGroupData] = useState(groupDataInit);
   const [errorMessage, setErrorMessage] = useState(undefined);
@@ -25,20 +25,20 @@ export default function Funnel({ FunnelIndex }) {
 
   useEffect(() => {
     const isVerified = JSON.parse(localStorage.getItem("isVerified")) || false;
-    setisVerified(isVerified);
     const isEditing = JSON.parse(localStorage.getItem("isEditing")) || false;
-    setIsEditing(isEditing);
     const currentUser = JSON.parse(localStorage.getItem("currentUser")) || "";
-    setCurrentUser(currentUser);
-    const currentUserEmail =
-      JSON.parse(localStorage.getItem("currentUserEmail")) || "";
-    setCurrentUserEmail(currentUserEmail);
+    const currentUserEmail = JSON.parse(localStorage.getItem("currentUserEmail")) || "";
     const storedStepIndex = JSON.parse(localStorage.getItem("stepIndex"));
+
+    setisVerified(isVerified);
+    setIsEditing(isEditing);
+    setCurrentUser(currentUser);
+    setCurrentUserEmail(currentUserEmail);
     goTo(storedStepIndex);
   }, []);
 
-  const funnelSteps = FunnelSwitch(
-    FunnelIndex,
+  const funnelSteps = funnelSwitch(
+    funnelIndex,
     userData,
     updateFields,
     updateGroupFields,

@@ -4,7 +4,7 @@ import { Cloudinary } from "@cloudinary/url-gen";
 import Home from "./pages/Home";
 // import "./App.css";
 import Login from "./pages/LoginPage";
-import SignupPage from "./pages/RegistrationPage";
+import SignupPage from "./components/SignUp/SignUp";
 import EmailVerify from "./components/EmailVerify";
 
 function App() {
