@@ -7,6 +7,8 @@ import VerifyCodeStep from "./StepFormComponents/UserSteps/VerifyCodeStep";
 import RegStepper from "./StepFormComponents/RegStepper";
 import useMultiStepForm from "./StepFormComponents/useMultiStepForm";
 import GroupSettingStep from "./StepFormComponents/GroupSteps/GroupSettingStep";
+import GroupInfoStep from "./StepFormComponents/GroupSteps/GroupInfoStep";
+
 import FunnelSwitch from "./FunnelSwitch";
 import { userDataInit, groupDataInit } from "./StepFormComponents/initData";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
@@ -20,6 +22,7 @@ export default function Funnel({ FunnelIndex }) {
   const [currentUser, setCurrentUser] = useState("");
   const [currentUserEmail, setCurrentUserEmail] = useState("");
   const navigate = useNavigate();
+  const [errorGroup, setErrorGroup] = useState("");
 
   localStorage.clear();
 
@@ -44,7 +47,8 @@ export default function Funnel({ FunnelIndex }) {
     updateGroupFields,
     isVerified,
     groupData,
-    resendCode
+    resendCode,
+    errorGroup
   );
 
   const { steps, currentStepIndex, step, back, next, goTo, isLastStep } =
@@ -84,6 +88,10 @@ export default function Funnel({ FunnelIndex }) {
   const GroupSettingIndex = funnelSteps.findIndex(
     (component) => component.type === GroupSettingStep
   );
+
+  const GroupInfoIndex = funnelSteps.findIndex(
+    (component) => component.type === GroupInfoStep
+  );
   const stepAfterVerify = verifyCodeIndex + 1;
 
   function handleBackButton() {
@@ -91,6 +99,7 @@ export default function Funnel({ FunnelIndex }) {
     localStorage.setItem("isEditing", JSON.stringify(true));
     back(1);
     setErrorMessage("");
+    setErrorGroup(null);
   }
 
   const handleGroup = async (e) => {
@@ -126,22 +135,25 @@ export default function Funnel({ FunnelIndex }) {
     }
   };
 
-  //   await axios
-  //     .post(`http://localhost:5005/group/create`, requestGroupBody)
-  //     .then((response) => {
-  //       console.log("CREATING GROUP!");
-  //       return next(1);
-  //     })
-  //     .catch((error) => {
-  //       console.log("ERROR");
-  //       const errorDescription = error.response.data.message;
-  //       setErrorMessage(errorDescription);
-  //       return;
-  //     });
-  // };
-
   const handleUser = async (e) => {
     e.preventDefault();
+
+    if (groupData.preventNext === true) {
+      return;
+    }
+
+    if (groupData.name.length < 3 && currentStepIndex === GroupInfoIndex) {
+      setErrorGroup("Bitte geben Sie mindestens drei Zeichen ein");
+      return;
+    }
+
+    if (
+      groupData.description.length < 3 &&
+      currentStepIndex === GroupInfoIndex
+    ) {
+      setErrorGroup("Bitte geben Sie mindestens drei Zeichen ein");
+      return;
+    }
 
     if (
       currentStepIndex === UserInfoStepIndex &&

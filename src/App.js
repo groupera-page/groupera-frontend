@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Cloudinary } from "@cloudinary/url-gen";
-
 import Home from "./pages/Home";
 // import "./App.css";
 import Login from "./pages/LoginPage";
-import SignupPage from "./pages/RegistrationPage";
+import SignupPage from "./pages/SignupPage";
 import EmailVerify from "./components/EmailVerify";
+
+// 
 
 function App() {
   return (

@@ -36,6 +36,7 @@ const groupDataBlank = {
   length: "1:00",
   token: "",
   moderator: "Ja",
+  preventNext: false,
 };
 
 export const userDataInit = storedUserData ? storedUserData : userDataBlank;

@@ -9,17 +9,18 @@ import GroupSettingStep from "./StepFormComponents/GroupSteps/GroupSettingStep";
 import GroupDownloadStep from "./StepFormComponents/GroupSteps/GroupDownloadStep";
 
 function generateFunnelSteps(
-  FunnelIndex,
+  funnelIndex,
   data,
   updateFields,
   updateGroupFields,
   isVerified,
   groupData,
-  resendCode
+  resendCode,
+  errorGroup
 ) {
   let funnelSteps = [];
 
-  switch (FunnelIndex) {
+  switch (funnelIndex) {
     case 1:
       funnelSteps = [
         <UserInfoStep
@@ -61,7 +62,11 @@ function generateFunnelSteps(
           {...groupData}
           updateGroupFields={updateGroupFields}
         />,
-        <GroupInfoStep {...groupData} updateGroupFields={updateGroupFields} />,
+        <GroupInfoStep
+          {...groupData}
+          updateGroupFields={updateGroupFields}
+          errorGroup={errorGroup}
+        />,
         <GroupPlanStep {...groupData} updateGroupFields={updateGroupFields} />,
         <UserInfoStep
           {...data}

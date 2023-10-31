@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./datepicker-override.css";
-import de from "date-fns/locale/de";
-import { getYear, getMonth, differenceInYears } from "date-fns";
+import { differenceInYears } from "date-fns";
 import CustomDatePicker from "./customDatePicker";
 
 export default function UserInfoStep({
@@ -50,21 +48,6 @@ export default function UserInfoStep({
   for (let year = 1920; year <= currentYear; year++) {
     years.push(year);
   }
-
-  const months = [
-    "Januar",
-    "Februar",
-    "März",
-    "April",
-    "Mai",
-    "Juni",
-    "Juli",
-    "August",
-    "September",
-    "Oktober",
-    "November",
-    "Dezember",
-  ];
 
   return (
     <div>

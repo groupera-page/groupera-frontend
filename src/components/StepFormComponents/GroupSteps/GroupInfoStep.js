@@ -8,7 +8,8 @@ export default function GroupInfoForm({
   description,
   updateGroupFields,
   img,
-  preventNext,
+  errorText,
+  errorGroup,
 }) {
   const maxNameCharacters = 70;
   const maxCharacters = 500;
@@ -49,7 +50,7 @@ export default function GroupInfoForm({
       }
     };
 
-    fetchData(); // Fetch data when the component mounts
+    fetchData();
   }, []);
 
   // const handleGroupImage = (e) => {
@@ -77,11 +78,9 @@ export default function GroupInfoForm({
         Du kannst alle Angaben jederzeit in den Gruppeneinstellungen ändern
       </p>
       <h4 className=" mt-4">Wie soll deine Gruppe heißen?</h4>
-
       <div className="relative">
         <div className="mt-2 text-sm border-0 rounded-md relative">
           <input
-            required
             type="text"
             name="username"
             value={name}
@@ -90,29 +89,42 @@ export default function GroupInfoForm({
               if (isGroupNameExists(newName)) {
                 setNameError("Gruppenname existiert bereits.");
                 updateGroupFields({ name: newName });
+                updateGroupFields({ preventNext: true });
               } else {
                 setNameError("");
                 updateGroupFields({ name: newName });
+                updateGroupFields({ preventNext: false });
               }
             }}
             className="w-full border rounded-md p-2 placeholder-primaryText bg-primaryBg border-primaryblue"
             placeholder="Name"
-            pattern=".{3,}"
-            title="Bitte geben Sie mindestens drei Zeichen ein"
+            // pattern=".{3,}"
+            // title="Bitte geben Sie mindestens drei Zeichen ein"
             maxLength={maxNameCharacters}
           />
           {nameError && (
             <div className="absolute -bottom-12 left-1/3 transform -translate-x-1/2 rounded-md border-2">
               <div className="bg-white p-2 text-primarypurple text-sm">
                 <div className="flex items-center">
-                  {" "}
-                  {/* Added 'items-center' to align content */}
                   <AiOutlineWarning
                     className="text-red text-primarybg"
                     size={32}
                   />
                   <span className="ml-2">{nameError}</span>{" "}
-                  {/* Replaced 'div' with 'span' */}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {errorGroup && name.length < 3 && (
+            <div className="absolute -bottom-12 left-1/3 transform -translate-x-1/2 rounded-md border-2">
+              <div className="bg-white p-2 text-primarypurple text-sm">
+                <div className="flex items-center">
+                  <AiOutlineWarning
+                    className="text-red text-primarybg"
+                    size={32}
+                  />
+                  <span className="ml-2">{errorGroup}</span>{" "}
                 </div>
               </div>
             </div>
@@ -120,11 +132,9 @@ export default function GroupInfoForm({
         </div>
         <p className="px-1 text-textLightGray">Min 3 Zeichen.</p>
       </div>
-
       <h4 className=" mt-4">Wie würdest du deine Gruppe beschreiben?</h4>
       <div className="mt-2 text-smrounded-md">
         <textarea
-          required
           name="username"
           value={description}
           onChange={handleChange}
@@ -136,6 +146,22 @@ export default function GroupInfoForm({
       <div className="flex text-xs text-gray-500 mt-1 justify-end">
         {description.length}/{maxCharacters}
       </div>
+      asdjnasdkjansdkjasn
+      <div className="relative">
+        {errorGroup && description.length < 3 && (
+          <div className="absolute -bottom-2 left-1/3 transform -translate-x-1/2 rounded-md border-2">
+            <div className="bg-white p-2 text-primarypurple text-sm">
+              <div className="flex items-center">
+                <AiOutlineWarning
+                  className="text-red text-primarybg"
+                  size={32}
+                />
+                <span className="ml-2">{errorGroup}</span>{" "}
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
       <p className="my-2">
         Du kannst ein Bild aus unseren Vorschlägen aussuchen.{" "}
       </p>
@@ -144,7 +170,6 @@ export default function GroupInfoForm({
         img={img}
         updateGroupFields={updateGroupFields}
       />
-
       <div className="mb-4">
         {/* <label className="relative cursor-pointer hover:bg-primaryblue-hover border border-primaryblue px-4 py-2 rounded-md text-sm">
           <span>Eigene Datei auswählen</span>

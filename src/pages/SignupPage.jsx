@@ -1,6 +1,6 @@
 import Funnel from "../components/FunnelCard";
 import backgroundImage from "../assets/hands4.jpg";
-function SignupPage() {
+export default function SignupPage() {
   return (
     <div className="">
       <div
@@ -14,5 +14,3 @@ function SignupPage() {
     </div>
   );
 }
-
-export default SignupPage;
