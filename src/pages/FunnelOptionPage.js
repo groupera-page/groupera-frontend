@@ -1,3 +1,4 @@
+// Landing page for funnel 2a and 2b
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import backgroundImage from "../assets/hands4.jpg";

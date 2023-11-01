@@ -1,4 +1,4 @@
-export default function RegStepper({ currentStep, steps }) {
+export default function StepIndicator({ currentStep, steps }) {
   const stepIndicator = [];
 
   for (let i = 0; i < steps; i++) {

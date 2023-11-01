@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import logoSvg from "../assets/imgLogos/logoNoBg.svg";
 import VerifyCodeStep from "./StepFormComponents/UserSteps/VerifyCodeStep";
-import RegStepper from "./StepFormComponents/RegStepper";
+import StepIndicator from "./StepFormComponents/StepIndicator";
 import useMultiStepForm from "./StepFormComponents/useMultiStepForm";
 import { AiOutlineWarning } from "react-icons/ai";
 import FunnelSteps from "./FunnelSteps";
@@ -28,6 +28,7 @@ export default function RegistrationFunnelCard({ funnelIndex }) {
     goTo(storedStepIndex);
   }, []);
 
+  //Create steps inside funnel
   const funnelSteps = FunnelSteps(
     funnelIndex,
     userData,
@@ -36,7 +37,7 @@ export default function RegistrationFunnelCard({ funnelIndex }) {
     groupData,
     resendCode
   );
-  //Create Hook to handle multistep form
+  //Create Hook to handle multistep form and pass the funnel steps
   const { steps, currentStepIndex, step, back, next, goTo, isLastStep } =
     useMultiStepForm(funnelSteps);
 
@@ -63,7 +64,6 @@ export default function RegistrationFunnelCard({ funnelIndex }) {
       return updatedData;
     });
   }
-  console.log(step.type.name);
   function resendCode() {
     //Implement when backend is done
     console.log("Resent code -");
@@ -252,7 +252,7 @@ export default function RegistrationFunnelCard({ funnelIndex }) {
       <div className="flex flex-col gap-2">
         <div className="flex justify-center">
           <div className="flex flex-col p-2 text-xs gap-2">
-            <RegStepper
+            <StepIndicator
               currentStep={currentStepIndex + 1}
               steps={steps.length}
             />
