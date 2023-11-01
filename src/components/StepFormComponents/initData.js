@@ -19,6 +19,7 @@ const userDataBlank = {
   isAccepted: "",
   experience: "no experience",
   age: "",
+  birthDate: "",
   isMinor: true,
   moderator: "One",
   emailError: "",

@@ -187,17 +187,21 @@ export default function Funnel({ FunnelIndex }) {
         return;
       }
 
+      if (userData.password.length < 1) {
+        setErrorUserPass("Bitte geben Sie Ihr Passwort an.");
+        return;
+      }
+
       if (userData.isMinor === true) {
         setErrorMessage("Du musst älter als 18 Jahre sein.");
         return;
       }
 
-      // const isPasswordStrong = isStrongPassword(userData.password);
-      // if (!isPasswordStrong) {
-      //   console.log("HERE");
-      //   setErrorUserPass("CAP LETTER.....");
-      //   return;
-      // }
+      if (userData.password !== userData.checkPassword) {
+        setErrorMessage("Du musst älter als 18 Jahre sein.");
+        return;
+      }
+
       if (userData.isAccepted !== "accepted") {
         setErrorMessage("Bitte akzeptieren Sie die Bedingungen");
         return;

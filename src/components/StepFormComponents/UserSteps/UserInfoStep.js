@@ -11,10 +11,12 @@ export default function UserInfoStep({
   username,
   email,
   password,
+  passwordCheck,
   updateFields,
   gender,
   isVerified,
   age,
+  birthDate,
   isMinor,
   isAccepted,
   errorUserName,
@@ -23,12 +25,15 @@ export default function UserInfoStep({
   errorUserSecondPass,
 }) {
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [isUnderEighteen, setisUnderEighteen] = useState(true);
+
   const [passwordError, setPasswordError] = useState("");
-  const [passwordCheck, setPasswordCheck] = useState(false);
+  const [passwordCheckState, setPasswordCheckState] = useState(false);
 
   useEffect(() => {
     updateFields({ isAccepted: "" });
+    if (birthDate !== "") {
+      setSelectedDate(birthDate);
+    }
     //Clear fields, if no local storage
     // const storedUsername = JSON.parse(localStorage.getItem("username")) || "";
     // updateFields({ username: storedUsername });
@@ -42,16 +47,15 @@ export default function UserInfoStep({
     if (userAge < 18) {
       console.log("18-");
       updateFields({ isMinor: true });
-      setisUnderEighteen(true);
     } else {
       console.log("18+");
       updateFields({ isMinor: false });
-      setisUnderEighteen(false);
     }
   };
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
+    updateFields({ birthDate: date });
     checkAge(date);
   };
 
@@ -191,9 +195,9 @@ export default function UserInfoStep({
             // value={passwordCheck}
             onChange={(e) => {
               if (e.target.value !== password) {
-                setPasswordCheck(true);
+                setPasswordCheckState(true);
               } else {
-                setPasswordCheck(false);
+                setPasswordCheckState(false);
               }
               updateFields({ passwordCheck: e.target.value });
             }}
@@ -201,7 +205,7 @@ export default function UserInfoStep({
             placeholder="Passwort erneut eingeben"
           />
         </div>
-        {passwordCheck && (
+        {passwordCheckState && (
           <div className="absolute w-4/5  bg-whitetransform rounded-md border-2">
             <div className="bg-white p-2 text-primarypurple text-sm">
               <div className="flex items-center">
@@ -268,6 +272,7 @@ export default function UserInfoStep({
         <CustomDatePicker
           selectedDate={selectedDate}
           handleDateChange={handleDateChange}
+          age={age}
         />
         {isMinor && (
           <div className=" rounded-md border-2">
