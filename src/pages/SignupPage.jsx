@@ -9,7 +9,7 @@ export default function SignupPage() {
           backgroundImage: `url(${backgroundImage})`,
         }}
       >
-        <Funnel FunnelIndex={3} />
+        <Funnel FunnelIndex={1} />
       </div>
     </div>
   );

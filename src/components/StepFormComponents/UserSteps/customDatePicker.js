@@ -66,6 +66,7 @@ export default function CustomDatePicker({ selectedDate, handleDateChange }) {
       <select
         value={new Date(selectedDate).getDate()}
         onChange={handleDayChange}
+        className="bg-primaryBg"
         style={{
           WebkitAppearance: "none",
           appearance: "none",
@@ -83,6 +84,7 @@ export default function CustomDatePicker({ selectedDate, handleDateChange }) {
       <select
         value={months[new Date(selectedDate).getMonth()]}
         onChange={handleMonthChange}
+        className="bg-primaryBg"
         style={{
           WebkitAppearance: "none",
           appearance: "none",
@@ -99,6 +101,7 @@ export default function CustomDatePicker({ selectedDate, handleDateChange }) {
       <select
         value={new Date(selectedDate).getFullYear()}
         onChange={handleYearChange}
+        className="bg-primaryBg"
         style={{
           WebkitAppearance: "none",
           appearance: "none",

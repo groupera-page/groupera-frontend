@@ -212,10 +212,16 @@ export default function Funnel({ FunnelIndex }) {
         const response = await axios.post(url, { code: codeString });
 
         if (response.status === 200) {
-          const userInfo = response.data;
-          console.log("User found");
-          setCurrentUser(userInfo._id);
-          localStorage.setItem("currentUser", JSON.stringify(userInfo._id));
+          // const userInfo = response.data;
+          const userInfo = await axios.get(
+            `http://localhost:5005/user/${userData.email}`
+          );
+          console.log("User found", userInfo.data._id);
+          setCurrentUser(userInfo.data._id);
+          localStorage.setItem(
+            "currentUser",
+            JSON.stringify(userInfo.data._id)
+          );
           setisVerified(true);
           localStorage.setItem("isVerified", JSON.stringify(true));
           setErrorMessage("");
@@ -271,6 +277,7 @@ export default function Funnel({ FunnelIndex }) {
           return next(1);
         } else {
           console.log("Updating");
+
           await axios.put(
             `http://localhost:5005/user/edit/${currentUser}`,
             requestBody
@@ -320,7 +327,7 @@ export default function Funnel({ FunnelIndex }) {
   return (
     <div
       className="lg:sticky w-full h-full  lg:w-1/2 lg:h-5/6 overflow-y-scroll
-      px-4 rounded md:shadow-md bg-primaryBg md:p-8 md:bg-primaryBg/80"
+      px-4 rounded md:shadow-md bg-primaryBg md:p-8 "
     >
       <div className="pb-3">
         <img src={logoSvg} alt="logo" className="lg:w-40 w-28 p-2 pt-3" />

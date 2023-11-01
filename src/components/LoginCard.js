@@ -26,7 +26,8 @@ export default function LandingCard({ page, id }) {
         storeToken(response.data.authToken);
         authenticateUser();
         if (response.data.goals !== "") {
-          navigate("/");
+          console.log("LOGGED IN");
+          navigate("/home");
         } else {
           navigate("/signup");
         }
@@ -40,7 +41,7 @@ export default function LandingCard({ page, id }) {
   return (
     <div
       className="lg:sticky w-full h-full  lg:w-1/2 lg:h-5/6 overflow-y-scroll
-    px-4 rounded md:shadow-md bg-primaryBg md:p-8 md:bg-primaryBg/80"
+    px-4 rounded md:shadow-md bg-primaryBg md:p-8 "
     >
       <div className="lg:flex  justify-center">
         {/* <div className="lg:flex lg:w-1/2 justify-center"> */}
@@ -50,13 +51,13 @@ export default function LandingCard({ page, id }) {
           <p>jetzt einloggen und alle Gruppen und Termine sehen</p>
 
           <form onSubmit={handleLoginSubmit} className="mt-4">
-            <div className="mb-4 relative">
+            <div className="mb-4 relative ">
               <input
                 type="text"
                 name="email"
                 value={email}
                 onChange={handleEmail}
-                className="w-full p-2 border rounded-md pl-2 lg:w-96"
+                className="w-full p-2 border bg-primaryBg rounded-md pl-2 lg:w-96  "
                 placeholder="Email"
               />
             </div>
@@ -67,7 +68,7 @@ export default function LandingCard({ page, id }) {
                 name="password"
                 value={password}
                 onChange={handlePassword}
-                className="w-full p-2 border rounded-md pl-2 lg:w-96"
+                className="w-full p-2 border bg-primaryBg rounded-md pl-2 lg:w-96"
                 placeholder="Password"
               />
             </div>
