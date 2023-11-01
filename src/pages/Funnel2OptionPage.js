@@ -15,7 +15,7 @@ const options = [
   },
 ];
 
-export default function FunnelChoicePage() {
+export default function Funnel2OptionPage() {
   const [funnelChoice, setFunnelChoice] = useState(1);
   const navigate = useNavigate();
   return (

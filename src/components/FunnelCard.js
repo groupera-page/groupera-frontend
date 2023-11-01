@@ -9,7 +9,6 @@ import useMultiStepForm from "./StepFormComponents/useMultiStepForm";
 import GroupSettingStep from "./StepFormComponents/GroupSteps/GroupSettingStep";
 import GroupInfoStep from "./StepFormComponents/GroupSteps/GroupInfoStep";
 import { AiOutlineWarning } from "react-icons/ai";
-
 import FunnelSwitch from "./FunnelSwitch";
 import { userDataInit, groupDataInit } from "./StepFormComponents/initData";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
