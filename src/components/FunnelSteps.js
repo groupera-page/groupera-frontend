@@ -8,19 +8,14 @@ import GroupPlanStep from "./StepFormComponents/GroupSteps/GroupPlanStep";
 import GroupSettingStep from "./StepFormComponents/GroupSteps/GroupSettingStep";
 import GroupDownloadStep from "./StepFormComponents/GroupSteps/GroupDownloadStep";
 
-function generateFunnelSteps(
+export default function FunnelSteps(
   funnelIndex,
-  data,
+  userData,
   updateFields,
   updateGroupFields,
-  isVerified,
   groupData,
   resendCode,
-  errorGroupDescription,
-  errorGroupName,
-  errorUserName,
-  errorUserEmail,
-  errorUserPass,
+
   errorUserSecondPass
 ) {
   let funnelSteps = [];
@@ -29,20 +24,16 @@ function generateFunnelSteps(
     case 1:
       funnelSteps = [
         <UserInfoStep
-          {...data}
+          {...userData}
           updateFields={updateFields}
-          isVerified={isVerified}
-          errorUserName={errorUserName}
-          errorUserEmail={errorUserEmail}
-          errorUserPass={errorUserPass}
           errorUserSecondPass={errorUserSecondPass}
         />,
         <VerifyCodeStep
-          {...data}
+          {...userData}
           updateFields={updateFields}
           resendCode={resendCode}
         />,
-        <ExperienceStep {...data} updateFields={updateFields} />,
+        <ExperienceStep {...userData} updateFields={updateFields} />,
       ];
       break;
     case 2:
@@ -51,18 +42,14 @@ function generateFunnelSteps(
           {...groupData}
           updateGroupFields={updateGroupFields}
         />,
-        <ExperienceStep {...data} updateFields={updateFields} />,
+        <ExperienceStep {...userData} updateFields={updateFields} />,
         <UserInfoStep
-          {...data}
+          {...userData}
           updateFields={updateFields}
-          isVerified={isVerified}
-          errorUserName={errorUserName}
-          errorUserEmail={errorUserEmail}
-          errorUserPass={errorUserPass}
           errorUserSecondPass={errorUserSecondPass}
         />,
         <VerifyCodeStep
-          {...data}
+          {...userData}
           updateFields={updateFields}
           resendCode={resendCode}
         />,
@@ -70,33 +57,24 @@ function generateFunnelSteps(
       break;
     case 3:
       funnelSteps = [
-        <ExperienceStep {...data} updateFields={updateFields} />,
+        <ExperienceStep {...userData} updateFields={updateFields} />,
         <GroupThemesStep
           {...groupData}
           updateGroupFields={updateGroupFields}
         />,
-        <GroupInfoStep
-          {...groupData}
-          updateGroupFields={updateGroupFields}
-          errorGroupDescription={errorGroupDescription}
-          errorGroupName={errorGroupName}
-        />,
+        <GroupInfoStep {...groupData} updateGroupFields={updateGroupFields} />,
         <GroupPlanStep {...groupData} updateGroupFields={updateGroupFields} />,
         <UserInfoStep
-          {...data}
+          {...userData}
           updateFields={updateFields}
-          isVerified={isVerified}
-          errorUserName={errorUserName}
-          errorUserEmail={errorUserEmail}
-          errorUserPass={errorUserPass}
           errorUserSecondPass={errorUserSecondPass}
         />,
         <VerifyCodeStep
-          {...data}
+          {...userData}
           updateFields={updateFields}
           resendCode={resendCode}
         />,
-        <GroupDownloadStep {...data} updateFields={updateFields} />,
+        <GroupDownloadStep {...userData} updateFields={updateFields} />,
         <GroupSettingStep
           {...groupData}
           updateGroupFields={updateGroupFields}
@@ -109,28 +87,19 @@ function generateFunnelSteps(
           {...groupData}
           updateGroupFields={updateGroupFields}
         />,
-        <GroupInfoStep
-          {...groupData}
-          updateGroupFields={updateGroupFields}
-          errorGroupDescription={errorGroupDescription}
-          errorGroupName={errorGroupName}
-        />,
+        <GroupInfoStep {...groupData} updateGroupFields={updateGroupFields} />,
         <GroupPlanStep {...groupData} updateGroupFields={updateGroupFields} />,
         <UserInfoStep
-          {...data}
+          {...userData}
           updateFields={updateFields}
-          isVerified={isVerified}
-          errorUserName={errorUserName}
-          errorUserEmail={errorUserEmail}
-          errorUserPass={errorUserPass}
           errorUserSecondPass={errorUserSecondPass}
         />,
         <VerifyCodeStep
-          {...data}
+          {...userData}
           updateFields={updateFields}
           resendCode={resendCode}
         />,
-        <GroupDownloadStep {...data} updateFields={updateFields} />,
+        <GroupDownloadStep {...userData} updateFields={updateFields} />,
         <GroupSettingStep
           {...groupData}
           updateGroupFields={updateGroupFields}
@@ -144,5 +113,3 @@ function generateFunnelSteps(
 
   return funnelSteps;
 }
-
-export default generateFunnelSteps;

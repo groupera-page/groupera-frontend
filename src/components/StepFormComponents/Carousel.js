@@ -38,8 +38,8 @@ export default function Carousel({ imageData, img, updateGroupFields }) {
                   publicId={item}
                   className={
                     selectedImage === item
-                      ? "rounded-md border-2 border-blue-500"
-                      : "rounded-md"
+                      ? "rounded-md border-2 border-blue-500 cursor-pointer"
+                      : "rounded-md cursor-pointer"
                   }
                   onClick={() => {
                     updateGroupFields({ img: item });

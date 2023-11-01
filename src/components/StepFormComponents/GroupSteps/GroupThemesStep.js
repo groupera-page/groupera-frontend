@@ -18,7 +18,7 @@ const themeOptions = [
   { title: "Andere*", value: "Andere*" },
 ];
 
-export default function GrouThemesForm({ theme, updateGroupFields }) {
+export default function GroupThemesStep({ theme, updateGroupFields }) {
   return (
     <div className="">
       <h2 className="mb-4">Für welche Themen suchst du Gruppen?</h2>

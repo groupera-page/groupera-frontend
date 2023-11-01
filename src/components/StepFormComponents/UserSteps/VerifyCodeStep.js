@@ -15,6 +15,7 @@ export default function VerifyCodeStep({ updateFields, resendCode }) {
     }
   };
 
+  function resendCodeHandler() {}
   return (
     <div>
       <h2 className=" mt-">Verifiziere deine Emailadresse</h2>
@@ -38,7 +39,7 @@ export default function VerifyCodeStep({ updateFields, resendCode }) {
         ))}
       </div>
       <div className="flex justify-center">
-        <span className="text-linkblue" onClick={resendCode}>
+        <span className="text-linkblue" onClick={resendCodeHandler}>
           Code erneut senden
         </span>
       </div>

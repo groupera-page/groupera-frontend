@@ -5,7 +5,7 @@ import { AiOutlineWarning } from "react-icons/ai";
 import "react-datepicker/dist/react-datepicker.css";
 import "./datepicker-override.css";
 import { differenceInYears } from "date-fns";
-import CustomDatePicker from "./customDatePicker";
+import CustomDatePicker from "./BirthDatePicker";
 
 export default function UserInfoStep({
   username,
@@ -14,22 +14,23 @@ export default function UserInfoStep({
   passwordCheck,
   updateFields,
   gender,
-  isVerified,
+
   age,
   birthDate,
   isMinor,
   isAccepted,
+  emailError,
   errorUserName,
   errorUserEmail,
   errorUserPass,
   errorUserSecondPass,
 }) {
   const [selectedDate, setSelectedDate] = useState(new Date());
-
   const [passwordError, setPasswordError] = useState("");
   const [passwordCheckState, setPasswordCheckState] = useState(false);
 
   useEffect(() => {
+    updateFields({ emailError: "Email error" });
     updateFields({ isAccepted: "" });
     if (birthDate !== "") {
       setSelectedDate(birthDate);
@@ -113,11 +114,8 @@ export default function UserInfoStep({
             name="email"
             value={email}
             onChange={(e) => updateFields({ email: e.target.value })}
-            className={`w-full p-2 border rounded-md placeholder-primaryText bg-primaryBg${
-              isVerified ? "text-gray-500" : ""
-            }`}
+            className={`w-full p-2 border rounded-md placeholder-primaryText bg-primaryBg$`}
             placeholder="Email"
-            disabled={isVerified ? true : false}
           />
         </div>
         {errorUserEmail && email.length < 1 && (
@@ -213,7 +211,7 @@ export default function UserInfoStep({
                   className="text-red text-primarybg"
                   size={32}
                 />
-                <span className="ml-2">passwords do not match</span>{" "}
+                <span className="ml-2">Passwörter stimmen nicht überein</span>{" "}
               </div>
             </div>
           </div>

@@ -2,67 +2,48 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import logoSvg from "../assets/imgLogos/logoNoBg.svg";
-import UserInfoStep from "./StepFormComponents/UserSteps/UserInfoStep";
 import VerifyCodeStep from "./StepFormComponents/UserSteps/VerifyCodeStep";
 import RegStepper from "./StepFormComponents/RegStepper";
 import useMultiStepForm from "./StepFormComponents/useMultiStepForm";
-import GroupSettingStep from "./StepFormComponents/GroupSteps/GroupSettingStep";
-import GroupInfoStep from "./StepFormComponents/GroupSteps/GroupInfoStep";
 import { AiOutlineWarning } from "react-icons/ai";
-import FunnelSwitch from "./FunnelSwitch";
+import FunnelSteps from "./FunnelSteps";
 import { userDataInit, groupDataInit } from "./StepFormComponents/initData";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 
-export default function Funnel({ FunnelIndex }) {
+export default function RegistrationFunnelCard({ funnelIndex }) {
   const [userData, setUserData] = useState(userDataInit);
   const [groupData, setGroupData] = useState(groupDataInit);
   const [errorMessage, setErrorMessage] = useState(undefined);
-  const [isEditing, setIsEditing] = useState(false);
   const [isVerified, setisVerified] = useState(false);
   const [currentUser, setCurrentUser] = useState("");
-  const [currentUserEmail, setCurrentUserEmail] = useState("");
   const navigate = useNavigate();
-  const [errorGroupDescription, setErrorGroupDescription] = useState("");
-  const [errorGroupName, setErrorGroupName] = useState("");
-  const [errorUserName, setErrorUserName] = useState("");
-  const [errorUserEmail, setErrorUserEmail] = useState("");
-  const [errorUserPass, setErrorUserPass] = useState("");
-  const [errorUserSecondPass, setErrorUserSecondPass] = useState("");
-
   localStorage.clear();
 
   useEffect(() => {
     const isVerified = JSON.parse(localStorage.getItem("isVerified")) || false;
     setisVerified(isVerified);
-    const isEditing = JSON.parse(localStorage.getItem("isEditing")) || false;
-    setIsEditing(isEditing);
     const currentUser = JSON.parse(localStorage.getItem("currentUser")) || "";
     setCurrentUser(currentUser);
-    const currentUserEmail =
-      JSON.parse(localStorage.getItem("currentUserEmail")) || "";
-    setCurrentUserEmail(currentUserEmail);
     const storedStepIndex = JSON.parse(localStorage.getItem("stepIndex"));
     goTo(storedStepIndex);
   }, []);
 
-  const funnelSteps = FunnelSwitch(
-    FunnelIndex,
+  const funnelSteps = FunnelSteps(
+    funnelIndex,
     userData,
     updateFields,
     updateGroupFields,
-    isVerified,
     groupData,
-    resendCode,
-    errorGroupDescription,
-    errorGroupName,
-    errorUserName,
-    errorUserEmail,
-    errorUserPass,
-    errorUserSecondPass
+    resendCode
   );
-
+  //Create Hook to handle multistep form
   const { steps, currentStepIndex, step, back, next, goTo, isLastStep } =
     useMultiStepForm(funnelSteps);
+
+  // Get code verification index from the current funnel
+  const verifyCodeIndex = funnelSteps.findIndex(
+    (component) => component.type === VerifyCodeStep
+  );
 
   useEffect(() => {
     localStorage.setItem("stepIndex", JSON.stringify(currentStepIndex));
@@ -82,45 +63,19 @@ export default function Funnel({ FunnelIndex }) {
       return updatedData;
     });
   }
-
+  console.log(step.type.name);
   function resendCode() {
     //Implement when backend is done
     console.log("Resent code -");
   }
 
-  // Get indexes from the current funnel
-  const UserInfoStepIndex = funnelSteps.findIndex(
-    (component) => component.type === UserInfoStep
-  );
-  const verifyCodeIndex = funnelSteps.findIndex(
-    (component) => component.type === VerifyCodeStep
-  );
-  const GroupSettingIndex = funnelSteps.findIndex(
-    (component) => component.type === GroupSettingStep
-  );
-
-  const GroupInfoIndex = funnelSteps.findIndex(
-    (component) => component.type === GroupInfoStep
-  );
-  const stepAfterVerify = verifyCodeIndex + 1;
-
   function handleBackButton() {
-    setIsEditing(true);
-    localStorage.setItem("isEditing", JSON.stringify(true));
     back(1);
     setErrorMessage("");
-    setErrorGroupDescription(null);
-    setErrorGroupName(null);
-    setErrorUserEmail(null);
-    setErrorUserPass(null);
-    setErrorUserSecondPass(null);
-    setErrorUserName(null);
   }
 
   const handleGroup = async (e) => {
     e.preventDefault();
-    console.log("CLICKED - CREATING GROUP");
-
     // Format date string to backend
     const newFormatDay = new Date(groupData.day).toISOString().slice(0, 10);
     const requestGroupBody = {
@@ -131,9 +86,7 @@ export default function Funnel({ FunnelIndex }) {
       img: groupData.img,
       date: newFormatDay,
       frequency: groupData.freq,
-      // when: groupData.when,
     };
-
     try {
       const url = `http://localhost:5005/group/create/${userData.email}`;
       await axios.post(url, requestGroupBody);
@@ -153,51 +106,54 @@ export default function Funnel({ FunnelIndex }) {
   const handleUser = async (e) => {
     e.preventDefault();
 
-    if (currentStepIndex === GroupInfoIndex) {
-      // if (groupData.preventNext === true) {
-      //   return;
-      // }
-
+    //Group error checks
+    if (step.type.name === "GroupInfoStep") {
       if (groupData.name.length < 3) {
-        setErrorGroupName("Bitte geben Sie Ihren Gruppenname an.");
-
+        updateGroupFields({
+          errorGroupName: "Bitte geben Sie Ihren Gruppenname an.",
+        });
         return;
       }
 
       if (groupData.description.length < 3) {
-        setErrorGroupDescription("Bitte geben Sie mindestens drei Zeichen ein");
+        updateGroupFields({
+          errorGroupDescription: "Bitte geben Sie mindestens drei Zeichen ein",
+        });
         return;
       }
     }
-
-    if (currentStepIndex === UserInfoStepIndex) {
+    if (step.type.name === "UserInfoStep") {
       if (userData.username.length < 3) {
-        setErrorUserName("Bitte geben Sie Ihren Username an");
+        updateFields({
+          errorUserName: "Bitte geben Sie Ihren Username an.",
+        });
         return;
       }
-
+      //User error checks
       if (userData.email.length < 1) {
-        setErrorUserEmail("Bitte geben Sie eine E-Mail Adresse ein");
+        updateFields({
+          errorUserEmail: "Bitte geben Sie eine E-Mail Adresse ein.",
+        });
+
         return;
       }
 
       if (userData.password.length < 1) {
-        setErrorUserPass("Bitte geben Sie Ihr Passwort an.");
+        updateFields({
+          errorUserPass: "Bitte geben Sie Ihr Passwort an.",
+        });
+
         return;
       }
 
-      if (userData.password.length < 1) {
-        setErrorUserPass("Bitte geben Sie Ihr Passwort an.");
-        return;
-      }
-
+      //******************* */
       if (userData.isMinor === true) {
         setErrorMessage("Du musst älter als 18 Jahre sein.");
         return;
       }
 
-      if (userData.password !== userData.checkPassword) {
-        setErrorMessage("Du musst älter als 18 Jahre sein.");
+      if (userData.password !== userData.passwordCheck) {
+        setErrorMessage("Passwörter stimmen nicht überein");
         return;
       }
 
@@ -207,19 +163,17 @@ export default function Funnel({ FunnelIndex }) {
       }
     }
 
-    if (currentStepIndex === verifyCodeIndex) {
-      const codeString = userData.code.join("");
+    if (step.type.name === "VerifyCodeStep") {
+      const codeStringJoined = userData.code.join("");
+      const codeString =
+        codeStringJoined === "" ? "-1-1-1-1" : codeStringJoined;
       try {
-        console.log("My code -", codeString);
         const url = `http://localhost:5005/user/verified`;
         const response = await axios.post(url, { code: codeString });
-
         if (response.status === 200) {
-          // const userInfo = response.data;
           const userInfo = await axios.get(
             `http://localhost:5005/user/${userData.email}`
           );
-          console.log("User found", userInfo.data._id);
           setCurrentUser(userInfo.data._id);
           localStorage.setItem(
             "currentUser",
@@ -233,23 +187,20 @@ export default function Funnel({ FunnelIndex }) {
             localStorage.clear();
             navigate("/login");
           }
+
           return next(1);
         } else {
           setErrorMessage("Falscher Verifizierungscode.");
           return;
         }
       } catch (error) {
-        // Handle error if the request fails
-        console.log("ERROR EMAIL");
         console.error("Error:", error);
         setErrorMessage("Error occurred during verification.");
         return;
       }
     }
 
-    if (currentStepIndex !== UserInfoStepIndex && !isLastStep) {
-      setIsEditing(false);
-      localStorage.setItem("isEditing", JSON.stringify(false));
+    if (step.type.name !== "UserInfoStep" && !isLastStep) {
       setErrorMessage("");
       return next(1);
     }
@@ -258,72 +209,35 @@ export default function Funnel({ FunnelIndex }) {
       username: userData.username,
       email: userData.email,
       password: userData.password,
-      // gender: userData.gender,
       moderator: userData.moderator,
       isAccepted: userData.terms,
-      // experience: userData.experience,
     };
 
     try {
-      if (!isEditing) {
-        if (!isVerified) {
-          console.log("CREATE new user");
-          await axios.post(`http://localhost:5005/user/signup`, requestBody);
-          // setisIsEditing(false);
-          setErrorMessage("");
-          setCurrentUserEmail(userData.email);
-          localStorage.setItem(
-            "currentUserEmail",
-            JSON.stringify(userData.email)
-          );
+      if (!isVerified) {
+        console.log("CREATE new user");
+        await axios.post(`http://localhost:5005/user/signup`, requestBody);
 
-          return next(1);
-        } else {
-          console.log("Updating");
+        setErrorMessage("");
 
-          await axios.put(
-            `http://localhost:5005/user/edit/${currentUser}`,
-            requestBody
-          );
-          // setisIsEditing(false);
-          if (isLastStep) {
-            localStorage.clear();
-
-            navigate("/login");
-          } else {
-            setErrorMessage("");
-            return next(1);
-          }
-        }
+        return next(1);
       } else {
-        if (currentUserEmail === userData.email) {
-          console.log("Editing current user");
-          const userInfo = await axios.get(
-            `http://localhost:5005/user/notverified/${userData.email}`
-          );
-          const response = await axios.put(
-            `http://localhost:5005/user/edit/${userInfo.data._id}`,
-            requestBody
-          );
-          setIsEditing(false);
-          localStorage.setItem("isEditing", JSON.stringify(false));
-          setErrorMessage("");
-          return next(1);
+        console.log("Update user");
+        await axios.put(
+          `http://localhost:5005/user/edit/${currentUser}`,
+          requestBody
+        );
+        if (isLastStep) {
+          localStorage.clear();
+          navigate("/login");
         } else {
-          console.log("Editing/ Creating new user");
-          await axios.post(`http://localhost:5005/user/signup`, requestBody);
-          setIsEditing(false);
-          localStorage.setItem("isEditing", JSON.stringify(false));
           setErrorMessage("");
-          setCurrentUserEmail(userData.email);
           return next(1);
         }
       }
     } catch (error) {
-      console.log("ERROR EMAIL?");
       const errorDescription = error.response.data.message;
       setErrorMessage(errorDescription);
-      // setErrorUser(errorDescription);
     }
   };
 
@@ -349,7 +263,7 @@ export default function Funnel({ FunnelIndex }) {
         </div>
         <form
           onSubmit={
-            currentStepIndex === GroupSettingIndex ? handleGroup : handleUser
+            step.type.name === "GroupSettingStep" ? handleGroup : handleUser
           }
           className="pb-4"
         >
@@ -381,7 +295,8 @@ export default function Funnel({ FunnelIndex }) {
               </div>
               <div className="flex gap-4 justify-end">
                 {currentStepIndex !== 0 &&
-                  stepAfterVerify !== currentStepIndex && (
+                  verifyCodeIndex !== currentStepIndex &&
+                  verifyCodeIndex + 1 !== currentStepIndex && (
                     <button
                       type="button"
                       onClick={handleBackButton}

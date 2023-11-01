@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import Funnel from "../components/FunnelCard";
+import RegistrationFunnelCard from "../components/RegistrationFunnelCard";
 import backgroundImage from "../assets/hands4.jpg";
 
 export default function RegistrationPage() {
@@ -25,10 +25,10 @@ export default function RegistrationPage() {
   return (
     <div className="">
       <div
-        className="bg-cover bg-center h-screen flex items-center justify-center "
+        className="bg-cover bg-center h-screen flex items-center justify-center"
         style={{ backgroundImage: `url(${backgroundImage})` }}
       >
-        <Funnel FunnelIndex={funnelIndex} />
+        <RegistrationFunnelCard funnelIndex={funnelIndex} />
       </div>
     </div>
   );

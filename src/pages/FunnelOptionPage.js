@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import backgroundImage from "../assets/hands4.jpg";
 import logoSvg from "../assets/imgLogos/logoNoBg.svg";
 import { BsArrowRight } from "react-icons/bs";
@@ -45,7 +45,7 @@ export default function Funnel2OptionPage() {
                 id={`radioOption${option.value}`}
                 name="options"
                 value={option.value}
-                checked={funnelChoice === option.value} // Compare with funnelChoice state
+                checked={funnelChoice === option.value}
                 onChange={(e) => {
                   setFunnelChoice(option.value);
                   console.log("Change");
@@ -61,8 +61,8 @@ export default function Funnel2OptionPage() {
             type="submit"
             onClick={(e) => {
               funnelChoice === 1
-                ? navigate("/registration-choice-join")
-                : navigate("/registration-choice-open");
+                ? navigate("/registration-option-join")
+                : navigate("/registration-option-create");
             }}
             className={`text-slate-100 hover:text-white  bg-primarypurple hover-bg-primarypurple-hover px-4 py-1 rounded-lg`}
           >

@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/LoginPage";
 import RegistrationPage from "./pages/RegistrationPage";
-import Funnel2OptionPage from "./pages/Funnel2OptionPage";
+import Funnel2OptionPage from "./pages/FunnelOptionPage";
 import EmailVerify from "./components/EmailVerify";
 function App() {
   return (

@@ -92,10 +92,6 @@ export default function LandingCard({ page, id }) {
           {errorMessage && <p className="text-red-500 mt-4">{errorMessage}</p>}
         </div>
       </div>
-
-      {/* <div className="flex xl:px-4 lg:w-1/2 items-center justify-center">
-        <img src={tree_lowres} alt="" className="rounded-md" />
-      </div> */}
     </div>
   );
 }

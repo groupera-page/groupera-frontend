@@ -1,4 +1,3 @@
-const today = new Date();
 const now = new Date();
 // Create default time slot 2 hours ahead of now
 now.setHours(now.getHours() + 2);
@@ -22,7 +21,10 @@ const userDataBlank = {
   birthDate: "",
   isMinor: true,
   moderator: "One",
-  emailError: "",
+  errorUserName: "",
+  errorUserEmail: "",
+  errorUserPass: "",
+  errorUserPassCheck: "",
 };
 
 const groupDataBlank = {
@@ -34,17 +36,17 @@ const groupDataBlank = {
   time: timeSlot,
   freq: "Einmalig",
   when: "",
-  day: today,
+  day: now,
   length: "1:00",
   token: "",
   moderator: "Ja",
   preventNext: false,
+  errorGroupName: "",
+  errorGroupDescription: "",
 };
 
 export const userDataInit = storedUserData ? storedUserData : userDataBlank;
-
 export const groupDataInit = storedGroupData ? storedGroupData : groupDataBlank;
 
 // export const userDataInit =  userDataBlank;
-
 // export const groupDataInit =  groupDataBlank;
