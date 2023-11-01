@@ -38,7 +38,10 @@ export default function LandingCard({ page, id }) {
   };
 
   return (
-    <div className="flex justify-center bg-primaryBg rounded p-12 bg-primaryBg/90 ">
+    <div
+      className="lg:sticky w-full h-full  lg:w-1/2 lg:h-5/6 overflow-y-scroll
+    px-4 rounded md:shadow-md bg-primaryBg md:p-8 md:bg-primaryBg/80"
+    >
       <div className="lg:flex  justify-center">
         {/* <div className="lg:flex lg:w-1/2 justify-center"> */}
         <div className="flex flex-col items-center mt-10 gap-5">

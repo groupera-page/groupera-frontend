@@ -4,7 +4,7 @@ export default function SignupPage() {
   return (
     <div className="">
       <div
-        className="bg-cover bg-center h-screen flex items-center justify-center"
+        className="bg-cover bg-center h-screen flex items-center justify-center "
         style={{
           backgroundImage: `url(${backgroundImage})`,
         }}

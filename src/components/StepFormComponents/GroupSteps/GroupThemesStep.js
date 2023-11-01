@@ -38,7 +38,7 @@ export default function GrouThemesForm({ theme, updateGroupFields }) {
               value={option.value}
               checked={theme === option.value}
               onChange={(e) => updateGroupFields({ theme: e.target.value })}
-              className="mr-1 absolute end-1 md:end-16"
+              className="mr-1 absolute end-1 md:end-0 lg:end-16"
             />
           </label>
         ))}

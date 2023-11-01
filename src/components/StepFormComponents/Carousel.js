@@ -21,8 +21,8 @@ export default function Carousel({ imageData, img, updateGroupFields }) {
   return (
     <div className="flex">
       <MdChevronLeft
-        className="cursor-pointer opacity-60 hover:opacity-100 z-10 hidden lg:block translate-y-20"
-        size={150}
+        className="cursor-pointer opacity-60 hover:opacity-100 z-10 hidden lg:block "
+        size={100}
         onClick={() => slideScroll("left")}
       />
       <div
@@ -32,7 +32,7 @@ export default function Carousel({ imageData, img, updateGroupFields }) {
         <div className="flex gap-5 ">
           {imageData.map((item, index) => (
             <div key={index} className="text-center">
-              <div className="w-36 h-30 lg:w-80 lg:h-80">
+              <div className="w-36 h-30 ">
                 <Image
                   cloudName="di8ujuqae"
                   publicId={item}
@@ -52,8 +52,8 @@ export default function Carousel({ imageData, img, updateGroupFields }) {
         </div>
       </div>
       <MdChevronRight
-        className="cursor-pointer opacity-60 hover:opacity-100 hidden lg:block translate-y-20"
-        size={150}
+        className="cursor-pointer opacity-60 hover:opacity-100 hidden lg:block "
+        size={100}
         onClick={() => slideScroll("right")}
       />
     </div>

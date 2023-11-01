@@ -27,7 +27,7 @@ export default function ExperienceForm({ experience, updateFields }) {
               value={option}
               checked={experience === option}
               onChange={(e) => updateFields({ experience: e.target.value })}
-              className="mr-1 absolute end-1 md:end-16"
+              className="mr-1 absolute end-1 md:end-0 lg:end-16"
             />
           </label>
         ))}
