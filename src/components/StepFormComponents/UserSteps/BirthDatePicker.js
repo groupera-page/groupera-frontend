@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function CustomDatePicker({ selectedDate, handleDateChange }) {
+export default function BirthDatePicker({ selectedDate, handleDateChange }) {
   const daysInMonth = (year, month) => {
     return new Date(year, month + 1, 0).getDate();
   };
@@ -62,7 +62,7 @@ export default function CustomDatePicker({ selectedDate, handleDateChange }) {
   };
 
   return (
-    <div className="flex flex-between my- border border-primaryblue rounded-md p-2 py-3 w-fit gap-4 text-sm">
+    <div className="flex flex-between my- border border-primaryblue rounded-md p-2 py-2 w-fit gap-4 text-sm">
       <select
         value={new Date(selectedDate).getDate()}
         onChange={handleDayChange}

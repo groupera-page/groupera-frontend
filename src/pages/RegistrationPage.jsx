@@ -23,10 +23,10 @@ export default function RegistrationPage() {
       console.log("No page");
   }
   return (
-    <div className="">
+    <div className="md:py-20">
       <div
-        className="bg-cover bg-center h-screen flex items-center justify-center"
-        style={{ backgroundImage: `url(${backgroundImage})` }}
+        className="bg-cover bg-center flex items-center justify-center"
+        //  style={{ backgroundImage: `url(${backgroundImage})` }}
       >
         <RegistrationFunnelCard funnelIndex={funnelIndex} />
       </div>

@@ -3,7 +3,7 @@ import Carousel from "../Carousel";
 import axios from "axios";
 import { AiOutlineWarning } from "react-icons/ai";
 
-export default function GroupInfoForm({
+export default function GroupInfoStep({
   name,
   description,
   updateGroupFields,
@@ -15,8 +15,6 @@ export default function GroupInfoForm({
   const maxCharacters = 500;
   const [groupNames, setGroupNames] = useState([]);
   const [nameError, setNameError] = useState("");
-
-  //const [groupImage, setGroupImage] = useState("");
 
   const handleChange = (e) => {
     updateGroupFields({ description: e.target.value });
@@ -40,10 +38,14 @@ export default function GroupInfoForm({
   };
 
   useEffect(() => {
+    updateGroupFields({ errorGroupName: "" });
+    updateGroupFields({ errorGroupDescription: "" });
+
     const fetchData = async () => {
       try {
         const response = await axios.get(`http://localhost:5005/group/groups`);
-        const names = response.data.map((group) => group.name);
+        console.log(response);
+        const names = response.data.map((group) => group.description);
         setGroupNames(names);
       } catch (error) {
         console.error(error.response.data.message);
@@ -53,24 +55,6 @@ export default function GroupInfoForm({
     fetchData();
   }, []);
 
-  // const handleGroupImage = (e) => {
-  //   e.preventDefault();
-  //   const file = e.target.files[0];
-  //   TransformFile(file);
-  // };
-
-  // const TransformFile = (file) => {
-  //   const reader = new FileReader();
-  //   if (file) {
-  //     reader.readAsDataURL(file);
-  //     reader.onloadend = () => {
-  //       setGroupImage(reader.result);
-  //       updateGroupFields(reader.result);
-  //       console.log("Groupinfo", groupImage);
-  //     };
-  //   }
-  // };
-
   return (
     <div>
       <h2 className="">Beschreibe Deine Gruppe</h2>
@@ -78,8 +62,8 @@ export default function GroupInfoForm({
         Du kannst alle Angaben jederzeit in den Gruppeneinstellungen ändern
       </p>
       <h4 className=" mt-4">Wie soll deine Gruppe heißen?</h4>
-      <div className="relative">
-        <div className="mt-2 text-sm border-0 rounded-md relative">
+      <div className="">
+        <div className="mt-2 text-sm border-0 rounded-md">
           <input
             type="text"
             name="username"
@@ -87,9 +71,11 @@ export default function GroupInfoForm({
             onChange={(e) => {
               const newName = e.target.value;
               if (isGroupNameExists(newName)) {
+                console.log("EXISTS");
                 setNameError("Gruppenname existiert bereits.");
                 updateGroupFields({ name: newName });
                 updateGroupFields({ preventNext: true });
+                updateGroupFields({ errorGroupName: "Group exists" });
               } else {
                 setNameError("");
                 updateGroupFields({ name: newName });
@@ -98,26 +84,50 @@ export default function GroupInfoForm({
             }}
             className="w-full border rounded-md p-2 placeholder-primaryText bg-primaryBg border-primaryblue"
             placeholder="Name"
-            // pattern=".{3,}"
-            // title="Bitte geben Sie mindestens drei Zeichen ein"
             maxLength={maxNameCharacters}
           />
-          {nameError && (
-            <div className="absolute -bottom-12 left-1/3 transform -translate-x-1/2 rounded-md border-2">
-              <div className="bg-white p-1  text-primarypurple text-sm">
+
+          <div
+            className={`transform rounded-md border-2 transition-all ease-in-out duration-300 ${
+              errorGroupName && name.length < 3
+                ? "translate-y-0 opacity-100 "
+                : "-translate-y-2 opacity-0"
+            }`}
+          >
+            {errorGroupName && name.length < 3 && (
+              <div className="bg-white p-1 text-primarypurple text-sm">
                 <div className="flex items-center">
                   <AiOutlineWarning
-                    className="text-red text-primarybg"
+                    className="text-red text-primarybg "
                     size={32}
                   />
-                  <span className="ml-2">{nameError}</span>{" "}
+                  <span className="ml-2">{errorGroupName}</span>
                 </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
+          {/* <div
+            className={`transform rounded-md border-2 transition-all ease-in-out duration-300 ${
+              errorGroupName
+                ? "translate-y-0 opacity-100 "
+                : "-translate-y-2 opacity-0"
+            }`}
+          >
+            {errorGroupName && nameError && (
+              <div className="bg-white p-1 text-primarypurple text-sm">
+                <div className="flex items-center">
+                  <AiOutlineWarning
+                    className="text-red text-primarybg "
+                    size={32}
+                  />
+                  <span className="ml-2">{errorGroupName}</span>
+                </div>
+              </div>
+            )}
+          </div> */}
 
-          {errorGroupName && name.length < 3 && (
-            <div className="absolute -bottom-12 left-1/3 transform -translate-x-1/2 rounded-md border-2">
+          {/* {errorGroupName && name.length < 3 && (
+            <div className=" -bottom-12 left-1/3 transform -translate-x-1/2 rounded-md border-2">
               <div className="bg-white p-1 text-primarypurple text-sm">
                 <div className="flex items-center">
                   <AiOutlineWarning
@@ -128,14 +138,14 @@ export default function GroupInfoForm({
                 </div>
               </div>
             </div>
-          )}
+          )} */}
         </div>
         <p className="px-1 text-textLightGray">Min 3 Zeichen.</p>
       </div>
       <h4 className=" mt-4">Wie würdest du deine Gruppe beschreiben?</h4>
-      <div className="mt-2 text-smrounded-md">
+      <div className="mt-2 text-sm rounded-md">
         <textarea
-          name="username"
+          name="description"
           value={description}
           onChange={handleChange}
           className="w-full border border-primaryblue rounded-md p-2 placeholder-primaryText h-20 resize-none text-sm bg-primaryBg"
@@ -143,13 +153,15 @@ export default function GroupInfoForm({
           maxLength={maxCharacters}
         ></textarea>
       </div>
-      <div className="flex text-xs text-gray-500 mt-1 justify-end">
-        {description.length}/{maxCharacters}
-      </div>
-
-      <div className="relative">
+      <div
+        className={`transform rounded-md border-2 transition-all ease-in-out duration-300 ${
+          errorGroupDescription && description.length < 3
+            ? "-translate-y-2 opacity-100 "
+            : "-translate-y-2 opacity-0"
+        }`}
+      >
         {errorGroupDescription && description.length < 3 && (
-          <div className="absolute -top-16 left-1/3 transform -translate-x-1/2 rounded-md border-2">
+          <div className=" transform rounded-md ">
             <div className="bg-white p-1 text-primarypurple text-sm">
               <div className="flex items-center">
                 <AiOutlineWarning
@@ -162,6 +174,10 @@ export default function GroupInfoForm({
           </div>
         )}
       </div>
+      <div className="flex text-xs text-gray-500 justify-end">
+        {description.length}/{maxCharacters}
+      </div>
+
       <p className="my-2">
         Du kannst ein Bild aus unseren Vorschlägen aussuchen.{" "}
       </p>

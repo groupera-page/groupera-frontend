@@ -22,7 +22,7 @@ export default function Funnel2OptionPage() {
   return (
     <div
       className="bg-cover bg-center h-screen flex items-center justify-center "
-      style={{ backgroundImage: `url(${backgroundImage})` }}
+      // style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       <div
         className="lg:sticky w-full h-full  lg:w-1/2 lg:h-5/6 overflow-y-scroll

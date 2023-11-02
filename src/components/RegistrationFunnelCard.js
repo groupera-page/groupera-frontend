@@ -76,6 +76,7 @@ export default function RegistrationFunnelCard({ funnelIndex }) {
 
   const handleGroup = async (e) => {
     e.preventDefault();
+    console.log("CREATING GROUP");
     // Format date string to backend
     const newFormatDay = new Date(groupData.day).toISOString().slice(0, 10);
     const requestGroupBody = {
@@ -91,6 +92,7 @@ export default function RegistrationFunnelCard({ funnelIndex }) {
       const url = `http://localhost:5005/group/create/${userData.email}`;
       await axios.post(url, requestGroupBody);
       console.log(groupData);
+      console.log("CREATING GROUP");
       return next(1);
     } catch (error) {
       if (
@@ -165,6 +167,7 @@ export default function RegistrationFunnelCard({ funnelIndex }) {
 
     if (step.type.name === "VerifyCodeStep") {
       const codeStringJoined = userData.code.join("");
+      // Temporary - atm backend accepts any user with any code in the db
       const codeString =
         codeStringJoined === "" ? "-1-1-1-1" : codeStringJoined;
       try {
@@ -243,8 +246,8 @@ export default function RegistrationFunnelCard({ funnelIndex }) {
 
   return (
     <div
-      className="lg:sticky w-full h-full  lg:w-1/2 lg:h-5/6 overflow-y-scroll
-      px-4 rounded md:shadow-md bg-primaryBg md:p-8 "
+      className=" w-full h-screen md:w-1/2 lg:h-5/6 
+      px-4 rounded md:shadow-md bg-primaryBg md:p-4 "
     >
       <div className="pb-3">
         <img src={logoSvg} alt="logo" className="lg:w-40 w-28 p-2 pt-3" />
