@@ -1,7 +1,3 @@
-/* Add custom styles to override the default react-datepicker styles */
-
-/* datepicker.css */
-
 /* Style the datepicker container */
 .react-datepicker {
 
@@ -16,8 +12,6 @@
   border-bottom: 1px solid #ccc;
   font-size: 10px;
 }
-
-/* datepicker.css */
 
 /* Container style */
 .react-datepicker-wrapper {
@@ -48,7 +42,6 @@
   color: #f0f0f0;
 }
 
-
 .react-datepicker__header {
   background-color: #f0f0f0;
   background-color: white;
@@ -63,8 +56,6 @@
   border-left-color: #333;
 }
 
-
-
 .react-datepicker__day--today {
   font-weight: normal;
 }
@@ -76,5 +67,5 @@
 .react-datepicker__current-month {
   font-size: 18px;
   font-weight: light;
-  /* Adjust the font size as needed */
+
 }

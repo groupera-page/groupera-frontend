@@ -1,7 +1,7 @@
 import React from "react";
 import UserInfoStep from "./StepFormComponents/UserSteps/UserInfoStep";
-import VerifyCodeStep from "./StepFormComponents/UserSteps/VerifyCodeStep";
-import ExperienceStep from "./StepFormComponents/UserSteps/ExperienceStep";
+import UserVerifyCodeStep from "./StepFormComponents/UserSteps/UserVerifyCodeStep";
+import UserExperienceStep from "./StepFormComponents/UserSteps/UserExperienceStep";
 import GroupThemesStep from "./StepFormComponents/GroupSteps/GroupThemesStep";
 import GroupInfoStep from "./StepFormComponents/GroupSteps/GroupInfoStep";
 import GroupPlanStep from "./StepFormComponents/GroupSteps/GroupPlanStep";
@@ -28,12 +28,12 @@ export default function FunnelSteps(
           updateFields={updateFields}
           errorUserSecondPass={errorUserSecondPass}
         />,
-        <VerifyCodeStep
+        <UserVerifyCodeStep
           {...userData}
           updateFields={updateFields}
           resendCode={resendCode}
         />,
-        <ExperienceStep {...userData} updateFields={updateFields} />,
+        <UserExperienceStep {...userData} updateFields={updateFields} />,
       ];
       break;
     case 2:
@@ -42,13 +42,13 @@ export default function FunnelSteps(
           {...groupData}
           updateGroupFields={updateGroupFields}
         />,
-        <ExperienceStep {...userData} updateFields={updateFields} />,
+        <UserExperienceStep {...userData} updateFields={updateFields} />,
         <UserInfoStep
           {...userData}
           updateFields={updateFields}
           errorUserSecondPass={errorUserSecondPass}
         />,
-        <VerifyCodeStep
+        <UserVerifyCodeStep
           {...userData}
           updateFields={updateFields}
           resendCode={resendCode}
@@ -57,7 +57,7 @@ export default function FunnelSteps(
       break;
     case 3:
       funnelSteps = [
-        <ExperienceStep {...userData} updateFields={updateFields} />,
+        <UserExperienceStep {...userData} updateFields={updateFields} />,
         <GroupThemesStep
           {...groupData}
           updateGroupFields={updateGroupFields}
@@ -69,7 +69,7 @@ export default function FunnelSteps(
           updateFields={updateFields}
           errorUserSecondPass={errorUserSecondPass}
         />,
-        <VerifyCodeStep
+        <UserVerifyCodeStep
           {...userData}
           updateFields={updateFields}
           resendCode={resendCode}
@@ -94,7 +94,7 @@ export default function FunnelSteps(
           updateFields={updateFields}
           errorUserSecondPass={errorUserSecondPass}
         />,
-        <VerifyCodeStep
+        <UserVerifyCodeStep
           {...userData}
           updateFields={updateFields}
           resendCode={resendCode}

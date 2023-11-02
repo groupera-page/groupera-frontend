@@ -40,10 +40,10 @@ export default function LandingCard({ page, id }) {
 
   return (
     <div
-      className="lg:sticky w-full h-full  lg:w-1/2 lg:h-5/6 overflow-y-scroll
-    px-4 rounded md:shadow-md bg-primaryBg md:p-8 "
+      className=" w-full h-full fixed md:w-1/2 lg:h-fit
+      px-4 rounded md:shadow-md bg-primaryBg md:p-4 "
     >
-      <div className="lg:flex  justify-center">
+      <div className="lg:flex justify-center">
         {/* <div className="lg:flex lg:w-1/2 justify-center"> */}
         <div className="flex flex-col items-center mt-10 gap-5">
           <img src={logoSvg} alt="logo" className="w-60 mb-12" />
@@ -75,14 +75,17 @@ export default function LandingCard({ page, id }) {
             <div className="flex flex-col items-center ">
               <p className="my-8 ">
                 Du hast noch kein Konto?{" "}
-                <Link to={"/signup"} className="text-primarypurple">
+                <Link
+                  to={"/registration-option"}
+                  className="text-primarypurple"
+                >
                   Jetzt Registrieren
                 </Link>
               </p>
 
               <button
                 type="submit"
-                className={` items-center bg-primarypurple text-slate-100 hover:text-white p-2 rounded-md whitespace-nowrap transition-color duration-300 ease-in-out lg:text-base text-1xl`}
+                className={` mb-4 items-center bg-primarypurple text-slate-100 hover:text-white p-2 rounded-md whitespace-nowrap transition-color duration-300 ease-in-out lg:text-base text-1xl`}
               >
                 Anmelden
               </button>

@@ -1,4 +1,4 @@
-export default function ExperienceForm({ experience, updateFields }) {
+export default function UserExperienceStep({ experience, updateFields }) {
   const experienceOptions = [
     "Nein, ich hab noch nie an einer Gruppe teilgenommen.",
     "Ein wenig, ich habe schonmal an einer Gruppe teilgenommen.",

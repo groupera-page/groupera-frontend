@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import logoSvg from "../assets/imgLogos/logoNoBg.svg";
-import VerifyCodeStep from "./StepFormComponents/UserSteps/VerifyCodeStep";
+import UserVerifyCodeStep from "./StepFormComponents/UserSteps/UserVerifyCodeStep";
 import StepIndicator from "./StepFormComponents/StepIndicator";
 import useMultiStepForm from "./StepFormComponents/useMultiStepForm";
 import { AiOutlineWarning } from "react-icons/ai";
@@ -43,7 +43,7 @@ export default function RegistrationFunnelCard({ funnelIndex }) {
 
   // Get code verification index from the current funnel
   const verifyCodeIndex = funnelSteps.findIndex(
-    (component) => component.type === VerifyCodeStep
+    (component) => component.type === UserVerifyCodeStep
   );
 
   useEffect(() => {
@@ -109,7 +109,7 @@ export default function RegistrationFunnelCard({ funnelIndex }) {
     e.preventDefault();
 
     //Group error checks
-    if (step.type.name === "GroupInfoStep") {
+    if (step && step.type.name === "GroupInfoStep") {
       if (groupData.name.length < 3) {
         updateGroupFields({
           errorGroupName: "Bitte geben Sie Ihren Gruppenname an.",
@@ -124,7 +124,7 @@ export default function RegistrationFunnelCard({ funnelIndex }) {
         return;
       }
     }
-    if (step.type.name === "UserInfoStep") {
+    if (step && step.type.name === "UserInfoStep") {
       if (userData.username.length < 3) {
         updateFields({
           errorUserName: "Bitte geben Sie Ihren Username an.",
@@ -165,11 +165,10 @@ export default function RegistrationFunnelCard({ funnelIndex }) {
       }
     }
 
-    if (step.type.name === "VerifyCodeStep") {
-      const codeStringJoined = userData.code.join("");
+    if (step && step.type.name === "UserVerifyCodeStep") {
+      const codeString = userData.code.join("");
       // Temporary - atm backend accepts any user with any code in the db
-      const codeString =
-        codeStringJoined === "" ? "-1-1-1-1" : codeStringJoined;
+
       try {
         const url = `http://localhost:5005/user/verified`;
         const response = await axios.post(url, { code: codeString });
@@ -203,7 +202,7 @@ export default function RegistrationFunnelCard({ funnelIndex }) {
       }
     }
 
-    if (step.type.name !== "UserInfoStep" && !isLastStep) {
+    if (step && step.type.name !== "UserInfoStep" && !isLastStep) {
       setErrorMessage("");
       return next(1);
     }
@@ -212,8 +211,8 @@ export default function RegistrationFunnelCard({ funnelIndex }) {
       username: userData.username,
       email: userData.email,
       password: userData.password,
-      moderator: userData.moderator,
-      isAccepted: userData.terms,
+      // moderator: userData.moderator,
+      // isAccepted: userData.terms,
     };
 
     try {
@@ -225,7 +224,7 @@ export default function RegistrationFunnelCard({ funnelIndex }) {
 
         return next(1);
       } else {
-        console.log("Update user");
+        console.log("Update user", currentUser);
         await axios.put(
           `http://localhost:5005/user/edit/${currentUser}`,
           requestBody
@@ -249,7 +248,7 @@ export default function RegistrationFunnelCard({ funnelIndex }) {
       className=" w-full h-screen md:w-1/2 lg:h-5/6 
       px-4 rounded md:shadow-md bg-primaryBg md:p-4 "
     >
-      <div className="pb-3">
+      <div className="pb-3 flex justify-center">
         <img src={logoSvg} alt="logo" className="lg:w-40 w-28 p-2 pt-3" />
       </div>
       <div className="flex flex-col gap-2">
@@ -266,7 +265,9 @@ export default function RegistrationFunnelCard({ funnelIndex }) {
         </div>
         <form
           onSubmit={
-            step.type.name === "GroupSettingStep" ? handleGroup : handleUser
+            step && step.type.name === "GroupSettingStep"
+              ? handleGroup
+              : handleUser
           }
           className="pb-4"
         >

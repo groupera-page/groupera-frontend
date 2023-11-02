@@ -25,8 +25,8 @@ export default function Funnel2OptionPage() {
       // style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       <div
-        className="lg:sticky w-full h-full  lg:w-1/2 lg:h-5/6 overflow-y-scroll
-      px-4 rounded md:shadow-md bg-primaryBg md:p-8 "
+        className=" w-full h-screen md:w-1/2 lg:h-5/6 
+      px-4 rounded md:shadow-md bg-primaryBg md:p-4 "
       >
         <div className="pb-3">
           <img src={logoSvg} alt="logo" className="lg:w-40 w-28 p-2 pt-3" />

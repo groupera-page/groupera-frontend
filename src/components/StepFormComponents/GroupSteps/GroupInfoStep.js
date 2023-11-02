@@ -44,8 +44,8 @@ export default function GroupInfoStep({
     const fetchData = async () => {
       try {
         const response = await axios.get(`http://localhost:5005/group/groups`);
-        console.log(response);
-        const names = response.data.map((group) => group.description);
+        // console.log(response);
+        const names = response.data.map((group) => group.name);
         setGroupNames(names);
       } catch (error) {
         console.error(error.response.data.message);
@@ -106,14 +106,14 @@ export default function GroupInfoStep({
               </div>
             )}
           </div>
-          {/* <div
-            className={`transform rounded-md border-2 transition-all ease-in-out duration-300 ${
+          <div
+            className={`transform rounded-md transition-all ease-in-out duration-300 ${
               errorGroupName
                 ? "translate-y-0 opacity-100 "
                 : "-translate-y-2 opacity-0"
             }`}
           >
-            {errorGroupName && nameError && (
+            {nameError && (
               <div className="bg-white p-1 text-primarypurple text-sm">
                 <div className="flex items-center">
                   <AiOutlineWarning
@@ -124,7 +124,7 @@ export default function GroupInfoStep({
                 </div>
               </div>
             )}
-          </div> */}
+          </div>
 
           {/* {errorGroupName && name.length < 3 && (
             <div className=" -bottom-12 left-1/3 transform -translate-x-1/2 rounded-md border-2">

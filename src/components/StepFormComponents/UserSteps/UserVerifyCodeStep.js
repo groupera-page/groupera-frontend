@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 
-export default function VerifyCodeStep({ updateFields, resendCode }) {
+export default function UserVerifyCodeStep({ updateFields, resendCode }) {
   const [verificationCode, setVerificationCode] = useState(["", "", "", ""]);
   const inputRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
 

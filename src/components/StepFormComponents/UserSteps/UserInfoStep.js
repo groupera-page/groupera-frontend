@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { AiOutlineWarning } from "react-icons/ai";
 
 import "react-datepicker/dist/react-datepicker.css";
-import "./datepicker-override.css";
+import "../datepicker-override.css";
 import { differenceInYears } from "date-fns";
-import BirthDatePicker from "./BirthDatePicker";
+import BirthDatePicker from "../BirthDatePicker";
 
 export default function UserInfoStep({
   username,
