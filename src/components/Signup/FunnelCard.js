@@ -246,7 +246,7 @@ export default function FunnelCard({ funnelIndex }) {
 
   return (
     <div
-      className=" w-full h-screen md:w-1/2 lg:h-5/6 
+      className="w-full md:w-1/2 lg:h-5/6 
       px-4 rounded md:shadow-md bg-primaryBg md:p-4 "
     >
       <div className="pb-3 flex justify-center">

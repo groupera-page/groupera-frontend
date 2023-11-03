@@ -62,8 +62,8 @@ export default function FunnelToSignupPage() {
             type="submit"
             onClick={(e) => {
               funnelChoice === 1
-                ? navigate("/registration-option-join")
-                : navigate("/registration-option-create");
+                ? navigate("/signup-option-join")
+                : navigate("/signup-option-create");
             }}
             className={`text-slate-100 hover:text-white  bg-primarypurple hover-bg-primarypurple-hover px-4 py-1 rounded-lg`}
           >

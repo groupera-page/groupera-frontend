@@ -75,10 +75,7 @@ export default function LandingCard({ page, id }) {
             <div className="flex flex-col items-center ">
               <p className="my-8 ">
                 Du hast noch kein Konto?{" "}
-                <Link
-                  to={"/registration-option"}
-                  className="text-primarypurple"
-                >
+                <Link to={"/signup-option"} className="text-primarypurple">
                   Jetzt Registrieren
                 </Link>
               </p>
