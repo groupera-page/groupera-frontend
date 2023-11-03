@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import RegistrationFunnelCard from "../components/RegistrationFunnelCard";
+import FunnelCard from "../components/Signup/FunnelCard";
 import backgroundImage from "../assets/hands4.jpg";
 
 export default function RegistrationPage() {
@@ -7,16 +7,16 @@ export default function RegistrationPage() {
   let funnelIndex;
   // Funnels 1-4
   switch (location.pathname) {
-    case "/registration-user":
+    case "/signup-user":
       funnelIndex = 1;
       break;
-    case "/registration-option-join":
+    case "/signup-option-join":
       funnelIndex = 2;
       break;
-    case "/registration-option-create":
+    case "/signup-option-create":
       funnelIndex = 3;
       break;
-    case "/registration-user-group":
+    case "/signup-user-group":
       funnelIndex = 4;
       break;
     default:
@@ -28,7 +28,7 @@ export default function RegistrationPage() {
         className="bg-cover bg-center flex items-center justify-center"
         //  style={{ backgroundImage: `url(${backgroundImage})` }}
       >
-        <RegistrationFunnelCard funnelIndex={funnelIndex} />
+        <FunnelCard funnelIndex={funnelIndex} />
       </div>
     </div>
   );

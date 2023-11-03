@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import logoSvg from "../assets/imgLogos/logoNoBg.svg";
+import logoSvg from "../../assets/imgLogos/logoNoBg.svg";
 import UserVerifyCodeStep from "./StepFormComponents/UserSteps/UserVerifyCodeStep";
 import StepIndicator from "./StepFormComponents/StepIndicator";
 import useMultiStepForm from "./StepFormComponents/useMultiStepForm";
@@ -9,9 +9,9 @@ import { AiOutlineWarning } from "react-icons/ai";
 import FunnelSteps from "./StepFormComponents/FunnelSteps";
 import { userDataInit, groupDataInit } from "./StepFormComponents/initData";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
-import PrimaryButton from "./Buttons/PrimaryButton";
+import PrimaryButton from "../Buttons/PrimaryButton";
 
-export default function RegistrationFunnelCard({ funnelIndex }) {
+export default function FunnelCard({ funnelIndex }) {
   const [userData, setUserData] = useState(userDataInit);
   const [groupData, setGroupData] = useState(groupDataInit);
   const [errorMessage, setErrorMessage] = useState(undefined);

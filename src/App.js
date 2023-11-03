@@ -1,27 +1,21 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/LoginPage";
-import RegistrationPage from "./pages/RegistrationPage";
-import FunnelOptionPage from "./pages/FunnelOptionPage";
+import SignupPage from "./pages/SignupPage";
+import FunnelToSignupPage from "./pages/FunnelToSignupPage";
 import EmailVerify from "./components/EmailVerify";
 function App() {
   return (
     <Router>
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route path="/registration-user" element={<RegistrationPage />} />
+        <Route path="/signup-user" element={<SignupPage />} />
         {/* Funnel nr 2 starts with options before registration */}
-        <Route path="/registration-option" element={<FunnelOptionPage />} />
-        <Route
-          path="/registration-option-join"
-          element={<RegistrationPage />}
-        />
-        <Route
-          path="/registration-option-create"
-          element={<RegistrationPage />}
-        />
+        <Route path="/signup-option" element={<FunnelToSignupPage />} />
+        <Route path="/signup-option-join" element={<SignupPage />} />
+        <Route path="/signup-option-create" element={<SignupPage />} />
         {/*  */}
-        <Route path="/registration-user-group" element={<RegistrationPage />} />
+        <Route path="/signup-user-group" element={<SignupPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/user/:id/verify/:token" element={<EmailVerify />} />
       </Routes>
