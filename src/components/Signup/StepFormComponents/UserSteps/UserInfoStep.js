@@ -4,10 +4,12 @@ import { AiOutlineWarning } from "react-icons/ai";
 import "react-datepicker/dist/react-datepicker.css";
 import "../datepicker-override.css";
 import { differenceInYears } from "date-fns";
-import BirthDatePicker from "../BirthDatePicker";
+import DateScroller from "../DateScroller";
 import TextInput from "../../../UserInputs/TextInput";
 import InputError from "../../../UserInputs/InputError";
 import PasswordInput from "../../../UserInputs/PasswordInput";
+import RadioButton from "../../../UserInputs/RadioButton";
+import Checkbox from "../../../UserInputs/Checkbox";
 export default function UserInfoStep({
   username,
   email,
@@ -15,7 +17,6 @@ export default function UserInfoStep({
   passwordCheck,
   updateFields,
   gender,
-
   age,
   birthDate,
   isMinor,
@@ -151,80 +152,47 @@ export default function UserInfoStep({
       />
 
       <div className="flex justify-between gap-2 text-sm mt-4">
-        <label
-          htmlFor="radioOption1"
-          className="relative w-1/3 cursor-pointer border border-primaryblue rounded-md text-sm p-2 pl-4 flex items-center gap-4 "
-        >
-          <div>Weiblich</div>
-          <input
-            type="radio"
-            id="radioOption1"
-            name="options"
-            value="Weiblich"
-            checked={gender === "Weiblich"}
-            onChange={(e) => updateFields({ gender: e.target.value })}
-            className="mr-1 absolute end-1 md:end-6"
-          />
-        </label>
-        <label
-          htmlFor="radioOption2"
-          className="relative w-1/3 cursor-pointer border border-primaryblue rounded-md text-sm p-2 pl-4 flex items-center gap-4 "
-        >
-          <div>Männlich</div>
-          <input
-            type="radio"
-            id="radioOption2"
-            name="options"
-            value="Mannlich"
-            checked={gender === "Mannlich"}
-            onChange={(e) => updateFields({ gender: e.target.value })}
-            className="mr-1 absolute end-1 md:end-6"
-          />
-        </label>
-
-        <label
-          htmlFor="radioOption3"
-          className="relative w-1/3 cursor-pointer border border-primaryblue rounded-md text-sm p-2 pl-4 flex items-center gap-4 "
-        >
-          <div>Divers</div>
-          <input
-            type="radio"
-            id="radioOption3"
-            name="options"
-            value="Divers"
-            checked={gender === "Divers"}
-            onChange={(e) => updateFields({ gender: e.target.value })}
-            className="mr-1 absolute end-1 md:end-6"
-          />
-        </label>
+        <RadioButton
+          id={"genderOption1"}
+          title={"Weiblich"}
+          checkedVariable={gender}
+          onChange={(e) => updateFields({ gender: e.target.value })}
+        />
+        <RadioButton
+          id={"genderOption2"}
+          title={"Männlich"}
+          checkedVariable={gender}
+          onChange={(e) => updateFields({ gender: e.target.value })}
+        />
+        <RadioButton
+          id={"genderOption3"}
+          title={"Divers"}
+          checkedVariable={gender}
+          onChange={(e) => updateFields({ gender: e.target.value })}
+        />
       </div>
-      <h4 className="pt-2">Geburtsdatum</h4>
-      <div className="flex flex-row">
-        <div className="flex gap-2 pb-2">
-          <BirthDatePicker
+      <div className="flex-col">
+        <div className="flex gap-2 pb-2 justify-center mt-4">
+          <DateScroller
             selectedDate={selectedDate}
             handleDateChange={handleDateChange}
             age={age}
+            label={"Geburtsdatum"}
           />
-          {/* {isMinor && (
-          <div className=" rounded-md border-2">
-            <div className="bg-white px-1 text-primarypurple text-xs">
-              <div className="flex items-center">
-                <AiOutlineWarning
-                  className="text-red text-primarybg"
-                  size={42}
-                />
-                <span className="ml-2">
-                  Um teilzunehmen, musst du über 18 Jahre alt sein.
-                </span>{" "}
-              </div>
-            </div>
-          </div>
-        )} */}
         </div>
-        <div className="flex ml-20">
-          <div className="flex gap-3 items-start relative">
-            <input
+      </div>
+      <div className="flex ml-2">
+        <div className="flex items-start relative">
+          <Checkbox
+            value={isAccepted}
+            onChange={(e) => {
+              updateFields({
+                isAccepted: e.target.checked ? "accepted" : "",
+              });
+              console.log("clicked");
+            }}
+          />
+          {/* <input
               type="checkbox"
               name="isAccepted"
               value={isAccepted}
@@ -232,22 +200,22 @@ export default function UserInfoStep({
                 updateFields({ isAccepted: e.target.checked ? "accepted" : "" })
               }
               className="absolute top-1 -left-5"
-            />
+            /> */}
 
-            <p className="text-xs ">
-              Ich akzeptiere die{" "}
-              <Link to={"/"} className="text-primarypurple">
-                Allgemeinen Geschäftsbedingungen
-              </Link>{" "}
-              und die{" "}
-              <Link to={"/"} className="text-primarypurple">
-                Datenschutzerklärung{" "}
-              </Link>
-              von Groupera
-            </p>
-          </div>
+          <p className="text-xs ">
+            Ich akzeptiere die{" "}
+            <Link to={"/"} className="text-primarypurple">
+              Allgemeinen Geschäftsbedingungen
+            </Link>{" "}
+            und die{" "}
+            <Link to={"/"} className="text-primarypurple">
+              Datenschutzerklärung{" "}
+            </Link>
+            von Groupera
+          </p>
         </div>
       </div>
+
       {/* <div className="flex flex-col ">
         <p className=" my-5">
           Bereits registriert?{" "}
