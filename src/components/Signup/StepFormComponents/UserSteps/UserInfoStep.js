@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineWarning } from "react-icons/ai";
-
 import "react-datepicker/dist/react-datepicker.css";
 import "../datepicker-override.css";
 import { differenceInYears } from "date-fns";
 import BirthDatePicker from "../BirthDatePicker";
-
+import TextInput from "../../../UserInputs/TextInput";
+import InputError from "../../../UserInputs/InputError";
+import PasswordInput from "../../../UserInputs/PasswordInput";
 export default function UserInfoStep({
   username,
   email,
@@ -77,187 +78,78 @@ export default function UserInfoStep({
       <p className="mb-4 text-textLightGray">
         Du kannst Deine Informationen jederzeit in den Einstellungen ändern.
       </p>
-      <div className="relative">
-        <div className=" text-sm border border-primaryblue rounded-md">
-          <input
-            type="text"
-            name="username"
-            value={username}
-            onChange={(e) => updateFields({ username: e.target.value })}
-            className="w-full border rounded-md p-2 placeholder-primaryText bg-primaryBg"
-            placeholder="Name"
-          />
-        </div>
-        <div
-          className={`transform rounded-md border-2 transition-all ease-in-out duration-300 ${
-            errorUserName && username.length < 3
-              ? "translate-y-0 opacity-100 "
-              : "-translate-y-2 opacity-0"
-          }`}
-        >
-          {errorUserName && username.length < 3 && (
-            <div className="bg-white p-1 text-primarypurple text-sm">
-              <div className="flex items-center">
-                <AiOutlineWarning
-                  className="text-red text-primarybg "
-                  size={32}
-                />
-                <span className="ml-2">{errorUserName}</span>
-              </div>
-            </div>
-          )}
-        </div>
-        <p className="px-1 mb-2 text-textLightGray">
-          Bitte gib hier Deinen Namen ein, mit dem Du in der Gruppe angesprochen
-          werden möchtest und der für andere Mitglieder:innen angezeigt werden
-          darf.
-        </p>
 
-        {/* {errorUserName && username.length < 3 && (
-          <div className="absolute -bottom-2 left-1/3 transform -translate-x-1/2 rounded-md border-2">
-            <div className="bg-white p-2 text-primarypurple text-sm">
-              <div className="flex items-center">
-                <AiOutlineWarning
-                  className="text-red text-primarybg"
-                  size={32}
-                />
-                <span className="ml-2">{errorUserName}</span>{" "}
-              </div>
-            </div>
-          </div>
-        )} */}
-      </div>
-      <div className="relative">
-        <div className="mt-4 text-sm border border-primaryblue rounded-md">
-          <input
-            type="text"
-            name="email"
-            value={email}
-            onChange={(e) => updateFields({ email: e.target.value })}
-            className={`w-full p-2 border rounded-md placeholder-primaryText bg-primaryBg`}
-            placeholder="Email"
-          />
-        </div>
-        <div
-          className={`transform rounded-md border-2 transition-all ease-in-out duration-300 ${
-            errorUserEmail && email.length < 3
-              ? "translate-y-0 opacity-100 "
-              : "-translate-y-2 opacity-0"
-          }`}
-        >
-          {errorUserEmail && email.length < 3 && (
-            <div className="bg-white p-1 text-primarypurple text-sm">
-              <div className="flex items-center">
-                <AiOutlineWarning
-                  className="text-red text-primarybg "
-                  size={32}
-                />
-                <span className="ml-2">{errorUserEmail}</span>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-      <div className="relative">
-        <div className="mt-4 text-sm border border-primaryblue rounded-md">
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={(e) => {
-              console.log(e.target.value);
-              if (!isStrongPassword(e.target.value)) {
-                setPasswordError(true);
-              } else {
-                setPasswordError(false);
-              }
+      <TextInput
+        value={username}
+        onChange={(e) => updateFields({ username: e.target.value })}
+        placeholder="Name"
+      />
+      <InputError
+        showMessage={errorUserName && username.length < 3}
+        errorMessage={errorUserName}
+      />
 
-              updateFields({ password: e.target.value });
-            }}
-            className="w-full p-2 border rounded-md placeholder-primaryText bg-primaryBg"
-            placeholder="Passwort"
-          />
-        </div>
-        <div
-          className={`transform rounded-md border-2 transition-all ease-in-out duration-300 ${
-            errorUserPass && password.length < 3
-              ? "translate-y-0 opacity-100 "
-              : "-translate-y-2 opacity-0"
-          }`}
-        >
-          {errorUserPass && password.length < 3 && (
-            <div className="bg-white p-1 text-primarypurple text-sm">
-              <div className="flex items-center">
-                <AiOutlineWarning
-                  className="text-red text-primarybg "
-                  size={32}
-                />
-                <span className="ml-2">{errorUserPass}</span>
-              </div>
-            </div>
-          )}
-        </div>
+      <p className="px-1 mb-2 text-textLightGray">
+        Bitte gib hier Deinen Namen ein, mit dem Du in der Gruppe angesprochen
+        werden möchtest und der für andere Mitglieder:innen angezeigt werden
+        darf.
+      </p>
 
-        <p className=" px-1 text-textLightGray">
-          Mindestens 8 Zeichen, mindestens eine Zahl, ein Großbuchstabe und ein
-          Sonderzeichen.
-        </p>
+      <TextInput
+        value={email}
+        onChange={(e) => updateFields({ email: e.target.value })}
+        placeholder="Email"
+      />
+      <InputError
+        showMessage={errorUserEmail && email.length < 3}
+        errorMessage={errorUserEmail}
+      />
 
-        {passwordError && password.length > 7 && (
-          <div className="absolute w-4/5 -bottom-7 transform rounded-md border-2 z-20">
-            <div className="bg-white p-2 text-primarypurple text-sm">
-              <div className="flex items-center">
-                <AiOutlineWarning
-                  className="text-red text-primarybg"
-                  size={32}
-                />
-                <span className="ml-2">
-                  Mindestens eine Zahl, ein Großbuchstabe und ein Sonderzeichen.
-                </span>{" "}
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
-      <div className="relative z-10">
-        <div className="mt-4 text-sm border border-primaryblue rounded-md">
-          <input
-            type="password"
-            name="passwordCheck"
-            // value={passwordCheck}
-            onChange={(e) => {
-              if (e.target.value !== password) {
-                setPasswordCheckState(true);
-              } else {
-                setPasswordCheckState(false);
-              }
-              updateFields({ passwordCheck: e.target.value });
-            }}
-            className="w-full p-2 border rounded-md placeholder-primaryText bg-primaryBg"
-            placeholder="Passwort erneut eingeben"
-          />
-        </div>
+      <PasswordInput
+        value={password}
+        onChange={(e) => {
+          if (!isStrongPassword(e.target.value)) {
+            setPasswordError(true);
+          } else {
+            setPasswordError(false);
+          }
+          updateFields({ password: e.target.value });
+        }}
+        placeholder="Passwort"
+      />
+      <p className=" px-1 text-textLightGray">
+        Mindestens 8 Zeichen, mindestens eine Zahl, ein Großbuchstabe und ein
+        Sonderzeichen.
+      </p>
+      <InputError
+        showMessage={errorUserPass && password.length < 3}
+        errorMessage={errorUserPass}
+      />
+      <InputError
+        showMessage={passwordError && password.length > 7}
+        errorMessage={
+          "Mindestens eine Zahl, ein Großbuchstabe und ein Sonderzeichen."
+        }
+      />
+      {/* Add more checks, if only uppercase is missing display that for example */}
 
-        <div
-          className={`transform rounded-md border-2 transition-all ease-in-out duration-300 ${
-            passwordCheckState
-              ? "translate-y-0 opacity-100 "
-              : "-translate-y-2 opacity-0"
-          }`}
-        >
-          {passwordCheckState && (
-            <div className="bg-white p-1 text-primarypurple text-sm">
-              <div className="flex items-center">
-                <AiOutlineWarning
-                  className="text-red text-primarybg "
-                  size={32}
-                />
-                <span className="ml-2">Passwörter stimmen nicht überein</span>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
+      <PasswordInput
+        // value={password}
+        onChange={(e) => {
+          if (e.target.value !== password) {
+            setPasswordCheckState(true);
+          } else {
+            setPasswordCheckState(false);
+          }
+          updateFields({ passwordCheck: e.target.value });
+        }}
+        placeholder="Passwort erneut eingeben"
+      />
+      <InputError
+        showMessage={passwordCheckState}
+        errorMessage={"Passwörter stimmen nicht überein"}
+      />
+
       <div className="flex justify-between gap-2 text-sm mt-4">
         <label
           htmlFor="radioOption1"

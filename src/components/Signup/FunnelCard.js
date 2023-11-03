@@ -299,25 +299,25 @@ export default function FunnelCard({ funnelIndex }) {
                 )}
               </div>
               <div className="flex gap-4 justify-center ">
-                {currentStepIndex !== 0 &&
-                  verifyCodeIndex !== currentStepIndex &&
-                  verifyCodeIndex + 1 !== currentStepIndex && (
-                    <button
-                      type="button"
-                      onClick={handleBackButton}
-                      className={` text-primarypurple hover-bg-primarypurple-hover px-4 py-1 ${
-                        errorMessage ? "mt-0" : "mt-4"
-                      } rounded-lg`}
-                    >
-                      <div className="flex items-center">
-                        <BsArrowLeft
-                          className="w-5 mr-3 text-primarypurple"
-                          size={32}
-                        />
-                        Zurück
-                      </div>
-                    </button>
-                  )}
+                <div className="mt-5">
+                  {currentStepIndex !== 0 &&
+                    verifyCodeIndex !== currentStepIndex &&
+                    verifyCodeIndex + 1 !== currentStepIndex && (
+                      <PrimaryButton
+                        type={"button"}
+                        handleButtonClick={handleBackButton}
+                        isInversed={true}
+                      >
+                        <div className="flex items-center ">
+                          <BsArrowLeft
+                            className="w-5 mr-3 text-primarypurple"
+                            size={32}
+                          />
+                          Zurück
+                        </div>
+                      </PrimaryButton>
+                    )}
+                </div>
                 <div className="mt-5">
                   <PrimaryButton type={"submit"}>
                     <div className="flex items-center ">
@@ -329,21 +329,6 @@ export default function FunnelCard({ funnelIndex }) {
                     </div>
                   </PrimaryButton>
                 </div>
-                {/* <button
-                  type="submit"
-                  // onClick={handleNextButton}
-                  className={`text-slate-100 hover:text-white  bg-primarypurple hover-bg-primarypurple-hover px-4 py-1 ${
-                    errorMessage ? "mt-0" : "mt-4"
-                  } rounded-lg`}
-                >
-                  <div className="flex items-center">
-                    {isLastStep ? "Absenden" : "Weiter"}
-                    <BsArrowRight
-                      className="w-5 ml-3 text-primarybg"
-                      size={32}
-                    />
-                  </div>
-                </button> */}
               </div>
             </div>
           </div>
