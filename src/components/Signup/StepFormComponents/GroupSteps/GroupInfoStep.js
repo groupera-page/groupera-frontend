@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Carousel from "../Carousel";
 import axios from "axios";
-import { AiOutlineWarning } from "react-icons/ai";
 import TextInput from "../../../UserInputs/TextInput";
 import InputError from "../../../UserInputs/InputError";
+import TextAreaInput from "../../../UserInputs/TextAreaInput";
 
 export default function GroupInfoStep({
   name,
@@ -20,7 +20,6 @@ export default function GroupInfoStep({
   const handleChange = (e) => {
     updateGroupFields({ description: e.target.value });
   };
-
   const imageData = [
     "Grouptitel%20pictures/pexels-akil-mazumder-1072824_1_tdw8si.jpg",
     "Grouptitel%20pictures/pexels-ghida-basma-609749_yy95mt.jpg",
@@ -33,15 +32,12 @@ export default function GroupInfoStep({
     "Grouptitel%20pictures/pexels-eberhard-grossgasteiger-6_abiqd5.jpg",
     "Grouptitel%20pictures/pexels-pixabay-416117_hz1ccg.jpg",
   ];
-
   const isGroupNameExists = (name) => {
     return groupNames.includes(name);
   };
-
   useEffect(() => {
     updateGroupFields({ errorGroupName: "" });
     updateGroupFields({ errorGroupDescription: "" });
-
     const fetchData = async () => {
       try {
         const response = await axios.get(`http://localhost:5005/group/groups`);
@@ -52,7 +48,6 @@ export default function GroupInfoStep({
         console.error(error.response.data.message);
       }
     };
-
     fetchData();
   }, []);
 
@@ -83,107 +78,34 @@ export default function GroupInfoStep({
             placeholder="Name"
             maxLength={10}
           />
-
           <InputError
             showMessage={errorGroupName && name.length < 3}
             errorMessage={"Min 3 Zeichen bitte"}
           />
           <InputError
             showMessage={nameError && name.length > 3}
-            errorMessage={errorGroupName}
+            errorMessage={nameError}
           />
-
-          {/* <div
-            className={`transform rounded-md border-2 transition-all ease-in-out duration-300 ${
-              errorGroupName && name.length < 3
-                ? "translate-y-0 opacity-100 "
-                : "-translate-y-2 opacity-0"
-            }`}
-          >
-            {errorGroupName && name.length < 3 && (
-              <div className="bg-white p-1 text-primarypurple text-sm">
-                <div className="flex items-center">
-                  <AiOutlineWarning
-                    className="text-red text-primarybg "
-                    size={32}
-                  />
-                  <span className="ml-2">{errorGroupName}</span>
-                </div>
-              </div>
-            )}
-          </div> */}
-          {/* <div
-            className={`transform rounded-md transition-all ease-in-out duration-300 ${
-              errorGroupName
-                ? "translate-y-0 opacity-100 "
-                : "-translate-y-2 opacity-0"
-            }`}
-          >
-            {nameError && (
-              <div className="bg-white p-1 text-primarypurple text-sm">
-                <div className="flex items-center">
-                  <AiOutlineWarning
-                    className="text-red text-primarybg "
-                    size={32}
-                  />
-                  <span className="ml-2">{errorGroupName}</span>
-                </div>
-              </div>
-            )}
-          </div> */}
-
-          {/* {errorGroupName && name.length < 3 && (
-            <div className=" -bottom-12 left-1/3 transform -translate-x-1/2 rounded-md border-2">
-              <div className="bg-white p-1 text-primarypurple text-sm">
-                <div className="flex items-center">
-                  <AiOutlineWarning
-                    className="text-red text-primarybg"
-                    size={32}
-                  />
-                  <span className="ml-2">{errorGroupName}</span>{" "}
-                </div>
-              </div>
-            </div>
-          )} */}
         </div>
         <p className="px-1 text-textLightGray">Min 3 Zeichen.</p>
       </div>
       <h4 className=" mt-4">Wie würdest du deine Gruppe beschreiben?</h4>
       <div className="mt-2 text-sm rounded-md">
-        <textarea
+        <TextAreaInput
           name="description"
           value={description}
           onChange={handleChange}
-          className="w-full border border-primaryblue rounded-md p-2 placeholder-primaryText h-20 resize-none text-sm bg-primaryBg"
           placeholder="Kurze Gruppenbeschreibung"
-          maxLength={maxCharacters}
-        ></textarea>
+          maxLength={500}
+        />
       </div>
-      <div
-        className={`transform rounded-md border-2 transition-all ease-in-out duration-300 ${
-          errorGroupDescription && description.length < 3
-            ? "-translate-y-2 opacity-100 "
-            : "-translate-y-2 opacity-0"
-        }`}
-      >
-        {errorGroupDescription && description.length < 3 && (
-          <div className=" transform rounded-md ">
-            <div className="bg-white p-1 text-primarypurple text-sm">
-              <div className="flex items-center">
-                <AiOutlineWarning
-                  className="text-red text-primarybg"
-                  size={32}
-                />
-                <span className="ml-2">{errorGroupDescription}</span>{" "}
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
+      <InputError
+        showMessage={errorGroupDescription && description.length < 3}
+        errorMessage={errorGroupDescription}
+      />
       <div className="flex text-xs text-gray-500 justify-end">
         {description.length}/{maxCharacters}
       </div>
-
       <p className="my-2">
         Du kannst ein Bild aus unseren Vorschlägen aussuchen.{" "}
       </p>
@@ -192,17 +114,6 @@ export default function GroupInfoStep({
         img={img}
         updateGroupFields={updateGroupFields}
       />
-      <div className="mb-4">
-        {/* <label className="relative cursor-pointer hover:bg-primaryblue-hover border border-primaryblue px-4 py-2 rounded-md text-sm">
-          <span>Eigene Datei auswählen</span>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleGroupImage}
-            className="hidden"
-          />
-        </label> */}
-      </div>
     </div>
   );
 }

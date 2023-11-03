@@ -5,12 +5,14 @@ export default function RadioButton({
   title,
   checkedVariable,
   onChange,
-  fullSize,
+  fullSize = true,
 }) {
   return (
     <label
       htmlFor={id}
-      className="relative flex-grow cursor-pointer border border-primaryblue rounded-md text-sm p-2 pl-4 flex items-center gap-4 "
+      className={`relative cursor-pointer border border-primaryblue rounded-md text-xs p-2 pl-4 flex items-center gap-4 ${
+        fullSize ? "flex-grow" : "w-1/2"
+      }`}
     >
       <div>{title}</div>
       <input

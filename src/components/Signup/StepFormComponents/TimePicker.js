@@ -28,7 +28,7 @@ export default function TimePicker({
         const newTime = e.target.value;
         onSelectTime(newTime, label === "To");
       }}
-      className="rounded text-sm py-1 bg-primaryBg"
+      className="rounded text-sm py-1 bg-primaryBg cursor-pointer"
       style={{ WebkitAppearance: "none", appearance: "none" }}
     >
       {timeOptions.map((timeOption) => (

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import RadioButton from "../../../UserInputs/RadioButton";
 
 export default function GroupSettingStep({ moderator, updateGroupFields }) {
   const [showMessage, setShowMessage] = useState(false);
@@ -16,55 +17,35 @@ export default function GroupSettingStep({ moderator, updateGroupFields }) {
         ändern.
       </p>
       <h4 className="my-2">Möchtest du Deine Gruppe selbst moderieren?</h4>
-      <div className="flex flex-col gap-4 my-4 ">
-        <label
-          htmlFor="radioOption1"
-          className="relative w-full cursor-pointer border border-primaryblue rounded-md text-xs p-2 pl-4 flex items-center gap-4"
-        >
-          <div>Ja</div>
-          <input
-            type="radio"
-            id="radioOption1"
-            name="options"
-            value="Ja"
-            checked={moderator === "Ja"}
-            onChange={(e) => updateGroupFields({ moderator: e.target.value })}
-            className="mr-1 absolute end-1 md:end-16"
-          />
-        </label>
-        <label
-          htmlFor="radioOption2"
-          className="relative w-full cursor-pointer border border-primaryblue rounded-md text-xs p-2 pl-4 flex items-center gap-4"
-        >
-          <div> Ja, aber mit Unterstützung</div>
-          <input
-            type="radio"
-            id="radioOption2"
-            name="options"
-            value="Ja, aber mit Unterstützung"
-            checked={moderator === "Ja, aber mit Unterstützung"}
-            onChange={(e) => updateGroupFields({ moderator: e.target.value })}
-            className="mr-1 absolute end-1 md:end-16"
-          />
-        </label>
-        <label
-          htmlFor="radioOption3"
-          className="relative w-full cursor-pointer border border-primaryblue rounded-md text-xs p-2 pl-4 flex items-center gap-4"
-        >
-          <div> Nein</div>
-          <input
-            type="radio"
-            id="radioOption3"
-            name="options"
-            value="Nein"
-            checked={moderator === "Nein"}
-            onChange={handleNoModerator}
-            className="mr-1 absolute end-1 md:end-16"
-          />
-        </label>
+      <div className="flex flex-col gap-4 my-4">
+        <RadioButton
+          id={"moderator1"}
+          title={"Ja"}
+          checkedVariable={moderator}
+          onChange={(e) => {
+            updateGroupFields({ moderator: e.target.value });
+            setShowMessage(false);
+          }}
+        />
+        <RadioButton
+          id={"moderator2"}
+          title={"Ja, aber mit Unterstützung"}
+          checkedVariable={moderator}
+          onChange={(e) => {
+            updateGroupFields({ moderator: e.target.value });
+            setShowMessage(false);
+          }}
+        />
+        <RadioButton
+          id={"moderator3"}
+          title={"Nein"}
+          checkedVariable={moderator}
+          onChange={handleNoModerator}
+        />
+
         {showMessage && (
-          <div className="relative w-full cursor-pointer border border-primaryblue rounded-md text-xs p-2 pl-4 flex items-center gap-4">
-            Wir werden Ihnen eine E-Mail senden{" "}
+          <div className="flex text-primarypurple text-sm bg-primaryBg justify-center">
+            Wir werden Ihnen eine E-Mail senden
           </div>
         )}
       </div>
