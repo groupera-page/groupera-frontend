@@ -1,12 +1,12 @@
 import React from "react";
-import UserInfoStep from "./StepFormComponents/UserSteps/UserInfoStep";
-import UserVerifyCodeStep from "./StepFormComponents/UserSteps/UserVerifyCodeStep";
-import UserExperienceStep from "./StepFormComponents/UserSteps/UserExperienceStep";
-import GroupThemesStep from "./StepFormComponents/GroupSteps/GroupThemesStep";
-import GroupInfoStep from "./StepFormComponents/GroupSteps/GroupInfoStep";
-import GroupPlanStep from "./StepFormComponents/GroupSteps/GroupPlanStep";
-import GroupSettingStep from "./StepFormComponents/GroupSteps/GroupSettingStep";
-import GroupDownloadStep from "./StepFormComponents/GroupSteps/GroupDownloadStep";
+import UserInfoStep from "./UserSteps/UserInfoStep";
+import UserVerifyCodeStep from "./UserSteps/UserVerifyCodeStep";
+import UserExperienceStep from "./UserSteps/UserExperienceStep";
+import GroupThemesStep from "./GroupSteps/GroupThemesStep";
+import GroupInfoStep from "./GroupSteps/GroupInfoStep";
+import GroupPlanStep from "./GroupSteps/GroupPlanStep";
+import GroupSettingStep from "./GroupSteps/GroupSettingStep";
+import GroupDownloadStep from "./GroupSteps/GroupDownloadStep";
 
 export default function FunnelSteps(
   funnelIndex,

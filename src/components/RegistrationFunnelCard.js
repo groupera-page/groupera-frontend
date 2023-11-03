@@ -6,9 +6,10 @@ import UserVerifyCodeStep from "./StepFormComponents/UserSteps/UserVerifyCodeSte
 import StepIndicator from "./StepFormComponents/StepIndicator";
 import useMultiStepForm from "./StepFormComponents/useMultiStepForm";
 import { AiOutlineWarning } from "react-icons/ai";
-import FunnelSteps from "./FunnelSteps";
+import FunnelSteps from "./StepFormComponents/FunnelSteps";
 import { userDataInit, groupDataInit } from "./StepFormComponents/initData";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
+import PrimaryButton from "./Buttons/PrimaryButton";
 
 export default function RegistrationFunnelCard({ funnelIndex }) {
   const [userData, setUserData] = useState(userDataInit);
@@ -297,7 +298,7 @@ export default function RegistrationFunnelCard({ funnelIndex }) {
                   </div>
                 )}
               </div>
-              <div className="flex gap-4 justify-end">
+              <div className="flex gap-4 justify-center ">
                 {currentStepIndex !== 0 &&
                   verifyCodeIndex !== currentStepIndex &&
                   verifyCodeIndex + 1 !== currentStepIndex && (
@@ -317,7 +318,18 @@ export default function RegistrationFunnelCard({ funnelIndex }) {
                       </div>
                     </button>
                   )}
-                <button
+                <div className="mt-5">
+                  <PrimaryButton type={"submit"}>
+                    <div className="flex items-center ">
+                      {isLastStep ? "Absenden" : "Weiter"}
+                      <BsArrowRight
+                        className="w-5 ml-3 text-primarybg"
+                        size={32}
+                      />
+                    </div>
+                  </PrimaryButton>
+                </div>
+                {/* <button
                   type="submit"
                   // onClick={handleNextButton}
                   className={`text-slate-100 hover:text-white  bg-primarypurple hover-bg-primarypurple-hover px-4 py-1 ${
@@ -331,7 +343,7 @@ export default function RegistrationFunnelCard({ funnelIndex }) {
                       size={32}
                     />
                   </div>
-                </button>
+                </button> */}
               </div>
             </div>
           </div>
