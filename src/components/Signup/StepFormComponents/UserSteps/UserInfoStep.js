@@ -171,7 +171,8 @@ export default function UserInfoStep({
           onChange={(e) => updateFields({ gender: e.target.value })}
         />
       </div>
-      <div className="flex-col">
+
+      <div className="">
         <div className="flex gap-2 pb-2 justify-center mt-4">
           <DateScroller
             selectedDate={selectedDate}
@@ -180,9 +181,8 @@ export default function UserInfoStep({
             label={"Geburtsdatum"}
           />
         </div>
-      </div>
-      <div className="flex ml-2">
-        <div className="flex items-start relative">
+
+        <div className="flex items-start justify-center px-2 mt-2">
           <Checkbox
             value={isAccepted}
             onChange={(e) => {
@@ -192,20 +192,10 @@ export default function UserInfoStep({
               console.log("clicked");
             }}
           />
-          {/* <input
-              type="checkbox"
-              name="isAccepted"
-              value={isAccepted}
-              onChange={(e) =>
-                updateFields({ isAccepted: e.target.checked ? "accepted" : "" })
-              }
-              className="absolute top-1 -left-5"
-            /> */}
-
           <p className="text-xs ">
             Ich akzeptiere die{" "}
             <Link to={"/"} className="text-primarypurple">
-              Allgemeinen Geschäftsbedingungen
+              Allgemeinen Geschäftsbedingungen <br />
             </Link>{" "}
             und die{" "}
             <Link to={"/"} className="text-primarypurple">
@@ -215,7 +205,6 @@ export default function UserInfoStep({
           </p>
         </div>
       </div>
-
       {/* <div className="flex flex-col ">
         <p className=" my-5">
           Bereits registriert?{" "}
