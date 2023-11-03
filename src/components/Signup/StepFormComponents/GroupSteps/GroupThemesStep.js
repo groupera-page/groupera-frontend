@@ -1,5 +1,5 @@
 import React from "react";
-
+import RadioButton from "../../../UserInputs/RadioButton";
 const themeOptions = [
   { title: "Depression", value: "Depression" },
   { title: "Stress und Burnout", value: "Stress und Burnout" },
@@ -20,27 +20,18 @@ const themeOptions = [
 
 export default function GroupThemesStep({ theme, updateGroupFields }) {
   return (
-    <div className="">
+    <div>
       <h2 className="mb-4">Für welche Themen suchst du Gruppen?</h2>
       <p>Wähle eine oder mehrere der folgenden Optionen.</p>
       <div className="flex flex-col gap-4 my-2">
         {themeOptions.map((option) => (
-          <label
+          <RadioButton
             key={option.value}
-            htmlFor={`radioOption${option.value}`}
-            className="relative w-full cursor-pointer border border-primaryblue rounded-md text-xs p-2 pl-4 flex items-center gap-4"
-          >
-            <div>{option.title}</div>
-            <input
-              type="radio"
-              id={`radioOption${option.value}`}
-              name="options"
-              value={option.value}
-              checked={theme === option.value}
-              onChange={(e) => updateGroupFields({ theme: e.target.value })}
-              className="mr-1 absolute end-1 md:end-0 lg:end-16"
-            />
-          </label>
+            id={`radioOption${option.value}`}
+            title={option.title}
+            checkedVariable={theme}
+            onChange={(e) => updateGroupFields({ theme: e.target.value })}
+          />
         ))}
       </div>
     </div>

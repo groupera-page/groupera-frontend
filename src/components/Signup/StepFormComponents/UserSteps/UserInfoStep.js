@@ -151,7 +151,7 @@ export default function UserInfoStep({
         errorMessage={"Passwörter stimmen nicht überein"}
       />
 
-      <div className="flex justify-between gap-2 text-sm mt-4">
+      <div className="flex gap-2 mt-4">
         <RadioButton
           id={"genderOption1"}
           title={"Weiblich"}

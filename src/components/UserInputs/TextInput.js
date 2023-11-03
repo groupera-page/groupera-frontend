@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function TextInput({ value, onChange, placeholder }) {
+export default function TextInput({ value, onChange, placeholder, maxLength }) {
   return (
     <div className=" text-sm border border-primaryblue rounded-md">
       <input
@@ -9,6 +9,7 @@ export default function TextInput({ value, onChange, placeholder }) {
         onChange={onChange}
         className="w-full border rounded-md p-2 placeholder-primaryText bg-primaryBg"
         placeholder={placeholder}
+        maxLength={maxLength}
       />
     </div>
   );

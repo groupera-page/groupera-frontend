@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-
+import CodeInput from "../../../UserInputs/CodeInput";
 export default function UserVerifyCodeStep({ updateFields, resendCode }) {
   const [verificationCode, setVerificationCode] = useState(["", "", "", ""]);
   const inputRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
@@ -25,16 +25,11 @@ export default function UserVerifyCodeStep({ updateFields, resendCode }) {
       </p>
       <div className="flex justify-center mx-10 gap-2 my-6">
         {verificationCode.map((value, index) => (
-          <input
+          <CodeInput
             key={index}
-            ref={inputRefs[index]}
-            type="text"
-            name="codebox"
-            className="border rounded-md p-1 w-20 border-primaryblue text-lg text-center bg-primaryBg"
-            placeholder=""
             value={value}
-            maxLength="1"
-            onChange={(e) => handleInputChange(index, e.target.value)}
+            inputRef={inputRefs[index]}
+            handleChange={(e) => handleInputChange(index, e.target.value)}
           />
         ))}
       </div>

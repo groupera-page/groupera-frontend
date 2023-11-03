@@ -1,26 +1,29 @@
 import React from "react";
 import { BsCheckLg } from "react-icons/bs";
 
-const Checkbox = ({ value, onChange }) => {
+export default function Checkbox({ value, onChange }) {
   return (
-    <label className="flex items-center space-x-2 cursor-pointer">
+    <label className="flex items-center space-x-2 cursor-pointer mr-3 ">
       <input
         type="checkbox"
         value={value}
         onChange={onChange}
         className="hidden"
       />
-      <span className="w-7 h-7 border-2 border-primarypurple rounded-md transition-all duration-300 flex items-center justify-center">
-        {value && (
+      <div className="w-7 h-7 border-2 border-primarypurple rounded-md flex items-center justify-center ">
+        <div
+          className={`transform rounded-md border- transition-all ease-in-out duration-300 ${
+            value ? " opacity-100" : " opacity-0"
+          }`}
+        >
           <BsCheckLg
-            className="text-primarypurple rounded-md "
-            style={{ fontSize: "2em" }}
+            className={`text-primarypurple rounded-md ${
+              value ? "opacity-100" : "opacity-0"
+            }`}
+            style={{ fontSize: "1.8em" }}
           />
-        )}
-      </span>
-      <span className="text-gray-700  "></span>
+        </div>
+      </div>
     </label>
   );
-};
-
-export default Checkbox;
+}

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Carousel from "../Carousel";
 import axios from "axios";
 import { AiOutlineWarning } from "react-icons/ai";
+import TextInput from "../../../UserInputs/TextInput";
+import InputError from "../../../UserInputs/InputError";
 
 export default function GroupInfoStep({
   name,
@@ -11,7 +13,6 @@ export default function GroupInfoStep({
   errorGroupName,
   errorGroupDescription,
 }) {
-  const maxNameCharacters = 70;
   const maxCharacters = 500;
   const [groupNames, setGroupNames] = useState([]);
   const [nameError, setNameError] = useState("");
@@ -64,14 +65,11 @@ export default function GroupInfoStep({
       <h4 className=" mt-4">Wie soll deine Gruppe heißen?</h4>
       <div className="">
         <div className="mt-2 text-sm border-0 rounded-md">
-          <input
-            type="text"
-            name="username"
+          <TextInput
             value={name}
             onChange={(e) => {
               const newName = e.target.value;
               if (isGroupNameExists(newName)) {
-                console.log("EXISTS");
                 setNameError("Gruppenname existiert bereits.");
                 updateGroupFields({ name: newName });
                 updateGroupFields({ preventNext: true });
@@ -82,12 +80,20 @@ export default function GroupInfoStep({
                 updateGroupFields({ preventNext: false });
               }
             }}
-            className="w-full border rounded-md p-2 placeholder-primaryText bg-primaryBg border-primaryblue"
             placeholder="Name"
-            maxLength={maxNameCharacters}
+            maxLength={10}
           />
 
-          <div
+          <InputError
+            showMessage={errorGroupName && name.length < 3}
+            errorMessage={"Min 3 Zeichen bitte"}
+          />
+          <InputError
+            showMessage={nameError && name.length > 3}
+            errorMessage={errorGroupName}
+          />
+
+          {/* <div
             className={`transform rounded-md border-2 transition-all ease-in-out duration-300 ${
               errorGroupName && name.length < 3
                 ? "translate-y-0 opacity-100 "
@@ -105,8 +111,8 @@ export default function GroupInfoStep({
                 </div>
               </div>
             )}
-          </div>
-          <div
+          </div> */}
+          {/* <div
             className={`transform rounded-md transition-all ease-in-out duration-300 ${
               errorGroupName
                 ? "translate-y-0 opacity-100 "
@@ -124,7 +130,7 @@ export default function GroupInfoStep({
                 </div>
               </div>
             )}
-          </div>
+          </div> */}
 
           {/* {errorGroupName && name.length < 3 && (
             <div className=" -bottom-12 left-1/3 transform -translate-x-1/2 rounded-md border-2">

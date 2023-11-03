@@ -1,10 +1,16 @@
 import React from "react";
 
-export default function RadioButton({ id, title, checkedVariable, onChange }) {
+export default function RadioButton({
+  id,
+  title,
+  checkedVariable,
+  onChange,
+  fullSize,
+}) {
   return (
     <label
       htmlFor={id}
-      className="relative w-1/3 cursor-pointer border border-primaryblue rounded-md text-sm p-2 pl-4 flex items-center gap-4 "
+      className="relative flex-grow cursor-pointer border border-primaryblue rounded-md text-sm p-2 pl-4 flex items-center gap-4 "
     >
       <div>{title}</div>
       <input
