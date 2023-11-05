@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import useMultistepHook from "./multistepHook";
+import useMultistepHook from "../../util/hooks/multistepHook";
 import OnboardingField from "./OnboardingField";
 
 const FormWrapper = ({

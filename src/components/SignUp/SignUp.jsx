@@ -1,9 +1,9 @@
 import {useLocation} from "react-router-dom";
 
-// import Funnel from "../FunnelCard";
 import backgroundImage from "../../assets/hands4.jpg";
 import FormWrapper from "./FormWrapper";
 import getFunnelSteps from "../../util/getFunnelSteps"
+
 const SignupPage = () => {
   const location = useLocation()
   const steps = getFunnelSteps(location.search.slice(1))
@@ -17,7 +17,6 @@ const SignupPage = () => {
         }}
       >
         <FormWrapper steps={steps} />
-        {/*<Funnel FunnelIndex={3} />*/}
       </div>
     </div>
   );

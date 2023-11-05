@@ -1,6 +1,5 @@
-import React from "react";
-import testManual from "../assets/manual.pdf";
 import {email, includeCapital, includeNumber, length, required} from "./form.helper";
+import testManual from "../assets/manual.pdf";
 
 const userProfileStep = {
   header: "Erstelle jetzt Dein Nutzerprofil",

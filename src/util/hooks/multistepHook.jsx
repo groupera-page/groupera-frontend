@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import { useState } from "react"
 
 const useMultistepForm = (steps, startIndex=0) => {
   const [currentStepIndex, setCurrentStepIndex] = useState(localStorage.getItem("multiformStepIndex") ? parseInt(localStorage.getItem("multiformStepIndex")) : startIndex)
