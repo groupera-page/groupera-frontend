@@ -9,13 +9,9 @@ import { userDataInit, groupDataInit } from "../../util/initData";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import PrimaryButton from "../Buttons/PrimaryButton";
 import InputError from "../UserInputs/InputError";
-import { createGroup, validateGroupForm } from "../../api/groupService";
-import {
-  validateUserForm,
-  verifyCode,
-  createUser,
-  updateUser,
-} from "../../api/userService";
+import { createGroup } from "../../api/groupService";
+import { verifyCode, createUser, updateUser } from "../../api/userService";
+import { validateUserForm, validateGroupForm } from "../../util/formValidation";
 
 export default function FunnelCard({ funnelIndex }) {
   const [userData, setUserData] = useState(userDataInit);
@@ -114,7 +110,12 @@ export default function FunnelCard({ funnelIndex }) {
     e.preventDefault();
 
     //Next step
-    if (step && step.type.name !== "UserInfoStep" && !isLastStep) {
+    if (
+      step &&
+      step.type.name !== "UserInfoStep" &&
+      step.type.name !== "UserVerifyCodeStep" &&
+      !isLastStep
+    ) {
       console.log("Doing next without post or update");
       setErrorMessage("");
       return next(1);

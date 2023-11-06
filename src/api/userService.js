@@ -78,7 +78,7 @@ export const verifyCode = async (
     }
   } catch (error) {
     console.error("Error:", error);
-    setErrorMessage("Error occurred during verification.");
+    setErrorMessage("Falscher Verifizierungscode.");
     return false;
   }
 };

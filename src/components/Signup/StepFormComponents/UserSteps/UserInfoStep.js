@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { AiOutlineWarning } from "react-icons/ai";
 import "react-datepicker/dist/react-datepicker.css";
 import "../datepicker-override.css";
 import { differenceInYears } from "date-fns";
@@ -10,6 +9,11 @@ import InputError from "../../../UserInputs/InputError";
 import PasswordInput from "../../../UserInputs/PasswordInput";
 import RadioButton from "../../../UserInputs/RadioButton";
 import Checkbox from "../../../UserInputs/Checkbox";
+import {
+  ageValidation,
+  validatePassword,
+  validateEmail,
+} from "../../../../util/formValidation";
 export default function UserInfoStep({
   username,
   email,
@@ -30,10 +34,11 @@ export default function UserInfoStep({
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [passwordError, setPasswordError] = useState("");
   const [passwordCheckState, setPasswordCheckState] = useState(false);
+  const [hasBlurred, setHasBlurred] = useState(false);
 
   useEffect(() => {
-    updateFields({ emailError: "Email error" });
-    updateFields({ isAccepted: "" });
+    // updateFields({ emailError: "Email error" });
+    // updateFields({ isAccepted: "" });
     if (birthDate !== "") {
       setSelectedDate(birthDate);
     }
@@ -42,28 +47,30 @@ export default function UserInfoStep({
     // updateFields({ username: storedUsername });
   }, []);
 
-  const checkAge = (date) => {
-    const today = new Date();
-    const userAge = differenceInYears(today, date);
-    updateFields({ age: userAge });
-    if (userAge < 18) {
-      console.log("18-");
-      updateFields({ isMinor: true });
-    } else {
-      console.log("18+");
-      updateFields({ isMinor: false });
-    }
-  };
-
   const handleDateChange = (date) => {
     setSelectedDate(date);
     updateFields({ birthDate: date });
-    checkAge(date);
+    ageValidation(date, updateFields);
   };
 
-  function updateErrorOnBlur() {
-    updateFields({ errorUserName: "Mindestens drei Zeichen" });
+  function updateErrorOnBlur(dataField, errorText) {
+    return () => {
+      const updatedField = {};
+      updatedField[dataField] = errorText;
+      updateFields(updatedField);
+    };
   }
+
+  const handleEmailBlur = (e) => {
+    validateEmail(e.target.value, updateFields);
+    setHasBlurred(true);
+  };
+
+  const handlePasswordBlur = (e) => {
+    // validateEmail(e.target.value, updateFields);
+    // setHasBlurred(true);
+    validatePassword(e.target.value, updateFields);
+  };
 
   const years = [];
   const currentYear = new Date().getFullYear();
@@ -71,10 +78,10 @@ export default function UserInfoStep({
     years.push(year);
   }
 
-  function isStrongPassword(password) {
-    const strongPasswordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
-    return strongPasswordRegex.test(password);
-  }
+  // function isStrongPassword(password) {
+  //   const strongPasswordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+  //   return strongPasswordRegex.test(password);
+  // }
 
   return (
     <div>
@@ -87,7 +94,10 @@ export default function UserInfoStep({
         value={username}
         onChange={(e) => updateFields({ username: e.target.value })}
         placeholder="Name"
-        onFocusOut={updateErrorOnBlur}
+        onFocusOut={updateErrorOnBlur(
+          "errorUserName",
+          "Bitte geben Sie Ihren Gruppenname an. Mindestens drei Zeichen"
+        )}
       />
       <InputError
         showMessage={errorUserName && username.length < 3}
@@ -102,23 +112,27 @@ export default function UserInfoStep({
 
       <TextInput
         value={email}
-        onChange={(e) => updateFields({ email: e.target.value })}
+        onChange={(e) => {
+          updateFields({ email: e.target.value });
+          if (hasBlurred) {
+            validateEmail(e.target.value, updateFields);
+          }
+        }}
         placeholder="Email"
+        onFocusOut={handleEmailBlur}
       />
       <InputError
-        showMessage={errorUserEmail && email.length < 3}
+        showMessage={errorUserEmail !== ""}
         errorMessage={errorUserEmail}
       />
 
       <PasswordInput
         value={password}
         onChange={(e) => {
-          if (!isStrongPassword(e.target.value)) {
-            setPasswordError(true);
-          } else {
-            setPasswordError(false);
-          }
           updateFields({ password: e.target.value });
+          validatePassword(e.target.value, updateFields);
+          if (hasBlurred) {
+          }
         }}
         placeholder="Passwort"
       />
@@ -126,30 +140,30 @@ export default function UserInfoStep({
         Mindestens 8 Zeichen, mindestens eine Zahl, ein Großbuchstabe und ein
         Sonderzeichen.
       </p>
-      <InputError
-        showMessage={errorUserPass && password.length < 3}
-        errorMessage={errorUserPass}
-      />
-      <InputError
+      <InputError showMessage={errorUserPass} errorMessage={errorUserPass} />
+      {/* <InputError
         showMessage={passwordError && password.length > 7}
         errorMessage={
           "Mindestens eine Zahl, ein Großbuchstabe und ein Sonderzeichen."
         }
-      />
+      /> */}
       {/* Add more checks, if only uppercase is missing display that for example */}
 
       <PasswordInput
-        // value={password}
         onChange={(e) => {
-          if (e.target.value !== password) {
+          updateFields({ passwordCheck: e.target.value });
+        }}
+        placeholder="Passwort erneut eingeben"
+        onFocusOut={(e) => {
+          const confirmPassword = e.target.value;
+          if (confirmPassword !== password) {
             setPasswordCheckState(true);
           } else {
             setPasswordCheckState(false);
           }
-          updateFields({ passwordCheck: e.target.value });
         }}
-        placeholder="Passwort erneut eingeben"
       />
+
       <InputError
         showMessage={passwordCheckState}
         errorMessage={"Passwörter stimmen nicht überein"}
