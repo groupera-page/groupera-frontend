@@ -42,7 +42,6 @@ export default function UserInfoStep({
     // updateFields({ username: storedUsername });
   }, []);
 
-  //isMinor state variable instead?
   const checkAge = (date) => {
     const today = new Date();
     const userAge = differenceInYears(today, date);
@@ -61,6 +60,10 @@ export default function UserInfoStep({
     updateFields({ birthDate: date });
     checkAge(date);
   };
+
+  function updateErrorOnBlur() {
+    updateFields({ errorUserName: "Mindestens drei Zeichen" });
+  }
 
   const years = [];
   const currentYear = new Date().getFullYear();
@@ -84,6 +87,7 @@ export default function UserInfoStep({
         value={username}
         onChange={(e) => updateFields({ username: e.target.value })}
         placeholder="Name"
+        onFocusOut={updateErrorOnBlur}
       />
       <InputError
         showMessage={errorUserName && username.length < 3}

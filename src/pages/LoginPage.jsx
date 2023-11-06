@@ -6,9 +6,11 @@ export default function Login() {
     <div className="h-screen">
       <div
         className="bg-cover bg-center h-screen flex items-center justify-center"
-        style={{
-          backgroundImage: `url(${backgroundImage})`,
-        }}
+        style={
+          {
+            // backgroundImage: `url(${backgroundImage})`,
+          }
+        }
       >
         <Logincard />
       </div>
