@@ -1,6 +1,11 @@
 import axios from "axios";
 
-export const validateUser = (userData, updateFields, setErrorMessage, step) => {
+export const validateUserForm = (
+  userData,
+  updateFields,
+  setErrorMessage,
+  step
+) => {
   if (step && step.type.name === "UserInfoStep") {
     if (userData.username.length < 3) {
       updateFields({
@@ -48,9 +53,7 @@ export const verifyCode = async (
   userData,
   setCurrentUser,
   setisVerified,
-  setErrorMessage,
-  isLastStep,
-  navigate
+  setErrorMessage
 ) => {
   const codeString = userData.code.join("");
 
@@ -80,13 +83,7 @@ export const verifyCode = async (
   }
 };
 
-export const createUser = async (
-  userData,
-  isVerified,
-  currentUser,
-  setErrorMessage,
-  navigate
-) => {
+export const createUser = async (userData, isVerified, setErrorMessage) => {
   const requestBody = {
     username: userData.username,
     email: userData.email,
@@ -115,13 +112,7 @@ export const createUser = async (
   }
 };
 
-export const updateUser = async (
-  userData,
-  isVerified,
-  currentUser,
-  setErrorMessage,
-  navigate
-) => {
+export const updateUser = async (userData, currentUser, setErrorMessage) => {
   const requestBody = {
     username: userData.username,
     email: userData.email,

@@ -76,7 +76,7 @@ export default function GroupInfoStep({
               }
             }}
             placeholder="Name"
-            maxLength={10}
+            maxLength={70}
           />
           <InputError
             showMessage={errorGroupName && name.length < 3}

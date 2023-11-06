@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import logoSvg from "../../assets/imgLogos/logoNoBg.svg";
 import UserVerifyCodeStep from "./StepFormComponents/UserSteps/UserVerifyCodeStep";
 import StepIndicator from "./StepFormComponents/StepIndicator";
@@ -10,9 +9,9 @@ import { userDataInit, groupDataInit } from "../../util/initData";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import PrimaryButton from "../Buttons/PrimaryButton";
 import InputError from "../UserInputs/InputError";
-import { createGroup } from "../../api/groupService";
+import { createGroup, validateGroupForm } from "../../api/groupService";
 import {
-  validateUser,
+  validateUserForm,
   verifyCode,
   createUser,
   updateUser,
@@ -84,42 +83,45 @@ export default function FunnelCard({ funnelIndex }) {
 
   const handleGroup = async (e) => {
     e.preventDefault();
-    console.log("CREATING GROUP");
-    const success = await createGroup(groupData, userData, setErrorMessage);
-    if (success) {
-      if (isLastStep) {
-        localStorage.clear();
-        navigate("/login");
+
+    if (step && step.type.name === "GroupInfoStep") {
+      const isGroupValid = validateGroupForm(groupData, updateGroupFields);
+      if (!isGroupValid) {
+        return;
       } else {
-        setErrorMessage("");
-        return next(1);
+        console.log("group is valid");
+        next(1);
       }
-    } else {
-      console.log("cant create group");
+    } else if (step && step.type.name === "GroupSettingStep") {
+      console.log("create group");
+      const success = await createGroup(groupData, userData, setErrorMessage);
+      if (success) {
+        if (isLastStep) {
+          localStorage.clear();
+          navigate("/login");
+        } else {
+          setErrorMessage("");
+          console.log("created group");
+          return next(1);
+        }
+      } else {
+        console.log("cant create group");
+      }
     }
   };
 
   const handleUser = async (e) => {
     e.preventDefault();
 
-    // Use verify group function
-    if (step && step.type.name === "GroupInfoStep") {
-      if (groupData.name.length < 3) {
-        updateGroupFields({
-          errorGroupName: "Bitte geben Sie Ihren Gruppenname an.",
-        });
-        return;
-      }
-      if (groupData.description.length < 3) {
-        updateGroupFields({
-          errorGroupDescription: "Bitte geben Sie mindestens drei Zeichen ein",
-        });
-        return;
-      }
+    //Next step
+    if (step && step.type.name !== "UserInfoStep" && !isLastStep) {
+      console.log("Doing next without post or update");
+      setErrorMessage("");
+      return next(1);
     }
 
     if (step && step.type.name === "UserInfoStep") {
-      const isUserFormValid = validateUser(
+      const isUserFormValid = validateUserForm(
         userData,
         updateFields,
         setErrorMessage,
@@ -153,7 +155,6 @@ export default function FunnelCard({ funnelIndex }) {
     }
 
     if (isVerified) {
-      console.log("UPDATE !!!");
       await updateUser(userData, currentUser, setErrorMessage);
       if (isLastStep) {
         localStorage.clear();
@@ -164,17 +165,6 @@ export default function FunnelCard({ funnelIndex }) {
       }
       return;
     }
-
-    //Next step
-    if (step && step.type.name !== "UserInfoStep" && !isLastStep) {
-      console.log("Doing next without post");
-      setErrorMessage("");
-      return next(1);
-    }
-    // if (userCreated) {
-    //   // If user creation or update is successful, proceed with the next step
-    //   next(1);
-    // }
   };
 
   return (
@@ -199,7 +189,9 @@ export default function FunnelCard({ funnelIndex }) {
         </div>
         <form
           onSubmit={
-            step && step.type.name === "GroupSettingStep"
+            step &&
+            (step.type.name === "GroupSettingStep" ||
+              step.type.name === "GroupInfoStep")
               ? handleGroup
               : handleUser
           }

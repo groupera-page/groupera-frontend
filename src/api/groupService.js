@@ -11,10 +11,11 @@ export const createGroup = async (groupData, userData, setErrorMessage) => {
     frequency: groupData.freq,
   };
   try {
+    console.log("USER EMAIL", userData.email);
     const url = `http://localhost:5005/group/create/${userData.email}`;
     await axios.post(url, requestGroupBody);
     console.log(groupData);
-    console.log("CREATING GROUP");
+    console.log("CREATING GROUP backend");
   } catch (error) {
     if (
       error.response &&
@@ -24,4 +25,22 @@ export const createGroup = async (groupData, userData, setErrorMessage) => {
       setErrorMessage(error.response.data.message);
     }
   }
+};
+
+export const validateGroupForm = (groupData, updateGroupFields) => {
+  if (groupData.name.length < 3) {
+    updateGroupFields({
+      errorGroupName: "Bitte geben Sie Ihren Gruppenname an.",
+    });
+    return false;
+  }
+
+  if (groupData.description.length < 3) {
+    updateGroupFields({
+      errorGroupDescription: "Bitte geben Sie mindestens drei Zeichen ein",
+    });
+    return false;
+  }
+
+  return true;
 };
