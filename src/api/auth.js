@@ -6,6 +6,8 @@ const authBaseURL = "/auth"
 
 export const AuthAPI = {
   signup: async (reqBody) => {
+    console.log("signUp reqBody", reqBody)
+    debugger
     const response = await basicInstance.post(`${authBaseURL}/signup`, reqBody)
 
     return response.data

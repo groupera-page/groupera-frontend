@@ -28,11 +28,16 @@ const FormWrapper = ({
   const { step, isFirstStep, isLastStep, back, next } =
     useMultistepHook(steps)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     if (!isLastStep) {
       localStorage.setItem("signUpData", JSON.stringify(formFields));
-      step.onSubmit && step.onSubmit(formFields)
+      if(step.onSubmit){
+        const response = await step.onSubmit(formFields)
+        // handle the response
+        // if an error than don't go to next step but show the error, otherwise proceed to next step.
+        console.log(response)
+      }
       next()
     }
 

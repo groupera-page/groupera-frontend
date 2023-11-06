@@ -1,5 +1,6 @@
 import {email, includeCapital, includeNumber, length, required} from "./form.helper";
 import testManual from "../assets/manual.pdf";
+import {AuthAPI} from "../api/auth";
 
 const userProfileStep = {
   header: "Erstelle jetzt Dein Nutzerprofil",
@@ -49,7 +50,7 @@ const userProfileStep = {
     }
   ],
   goBackOption: true,
-  onSubmit: (fields) => console.log("fields", fields)
+  onSubmit: AuthAPI.signup
 }
 
 const authStep = {
