@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
+
 import {
   BsFillHouseDoorFill,
   BsHouseDoor,
@@ -8,60 +9,56 @@ import {
 import { CiLogout } from "react-icons/ci";
 
 export default function SideBarItems() {
-  const [activePage, setActivePage] = useState("Übersicht");
-
-  function handleSetActivePage(componentName) {
-    setActivePage(componentName);
-  }
-
   return (
     <div className="flex flex-col justify-between h-1/2 m-5">
       <ul className="list-none flex flex-col gap-5">
         <li className="flex flex-row relative ">
-          {activePage === "Übersicht" && (
-            <div className="bg-PURPLE_PRIMARY w-1 h-full absolute -left-5"></div>
-          )}
-          <div
-            className={`flex items-center text-TEXT_PRIMARY }`}
-            onClick={() => handleSetActivePage("Übersicht")}
-          >
-            {activePage === "Übersicht" && (
-              <BsFillHouseDoorFill
-                className={`w-5 mr-3 text-PURPLE_PRIMARY `}
-                size={32}
-              />
+          <NavLink to="/">
+            {({ isActive }) => (
+              <>
+                <div className={isActive ? "" : "hidden"}>
+                  <div className="bg-PURPLE_PRIMARY w-1 h-full absolute -left-5"></div>
+                  <BsFillHouseDoorFill
+                    className={`w-5 mr-3 text-PURPLE_PRIMARY `}
+                    size={32}
+                  />
+                </div>
+                <div className={isActive ? "hidden" : ""}>
+                  <BsHouseDoor
+                    className={`w-5 mr-3 text-TEXT_PRIMARY `}
+                    size={32}
+                  />
+                </div>
+              </>
             )}
-            {activePage !== "Übersicht" && (
-              <BsHouseDoor className={`w-5 mr-3  `} size={32} />
-            )}
-            Übersicht
-          </div>
+          </NavLink>
         </li>
         <li className="flex flex-row relative ">
-          {activePage === "Gruppen" && (
-            <div className="bg-PURPLE_PRIMARY w-1 h-full absolute -left-5"></div>
-          )}
-          <div
-            className={`flex items-center text-TEXT_PRIMARY `}
-            onClick={() => handleSetActivePage("Gruppen")}
-          >
-            {activePage === "Gruppen" && (
-              <BsPeopleFill
-                className={`w-5 mr-3 text-PURPLE_PRIMARY `}
-                size={32}
-              />
+          <NavLink to="/groups">
+            {({ isActive }) => (
+              <>
+                <div className={isActive ? "" : "hidden"}>
+                  <div className="bg-PURPLE_PRIMARY w-1 h-full absolute -left-5"></div>
+                  <BsPeopleFill
+                    className={`w-5 mr-3 text-PURPLE_PRIMARY `}
+                    size={32}
+                  />
+                </div>
+                <div className={isActive ? "hidden" : ""}>
+                  <BsPeople
+                    className={`w-5 mr-3 text-TEXT_PRIMARY `}
+                    size={32}
+                  />
+                </div>
+              </>
             )}
-            {activePage !== "Gruppen" && (
-              <BsPeople className={`w-5 mr-3  `} size={32} />
-            )}
-            Gruppen
-          </div>
+          </NavLink>
         </li>
       </ul>
 
       <div
         className={`flex items-center text-TEXT_PRIMARY `}
-        onClick={() => handleSetActivePage("Ausloggen")}
+        // onClick={() => handleSetActivePage("Ausloggen")}
       >
         <CiLogout className="w-5 mr-3 text-TEXT_PRIMARY" size={32} />
         Ausloggen

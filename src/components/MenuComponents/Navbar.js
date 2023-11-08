@@ -1,4 +1,3 @@
-import { useState } from "react";
 import logoSvg from "../../assets/imgLogos/logoNoBg.svg";
 import { Squash as Hamburger } from "hamburger-react";
 
