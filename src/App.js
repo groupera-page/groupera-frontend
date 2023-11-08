@@ -26,6 +26,7 @@ function App() {
             </>
           }
         />
+
         <Route path="/signup-user" element={<SignupPage />} />
         {/* Funnel nr 2 starts with options before registration */}
         <Route path="/signup-option" element={<FunnelToSignupPage />} />

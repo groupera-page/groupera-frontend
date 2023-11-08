@@ -1,13 +1,11 @@
 import logoSvg from "../../assets/imgLogos/logoNoBg.svg";
 import { Squash as Hamburger } from "hamburger-react";
+import { AiOutlineDown } from "react-icons/ai";
 
 export default function Navbar({ handleMobileMenu }) {
   return (
-    <div className=" bg-BG_GRAY flex justify-between items-center py-5 px-2 text-gray-600 w-full ">
-      <div className="flex justify-center w-full">
-        <img src={logoSvg} alt="logo" className="lg:w-40 w-28" />
-      </div>
-      <div className="absolute lg:hidden">
+    <div className=" bg-BG_GRAY flex justify-between items-center px-2 py-1 lg:py-5 text-gray-600 w-full ">
+      <div className="lg:hidden">
         <Hamburger
           label="Show menu"
           rounded
@@ -22,6 +20,13 @@ export default function Navbar({ handleMobileMenu }) {
           className="cursor-pointer lg:hidden"
         />
       </div>
+      <div className="flex justify-center w-full">
+        <img src={logoSvg} alt="logo" className="lg:w-32 w-20" />
+      </div>
+      <div class="border-l border-gray-300 h-8 mr-4 "></div>
+
+      <div>Username</div>
+      <AiOutlineDown className={`w-5 mx-3 text-TEXT_PRIMARY `} size={32} />
     </div>
   );
 }
