@@ -1,27 +1,38 @@
 import React, { useState } from "react";
-import { AiOutlineDown } from "react-icons/ai";
+import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 
-export default function MenuDropDown({ userName = "Username" }) {
+export default function MenuDropDown({
+  userName = "Username",
+  openMenuMobile,
+}) {
   const [openMenuDropDown, setOpenMenuDropDown] = useState(false);
-
   function handleMenuDropDown() {
-    const openMenu = openMenuDropDown ? false : true;
-    setOpenMenuDropDown(openMenu);
+    if (!openMenuMobile) {
+      const openMenu = openMenuDropDown ? false : true;
+      setOpenMenuDropDown(openMenu);
+    }
   }
 
   return (
     <div>
       <div
-        className="flex items-center justify-end cursor-pointer relative "
+        className={`flex items-center justify-end cursor-pointer relative transition-all duration-300 ${
+          openMenuMobile ? "opacity-0" : "opacity-100"
+        }`}
         onClick={handleMenuDropDown}
       >
         <div className=" border-l border-gray-300 h-8  "></div>
         <div className="text-xs mx-2 ">{userName}</div>
-        <AiOutlineDown className={` text-TEXT_PRIMARY `} size={15} />
+        {openMenuDropDown && (
+          <AiOutlineUp className={` text-TEXT_PRIMARY `} size={15} />
+        )}
+        {!openMenuDropDown && (
+          <AiOutlineDown className={` text-TEXT_PRIMARY `} size={15} />
+        )}
       </div>
 
       <div
-        className={`transition-all duration-300 absolute -translate-x-8 top-14  w-fit  bg-BG_PRIMARY rounded-md border-2 shadow-md ${
+        className={`transition-all duration-300 absolute -translate-x-8 top-14  w-fit  bg-BG_PRIMARY rounded-md  shadow-md ${
           openMenuDropDown ? "opacity-100" : "opacity-0"
         } `}
       >

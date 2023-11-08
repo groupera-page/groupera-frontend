@@ -6,7 +6,9 @@ export default function MenuMobile({ openMenuMobile }) {
     <div>
       <div
         className={`transition-all duration-300 absolute  bg-BG_PRIMARY z-10 ${
-          openMenuMobile ? "opacity-100 left-0" : "opacity-50 -left-full"
+          openMenuMobile
+            ? "opacity-100 left-0 lg:opacity-0"
+            : "opacity-50 -left-full"
         } `}
       >
         <hr className="border-t border-gray-300" />

@@ -16,6 +16,7 @@ export default function MenuContainer() {
       <Navbar
         handleMenuMobile={handleMenuMobile}
         handleMenuDropDown={handleMenuDropDown}
+        openMenuMobile={openMenuMobile}
       />
       <MenuMobile openMenuMobile={openMenuMobile} />
     </div>
