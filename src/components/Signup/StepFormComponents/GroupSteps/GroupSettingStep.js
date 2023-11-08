@@ -44,7 +44,7 @@ export default function GroupSettingStep({ moderator, updateGroupFields }) {
         />
 
         {showMessage && (
-          <div className="flex text-primarypurple text-sm bg-primaryBg justify-center">
+          <div className="flex text- PURPLE_PRIMARY text-sm bg-BG_PRIMARY justify-center">
             Wir werden Ihnen eine E-Mail senden
           </div>
         )}

@@ -12,7 +12,7 @@ export default function Home() {
     <div>
       <Navbar handleMobileMenu={handleMobileMenu}></Navbar>
       <NavMobileMenu openMenu={openMenu}></NavMobileMenu>
-      <div className="bg-primaryBg"></div>
+      <div className="bg-BG_PRIMARY"></div>
     </div>
   );
 }

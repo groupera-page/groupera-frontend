@@ -15,9 +15,9 @@ export default function GroupDownloadStep({ data, updateGroupFields }) {
         target="_blank"
         rel="noreferrer"
       >
-        <div className="flex flex-between my-8 w-full cursor-pointer border border-primaryblue rounded-md text-xs p-2 pl-4 items-center">
+        <div className="flex flex-between my-8 w-full cursor-pointer border border-BLUE_PRIMARY rounded-md text-xs p-2 pl-4 items-center">
           Groupera programm
-          <BsDownload className="w-5 mx-5 text-primarypurple" size={32} />
+          <BsDownload className="w-5 mx-5 text- PURPLE_PRIMARY" size={32} />
         </div>
       </Link>
     </div>

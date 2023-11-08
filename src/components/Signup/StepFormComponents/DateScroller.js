@@ -66,13 +66,13 @@ export default function DateScroller({
   };
 
   return (
-    <div className="flex border border-primaryblue rounded-md pl-4 py-2 w-fit gap-4 text-sm">
+    <div className="flex border border-BLUE_PRIMARY rounded-md pl-4 py-2 w-fit gap-4 text-sm">
       <p className="text-center text-sm w-1/2">Geburtsdatum</p>
       <div className="flex flex-nowrap px-5 gap-2">
         <select
           value={new Date(selectedDate).getDate()}
           onChange={handleDayChange}
-          className="bg-primaryBg"
+          className="bg-BG_PRIMARY"
           style={{
             WebkitAppearance: "none",
             appearance: "none",
@@ -90,7 +90,7 @@ export default function DateScroller({
         <select
           value={months[new Date(selectedDate).getMonth()]}
           onChange={handleMonthChange}
-          className="bg-primaryBg"
+          className="bg-BG_PRIMARY"
           style={{
             WebkitAppearance: "none",
             appearance: "none",
@@ -107,7 +107,7 @@ export default function DateScroller({
         <select
           value={new Date(selectedDate).getFullYear()}
           onChange={handleYearChange}
-          className="bg-primaryBg"
+          className="bg-BG_PRIMARY"
           style={{
             WebkitAppearance: "none",
             appearance: "none",

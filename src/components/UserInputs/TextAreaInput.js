@@ -12,7 +12,7 @@ export default function TextAreaInput({
       name={name}
       value={value}
       onChange={onChange}
-      className="w-full border border-primaryblue rounded-md p-2 placeholder-primaryText h-20 resize-none text-sm bg-primaryBg"
+      className="w-full border border-BLUE_PRIMARY rounded-md p-2 placeholder-TEXT_PRIMARY h-20 resize-none text-sm bg-BG_PRIMARY"
       placeholder={placeholder}
       maxLength={maxLength}
     ></textarea>

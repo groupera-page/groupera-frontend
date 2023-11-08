@@ -51,7 +51,7 @@ export default function GroupPlanStep({ freq, day, time, updateGroupFields }) {
   return (
     <div className="">
       <h2 className="">Gruppentreffen planen</h2>
-      <p className=" text-textLightGray">
+      <p className=" text-TEXT_LIGHTGRAY">
         Du kannst alle Angaben jederzeit in den Gruppeneinstellungen ändern
       </p>
       <h4 className="mt-4 mb-2">Startdatum</h4>
@@ -61,12 +61,12 @@ export default function GroupPlanStep({ freq, day, time, updateGroupFields }) {
           dateFormat="dd MMM yyyy"
           onChange={(e) => updateGroupFields({ day: e })}
           default={dateDay}
-          className="w-full px-4 py-2 border rounded-md border-primaryblue text-sm bg-primaryBg cursor-pointer"
+          className="w-full px-4 py-2 border rounded-md border-BLUE_PRIMARY text-sm bg-BG_PRIMARY cursor-pointer"
           minDate={today}
           maxDate={thirtyDaysFromNow}
           locale={de}
         />
-        <AiOutlineCalendar className="absolute w-5 text-primarybg left-40 top-1/2 transform -translate-y-1/2 pointer-events-none" />
+        <AiOutlineCalendar className="absolute w-5 text-BG_PRIMARY left-40 top-1/2 transform -translate-y-1/2 pointer-events-none" />
       </div>
 
       <h4 className="mt-4 mb-2">
@@ -106,7 +106,7 @@ export default function GroupPlanStep({ freq, day, time, updateGroupFields }) {
       </div>
 
       <h4 className="">Zu welcher Uhrzeit?</h4>
-      <div className="flex my-2 border border-primaryblue rounded-md p-2 w-fit">
+      <div className="flex my-2 border border-BLUE_PRIMARY rounded-md p-2 w-fit">
         <div className=" px-1">
           <TimePicker
             selectedTime={fromTime}
@@ -118,7 +118,7 @@ export default function GroupPlanStep({ freq, day, time, updateGroupFields }) {
           />
         </div>
         <div className="mx-4 flex items-center">
-          <BsArrowRight className="w-5  text-primarybg" />
+          <BsArrowRight className="w-5  text-BG_PRIMARY" />
         </div>
         <div className=" px-1 ">
           <TimePicker
@@ -131,7 +131,7 @@ export default function GroupPlanStep({ freq, day, time, updateGroupFields }) {
           />
         </div>
         <div className="mx-4 flex items-center">
-          <BsClock className="w-5  text-primarybg" />
+          <BsClock className="w-5  text-BG_PRIMARY" />
         </div>
       </div>
     </div>

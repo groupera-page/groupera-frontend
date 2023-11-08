@@ -10,14 +10,14 @@ export default function Checkbox({ value, onChange }) {
         onChange={onChange}
         className="hidden"
       />
-      <div className="w-6 h-6 border-2 border-primarypurple rounded-md flex items-center justify-center ">
+      <div className="w-6 h-6 border-2 border- PURPLE_PRIMARY rounded-md flex items-center justify-center ">
         <div
           className={`transform rounded-md border- transition-all ease-in-out duration-300 ${
             value ? " opacity-100" : " opacity-0"
           }`}
         >
           <BsCheckLg
-            className={`text-primarypurple rounded-md ${
+            className={`text- PURPLE_PRIMARY rounded-md ${
               value ? "opacity-100" : "opacity-0"
             }`}
             style={{ fontSize: "1.5em" }}

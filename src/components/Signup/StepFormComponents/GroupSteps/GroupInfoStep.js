@@ -54,7 +54,7 @@ export default function GroupInfoStep({
   return (
     <div>
       <h2 className="">Beschreibe Deine Gruppe</h2>
-      <p className=" text-textLightGray">
+      <p className=" text-TEXT_LIGHTGRAY">
         Du kannst alle Angaben jederzeit in den Gruppeneinstellungen ändern
       </p>
       <h4 className=" mt-4">Wie soll deine Gruppe heißen?</h4>
@@ -87,7 +87,7 @@ export default function GroupInfoStep({
             errorMessage={nameError}
           />
         </div>
-        <p className="px-1 text-textLightGray">Min 3 Zeichen.</p>
+        <p className="px-1 text-TEXT_LIGHTGRAY">Min 3 Zeichen.</p>
       </div>
       <h4 className=" mt-4">Wie würdest du deine Gruppe beschreiben?</h4>
       <div className="mt-2 text-sm rounded-md">

@@ -86,7 +86,7 @@ export default function UserInfoStep({
   return (
     <div>
       <h2 className="">Erstelle jetzt Dein Nutzerprofil</h2>
-      <p className="mb-4 text-textLightGray">
+      <p className="mb-4 text-TEXT_LIGHTGRAY">
         Du kannst Deine Informationen jederzeit in den Einstellungen ändern.
       </p>
 
@@ -104,7 +104,7 @@ export default function UserInfoStep({
         errorMessage={errorUserName}
       />
 
-      <p className="px-1 mb-2 text-textLightGray">
+      <p className="px-1 mb-2 text-TEXT_LIGHTGRAY">
         Bitte gib hier Deinen Namen ein, mit dem Du in der Gruppe angesprochen
         werden möchtest und der für andere Mitglieder:innen angezeigt werden
         darf.
@@ -136,7 +136,7 @@ export default function UserInfoStep({
         }}
         placeholder="Passwort"
       />
-      <p className=" px-1 text-textLightGray">
+      <p className=" px-1 text-TEXT_LIGHTGRAY">
         Mindestens 8 Zeichen, mindestens eine Zahl, ein Großbuchstabe und ein
         Sonderzeichen.
       </p>
@@ -212,11 +212,11 @@ export default function UserInfoStep({
           />
           <p className="text-xs ">
             Ich akzeptiere die{" "}
-            <Link to={"/"} className="text-primarypurple">
+            <Link to={"/"} className="text- PURPLE_PRIMARY">
               Allgemeinen Geschäftsbedingungen <br />
             </Link>{" "}
             und die{" "}
-            <Link to={"/"} className="text-primarypurple">
+            <Link to={"/"} className="text- PURPLE_PRIMARY">
               Datenschutzerklärung{" "}
             </Link>
             von Groupera
@@ -226,7 +226,7 @@ export default function UserInfoStep({
       {/* <div className="flex flex-col ">
         <p className=" my-5">
           Bereits registriert?{" "}
-          <Link to={"/login"} className="text-primarypurple">
+          <Link to={"/login"} className="text- PURPLE_PRIMARY">
             Hier anmelden.
           </Link>
         </p>

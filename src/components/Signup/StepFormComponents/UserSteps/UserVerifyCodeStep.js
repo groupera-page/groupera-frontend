@@ -34,7 +34,7 @@ export default function UserVerifyCodeStep({ updateFields, resendCode }) {
         ))}
       </div>
       <div className="flex justify-center">
-        <span className="text-linkblue" onClick={resendCodeHandler}>
+        <span className="text-BLUE_LINK" onClick={resendCodeHandler}>
           Code erneut senden
         </span>
       </div>

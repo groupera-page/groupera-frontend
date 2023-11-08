@@ -171,7 +171,7 @@ export default function FunnelCard({ funnelIndex }) {
   return (
     <div
       className="w-full md:w-1/2 lg:h-5/6 
-      px-4 rounded md:shadow-md bg-primaryBg md:p-4 "
+      px-4 rounded md:shadow-md bg-BG_PRIMARY md:p-4 "
     >
       <div className="pb-3 flex justify-center">
         <img src={logoSvg} alt="logo" className="lg:w-40 w-28 p-2 pt-3" />
@@ -217,7 +217,7 @@ export default function FunnelCard({ funnelIndex }) {
                       >
                         <div className="flex items-center ">
                           <BsArrowLeft
-                            className="w-5 mr-3 text-primarypurple"
+                            className="w-5 mr-3 text- PURPLE_PRIMARY"
                             size={32}
                           />
                           Zurück
@@ -230,7 +230,7 @@ export default function FunnelCard({ funnelIndex }) {
                     <div className="flex items-center ">
                       {isLastStep ? "Absenden" : "Weiter"}
                       <BsArrowRight
-                        className="w-5 ml-3 text-primarybg"
+                        className="w-5 ml-3 text-BG_PRIMARY"
                         size={32}
                       />
                     </div>

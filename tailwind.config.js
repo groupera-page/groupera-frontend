@@ -4,18 +4,16 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primarypurple: "#A64D79",
-        primaryblue: "#ACD7EB",
-        primaryyellow: "#F9F5E6",
-        primaryBg: "#FCFCFC",
-        secondaryBg: "rgb(154, 192, 209)",
-        grayBg: "rgb(248, 249, 250)",
-        linkblue: "rgb(24, 24, 125)",
-        textLightGray: "#9ca3af",
-        secondaryText: "#8590A6",
-        primaryText: "#212529",
-
-        // darkgreyCustom: "#A64D79",
+        PURPLE_PRIMARY: "#A64D79",
+        BLUE_PRIMARY: "#ACD7EB",
+        YELLOW_PRIMARY: "#F9F5E6",
+        BG_PRIMARY: "#FCFCFC",
+        BG_SECONDARY: "rgb(154, 192, 209)",
+        BG_GRAY: "rgb(248, 249, 250)",
+        BLUE_LINK: "rgb(24, 24, 125)",
+        TEXT_PRIMARY: "#212529",
+        TEXT_SECONDARY: "#8590A6",
+        TEXT_LIGHTGRAY: "#9ca3af",
       },
     },
   },

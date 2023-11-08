@@ -26,7 +26,7 @@ export default function FunnelToSignupPage() {
     >
       <div
         className=" w-full h-screen md:w-1/2 lg:h-5/6 
-      px-4 rounded md:shadow-md bg-primaryBg md:p-4 "
+      px-4 rounded md:shadow-md bg-BG_PRIMARY md:p-4 "
       >
         <div className="pb-3">
           <img src={logoSvg} alt="logo" className="lg:w-40 w-28 p-2 pt-3" />
@@ -38,7 +38,7 @@ export default function FunnelToSignupPage() {
             <label
               key={option.value}
               htmlFor={`radioOption${option.value}`}
-              className="relative w-full cursor-pointer border border-primaryblue rounded-md text-xs p-2 pl-4 flex items-center gap-4"
+              className="relative w-full cursor-pointer border border-BLUE_PRIMARY rounded-md text-xs p-2 pl-4 flex items-center gap-4"
             >
               <div>{option.title}</div>
               <input
@@ -65,11 +65,11 @@ export default function FunnelToSignupPage() {
                 ? navigate("/signup-option-join")
                 : navigate("/signup-option-create");
             }}
-            className={`text-slate-100 hover:text-white  bg-primarypurple hover-bg-primarypurple-hover px-4 py-1 rounded-lg`}
+            className={`text-slate-100 hover:text-white  bg- PURPLE_PRIMARY hover-bg- PURPLE_PRIMARY-hover px-4 py-1 rounded-lg`}
           >
             <div className="flex items-center">
               Weiter
-              <BsArrowRight className="w-5 ml-3 text-primarybg" size={32} />
+              <BsArrowRight className="w-5 ml-3 text-BG_PRIMARY" size={32} />
             </div>
           </button>
         </div>

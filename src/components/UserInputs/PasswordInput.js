@@ -7,12 +7,12 @@ export default function PasswordInput({
   onFocusOut,
 }) {
   return (
-    <div className="mt-4 text-sm border border-primaryblue rounded-md">
+    <div className="mt-4 text-sm border border-BLUE_PRIMARY rounded-md">
       <input
         type="password"
         value={value}
         onChange={onChange}
-        className="w-full p-2 border rounded-md placeholder-primaryText bg-primaryBg"
+        className="w-full p-2 border rounded-md placeholder-TEXT_PRIMARY bg-BG_PRIMARY"
         placeholder={placeholder}
         onBlur={onFocusOut}
       />

@@ -8,12 +8,12 @@ export default function TextInput({
   onFocusOut,
 }) {
   return (
-    <div className=" text-sm border border-primaryblue rounded-md">
+    <div className=" text-sm border border-BLUE_PRIMARY rounded-md">
       <input
         type="text"
         value={value}
         onChange={onChange}
-        className="w-full border rounded-md p-2 placeholder-primaryText bg-primaryBg"
+        className="w-full border rounded-md p-2 placeholder-TEXT_PRIMARY bg-BG_PRIMARY"
         placeholder={placeholder}
         maxLength={maxLength}
         onBlur={onFocusOut}

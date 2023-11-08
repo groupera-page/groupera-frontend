@@ -41,7 +41,7 @@ export default function LandingCard({ page, id }) {
   return (
     <div
       className=" w-full h-full fixed md:w-1/2 lg:h-fit
-      px-4 rounded md:shadow-md bg-primaryBg md:p-4 "
+      px-4 rounded md:shadow-md bg-BG_PRIMARY md:p-4 "
     >
       <div className="lg:flex justify-center">
         {/* <div className="lg:flex lg:w-1/2 justify-center"> */}
@@ -57,7 +57,7 @@ export default function LandingCard({ page, id }) {
                 name="email"
                 value={email}
                 onChange={handleEmail}
-                className="w-full p-2 border bg-primaryBg rounded-md pl-2 lg:w-96 border-primaryblue"
+                className="w-full p-2 border bg-BG_PRIMARY rounded-md pl-2 lg:w-96 border-BLUE_PRIMARY"
                 placeholder="Email"
               />
             </div>
@@ -68,21 +68,21 @@ export default function LandingCard({ page, id }) {
                 name="password"
                 value={password}
                 onChange={handlePassword}
-                className="w-full p-2 border bg-primaryBg rounded-md pl-2 lg:w-96 border-primaryblue"
+                className="w-full p-2 border bg-BG_PRIMARY rounded-md pl-2 lg:w-96 border-BLUE_PRIMARY"
                 placeholder="Password"
               />
             </div>
             <div className="flex flex-col items-center ">
               <p className="my-8 ">
                 Du hast noch kein Konto?{" "}
-                <Link to={"/signup-option"} className="text-primarypurple">
+                <Link to={"/signup-option"} className="text- PURPLE_PRIMARY">
                   Jetzt Registrieren
                 </Link>
               </p>
 
               <button
                 type="submit"
-                className={` mb-4 items-center bg-primarypurple text-slate-100 hover:text-white p-2 rounded-md whitespace-nowrap transition-color duration-300 ease-in-out lg:text-base text-1xl`}
+                className={` mb-4 items-center bg- PURPLE_PRIMARY text-slate-100 hover:text-white p-2 rounded-md whitespace-nowrap transition-color duration-300 ease-in-out lg:text-base text-1xl`}
               >
                 Anmelden
               </button>

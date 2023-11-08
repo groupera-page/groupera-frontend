@@ -12,8 +12,8 @@ export default function PrimaryButton({
       onClick={handleButtonClick}
       className={`px-4 py-2 ${
         isInversed
-          ? "text-primarypurple hover-bg-primarypurple-hover rounded-md"
-          : "text-slate-100 hover:text-white bg-primarypurple rounded-md"
+          ? "text-PURPLE_PRIMARY hover:bg-PURPLE_PRIMARY-hover rounded-md"
+          : "text-slate-100 hover:text-white bg-PURPLE_PRIMARY rounded-md"
       }`}
     >
       {children}

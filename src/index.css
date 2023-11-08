@@ -17,30 +17,30 @@ code {
 
 @layer base {
   h1 {
-    @apply text-4xl md:text-5xl xl:text-7xl text-primaryText;
+    @apply text-4xl md:text-5xl xl:text-7xl text-TEXT_PRIMARY;
   }
 
   h2 {
-    @apply md:text-2xl text-xl text-primaryText font-medium;
+    @apply md:text-2xl text-xl text-TEXT_PRIMARY font-medium;
   }
 
   h3 {
-    @apply md:text-2xl text-lg text-primaryText font-light;
+    @apply md:text-2xl text-lg text-TEXT_PRIMARY font-light;
   }
 
   h4 {
-    @apply md:text-xl text-primaryText;
+    @apply md:text-xl text-TEXT_PRIMARY;
   }
 
   h5 {
-    @apply font-medium text-primaryText;
+    @apply font-medium text-TEXT_PRIMARY;
   }
 
   p {
-    @apply text-primaryText md:text-primaryText text-xs;
+    @apply text-TEXT_PRIMARY md:text-TEXT_PRIMARY text-xs;
   }
 
   section {
-    @apply pt-28 md:pt-32 lg:pt-24 px-6 lg:px-32 bg-primaryBg;
+    @apply pt-28 md:pt-32 lg:pt-24 px-6 lg:px-32 bg-BG_PRIMARY;
   }
 }
