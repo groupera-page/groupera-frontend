@@ -217,7 +217,7 @@ export default function FunnelCard({ funnelIndex }) {
                       >
                         <div className="flex items-center ">
                           <BsArrowLeft
-                            className="w-5 mr-3 text- PURPLE_PRIMARY"
+                            className="w-5 mr-3 text-PURPLE_PRIMARY"
                             size={32}
                           />
                           Zurück

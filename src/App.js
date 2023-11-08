@@ -14,7 +14,8 @@ function App() {
           path="/"
           element={
             <>
-              <Home /> <MenuContainer />
+              <MenuContainer />
+              <Home />
             </>
           }
         />
@@ -22,7 +23,8 @@ function App() {
           path="/groups"
           element={
             <>
-              <GroupsPage /> <MenuContainer />
+              <MenuContainer />
+              <GroupsPage />
             </>
           }
         />

@@ -37,7 +37,7 @@ code {
   }
 
   p {
-    @apply text-TEXT_PRIMARY md:text-TEXT_PRIMARY text-xs;
+    @apply text-TEXT_PRIMARY text-xs;
   }
 
   section {
