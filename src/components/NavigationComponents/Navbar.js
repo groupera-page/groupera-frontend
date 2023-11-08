@@ -1,6 +1,6 @@
 import logoSvg from "../../assets/imgLogos/logoNoBg.svg";
 import { Squash as Hamburger } from "hamburger-react";
-import { AiOutlineDown } from "react-icons/ai";
+import MenuDropDown from "./Menus/MenuDropDown";
 
 export default function Navbar({ handleMenuMobile }) {
   return (
@@ -26,9 +26,7 @@ export default function Navbar({ handleMenuMobile }) {
         <img src={logoSvg} alt="logo" className="lg:w-32 w-20" />
       </div>
       <div className="flex items-center justify-end mr-2  w-1/3 lg:w-1/4">
-        <div className=" border-l border-gray-300 h-8  "></div>
-        <div className="text-xs mx-2 ">Username</div>
-        <AiOutlineDown className={` text-TEXT_PRIMARY `} size={15} />
+        <MenuDropDown />
       </div>
     </div>
   );
