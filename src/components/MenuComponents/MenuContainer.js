@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
-import MobileMenu from "./MobileMenu";
-
+import MenuMobile from "./MenuMobile";
+import MenuDropDown from "./MenuDropDown";
 export default function MenuContainer() {
-  const [openMenu, setOpenMenu] = useState(false);
-  function handleMobileMenu(openMenu) {
-    setOpenMenu(openMenu);
+  const [openMenuMobile, setOpenMenuMobile] = useState(false);
+  function handleMenuMobile(openMenuMobile) {
+    setOpenMenuMobile(openMenuMobile);
   }
   return (
     <div>
-      <Navbar handleMobileMenu={handleMobileMenu} />
-      <MobileMenu openMenu={openMenu} />
+      <Navbar handleMenuMobile={handleMenuMobile} />
+      <MenuMobile openMenuMobile={openMenuMobile} />
     </div>
   );
 }
