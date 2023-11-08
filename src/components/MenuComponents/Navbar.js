@@ -1,4 +1,5 @@
-import logoSvg from "../assets/imgLogos/logoNoBg.svg";
+import { useState } from "react";
+import logoSvg from "../../assets/imgLogos/logoNoBg.svg";
 import { Squash as Hamburger } from "hamburger-react";
 
 export default function Navbar({ handleMobileMenu }) {

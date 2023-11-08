@@ -1,5 +1,5 @@
-import Navbar from "../components/Navbar";
-import NavMobileMenu from "../components/NavMobileMenu";
+import Navbar from "../components/MenuComponents/Navbar";
+import MobileMenu from "../components/MenuComponents/MobileMenu";
 import React, { useState } from "react";
 
 export default function Home() {
@@ -10,8 +10,8 @@ export default function Home() {
 
   return (
     <div>
-      <Navbar handleMobileMenu={handleMobileMenu}></Navbar>
-      <NavMobileMenu openMenu={openMenu}></NavMobileMenu>
+      <Navbar handleMobileMenu={handleMobileMenu} />
+      <MobileMenu openMenu={openMenu} />
       <div className="bg-BG_PRIMARY"></div>
     </div>
   );

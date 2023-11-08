@@ -9,8 +9,6 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* <Route exact path="/" element={<Home />} /> */}
-
         <Route path="/" element={<Home />} />
         <Route path="/signup-user" element={<SignupPage />} />
         {/* Funnel nr 2 starts with options before registration */}
