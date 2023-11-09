@@ -1,7 +1,7 @@
 import React from "react";
 import NavigationItems from "../NavigationItems";
 
-export default function MenuMobile({ openMenuMobile }) {
+export default function MenuMobile({ openMenuMobile, handleMenuMobile }) {
   return (
     <div>
       <div
@@ -13,7 +13,10 @@ export default function MenuMobile({ openMenuMobile }) {
       >
         <hr className="border-t border-gray-300" />
         <div className="bg-BG_PRIMARY h-screen w-screen flex-col justify-between">
-          <NavigationItems />
+          <NavigationItems
+            handleMenuMobile={handleMenuMobile}
+            openMenuMobile={openMenuMobile}
+          />
         </div>
       </div>
     </div>

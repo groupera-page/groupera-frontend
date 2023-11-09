@@ -8,12 +8,12 @@ import {
 } from "react-icons/bs";
 import { CiLogout } from "react-icons/ci";
 
-export default function Navigation() {
+export default function Navigation({ handleMenuMobile }) {
   return (
     <div className="flex flex-col justify-between h-1/2 m-5">
       <ul className="list-none flex flex-col gap-5">
         <li className="flex relative ">
-          <NavLink to="/">
+          <NavLink to="/" onClick={() => handleMenuMobile()}>
             {({ isActive }) => (
               <>
                 <div className="flex flex-row items-center">
@@ -37,7 +37,7 @@ export default function Navigation() {
           </NavLink>
         </li>
         <li className="flex relative ">
-          <NavLink to="/groups">
+          <NavLink to="/groups" onClick={() => handleMenuMobile()}>
             {({ isActive }) => (
               <>
                 <div className="flex flex-row items-center">
@@ -61,7 +61,7 @@ export default function Navigation() {
           </NavLink>
         </li>
       </ul>
-      <NavLink to="/login">
+      <NavLink to="/login" onClick={() => handleMenuMobile()}>
         <div className={`flex items-center text-TEXT_PRIMARY `}>
           <CiLogout className="w-5 mr-3 text-TEXT_PRIMARY" size={32} />
           Ausloggen

@@ -11,13 +11,8 @@ export default function Navbar({ handleMenuMobile, openMenuMobile }) {
             label="Show menu"
             rounded
             size={24}
-            onToggle={(toggled) => {
-              if (toggled) {
-                handleMenuMobile(true);
-              } else {
-                handleMenuMobile(false);
-              }
-            }}
+            toggled={openMenuMobile}
+            toggle={handleMenuMobile}
             className="cursor-pointer lg:hidden"
           />
         </div>

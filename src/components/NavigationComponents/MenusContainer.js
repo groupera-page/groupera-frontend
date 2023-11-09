@@ -5,6 +5,7 @@ export default function MenuContainer() {
   const [openMenuMobile, setOpenMenuMobile] = useState(false);
   const [openMenuDropDown, setOpenMenuDropDown] = useState(false);
   function handleMenuMobile(openMenuMobile) {
+    console.log("TOGGLE MENU");
     setOpenMenuMobile(openMenuMobile);
   }
   function handleMenuDropDown() {
@@ -18,7 +19,10 @@ export default function MenuContainer() {
         handleMenuDropDown={handleMenuDropDown}
         openMenuMobile={openMenuMobile}
       />
-      <MenuMobile openMenuMobile={openMenuMobile} />
+      <MenuMobile
+        openMenuMobile={openMenuMobile}
+        handleMenuMobile={handleMenuMobile}
+      />
     </div>
   );
 }
