@@ -1,6 +1,20 @@
-import OverViewGroups from "../components/OverViewCards/OverViewGroups";
-import OverViewEvents from "../components/OverViewCards/OverViewEvents";
+import OverviewGroups from "../components/OverviewCards/OverviewGroups";
+import OverviewNextEvent from "../components/OverviewCards/OverviewNextEvent";
 export default function Home({ userName = "Username" }) {
+  // Replace
+  const mockData = {
+    groups: [
+      {
+        name: "Depression",
+        nextEventTime: "2023-11-15T18:00:00",
+      },
+      {
+        name: "Angst",
+        nextEventTime: "2023-11-20T15:30:00",
+      },
+    ],
+  };
+
   return (
     <div>
       <div className="bg-BG_PRIMARY  ">
@@ -9,8 +23,8 @@ export default function Home({ userName = "Username" }) {
           <p className="text-TEXT_GRAY">
             hier sind alle wichtigen Infos für dich zusammengestellt.{" "}
           </p>
-          <OverViewGroups />
-          <OverViewEvents />
+          <OverviewGroups mockData={mockData} />
+          <OverviewNextEvent mockData={mockData} />
         </div>
       </div>
     </div>

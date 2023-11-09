@@ -1,6 +1,6 @@
 import React from "react";
 import SecondaryButton from "../Buttons/SecondaryButton";
-export default function OverViewGroupItems({ groups }) {
+export default function OverviewGroupItems({ groups }) {
   return (
     <div className="mx-2 flex-col ">
       {groups.map((group, index) => (

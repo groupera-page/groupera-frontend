@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function OverViewHeader({ title, text }) {
+export default function OverviewHeader({ title, text }) {
   return (
     <div>
       {" "}
