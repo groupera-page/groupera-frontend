@@ -21,15 +21,15 @@ code {
   }
 
   h2 {
-    @apply md:text-2xl text-xl text-TEXT_PRIMARY font-medium;
+    @apply md:text-2xl text-2xl text-TEXT_PRIMARY font-medium;
   }
 
   h3 {
-    @apply md:text-2xl text-lg text-TEXT_PRIMARY font-light;
+    @apply md:text-2xl text-2xl text-TEXT_PRIMARY font-light;
   }
 
   h4 {
-    @apply md:text-xl text-TEXT_PRIMARY;
+    @apply font-medium text-xl text-TEXT_PRIMARY;
   }
 
   h5 {

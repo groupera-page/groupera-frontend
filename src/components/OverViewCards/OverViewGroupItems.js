@@ -5,13 +5,13 @@ export default function OverviewGroupItems({ groups }) {
     <div className="mx-2 flex-col ">
       {groups.map((group, index) => (
         <div key={index}>
-          <div className="flex justify-between items-center">
-            <div className="flex flex-col gap-1 mb-4  ">
-              <h5>{group.name}</h5>
+          <div className="flex justify-between items-center my-4">
+            <div className="flex flex-col justify-center gap-1 ">
+              <p className="font-medium">{group.name}</p>
               <p className="text-TEXT_LIGHTGRAY">Nächster Termin</p>
-              <p className="mb-2">{group.nextEventTime}</p>
+              <p className="">{group.nextEventTime}</p>
             </div>
-            <div className="flex h-1/2 justify-center">
+            <div className="">
               <SecondaryButton>Zur Gruppe</SecondaryButton>
             </div>
           </div>
