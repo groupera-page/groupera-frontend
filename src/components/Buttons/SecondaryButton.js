@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function PrimaryButton({
+export default function SecondaryButton({
   type = "button",
   handleButtonClick,
   isInversed = false,
