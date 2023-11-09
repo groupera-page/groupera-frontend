@@ -3,20 +3,20 @@ import OverviewHeader from "./OverviewHeader";
 import OverviewGroupItems from "./OverviewGroupItems";
 import PrimaryButton from "../Buttons/PrimaryButton";
 
-export default function OverviewGroups({ mockData }) {
+export default function OverviewGroups({ mockData, hasGroups = true }) {
   return (
     <div className="flex flex-col p-2 rounded-md shadow-md gap-2">
       <OverviewHeader
         title={"Deine Gruppen"}
         text={
-          "Über die Gruppen kannst du dich für die nächsten Termine anmelden."
+          hasGroups
+            ? "Über die Gruppen kannst du dich für die nächsten Termine anmelden."
+            : "Du bist noch keiner Gruppe beigetreten. "
         }
       />
-      <OverviewGroupItems groups={mockData.groups} />
+      {hasGroups && <OverviewGroupItems groups={mockData.groups} />}
       <div className="flex flex-col items-center my-2">
-        <div className="items-center ">
-          <PrimaryButton>Gruppen Finden</PrimaryButton>
-        </div>
+        <PrimaryButton>Gruppen Finden</PrimaryButton>
       </div>
     </div>
   );
