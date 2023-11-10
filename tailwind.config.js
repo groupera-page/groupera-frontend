@@ -7,7 +7,7 @@ module.exports = {
         PURPLE_PRIMARY: "#A64D79",
         BLUE_PRIMARY: "#ACD7EB",
         YELLOW_PRIMARY: "#F9F5E6",
-
+        //Primary white
         BG_PRIMARY: "#FCFCFC",
         BG_SECONDARY: "rgb(154, 192, 209)",
         BG_GRAY: "rgb(248, 249, 250)",

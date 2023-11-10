@@ -10,13 +10,13 @@ import { CiLogout } from "react-icons/ci";
 
 export default function Navigation({ handleMenuMobile }) {
   return (
-    <div className="flex flex-col justify-between h-1/2 m-5">
-      <ul className="list-none flex flex-col gap-5">
+    <div className="flex flex-col justify-between h-1/2 lg:h-5/6 m-5 ">
+      <ul className="list-none flex flex-col gap-5 ">
         <li className="flex relative ">
           <NavLink to="/" onClick={() => handleMenuMobile()}>
             {({ isActive }) => (
               <>
-                <div className="flex flex-row items-center">
+                <div className="flex flex-row items-center ">
                   <div className={isActive ? "" : "hidden"}>
                     <div className="bg-PURPLE_PRIMARY w-1 h-full absolute -left-5"></div>
                     <BsFillHouseDoorFill
@@ -36,7 +36,7 @@ export default function Navigation({ handleMenuMobile }) {
             )}
           </NavLink>
         </li>
-        <li className="flex relative ">
+        <li className="flex relative">
           <NavLink to="/groups" onClick={() => handleMenuMobile()}>
             {({ isActive }) => (
               <>
@@ -67,7 +67,7 @@ export default function Navigation({ handleMenuMobile }) {
           Ausloggen
         </div>
       </NavLink>
-      <hr className="border-gray-300 lg:hidden" />
+      <hr className="border-gray-300 lg:hidden mt-2" />
     </div>
   );
 }

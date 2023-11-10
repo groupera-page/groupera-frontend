@@ -30,6 +30,7 @@ export default function MenusContainer() {
         openMenuMobile={openMenuMobile}
         handleMenuMobile={handleMenuMobile}
       />
+      {/* Rest of your content */}
     </div>
   );
 }
