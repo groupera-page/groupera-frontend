@@ -13,7 +13,7 @@ export default function MenusContainer() {
     setOpenMenuDropDown(openMenu);
   }
   return (
-    <div className="flex">
+    <div className="lg:flex">
       <div className="w-48 absolute h-screen">
         <MenuSidebar
           openMenuMobile={openMenuMobile}
@@ -30,7 +30,6 @@ export default function MenusContainer() {
         openMenuMobile={openMenuMobile}
         handleMenuMobile={handleMenuMobile}
       />
-      {/* Rest of your content */}
     </div>
   );
 }
