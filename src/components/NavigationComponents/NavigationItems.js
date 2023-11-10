@@ -67,7 +67,7 @@ export default function Navigation({ handleMenuMobile }) {
           Ausloggen
         </div>
       </NavLink>
-      <hr className="border-gray-300" />
+      <hr className="border-gray-300 lg:hidden" />
     </div>
   );
 }

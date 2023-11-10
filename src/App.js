@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/HomePage";
 import GroupsPage from "./pages/GroupsPage";
-import MenuContainer from "./components/NavigationComponents/MenusContainer";
+import MenusContainer from "./components/NavigationComponents/MenusContainer";
 import Login from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import FunnelToSignupPage from "./pages/FunnelToSignupPage";
@@ -14,7 +14,7 @@ function App() {
           path="/"
           element={
             <>
-              <MenuContainer />
+              <MenusContainer />
               <Home />
             </>
           }
@@ -23,7 +23,7 @@ function App() {
           path="/groups"
           element={
             <>
-              <MenuContainer />
+              <MenusContainer />
               <GroupsPage />
             </>
           }

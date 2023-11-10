@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
 import MenuMobile from "./Menus/MenuMobile";
-export default function MenuContainer() {
+import MenuSidebar from "./Menus/MenuSidebar";
+export default function MenusContainer() {
   const [openMenuMobile, setOpenMenuMobile] = useState(false);
   const [openMenuDropDown, setOpenMenuDropDown] = useState(false);
   function handleMenuMobile(openMenuMobile) {
-    console.log("TOGGLE MENU");
     setOpenMenuMobile(openMenuMobile);
   }
   function handleMenuDropDown() {
@@ -13,7 +13,14 @@ export default function MenuContainer() {
     setOpenMenuDropDown(openMenu);
   }
   return (
-    <div>
+    <div className="flex">
+      <div className="w-48 absolute h-screen">
+        <MenuSidebar
+          openMenuMobile={openMenuMobile}
+          handleMenuMobile={handleMenuMobile}
+        />
+      </div>
+
       <Navbar
         handleMenuMobile={handleMenuMobile}
         handleMenuDropDown={handleMenuDropDown}
@@ -23,6 +30,7 @@ export default function MenuContainer() {
         openMenuMobile={openMenuMobile}
         handleMenuMobile={handleMenuMobile}
       />
+      {/* Rest of your content */}
     </div>
   );
 }
