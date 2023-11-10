@@ -9,7 +9,7 @@ export default function OverviewNextEvent({ mockData, hasEvents = true }) {
       <div
         className={`flex ${
           hasEvents ? "flex-row" : "flex-col"
-        } rounded-md shadow-md  justify-between`}
+        } rounded-md shadow-md border justify-between`}
       >
         <div className="flex flex-col p-2 ">
           <OverviewHeader

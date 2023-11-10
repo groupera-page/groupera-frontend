@@ -5,7 +5,7 @@ import PrimaryButton from "../Buttons/PrimaryButton";
 
 export default function OverviewGroups({ mockData, hasGroups = true }) {
   return (
-    <div className="flex flex-col p-2 rounded-md shadow-md gap-2 lg:w-1/2">
+    <div className="flex flex-col p-2 rounded-md shadow-md border gap-2 lg:w-1/2">
       <OverviewHeader
         title={"Deine Gruppen"}
         text={

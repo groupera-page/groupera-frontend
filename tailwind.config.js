@@ -17,6 +17,9 @@ module.exports = {
         TEXT_GRAY: "rgb(73, 80, 87)",
         TEXT_LIGHTGRAY: "#9ca3af",
       },
+      boxShadow: {
+        RIGHT: "8px 0 4px -4px rgba(0, 0, 0.0, 0.08)",
+      },
     },
   },
   plugins: [require("tailwind-scrollbar-hide")],

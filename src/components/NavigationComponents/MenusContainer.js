@@ -14,13 +14,10 @@ export default function MenusContainer() {
   }
   return (
     <div className="lg:flex">
-      <div className="w-48 absolute h-screen">
-        <MenuSidebar
-          openMenuMobile={openMenuMobile}
-          handleMenuMobile={handleMenuMobile}
-        />
-      </div>
-
+      <MenuSidebar
+        openMenuMobile={openMenuMobile}
+        handleMenuMobile={handleMenuMobile}
+      />
       <Navbar
         handleMenuMobile={handleMenuMobile}
         handleMenuDropDown={handleMenuDropDown}

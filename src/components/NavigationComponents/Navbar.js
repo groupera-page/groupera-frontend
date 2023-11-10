@@ -4,7 +4,7 @@ import MenuDropDown from "./Menus/MenuDropDown";
 
 export default function Navbar({ handleMenuMobile, openMenuMobile }) {
   return (
-    <div className="bg-BG_GRAY lg:bg-BG_PRIMARY flex justify-between items-center lg:py-5 text-gray-600 w-full shadow-lg">
+    <div className="bg-BG_GRAY lg:bg-BG_PRIMARY flex justify-between items-center lg:fixed  text-gray-600 w-full shadow-md">
       <div className="w-1/4">
         <div className="lg:hidden ">
           <Hamburger
