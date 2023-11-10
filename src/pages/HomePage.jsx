@@ -18,15 +18,17 @@ export default function Home({ userName = "Username" }) {
   return (
     <div>
       <div className="bg-BG_PRIMARY ">
-        <div className=" p-5 py-10 ">
+        <div className=" p-5 py-10 lg:p-20">
           <div className="my-5">
             <h3 className="">Hallo {userName}, willkommen zurück</h3>
             <p className="text-TEXT_GRAY ">
               hier sind alle wichtigen Infos für dich zusammengestellt.{" "}
             </p>
           </div>
-          <OverviewGroups mockData={mockData} />
-          <OverviewNextEvent mockData={mockData} />
+          <div className="lg:flex lg:gap-5">
+            <OverviewGroups mockData={mockData} />
+            <OverviewNextEvent mockData={mockData} />
+          </div>
         </div>
       </div>
     </div>

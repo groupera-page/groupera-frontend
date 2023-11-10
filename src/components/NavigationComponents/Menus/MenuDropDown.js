@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 
 export default function MenuDropDown({
@@ -14,7 +15,7 @@ export default function MenuDropDown({
   }
 
   return (
-    <div>
+    <div className="lg:mx-20">
       <div
         className={`flex items-center justify-end cursor-pointer relative transition-all duration-300 ${
           openMenuMobile ? "opacity-0" : "opacity-100"
@@ -32,20 +33,26 @@ export default function MenuDropDown({
       </div>
 
       <div
-        className={`transition-all duration-300 absolute -translate-x-8 top-14  w-fit  bg-BG_PRIMARY rounded-md  shadow-md ${
+        className={`transition-all duration-300 absolute -translate-x-8 top-14  bg-BG_PRIMARY rounded-md  shadow-md ${
           openMenuDropDown ? "opacity-100" : "opacity-0"
         } `}
       >
-        <ul className="flex flex-col ">
-          <li className="p-4"> Profil</li>
+        <ul className="flex flex-col w-fit">
+          <NavLink to="/" onClick={handleMenuDropDown}>
+            <li className="p-4"> Profil</li>
+          </NavLink>
           <>
             <hr className="border-t border-gray-300" />
           </>
-          <li className="p-4">Einstellungen</li>
+          <NavLink to="/" onClick={handleMenuDropDown}>
+            <li className="p-4">Einstellungen</li>
+          </NavLink>
           <>
             <hr className="border-t border-gray-300" />
           </>
-          <li className="p-4">Abo & Zahlungen</li>
+          <NavLink to="/" onClick={handleMenuDropDown}>
+            <li className="p-4">Abo & Zahlungen</li>
+          </NavLink>
         </ul>
       </div>
     </div>

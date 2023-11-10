@@ -5,7 +5,7 @@ import SecondaryButton from "../Buttons/SecondaryButton";
 
 export default function OverviewNextEvent({ mockData, hasEvents = true }) {
   return (
-    <div>
+    <div className="lg:w-1/2">
       <div
         className={`flex ${
           hasEvents ? "flex-row" : "flex-col"
