@@ -218,7 +218,7 @@ export default function FunnelCard({ funnelIndex }) {
                         <div className="flex items-center ">
                           <BsArrowLeft
                             className="w-5 mr-3 text-PURPLE_PRIMARY"
-                            size={32}
+                            size={18}
                           />
                           Zurück
                         </div>
@@ -231,7 +231,7 @@ export default function FunnelCard({ funnelIndex }) {
                       {isLastStep ? "Absenden" : "Weiter"}
                       <BsArrowRight
                         className="w-5 ml-3 text-BG_PRIMARY"
-                        size={32}
+                        size={18}
                       />
                     </div>
                   </PrimaryButton>

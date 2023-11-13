@@ -6,7 +6,7 @@ export default function StepIndicator({ currentStep, steps }) {
       <div
         key={i}
         className={` ${
-          i < currentStep ? "bg- PURPLE_PRIMARY" : "bg-gray-200"
+          i < currentStep ? "bg-PURPLE_PRIMARY" : "bg-gray-200"
         } rounded-3xl h-4 w-10`}
       ></div>
     );
