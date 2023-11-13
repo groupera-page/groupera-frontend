@@ -1,8 +1,12 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import VerificationCodeInput from './VerificationCodeInput';
 
-
-const VerificationCodeInputs = ({codeLength}) => {
+const VerificationCodeWrapper = ({
+                                   codeLength=4,
+                                   input,
+                                   hint,
+                                   meta: {touched, error}
+}) => {
   const emptyCode = Array(codeLength).fill('');
   const [code, setCode] = useState(emptyCode);
 
@@ -15,6 +19,7 @@ const VerificationCodeInputs = ({codeLength}) => {
 
     newCode.splice(index, newValueSize , ...newValue);
     setCode(newCode);
+    input.onChange(newCode.join(""))
 
     if(value.length && value.length < codeLength && index !== codeLength - 1) {
       (target.nextElementSibling || null).focus();
@@ -41,22 +46,29 @@ const VerificationCodeInputs = ({codeLength}) => {
   }
 
   return (
-    <div style={{display: "flex", columnGap: "10px"}}>
+    <div>
+      <div style={{display: "flex", columnGap: "10px"}}>
+        {
+          code.map((char, index) => (
+            <VerificationCodeInput
+              style={{display: "flex", columnGap: "10px"}}
+              key={index}
+              handleCode={handleCode}
+              handleKey={handleKey}
+              char={char}
+              index={index}
+              maxLength={codeLength}
+            />
+          ))
+        }
+      </div>
       {
-        code.map((char, index) => (
-          <VerificationCodeInput
-            style={{display: "flex", columnGap: "10px"}}
-            key={index}
-            handleCode={handleCode}
-            handleKey={handleKey}
-            char={char}
-            index={index}
-            maxLength={codeLength}
-          />
-        ))
+        hint &&
+        <span className="text-xs text-slate-500">{hint}</span>
       }
+      {touched && error && <div className="footer error">{error}</div>}
     </div>
   );
 }
 
-export default VerificationCodeInputs;
+export default VerificationCodeWrapper;

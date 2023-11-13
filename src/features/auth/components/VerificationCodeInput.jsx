@@ -1,12 +1,23 @@
 const VerificationCodeInputStyle = {
-  width: "25px", lineHeight: 1, fontSize: "25px", padding: "5px", textAlign: "center", border: "1px solid #ccc",
+  width: "25px",
+  lineHeight: 1,
+  fontSize: "25px",
+  padding: "5px",
+  textAlign: "center",
+  border: "1px solid #ccc",
   ':focus': {
     outline: "none",
     borderColor: "red"
   }
 };
 
-const VerificationCodeInput = ({handleCode, handleKey, char, index, maxLength}) => {
+const VerificationCodeInput = ({
+                                 handleCode,
+                                 handleKey,
+                                 char,
+                                 index,
+                                 maxLength
+}) => {
   const handleChange = (e) => {
     const pattern = /^\d*$/;
     const target = e.currentTarget;
@@ -23,13 +34,13 @@ const VerificationCodeInput = ({handleCode, handleKey, char, index, maxLength}) 
   return (
     <input
       type="text"
+      value={char}
       style={VerificationCodeInputStyle}
-      inputMode="numeric"
-      autoComplete="one-time-code"
       onChange={handleChange}
       onKeyDown={(e) => handleKey(e, index)}
-      value={char}
       onFocus={handleFocus}
+      inputMode="numeric"
+      autoComplete="one-time-code"
       maxLength={maxLength}
     />
   )
