@@ -8,19 +8,7 @@ export default function Home({ userName = "Username" }) {
   });
 
   const mockDataRedux = mockData;
-  // Replace this
-  // const mockData2 = {
-  //   groups: [
-  //     {
-  //       name: "Depression",
-  //       nextEventTime: "2023-11-15T18:00:00",
-  //     },
-  //     {
-  //       name: "Angst",
-  //       nextEventTime: "2023-11-20T15:30:00",
-  //     },
-  //   ],
-  // };
+
   return (
     <PageContainer
       title={`Hallo ${userName}, willkommen zurück`}
