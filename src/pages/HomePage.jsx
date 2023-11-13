@@ -1,7 +1,7 @@
 import OverviewGroups from "../components/OverviewCards/OverviewGroups";
 import OverviewNextEvent from "../components/OverviewCards/OverviewNextEvent";
 export default function Home({ userName = "Username" }) {
-  // Replace
+  // Replace this
   const mockData = {
     groups: [
       {
