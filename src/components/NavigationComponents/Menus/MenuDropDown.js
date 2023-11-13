@@ -22,7 +22,7 @@ export default function MenuDropDown({
     <div>
       {openMenuDropDown && (
         <div
-          className="absolute bg-transparent w-full h-full top-0 left-0"
+          className="fixed bg-transparent w-full h-full top-0 left-0"
           onClick={handleCloseThisMenu}
         ></div>
       )}
