@@ -1,6 +1,5 @@
 import { useLocation } from "react-router-dom";
 import FunnelCard from "../components/Signup/FunnelCard";
-import backgroundImage from "../assets/hands4.jpg";
 
 export default function RegistrationPage() {
   const location = useLocation();
@@ -24,10 +23,7 @@ export default function RegistrationPage() {
   }
   return (
     <div className="md:py-20">
-      <div
-        className="bg-cover bg-center flex items-center justify-center"
-        //  style={{ backgroundImage: `url(${backgroundImage})` }}
-      >
+      <div className="bg-cover bg-center flex items-center justify-center">
         <FunnelCard funnelIndex={funnelIndex} />
       </div>
     </div>

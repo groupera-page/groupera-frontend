@@ -1,9 +1,10 @@
 // Landing page for funnel 2a and 2b
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import backgroundImage from "../assets/hands4.jpg";
+
 import logoSvg from "../assets/imgLogos/logoNoBg.svg";
 import { BsArrowRight } from "react-icons/bs";
+import PrimaryButton from "../components/Buttons/PrimaryButton";
 
 const options = [
   {
@@ -20,10 +21,7 @@ export default function FunnelToSignupPage() {
   const [funnelChoice, setFunnelChoice] = useState(1);
   const navigate = useNavigate();
   return (
-    <div
-      className="bg-cover bg-center h-screen flex items-center justify-center "
-      // style={{ backgroundImage: `url(${backgroundImage})` }}
-    >
+    <div className="bg-cover bg-center h-screen flex items-center justify-center ">
       <div
         className=" w-full h-screen md:w-1/2 lg:h-5/6 
       px-4 rounded md:shadow-md bg-BG_PRIMARY md:p-4 "
@@ -58,20 +56,18 @@ export default function FunnelToSignupPage() {
           ))}
         </div>
         <div className="flex gap-4 justify-end my-5">
-          <button
-            type="submit"
-            onClick={(e) => {
+          <PrimaryButton
+            handleButtonClick={(e) => {
               funnelChoice === 1
                 ? navigate("/signup-option-join")
                 : navigate("/signup-option-create");
             }}
-            className={`text-slate-100 hover:text-white  bg- PURPLE_PRIMARY hover-bg- PURPLE_PRIMARY-hover px-4 py-1 rounded-lg`}
           >
             <div className="flex items-center">
               Weiter
-              <BsArrowRight className="w-5 ml-3 text-BG_PRIMARY" size={32} />
+              <BsArrowRight className="w-5 ml-3 text-BG_PRIMARY" size={18} />
             </div>
-          </button>
+          </PrimaryButton>
         </div>
       </div>
     </div>

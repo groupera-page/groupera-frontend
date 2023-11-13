@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
 import MenuMobile from "./Menus/MenuMobile";
-import MenuSidebar from "./Menus/MenuSidebar";
+import MenuSidebar from "./Menus/MenuSideBar";
 export default function MenusContainer() {
   const [openMenuMobile, setOpenMenuMobile] = useState(false);
   const [openMenuDropDown, setOpenMenuDropDown] = useState(false);
@@ -27,7 +27,6 @@ export default function MenusContainer() {
         openMenuMobile={openMenuMobile}
         handleMenuMobile={handleMenuMobile}
       />
-      {/* Rest of your content */}
     </div>
   );
 }
