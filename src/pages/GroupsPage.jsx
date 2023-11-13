@@ -1,9 +1,7 @@
 import React from "react";
+import PageContainer from "../components/PageContainer";
+import PrimaryButton from "../components/Buttons/PrimaryButton";
 
 export default function GroupsPage() {
-  return (
-    <div>
-      <div className="bg-BG_PRIMARY"></div>
-    </div>
-  );
+  return <PageContainer title={`Gruppen`} text={""}></PageContainer>;
 }
