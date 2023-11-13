@@ -1,16 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+
+import { Provider } from 'react-redux'
+
+import { store } from "./store";
+
+import setupInterceptors from "./api/axiosInterceptors";
+
+import Navigation from './Navigation';
+
 import reportWebVitals from './reportWebVitals';
-import { AuthProviderWrapper } from "./context/auth.context";
+
+import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
-      <AuthProviderWrapper>
-      <App />
-    </AuthProviderWrapper>
+    <Provider store={store}>
+      <Navigation />
+    </Provider>
   </React.StrictMode>
 );
 
@@ -18,3 +27,6 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+
+setupInterceptors(store);
