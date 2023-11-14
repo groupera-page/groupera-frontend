@@ -57,11 +57,11 @@ export default function GroupThemeFilter() {
         ))}
       </div>
 
-      <div className="flex ">
+      <div className="flex justify-center ">
         {filteredItems.map((item, idx) => (
           <div
             key={`items-${idx}`}
-            className="p-2 m-2 border rounded flex flex-col justify-between"
+            className="p-2 m-2 border-4 rounded flex flex-col justify-between"
           >
             <p>{item.name}</p>
           </div>

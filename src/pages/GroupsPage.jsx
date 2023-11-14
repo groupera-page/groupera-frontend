@@ -5,6 +5,7 @@ export default function GroupsPage() {
   return (
     <PageContainer title={`Gruppen`}>
       <GroupSearchContainer />
+      
     </PageContainer>
   );
 }

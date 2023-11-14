@@ -22,7 +22,7 @@ export default function MenuDropDown({
     <div>
       {openMenuDropDown && (
         <div
-          className="fixed bg-transparent w-full h-full top-0 left-0"
+          className="fixed bg-transparent w-full h-full top-0 left-0 "
           onClick={handleCloseThisMenu}
         ></div>
       )}
@@ -49,7 +49,7 @@ export default function MenuDropDown({
           } `}
         >
           {openMenuDropDown && (
-            <ul className="flex flex-col w-fit ">
+            <ul className="flex flex-col w-fit">
               <NavLink to="/" onClick={handleCloseThisMenu}>
                 <li className="p-4"> Profil</li>
               </NavLink>

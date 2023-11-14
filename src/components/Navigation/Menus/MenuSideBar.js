@@ -4,7 +4,7 @@ import logoSvg from "../../../assets/imgLogos/logoNoBg.svg";
 
 export default function MenuSidebar({ openMenuMobile, handleMenuMobile }) {
   return (
-    <div className="bg-BG_PRIMARY border-r h-full fixed hidden lg:block z-10 ">
+    <div className="bg-BG_PRIMARY border-r h-full fixed hidden lg:block z-50 ">
       <div className="flex justify-center my-5">
         <img src={logoSvg} alt="logo" className=" w-24" />
       </div>
