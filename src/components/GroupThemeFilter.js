@@ -56,7 +56,11 @@ export default function GroupThemeFilter() {
           </button>
         ))}
       </div>
-
+      {filteredItems.length > 1 && selectedFilters.length > 1 && (
+        <div className="flex  mt-4 text-sm font-semibold">
+          {filteredItems.length} Gruppen gefunden
+        </div>
+      )}
       <div className="flex justify-center ">
         {filteredItems.map((item, idx) => (
           <div
