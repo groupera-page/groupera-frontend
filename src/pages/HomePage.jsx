@@ -1,5 +1,5 @@
-import OverviewGroups from "../components/OverviewCards/OverviewGroups";
-import OverviewNextEvent from "../components/OverviewCards/OverviewNextEvent";
+import OverviewGroups from "../components/Overview/OverviewGroups";
+import OverviewNextEvent from "../components/Overview/OverviewNextEvent";
 import PageContainer from "../components/PageContainer";
 import { useSelector } from "react-redux";
 export default function Home({ userName = "Username" }) {

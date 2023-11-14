@@ -21,7 +21,13 @@ export default function PageContainer({ title, text, children }) {
             </div>
             <p className="text-TEXT_GRAY ">{text} </p>
           </div>
-          <div className="flex flex-col lg:flex-row gap-12">{children}</div>
+          <div
+            className={`flex flex-col ${
+              title === "Gruppen" ? "lg:flex-col" : "lg:flex-row"
+            } gap-12`}
+          >
+            {children}
+          </div>
         </div>
       </div>
     </div>

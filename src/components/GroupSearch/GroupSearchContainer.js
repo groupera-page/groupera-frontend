@@ -1,6 +1,6 @@
 import React from "react";
-import Searchbox from "../components/UserInputs/Searchbox";
-import GroupThemeFilter from "../components/GroupThemeFilter";
+import Searchbox from "../UserInputs/Searchbox";
+import GroupThemeFilter from "./GroupThemeFilter";
 
 export default function GroupSearchContainer() {
   return (
