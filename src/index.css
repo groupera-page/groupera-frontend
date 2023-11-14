@@ -17,15 +17,15 @@ code {
 
 @layer base {
   h1 {
-    @apply text-4xl md:text-5xl xl:text-7xl text-TEXT_PRIMARY;
+    @apply text-4xl md:text-5xl text-TEXT_PRIMARY;
   }
 
   h2 {
-    @apply md:text-2xl text-2xl text-TEXT_PRIMARY font-medium;
+    @apply text-2xl text-TEXT_PRIMARY font-medium;
   }
 
   h3 {
-    @apply md:text-2xl text-2xl text-TEXT_PRIMARY font-light;
+    @apply text-2xl text-TEXT_PRIMARY font-light;
   }
 
   h4 {

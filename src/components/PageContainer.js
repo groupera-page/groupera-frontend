@@ -8,7 +8,13 @@ export default function PageContainer({ title, text, children }) {
         <div className=" p-5 py-10 lg:p-10">
           <div className="py-5">
             <div className="flex justify-between">
-              <h3 className="">{title}</h3>
+              {title === "Gruppen" ? (
+                <h1 className="font-light lg:font-medium lg:text-3xl">
+                  {title}
+                </h1>
+              ) : (
+                <h3>{title}</h3>
+              )}
               {title === "Gruppen" && (
                 <PrimaryButton>+ Gruppe Grunden</PrimaryButton>
               )}

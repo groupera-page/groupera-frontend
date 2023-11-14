@@ -1,7 +1,10 @@
 import React from "react";
 import PageContainer from "../components/PageContainer";
-import PrimaryButton from "../components/Buttons/PrimaryButton";
-
+import Searchbox from "../components/UserInputs/Searchbox";
 export default function GroupsPage() {
-  return <PageContainer title={`Gruppen`} text={""}></PageContainer>;
+  return (
+    <PageContainer title={`Gruppen`}>
+      <Searchbox placeholderText={"Gib hier deine Suche ein..."} />
+    </PageContainer>
+  );
 }
