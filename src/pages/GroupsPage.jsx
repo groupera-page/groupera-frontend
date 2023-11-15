@@ -7,8 +7,7 @@ export default function GroupsPage() {
     <PageContainer title={`Gruppen`}>
       <GroupSearchContainer />
       <GroupCardContainer />
-      <h4>Your Groups</h4>
-      <GroupCardContainer />
+      <GroupCardContainer title={"Your Groups"} />
     </PageContainer>
   );
 }

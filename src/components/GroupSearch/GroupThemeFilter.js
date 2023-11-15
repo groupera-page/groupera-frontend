@@ -1,43 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setFilters } from "../../mockDataSlice";
 
 export default function GroupThemeFilter() {
-  const mockData = useSelector((state) => {
-    return state.mockData.mockData;
-  });
-
+  const mockData = useSelector((state) => state.mockData.mockData);
   const mockDataGroups = mockData.groups;
   const [selectedFilters, setSelectedFilters] = useState([]);
-  const [filteredItems, setFilteredItems] = useState(mockDataGroups);
+  const dispatch = useDispatch();
 
-  //Set in store and get from there?
-  let filters = ["Depression", "Sucht", "Angst"];
+  const filters = ["Depression", "Sucht", "Angst"];
+
   const handleFilterButtonClick = (selectedTheme) => {
-    if (selectedFilters.includes(selectedTheme)) {
-      let filters = selectedFilters.filter((el) => el !== selectedTheme);
-      setSelectedFilters(filters);
-    } else {
-      setSelectedFilters([...selectedFilters, selectedTheme]);
-    }
+    const updatedFilters = selectedFilters.includes(selectedTheme)
+      ? selectedFilters.filter((el) => el !== selectedTheme)
+      : [...selectedFilters, selectedTheme];
+
+    setSelectedFilters(updatedFilters);
+    dispatch(setFilters(updatedFilters));
   };
 
   useEffect(() => {
-    filterItems();
-  }, [selectedFilters]);
-
-  const filterItems = () => {
-    if (selectedFilters.length > 0) {
-      let tempItems = selectedFilters.map((selectedTheme) => {
-        let temp = mockDataGroups.filter(
-          (item) => item.theme === selectedTheme
-        );
-        return temp;
-      });
-      setFilteredItems(tempItems.flat());
-    } else {
-      setFilteredItems([...mockDataGroups]);
-    }
-  };
+    dispatch(setFilters(selectedFilters));
+  }, [selectedFilters, mockDataGroups]);
 
   return (
     <div>
@@ -54,21 +38,6 @@ export default function GroupThemeFilter() {
           >
             {Theme}
           </button>
-        ))}
-      </div>
-      {filteredItems.length > 1 && selectedFilters.length > 1 && (
-        <div className="flex  mt-4 text-sm font-semibold">
-          {filteredItems.length} Gruppen gefunden
-        </div>
-      )}
-      <div className="flex justify-center ">
-        {filteredItems.map((item, idx) => (
-          <div
-            key={`items-${idx}`}
-            className="p-2 m-2 border-4 rounded flex flex-col justify-between"
-          >
-            <p>{item.name}</p>
-          </div>
         ))}
       </div>
     </div>

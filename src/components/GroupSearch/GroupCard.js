@@ -5,7 +5,7 @@ import PrimaryButton from "../Buttons/PrimaryButton";
 export default function GroupCard({
   title = "Groupname",
   eventTime = "Wöchentlich, Montags 16:00 Uhr",
-  text = "Gemeinsam gegen Depressionen. Offene Unterstützung. Erfahrungen teilen. Heilung finden. Zusammen stark. ",
+  text = "Description",
   members = 17,
 }) {
   return (
@@ -14,7 +14,7 @@ export default function GroupCard({
         <img
           src={placeholderForest}
           alt="Placeholder"
-          className="rounded-tr-md w-full h-full object-cover"
+          className="rounded-t-md w-full h-full object-cover"
         />
       </div>
       <div className="flex flex-col justify-between p-4 flex-1">
