@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 
-export default function Searchbox({ placeholderText, onSearch }) {
-  const [inputValue, setInputValue] = useState();
+export default function Searchbox({
+  placeholderText,
+  inputValue = "",
+  setInputValue,
+}) {
+  //const [inputValue, setInputValue] = useState();
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
@@ -12,7 +16,7 @@ export default function Searchbox({ placeholderText, onSearch }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate("/groups", { state: inputValue });
+    // navigate("/groups", { state: inputValue });
   };
 
   return (

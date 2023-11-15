@@ -24,6 +24,7 @@ const mockData = {
     },
   ],
   filters: [],
+  groupSearch: [],
 };
 
 export const mockDataSlice = createSlice({
@@ -35,9 +36,13 @@ export const mockDataSlice = createSlice({
     setFilters: (state, action) => {
       state.mockData.filters = action.payload;
     },
+    setGroupSearch: (state, action) => {
+      state.mockData.groupSearch = action.payload;
+    },
   },
 });
 
 export const { setFilters } = mockDataSlice.actions;
+export const { setGroupSearch } = mockDataSlice.actions;
 
 export default mockDataSlice.reducer;
