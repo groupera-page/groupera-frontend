@@ -7,6 +7,7 @@ const mockData = {
       nextEventTime: "2023-11-15T18:00:00",
       theme: "Depression",
       description: "test",
+      id: "123",
     },
     {
       name: "Die Angstgruppe",
@@ -14,6 +15,7 @@ const mockData = {
       theme: "Angst",
       description:
         "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+      id: "234",
     },
     {
       name: "Die andere Angstgruppe",
@@ -21,6 +23,7 @@ const mockData = {
       theme: "Angst",
       description:
         "Die Gruppenangstbewältigungsstrategie wurde von Experten entwickelt, um die Mitglieder dabei zu unterstützen, gemeinsam ihre Ängste zu überwinden und eine gesunde Gruppendynamik zu fördern.",
+      id: "456",
     },
   ],
   filters: [],

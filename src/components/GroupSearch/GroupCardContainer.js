@@ -22,7 +22,12 @@ export default function GroupCardContainer({ title }) {
       {searchedGroups.length > 0 ? <h4 className="my-2">{title}</h4> : null}
       <div className="grid lg:grid-cols-3 gap-4 ">
         {searchedGroups.map((group, index) => (
-          <GroupCard key={index} text={group.description} title={group.name} />
+          <GroupCard
+            key={index}
+            text={group.description}
+            title={group.name}
+            group={group}
+          />
         ))}
       </div>
     </div>

@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/HomePage";
 import GroupsPage from "./pages/GroupsPage";
+import GroupDetailPage from "./pages/GroupDetailPage";
 import MenusContainer from "./components/Navigation/MenusContainer";
 import Login from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
@@ -25,6 +26,15 @@ function App() {
             <>
               <MenusContainer />
               <GroupsPage />
+            </>
+          }
+        />
+        <Route
+          path="/groups/:slug"
+          element={
+            <>
+              <MenusContainer />
+              <GroupDetailPage />
             </>
           }
         />
