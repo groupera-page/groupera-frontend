@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 export default function GroupDetailNavbar() {
   const subPages = ["Termine", "Pinnwand", "MitgliederInnen", "Unterlagen"];
   return (
-    <div>
+    <div className="lg:w-1/2">
       <ul className="flex justify-between">
         {subPages.map((page) => (
           <li className="flex relative" key={page}>
@@ -23,7 +23,6 @@ export default function GroupDetailNavbar() {
           </li>
         ))}
       </ul>{" "}
-      <hr className="border-BLUE_PRIMARY border-l" />
     </div>
   );
 }

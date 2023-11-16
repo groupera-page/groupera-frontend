@@ -8,8 +8,9 @@ import { Routes, Route } from "react-router-dom";
 
 export default function GroupDetailTable() {
   return (
-    <div className="lg:w-1/2 my-8">
+    <div className=" my-8">
       <GroupDetailNavbar />
+      <hr className="border-BLUE_PRIMARY border-l" />
       <Routes>
         <Route path="Termine" element={<GroupTermineSubPage />} />
         <Route path="Pinnwand" element={<GroupPinnwandSubPage />} />

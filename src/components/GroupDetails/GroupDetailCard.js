@@ -18,8 +18,8 @@ export default function GroupDetailCard({ group }) {
       variants={fadeInVariants}
       transition={{ duration: 0.3 }}
     >
-      <div className="my-2 lg:flex items-center gap-20">
-        <div className="lg:w-1/2">
+      <div className="my-2 md:flex items-center gap-20">
+        <div className="md:w-1/2">
           <img
             src={placeholderForest}
             alt="Placeholder"
@@ -27,7 +27,7 @@ export default function GroupDetailCard({ group }) {
           />
         </div>
 
-        <div className="lg:w-1/3 my-4">
+        <div className="md:w-1/3 my-4">
           <GroupOverviewContent
             name={group.name}
             members={group.members}
