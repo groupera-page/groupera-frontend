@@ -13,7 +13,7 @@ export default function OverviewGroupItems({ groups }) {
               <p className="">{group.nextEventTime}</p>
             </div>
             <div className="">
-              <Link to={`/groups/${group.id}`}>
+              <Link to={`/groups/${group.id}/termine`}>
                 <SecondaryButton> Zur Gruppe</SecondaryButton>
               </Link>
             </div>
