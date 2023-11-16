@@ -29,7 +29,7 @@ export default function OverviewNextEvent({ mockData, hasEvents = true }) {
             <div className="flex flex-col justify-center gap-1 mx-2">
               <div className="flex flex-col gap-1 mb-4">
                 <p className="font-medium">{mockData.groups[0].name}</p>
-                <p className="mb-2">{mockData.groups[0].nextEventTime}</p>
+                <p className="mb-2">{mockData.groups[0].meeting}</p>
               </div>
             </div>
           )}

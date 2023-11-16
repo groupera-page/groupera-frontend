@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Searchbox from "../UserInputs/Searchbox";
-import GroupThemeFilter from "./GroupThemeFilter";
+import GroupTopicFilter from "./GroupTopicFilter";
 import { useDispatch } from "react-redux";
 import { setGroupSearch } from "../../mockDataSlice";
 
@@ -16,7 +16,7 @@ export default function GroupSearchContainer() {
         inputValue={inputValue}
         setInputValue={setInputValue}
       />
-      <GroupThemeFilter />
+      <GroupTopicFilter />
     </div>
   );
 }

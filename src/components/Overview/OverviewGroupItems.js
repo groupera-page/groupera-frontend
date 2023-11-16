@@ -1,5 +1,6 @@
 import React from "react";
 import SecondaryButton from "../Buttons/SecondaryButton";
+import { Link } from "react-router-dom";
 export default function OverviewGroupItems({ groups }) {
   return (
     <div className="mx-2 flex-col ">
@@ -12,7 +13,9 @@ export default function OverviewGroupItems({ groups }) {
               <p className="">{group.nextEventTime}</p>
             </div>
             <div className="">
-              <SecondaryButton>Zur Gruppe</SecondaryButton>
+              <Link to={`/groups/${group.id}`}>
+                <SecondaryButton> Zur Gruppe</SecondaryButton>
+              </Link>
             </div>
           </div>
           <hr className="border-t border-gray-300" />

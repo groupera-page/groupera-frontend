@@ -2,6 +2,7 @@ import React from "react";
 import OverviewHeader from "./OverviewHeader";
 import OverviewGroupItems from "./OverviewGroupItems";
 import PrimaryButton from "../Buttons/PrimaryButton";
+import { Link } from "react-router-dom";
 
 export default function OverviewGroups({ mockData, hasGroups = true }) {
   return (
@@ -16,7 +17,9 @@ export default function OverviewGroups({ mockData, hasGroups = true }) {
       />
       {hasGroups && <OverviewGroupItems groups={mockData.groups} />}
       <div className="flex flex-col items-center my-2">
-        <PrimaryButton>Gruppen Finden</PrimaryButton>
+        <Link to={`/groups`}>
+          <PrimaryButton> Gruppen finden</PrimaryButton>
+        </Link>
       </div>
     </div>
   );

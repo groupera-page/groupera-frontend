@@ -17,7 +17,7 @@ export default function GroupCard({ group, members = 17 }) {
       animate="visible"
       exit="exit"
       variants={fadeInVariants}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.3 }}
       className="flex flex-col border rounded-md shadow-md h-full transition duration-200 ease-in-out"
     >
       <div className="flex flex-col border rounded-md shadow-md h-full">
@@ -35,13 +35,15 @@ export default function GroupCard({ group, members = 17 }) {
               <p className="text-TEXT_LIGHTGRAY"> {members} Mitglieder</p>
             </div>
 
-            <p className="text-PURPLE_PRIMARY">{group.nextEventTime}</p>
+            <p className="text-PURPLE_PRIMARY">{group.meeting}</p>
             <p>{group.description}</p>
           </div>
           <div className="mt-4">
-            <PrimaryButton type="button" isInversed>
-              <Link to={`/groups/${group.id}`}>Mehr erfahren</Link>
-            </PrimaryButton>
+            <Link to={`/groups/${group.id}`}>
+              <PrimaryButton type="button" isInversed>
+                Mehr erfahren
+              </PrimaryButton>
+            </Link>
           </div>
         </div>
       </div>

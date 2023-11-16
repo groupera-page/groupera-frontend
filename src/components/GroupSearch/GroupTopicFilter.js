@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setFilters } from "../../mockDataSlice";
 
-export default function GroupThemeFilter() {
+export default function GroupTopicFilter() {
   const mockData = useSelector((state) => state.mockData.mockData);
   const mockDataGroups = mockData.groups;
   const [selectedFilters, setSelectedFilters] = useState([]);
@@ -26,17 +26,17 @@ export default function GroupThemeFilter() {
   return (
     <div>
       <div className="flex gap-2">
-        {filters.map((Theme, idx) => (
+        {filters.map((topic, idx) => (
           <button
-            onClick={() => handleFilterButtonClick(Theme)}
+            onClick={() => handleFilterButtonClick(topic)}
             className={`border p-2 my-2 rounded text-xs cursor-pointer transition duration-200 ease-in-out ${
-              selectedFilters?.includes(Theme)
+              selectedFilters?.includes(topic)
                 ? "bg-BLUE_PRIMARY text-BG_PRIMARY"
                 : "bg-transparent"
             }`}
             key={`filters-${idx}`}
           >
-            {Theme}
+            {topic}
           </button>
         ))}
       </div>
