@@ -10,7 +10,7 @@ export default function SecondaryButton({
     <button
       type={type}
       onClick={handleButtonClick}
-      className={`p-2 text-sm w-fit ${
+      className={`p-2 text-sm w-fit whitespace-nowrap ${
         isInversed
           ? "text-BLUE_PRIMARY hover:bg-PURPLE_PRIMARY rounded-md"
           : ` hover:text-slate-600 bg-BLUE_PRIMARY rounded-md text-white`

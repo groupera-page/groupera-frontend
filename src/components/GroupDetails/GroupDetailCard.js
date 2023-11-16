@@ -2,6 +2,8 @@ import React from "react";
 import GroupOverviewContent from "./GroupOverviewContent";
 import placeholderForest from "../../assets/placeholderForest.jpg";
 import { motion } from "framer-motion";
+import MenuDropDown from "../Navigation/Menus/MenuDropDown";
+import PrimaryButton from "../Buttons/PrimaryButton";
 
 export default function GroupDetailCard({ group }) {
   const fadeInVariants = {
@@ -24,6 +26,7 @@ export default function GroupDetailCard({ group }) {
             className="rounded-md  object-cover"
           />
         </div>
+
         <div className="lg:w-1/3 my-4">
           <GroupOverviewContent
             name={group.name}
@@ -31,6 +34,21 @@ export default function GroupDetailCard({ group }) {
             description={group.description}
             meeting=""
           ></GroupOverviewContent>
+          <div className="flex justify-end h-8">
+            <MenuDropDown
+              title={"Du bist Mitglied"}
+              topOffset={10}
+              isButtonDropDown={true}
+            >
+              <li className="">
+                <div className="flex w-fit">
+                  <PrimaryButton isInversed={true}>
+                    Gruppe Verlassen
+                  </PrimaryButton>
+                </div>
+              </li>
+            </MenuDropDown>
+          </div>
         </div>
       </div>
     </motion.div>
