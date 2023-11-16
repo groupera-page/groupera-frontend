@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import placeholderForest from "../../assets/placeholderForest.jpg";
 import PrimaryButton from "../Buttons/PrimaryButton";
+import GroupOverviewContent from "../GroupDetails/GroupOverviewContent";
 import { motion } from "framer-motion";
 
 const fadeInVariants = {
@@ -10,7 +11,7 @@ const fadeInVariants = {
   exit: { opacity: 0 },
 };
 
-export default function GroupCard({ group, members = 17 }) {
+export default function GroupPreviewCard({ group }) {
   return (
     <motion.div
       initial="hidden"
@@ -29,15 +30,12 @@ export default function GroupCard({ group, members = 17 }) {
           />
         </div>
         <div className="flex flex-col justify-between p-4 flex-1">
-          <div className="flex flex-col gap-2 flex-1">
-            <div className="flex flex-row justify-between items-center">
-              <h4> {group.name}</h4>
-              <p className="text-TEXT_LIGHTGRAY"> {members} Mitglieder</p>
-            </div>
-
-            <p className="text-PURPLE_PRIMARY">{group.meeting}</p>
-            <p>{group.description}</p>
-          </div>
+          <GroupOverviewContent
+            name={group.name}
+            members={group.members}
+            description={group.description}
+            meeting={group.meeting}
+          />
           <div className="mt-4">
             <Link to={`/groups/${group.id}`}>
               <PrimaryButton type="button" isInversed>

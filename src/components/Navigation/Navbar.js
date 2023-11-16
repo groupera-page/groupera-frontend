@@ -20,7 +20,7 @@ export default function Navbar({ handleMenuMobile, openMenuMobile }) {
       <div className="flex justify-center w-1/3 lg:hidden">
         <img src={logoSvg} alt="logo" className="lg:w-32 w-20" />
       </div>
-      <div className="flex items-center justify-end mr-2 w-1/3 lg:w-1/4 ">
+      <div className="flex items-center justify-end mr-2 w-1/3 lg:w-1/4 z-20">
         <MenuDropDown openMenuMobile={openMenuMobile} />
       </div>
     </div>

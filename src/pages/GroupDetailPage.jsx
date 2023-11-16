@@ -16,17 +16,22 @@ export default function GroupDetailPage() {
 
   return (
     <PageContainer>
-      <div className="flex flex-col">
-        <PrimaryButton isInversed={true}>
-          <Link to={`/groups/`}>
-            <div className="flex">
-              <BsArrowLeft className="w-5 mr-3 text-PURPLE_PRIMARY" size={18} />
-              Zurück zur Suche
-            </div>
-          </Link>
-        </PrimaryButton>
-        <h1>{thisGroup.name} </h1>
-        <GroupDetailCard />
+      <div className="flex flex-col w-full">
+        <div className="mb-4">
+          <PrimaryButton isInversed={true}>
+            <Link to={`/groups/`}>
+              <div className="flex items-center">
+                <BsArrowLeft
+                  className="w-5 mr-3 text-PURPLE_PRIMARY"
+                  size={18}
+                />
+                Zurück zur Suche
+              </div>
+            </Link>
+          </PrimaryButton>
+        </div>
+
+        <GroupDetailCard group={thisGroup} />
         <GroupDetailTable />
       </div>
     </PageContainer>

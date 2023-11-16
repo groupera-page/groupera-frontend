@@ -8,6 +8,7 @@ const mockData = {
       topic: "Depression",
       description: "test",
       id: "123",
+      members: 1,
     },
     {
       name: "Die Angstgruppe",
@@ -16,6 +17,7 @@ const mockData = {
       description:
         "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
       id: "234",
+      members: 4,
     },
     {
       name: "Die andere Angstgruppe",
@@ -24,6 +26,7 @@ const mockData = {
       description:
         "Die Gruppenangstbewältigungsstrategie wurde von Experten entwickelt, um die Mitglieder dabei zu unterstützen, gemeinsam ihre Ängste zu überwinden und eine gesunde Gruppendynamik zu fördern.",
       id: "456",
+      members: 4372,
     },
   ],
   filters: [],
