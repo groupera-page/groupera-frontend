@@ -37,7 +37,7 @@ export default function GroupPreviewCard({ group }) {
             meeting={group.meeting}
           />
           <div className="mt-4">
-            <Link to={`/groups/${group.id}`}>
+            <Link to={`/groups/${group.id}/Termine`}>
               <PrimaryButton type="button" isInversed>
                 Mehr erfahren
               </PrimaryButton>

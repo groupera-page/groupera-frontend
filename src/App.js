@@ -7,6 +7,7 @@ import Login from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import FunnelToSignupPage from "./pages/FunnelToSignupPage";
 import EmailVerify from "./components/EmailVerify";
+
 function App() {
   return (
     <Router>
@@ -30,7 +31,7 @@ function App() {
           }
         />
         <Route
-          path="/groups/:slug"
+          path="/groups/:slug/*"
           element={
             <>
               <MenusContainer />

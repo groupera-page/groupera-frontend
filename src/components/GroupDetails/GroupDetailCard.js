@@ -34,14 +34,14 @@ export default function GroupDetailCard({ group }) {
             description={group.description}
             meeting=""
           ></GroupOverviewContent>
-          <div className="flex justify-end h-8">
+          <div className="flex justify-end h-8 my-4">
             <MenuDropDown
               title={"Du bist Mitglied"}
               topOffset={10}
               isButtonDropDown={true}
             >
               <li className="">
-                <div className="flex w-fit">
+                <div className="flex w-fit ">
                   <PrimaryButton isInversed={true}>
                     Gruppe Verlassen
                   </PrimaryButton>
