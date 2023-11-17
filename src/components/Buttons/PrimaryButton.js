@@ -12,8 +12,8 @@ export default function PrimaryButton({
       onClick={handleButtonClick}
       className={` p-2 text-sm w-fit whitespace-nowrap ${
         isInversed
-          ? "text-PURPLE_PRIMARY rounded-md border border-PURPLE_PRIMARY"
-          : "text-slate-100 hover:text-white bg-PURPLE_PRIMARY rounded-md border border-PURPLE_PRIMARY"
+          ? "text-PURPLE_PRIMARY hover:text-PURPLE_SECONDARY rounded-md border border-PURPLE_PRIMARY hover:border-PURPLE_SECONDARY hover:shadow-md"
+          : "text-slate-100 hover:text-white bg-PURPLE_PRIMARY rounded-md border border-PURPLE_PRIMARY hover:bg-PURPLE_SECONDARY hover:shadow-md"
       }`}
     >
       {children}

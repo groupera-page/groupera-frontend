@@ -12,8 +12,8 @@ export default function SecondaryButton({
       onClick={handleButtonClick}
       className={`p-2 text-sm w-fit whitespace-nowrap ${
         isInversed
-          ? "text-BLUE_PRIMARY hover:bg-PURPLE_PRIMARY rounded-md"
-          : ` hover:text-slate-600 bg-BLUE_PRIMARY rounded-md text-white`
+          ? "text-BLUE_PRIMARY hover:bg-PURPLE_PRIMARY rounded-md hover:shadow-md"
+          : ` hover:bg-BLUE_SECONDARY bg-BLUE_PRIMARY rounded-md text-white hover:shadow-md`
       }`}
     >
       {children}

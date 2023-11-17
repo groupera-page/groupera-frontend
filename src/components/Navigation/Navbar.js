@@ -24,24 +24,26 @@ export default function Navbar({ handleMenuMobile, openMenuMobile }) {
 
       <div className="flex items-center justify-end mr-2 lg:mr-14 w-1/3 lg:w-1/4 z-20 h-16 ">
         {!openMenuMobile && (
-          <div className="border-l border-gray-300 h-8 mx-2"></div>
+          <div className="border-l border-gray-300 h-8 mx-2 "></div>
         )}
         <MenuDropDown openMenuMobile={openMenuMobile} xOffset={20}>
           {" "}
           <NavLink to="/">
-            <li className="p-4"> Profil</li>
+            <li className="p-4 hover:shadow-md"> Profil</li>
           </NavLink>
           <>
             <hr className="border-t border-gray-300" />
           </>
           <NavLink to="/">
-            <li className="p-4">Einstellungen</li>
+            <li className="p-4 hover:shadow-md">Einstellungen</li>
           </NavLink>
           <>
             <hr className="border-t border-gray-300" />
           </>
           <NavLink to="/">
-            <li className="p-4 whitespace-nowrap">Abo & Zahlungen</li>
+            <li className="p-4 whitespace-nowrap hover:shadow-md">
+              Abo & Zahlungen
+            </li>
           </NavLink>
         </MenuDropDown>
       </div>

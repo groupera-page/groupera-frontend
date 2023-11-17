@@ -10,7 +10,7 @@ export default function OverviewGroupItems({ groups }) {
             <div className="flex flex-col justify-center gap-1 ">
               <p className="font-medium">{group.name}</p>
               <p className="text-TEXT_LIGHTGRAY">Nächster Termin</p>
-              <p className="">{group.nextEventTime}</p>
+              <p className="">{group.meeting}</p>
             </div>
             <div className="">
               <Link to={`/groups/${group.id}/termine`}>

@@ -38,7 +38,7 @@ export default function GroupTopicFilter() {
         {filters.map((topic, idx) => (
           <button
             onClick={() => handleFilterButtonClick(topic)}
-            className={`border p-2 my-1 mr-2 rounded text-xs cursor-pointer transition duration-200 ease-in-out  ${
+            className={`border p-2 my-1 mr-2 rounded text-xs cursor-pointer transition duration-200 ease-in-out hover:shadow-md ${
               selectedFilters?.includes(topic)
                 ? "bg-BLUE_PRIMARY text-BG_PRIMARY"
                 : "bg-transparent"

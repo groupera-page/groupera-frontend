@@ -31,11 +31,8 @@ export default function GroupTermineSubPage() {
         </div>
         <hr className="hidden md:block border-l my-2" />
         {data.map((entry) => (
-          <div className="flex items-center">
-            <div
-              key={entry.id}
-              className="md:hidden grid grid-cols-3 py-2 text-sm items-center px-2 border rounded-md md:border-none w-full"
-            >
+          <div key={entry.id} className="flex items-center">
+            <div className="md:hidden grid grid-cols-3 py-2 text-sm items-center px-2 border rounded-md md:border-none w-full">
               <div className="hidden"></div>
               <div>
                 <div className="text-lg">{entry.date}</div>
@@ -45,8 +42,8 @@ export default function GroupTermineSubPage() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-2 text-xs justify-center">
-                {entry.teilnehmer}{" "}
+              <div className="flex items-center gap-4 text-xs justify-center">
+                {entry.teilnehmer}
                 <BsPeopleFill
                   className={`w-5 mr-3 text-PURPLE_PRIMARY `}
                   size={32}

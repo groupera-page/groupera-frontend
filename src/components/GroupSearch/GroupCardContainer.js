@@ -7,7 +7,7 @@ export default function GroupCardContainer({ title }) {
   const mockDataGroups = mockData.groups;
   const mockDataFilters = mockData.filters;
   const mockDataSearchedGroup = mockData.groupSearch;
-  console.log("MOCKDATADA", mockDataSearchedGroup);
+
   const filteredGroups = mockDataFilters.length
     ? mockDataGroups.filter((group) => mockDataFilters.includes(group.topic))
     : mockDataGroups;

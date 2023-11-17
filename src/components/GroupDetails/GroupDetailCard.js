@@ -34,7 +34,7 @@ export default function GroupDetailCard({ group }) {
             description={group.description}
             meeting=""
           ></GroupOverviewContent>
-          <div className="flex justify-end h-8 my-4">
+          <div className="flex justify-end my-4">
             <MenuDropDown
               title={"Du bist Mitglied"}
               topOffset={10}

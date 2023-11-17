@@ -4,8 +4,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        PURPLE_PRIMARY: "#A64D79",
-        BLUE_PRIMARY: "#ACD7EB",
+        PURPLE_PRIMARY: "rgb(166, 77, 121)",
+        PURPLE_SECONDARY: "rgb(155, 65, 115)",
+        BLUE_PRIMARY: "rgb(172, 215, 235)",
+        BLUE_SECONDARY: "rgb(162, 200, 225)",
         YELLOW_PRIMARY: "#F9F5E6",
         //Primary white
         BG_PRIMARY: "#FCFCFC",
