@@ -8,7 +8,7 @@ export default function GroupDetailNavbar() {
       <ul className="flex gap-4">
         {subPages.map((page) => (
           <li className="flex relative hover:shadow-md" key={page}>
-            <NavLink to={page}>
+            <NavLink to={page.toLocaleLowerCase()}>
               {({ isActive }) => (
                 <div className="flex flex-row items-center ">
                   <div

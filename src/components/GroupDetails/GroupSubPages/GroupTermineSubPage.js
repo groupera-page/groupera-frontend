@@ -33,10 +33,9 @@ export default function GroupTermineSubPage() {
         {data.map((entry) => (
           <div key={entry.id} className="flex items-center">
             <div className="md:hidden grid grid-cols-3 py-2 text-sm items-center px-2 border rounded-md md:border-none w-full">
-              <div className="hidden"></div>
               <div>
                 <div className="text-lg">{entry.date}</div>
-                <div className="flex gap-2  text-xs">
+                <div className="flex gap-2 text-xs">
                   <div>{entry.time}</div>
                   <div>{entry.duration}</div>
                 </div>
