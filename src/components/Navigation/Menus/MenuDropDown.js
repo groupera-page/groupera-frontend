@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import PrimaryButton from "../../Buttons/PrimaryButton";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
-import HoverUnderline from "../../Effects/HoverUnderline";
 export default function MenuDropDown({
   title = "Username",
   openMenuMobile,

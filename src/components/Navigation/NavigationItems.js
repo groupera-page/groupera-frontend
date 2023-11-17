@@ -14,37 +14,33 @@ export default function Navigation({ handleMenuMobile }) {
     <div className="flex flex-col justify-between h-1/2 lg:h-5/6 m-5 ">
       <ul className="list-none flex flex-col gap-5 ">
         <li className="flex relative ">
-          <li className="flex relative">
-            <li className="flex relative group">
-              <NavLink to="/" onClick={() => handleMenuMobile()}>
-                {({ isActive }) => (
-                  <>
-                    <div className="flex flex-row items-center relative">
-                      <div className={isActive ? "" : "hidden"}>
-                        <div className="bg-PURPLE_PRIMARY w-1 h-full absolute -left-5"></div>
-                        <BsFillHouseDoorFill
-                          className={`w-5 mr-3 text-PURPLE_PRIMARY `}
-                          size={32}
-                        />
-                      </div>
-                      <div className={isActive ? "hidden" : ""}>
-                        <BsHouseDoor
-                          className={`w-5 mr-3 text-TEXT_PRIMARY `}
-                          size={32}
-                        />
-                      </div>
-                      <div className="relative group">
-                        Übersicht
-                        <div className={`${!isActive ? "" : "hidden"} `}>
-                          <HoverUnderline />
-                        </div>
-                      </div>
+          <NavLink to="/" onClick={() => handleMenuMobile()}>
+            {({ isActive }) => (
+              <>
+                <div className="flex flex-row items-center relative">
+                  <div className={isActive ? "" : "hidden"}>
+                    <div className="bg-PURPLE_PRIMARY w-1 h-full absolute -left-5"></div>
+                    <BsFillHouseDoorFill
+                      className={`w-5 mr-3 text-PURPLE_PRIMARY `}
+                      size={32}
+                    />
+                  </div>
+                  <div className={isActive ? "hidden" : ""}>
+                    <BsHouseDoor
+                      className={`w-5 mr-3 text-TEXT_PRIMARY `}
+                      size={32}
+                    />
+                  </div>
+                  <div className="relative group">
+                    Übersicht
+                    <div className={`${!isActive ? "" : "hidden"} `}>
+                      <HoverUnderline />
                     </div>
-                  </>
-                )}
-              </NavLink>
-            </li>
-          </li>
+                  </div>
+                </div>
+              </>
+            )}
+          </NavLink>
         </li>
         <li className="flex relative">
           <NavLink to="/groups" onClick={() => handleMenuMobile()}>
