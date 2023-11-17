@@ -4,20 +4,10 @@ import { setFilters } from "../../mockDataSlice";
 
 export default function GroupTopicFilter() {
   const mockData = useSelector((state) => state.mockData.mockData);
-  const mockDataGroups = mockData.groups;
+  const groups = mockData.groups;
+  const topics = mockData.topics;
   const [selectedFilters, setSelectedFilters] = useState([]);
   const dispatch = useDispatch();
-
-  const filters = [
-    "Depression",
-    "Sucht",
-    "Angststörung",
-    "Stress & Burnout",
-    "Trauer",
-    "chronische Erkrankungen",
-    "Essstörung",
-    "Angehörige",
-  ];
 
   const handleFilterButtonClick = (selectedTheme) => {
     const updatedFilters = selectedFilters.includes(selectedTheme)
@@ -30,12 +20,12 @@ export default function GroupTopicFilter() {
 
   useEffect(() => {
     dispatch(setFilters(selectedFilters));
-  }, [selectedFilters, mockDataGroups]);
+  }, [selectedFilters, groups]);
 
   return (
     <div>
       <div className="flex flex-wrap">
-        {filters.map((topic, idx) => (
+        {topics.map((topic, idx) => (
           <button
             onClick={() => handleFilterButtonClick(topic)}
             className={`border p-2 my-1 mr-2 rounded text-xs cursor-pointer transition duration-200 ease-in-out hover:shadow-md ${
@@ -43,7 +33,7 @@ export default function GroupTopicFilter() {
                 ? "bg-BLUE_PRIMARY text-BG_PRIMARY"
                 : "bg-transparent"
             }`}
-            key={`filters-${idx}`}
+            key={`topics-${idx}`}
           >
             {topic}
           </button>

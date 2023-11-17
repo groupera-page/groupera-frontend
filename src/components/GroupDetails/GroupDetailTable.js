@@ -6,7 +6,8 @@ import GroupMemberSubPage from "./GroupSubPages/GroupMemberSubPage";
 import GroupDocumentSubPage from "./GroupSubPages/GroupDocumentSubPage";
 import { Routes, Route } from "react-router-dom";
 
-export default function GroupDetailTable() {
+export default function GroupDetailTable({ group }) {
+  console.log(group.topic);
   return (
     <div className=" my-8">
       <GroupDetailNavbar />
@@ -15,7 +16,10 @@ export default function GroupDetailTable() {
         <Route path="termine" element={<GroupTermineSubPage />} />
         <Route path="Pinnwand" element={<GroupPinnwandSubPage />} />
         <Route path="Mitgliederinnen" element={<GroupMemberSubPage />} />
-        <Route path="Unterlagen" element={<GroupDocumentSubPage />} />
+        <Route
+          path="Unterlagen"
+          element={<GroupDocumentSubPage group={group} />}
+        />
       </Routes>
     </div>
   );

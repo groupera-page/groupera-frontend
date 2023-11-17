@@ -36,12 +36,12 @@ const mockData = {
       alias: "Fritz123",
       email: "fritz@example.com",
       passwordHash: "P@ssw0rd123",
-      dob: new Date("1990-01-15"),
+      dob: "1990-01-15",
       questions: {
         question1: "Answer1",
         question2: "Answer2",
       },
-      emailVerifcationExpiration: new Date(Date.now() + 3 * 60 * 1000),
+
       emailVerified: false,
       authCode: "AuthenticationCode123",
       gender: "Männlich",
@@ -63,19 +63,19 @@ const mockData = {
       alias: "Alice88",
       email: "alice@example.com",
       passwordHash: "SecureP@ss123",
-      dob: new Date("1988-05-20"),
+      dob: "1988-05-20",
       questions: {
         question1: "AnswerA",
         question2: "AnswerB",
       },
-      emailVerifcationExpiration: new Date(Date.now() + 3 * 60 * 1000),
+
       emailVerified: true,
       authCode: "AuthenticationCode456",
       gender: "Weiblich",
       paid: true,
       terms: {
         agreed: true,
-        date_agreed: new Date("2023-01-01"),
+        date_agreed: "2023-01-01",
       },
       moderatedGroups: ["group3", "group5"],
       joinedGroups: ["group1", "group6"],
@@ -87,6 +87,17 @@ const mockData = {
       refreshToken: "RefreshToken789",
     },
   ],
+  topics: [
+    "Depression",
+    "Sucht",
+    "Angststörung",
+    "Stress & Burnout",
+    "Trauer",
+    "chronische Erkrankungen",
+    "Essstörung",
+    "Angehörige",
+  ],
+
   filters: [],
   groupSearch: [],
 };

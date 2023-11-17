@@ -32,7 +32,7 @@ export default function GroupDetailPage() {
         </div>
 
         <GroupDetailCard group={thisGroup} />
-        <GroupDetailTable />
+        <GroupDetailTable group={thisGroup} />
       </div>
     </PageContainer>
   );
