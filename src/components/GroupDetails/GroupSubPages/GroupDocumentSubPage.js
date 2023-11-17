@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default function GroupDocumentSubPage({ gruppe }) {
   return (
     <div>
-      <div className="flex">
+      <div className="flex bg-BG_GRAY">
         <Link
           // to={testmanua}
           download="testManual-PDF-document"
