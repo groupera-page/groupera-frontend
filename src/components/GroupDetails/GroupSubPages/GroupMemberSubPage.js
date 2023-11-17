@@ -15,8 +15,8 @@ export default function GroupMemberSubPage({
 }) {
   return (
     <div className="my-2">
-      {members.map((member) => (
-        <div className="flex  bg-BG_GRAY py-2 justify-center" key={member}>
+      {members.map((member, id) => (
+        <div className="flex  bg-BG_GRAY py-2 justify-center" key={id}>
           <div className="w-full">
             <div className="flex justify-between items-center mb-4">
               <div className="flex items-center">
