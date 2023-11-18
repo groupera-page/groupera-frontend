@@ -35,9 +35,9 @@ const Login = () => {
             ]}
             onSubmit={handleSubmit}
           >
-            <div className="flex flex-col items-center ">
-              <p className="my-8 ">
-                Du hast noch kein Konto?{" "}
+            <div className="flex flex-col items-center">
+              <p className="my-8">
+                Du hast noch kein Konto?
                 <Link to={"/signup"} className="text-primarypurple">
                   Jetzt Registrieren
                 </Link>
@@ -53,10 +53,6 @@ const Login = () => {
           </AuthForm>
         </div>
       </div>
-
-      {/* <div className="flex xl:px-4 lg:w-1/2 items-center justify-center">
-        <img src={tree_lowres} alt="" className="rounded-md" />
-      </div> */}
     </div>
   )
 }

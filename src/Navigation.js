@@ -12,12 +12,12 @@ function Navigation() {
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={<Home />} />
         <Route path="/auth" element={<AuthLayout/>}>
           <Route path="/auth/login" element={ <Login/> } />
           <Route path="/auth/signup" element={ <SignUp/> } />
         </Route>
         <Route element={<ProtectionLayout/>}>
+          <Route exact path="/" element={<Home />} />
           <Route path="/profile" element={<div>Profile</div>} />
         </Route>
       </Routes>
