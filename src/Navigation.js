@@ -6,6 +6,7 @@ import AuthLayout from "./layouts/AuthLayout";
 import Home from "./pages/Home";
 import Login from "./features/auth/pages/Login";
 import SignUp from "./features/auth/pages/SignUp";
+import AlertsWrapper from "./features/alert/AlertsWrapper";
 
 function Navigation() {
   return (
@@ -20,6 +21,7 @@ function Navigation() {
           <Route path="/profile" element={<div>Profile</div>} />
         </Route>
       </Routes>
+      <AlertsWrapper/>
     </Router>
   );
 }
