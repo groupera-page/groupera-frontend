@@ -4,7 +4,7 @@ const mockData = {
   groups: [
     {
       name: "Die Depressionsgruppe",
-      meeting: "2023-11-15 18:00",
+      meeting: "",
       topic: "Depression",
       description:
         "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
@@ -13,10 +13,11 @@ const mockData = {
       members: 1,
       image:
         "Grouptitel%20pictures%20low_res/pexels-johannes-plenio-1690355_bj811s_e6dajb.jpg",
+      users: ["Marie", "Jan"],
     },
     {
       name: "Die Angstgruppe",
-      meeting: "2023-11-20 15:30",
+      meeting: "",
       topic: "Angststörung",
       description:
         "Angst angst angst angst angst angst angst angst angst angst angst angst angst angst angst angst angst angst angst",
@@ -24,10 +25,11 @@ const mockData = {
       members: 4,
       image:
         "Grouptitel%20pictures%20low_res/pexels-taylor-hunt-2902440_xvgnuq_nueptp.jpg",
+      users: ["Marie", "Jan", "Rida", "Marie"],
     },
     {
       name: "Die andere Angstgruppe",
-      meeting: "2023-11-20T15:30:00",
+      meeting: "",
       topic: "Angststörung",
       description:
         "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
@@ -35,6 +37,17 @@ const mockData = {
       members: 4372,
       image:
         "Grouptitel%20pictures%20low_res/pexels-taylor-hunt-2902440_xvgnuq_nueptp.jpg",
+      users: [
+        "Marie",
+        "Jan",
+        "Rida",
+        "Marie",
+        "Jan",
+        "Rida",
+        "Marie",
+        "Jan",
+        "Rida",
+      ],
     },
   ],
   users: [

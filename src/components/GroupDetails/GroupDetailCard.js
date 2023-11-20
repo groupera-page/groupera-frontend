@@ -1,6 +1,6 @@
 import React from "react";
 import GroupOverviewContent from "./GroupOverviewContent";
-import placeholderForest from "../../assets/placeholderForest.jpg";
+//import placeholderForest from "../../assets/placeholderForest.jpg";
 import { motion } from "framer-motion";
 import MenuDropDown from "../Navigation/Menus/MenuDropDown";
 import PrimaryButton from "../Buttons/PrimaryButton";

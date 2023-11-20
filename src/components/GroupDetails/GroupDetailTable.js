@@ -13,9 +13,12 @@ export default function GroupDetailTable({ group }) {
       <GroupDetailNavbar />
       <hr className="border-BLUE_PRIMARY border-l" />
       <Routes>
-        <Route path="termine" element={<GroupTermineSubPage />} />
+        <Route path="termine" element={<GroupTermineSubPage group={group} />} />
         <Route path="Pinnwand" element={<GroupPinnwandSubPage />} />
-        <Route path="Mitgliederinnen" element={<GroupMemberSubPage />} />
+        <Route
+          path="Mitgliederinnen"
+          element={<GroupMemberSubPage group={group} />}
+        />
         <Route
           path="Unterlagen"
           element={<GroupDocumentSubPage group={group} />}

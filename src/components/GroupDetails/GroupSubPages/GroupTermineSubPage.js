@@ -1,42 +1,19 @@
 import React from "react";
 import SecondaryButton from "../../Buttons/SecondaryButton";
 import { BsPeopleFill } from "react-icons/bs";
-export default function GroupTermineSubPage() {
+export default function GroupTermineSubPage({ group }) {
   const data = [
     {
       id: 1,
       date: "29.11.23",
       time: "10:00",
       duration: "2h",
-      teilnehmer: "2/10",
     },
     {
       id: 2,
       date: "24.12.23",
       time: "13:30",
       duration: "1.5h",
-      teilnehmer: "99/100",
-    },
-    {
-      id: 3,
-      date: "05.01.24",
-      time: "15:45",
-      duration: "1h",
-      teilnehmer: "5/15",
-    },
-    {
-      id: 4,
-      date: "12.02.24",
-      time: "09:30",
-      duration: "3h",
-      teilnehmer: "8/20",
-    },
-    {
-      id: 5,
-      date: "20.03.24",
-      time: "14:15",
-      duration: "2.5h",
-      teilnehmer: "15/30",
     },
   ];
 
@@ -44,9 +21,9 @@ export default function GroupTermineSubPage() {
     <div>
       <div className="grid grid-cols-1 mt-6 gap-2">
         <div className={`hidden md:grid md:grid-cols-5 text-xs mx-2`}>
-          <div>Date</div>
-          <div>Time</div>
-          <div>Duration</div>
+          <div>Datum</div>
+          <div>Uhrzeit</div>
+          <div>Dauer</div>
           <div>Teilnehmer</div>
           <div></div>
         </div>
@@ -63,7 +40,7 @@ export default function GroupTermineSubPage() {
               </div>
 
               <div className="flex items-center gap-4 text-xs justify-center">
-                {entry.teilnehmer}
+                {group.users.length}
                 <BsPeopleFill
                   className={`w-5 mr-3 text-PURPLE_PRIMARY `}
                   size={32}
@@ -82,7 +59,7 @@ export default function GroupTermineSubPage() {
               <div>{entry.date}</div>
               <div>{entry.time}</div>
               <div>{entry.duration}</div>
-              <div>{entry.teilnehmer}</div>
+              <div>{group.users.length}</div>
 
               <div>
                 <SecondaryButton>Anmelden</SecondaryButton>
