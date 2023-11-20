@@ -1,10 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-export default function GroupDetailNavbar() {
-  const subPages = ["Termine", "MitgliederInnen", "Unterlagen"];
+export default function NavbarSub({ subPages }) {
   return (
-    <div className="lg:w-1/2">
+    <div className="">
       <ul className="flex gap-4">
         {subPages.map((page) => (
           <li className="flex relative hover:shadow-md" key={page}>
@@ -22,7 +21,7 @@ export default function GroupDetailNavbar() {
             </NavLink>
           </li>
         ))}
-      </ul>{" "}
+      </ul>
     </div>
   );
 }

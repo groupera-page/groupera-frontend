@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/HomePage";
+import ProfilePage from "./pages/ProfilePage";
 import GroupsPage from "./pages/GroupsPage";
 import GroupDetailPage from "./pages/GroupDetailPage";
 import MenusContainer from "./components/Navigation/MenusContainer";
@@ -36,6 +37,15 @@ function App() {
             <>
               <MenusContainer />
               <GroupDetailPage />
+            </>
+          }
+        />
+        <Route
+          path="/profile/:slug/*"
+          element={
+            <>
+              <MenusContainer />
+              <ProfilePage />
             </>
           }
         />
