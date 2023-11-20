@@ -1,20 +1,24 @@
 import React from "react";
 import logoSvg from "../../../assets/imgLogos/logoNoBg.svg";
 import {Link} from "react-router-dom";
-import {authFields} from "../../../util/form.helper";
 import AuthForm from "../components/AuthForm";
 import {useDispatch} from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+import {authFields} from "../../../util/form.helper";
 import {logInUser} from "../authSlice";
 
 const Login = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate();
 
   const handleSubmit = async (values) => {
     try {
       const response = await dispatch(logInUser(values))
 
-      // if (response.error) throw Error(response.error.message)
-      console.log(response)
+      if (response.error) throw Error(response.error.message)
+
+      navigate("/")
     } catch (e) {
       // handle the error response
       console.log(e)

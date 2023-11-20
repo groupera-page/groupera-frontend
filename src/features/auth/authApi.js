@@ -5,6 +5,8 @@ const login = (email, password) => {
     .post("/auth/login", {
       email,
       password
+    }, {
+      withCredentials: true
     })
 };
 
@@ -36,10 +38,10 @@ const register = (email, password, fullName) => {
 //     .get(`/auth/updatePassword/${token}`)
 // };
 
-const refreshToken = (refreshToken) => {
+const refreshToken = () => {
   return api
-    .post("/auth/refreshToken", {
-      refreshToken
+    .get("/auth/refresh", {
+      withCredentials: true
     })
 };
 

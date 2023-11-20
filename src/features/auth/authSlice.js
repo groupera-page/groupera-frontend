@@ -14,7 +14,6 @@ const initialState = {
 export const registerUser = createAsyncThunk(
   "auth/register",
   async (formValues) => {
-    debugger
     const result = await authService.register(formValues)
     return result.data
   },
@@ -31,8 +30,8 @@ export const logInUser = createAsyncThunk(
 export const refreshToken = createAsyncThunk(
   "auth/refreshToken",
   async () => {
-    const currentRefreshToken = tokenService.getLocalRefreshToken();
-    const result = await authService.refreshToken(currentRefreshToken)
+    // const currentRefreshToken = tokenService.getLocalRefreshToken();
+    const result = await authService.refreshToken()
     return result.data;
   }
 );
@@ -61,9 +60,9 @@ const authSlice = createSlice({
       })
       .addCase(registerUser.fulfilled, (state, {payload}) => {
         state.loading = false;
-        state.token = payload.accessToken;
+        state.token = payload.authToken;
         state.user = payload.data;
-        tokenService.updateTokens(payload.accessToken, payload.refreshToken)
+        tokenService.updateTokens(payload.authToken, payload.refreshToken)
       })
       .addCase(refreshToken.rejected, (state, action) => {
         state.loading = false;
@@ -76,16 +75,16 @@ const authSlice = createSlice({
       })
       .addCase(refreshToken.fulfilled, (state, {payload}) => {
         state.loading = false;
-        state.token = payload.accessToken;
-        state.user = payload.data;
-        tokenService.updateTokens(payload.accessToken, payload.refreshToken)
+        state.token = payload.authToken;
+        state.user = payload.user;
+        tokenService.updateLocalAuthToken(payload.authToken)
       })
       .addCase(logInUser.pending, state => {
         state.loading = true;
       })
       .addCase(logInUser.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.messageg
+        state.error = action.error.message
       })
       .addCase(logInUser.fulfilled, (state, {payload}) => {
         state.loading = false;
@@ -94,10 +93,10 @@ const authSlice = createSlice({
           // eslint-disable-next-line no-alert
           alert(payload.error);
         } else {
-          tokenService.updateTokens(payload.accessToken, payload.refreshToken);
-          tokenService.setUser(payload.data);
-          state.token = payload.accessToken;
-          state.user = payload.data;
+          tokenService.updateLocalAuthToken(payload.authToken);
+          tokenService.setUser(payload.user);
+          state.token = payload.authToken;
+          state.user = payload.user;
         }
       })
   },

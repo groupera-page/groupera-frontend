@@ -5,7 +5,7 @@ import {logout, refreshToken} from "../features/auth/authSlice";
 const setupInterceptors = store => {
   api.interceptors.request.use(
     async config => {
-      const token = await tokenService.getLocalAccessToken();
+      const token = await tokenService.getLocalAuthToken();
       if (token) {
         config.headers["Authorization"] = "Bearer " + token;  // for Spring Boot back-end
         config.headers["x-access-token"] = token; // for Node.js Express back-end

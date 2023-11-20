@@ -4,19 +4,19 @@ const getLocalRefreshToken = () => {
   return undefined;
 };
 
-const getLocalAccessToken = () => {
-  const accessToken = localStorage.getItem("accessToken");
+const getLocalAuthToken = () => {
+  const authToken = localStorage.getItem("authToken");
 
-  if (accessToken) {
-    return accessToken;
+  if (authToken) {
+    return authToken;
   }
   return undefined;
 };
 
-const updateLocalAccessToken = token => {
-  const accessToken = localStorage.getItem("accessToken");
-  if (accessToken !== null) {
-    localStorage.setItem("accessToken", token);
+const updateLocalAuthToken = token => {
+  const authToken = localStorage.getItem("authToken");
+  if (authToken !== null) {
+    localStorage.setItem("authToken", token);
   }
 };
 
@@ -24,9 +24,9 @@ const getUser = () => {
   return JSON.parse(localStorage.getItem("user"));
 };
 
-const updateTokens = (accessToken, refreshToken) => {
-  if (accessToken) {
-    localStorage.setItem("accessToken", accessToken);
+const updateTokens = (authToken, refreshToken) => {
+  if (authToken) {
+    localStorage.setItem("authToken", authToken);
   }
   if (refreshToken) {
     localStorage.setItem("refreshToken", refreshToken);
@@ -39,15 +39,15 @@ const setUser = user => {
 
 const removeUser = () => {
   localStorage.removeItem("user");
-  localStorage.removeItem("accessToken");
+  localStorage.removeItem("authToken");
   localStorage.removeItem("refreshToken");
 };
 
 const tokenService = {
   updateTokens,
   getLocalRefreshToken,
-  getLocalAccessToken,
-  updateLocalAccessToken,
+  getLocalAuthToken,
+  updateLocalAuthToken,
   getUser,
   setUser,
   removeUser,

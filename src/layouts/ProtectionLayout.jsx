@@ -10,7 +10,6 @@ const DefaultLoadingPage = () => (
   </div>
 )
 
-
 const ProtectionLayout = () => {
   const {token, loading} = useSelector(selectAuth);
   const dispatch = useDispatch()
@@ -19,7 +18,7 @@ const ProtectionLayout = () => {
     if (!token) {
       dispatch(refreshToken())
     }
-  }, [dispatch, token]);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return loading ?
     <DefaultLoadingPage/>
