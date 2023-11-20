@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-//import placeholderForest from "../../assets/placeholderForest.jpg";
 import PrimaryButton from "../Buttons/PrimaryButton";
 import GroupOverviewContent from "../GroupDetails/GroupOverviewContent";
 import { motion } from "framer-motion";
 import { Image } from "cloudinary-react";
+import placeholderImage from "../../assets/placeholderImage.jpg";
 
 const fadeInVariants = {
   hidden: { opacity: 0 },
@@ -13,45 +13,55 @@ const fadeInVariants = {
 };
 
 export default function GroupPreviewCard({ group }) {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+  };
+
   return (
-    <motion.div
-      initial="hidden"
-      animate="visible"
-      exit="exit"
-      variants={fadeInVariants}
-      transition={{ duration: 0.3 }}
-      className="flex flex-col border rounded-md shadow-md h-full transition duration-200 ease-in-out"
-    >
-      <div className="flex flex-col border rounded-md shadow-md h-full">
-        <div className="w-full">
+    <div className="flex flex-col border rounded-md shadow-md h-full">
+      <div className="w-full">
+        {!imageLoaded && (
+          <motion.img
+            src={placeholderImage}
+            alt="Placeholder"
+            className="rounded-md object-cover filter blur-md"
+          />
+        )}
+        <motion.div
+          initial="hidden"
+          animate={imageLoaded ? "visible" : "hidden"}
+          exit="exit"
+          variants={fadeInVariants}
+          transition={{ duration: 0.3 }}
+          className="rounded-t-md overflow-hidden"
+        >
           <Image
             cloudName="di8ujuqae"
             publicId={group.image}
-            className="rounded-t-md object-cover"
+            className="object-cover w-full"
+            loading="lazy"
+            onLoad={handleImageLoad}
           />
+        </motion.div>
+      </div>
 
-          {/* <img
-            src={placeholderForest}
-            alt="Placeholder"
-            className="rounded-t-md w-full h-full object-cover"
-          /> */}
-        </div>
-        <div className="flex flex-col justify-between p-4 flex-1">
-          <GroupOverviewContent
-            name={group.name}
-            members={group.members}
-            description={group.description}
-            meeting={group.meeting}
-          />
-          <div className="mt-4">
-            <Link to={`/groups/${group.id}/termine`}>
-              <PrimaryButton type="button" isInversed>
-                Mehr erfahren
-              </PrimaryButton>
-            </Link>
-          </div>
+      <div className="flex flex-col justify-between p-4 flex-1">
+        <GroupOverviewContent
+          name={group.name}
+          members={group.members}
+          description={group.description}
+          meeting={group.meeting}
+        />
+        <div className="mt-4">
+          <Link to={`/groups/${group.id}/termine`}>
+            <PrimaryButton type="button" isInversed>
+              Mehr erfahren
+            </PrimaryButton>
+          </Link>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
