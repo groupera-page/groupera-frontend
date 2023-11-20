@@ -4,6 +4,7 @@ import placeholderForest from "../../assets/placeholderForest.jpg";
 import { motion } from "framer-motion";
 import MenuDropDown from "../Navigation/Menus/MenuDropDown";
 import PrimaryButton from "../Buttons/PrimaryButton";
+import { Image } from "cloudinary-react";
 
 export default function GroupDetailCard({ group }) {
   const fadeInVariants = {
@@ -20,11 +21,16 @@ export default function GroupDetailCard({ group }) {
     >
       <div className="my-2 md:flex items-center gap-20">
         <div className="md:w-1/2">
-          <img
+          <Image
+            cloudName="di8ujuqae"
+            publicId={group.image}
+            className="rounded-md object-cover"
+          />
+          {/* <img
             src={placeholderForest}
             alt="Placeholder"
             className="rounded-md  object-cover"
-          />
+          /> */}
         </div>
 
         <div className="md:w-1/3 my-4">

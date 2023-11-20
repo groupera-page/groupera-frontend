@@ -11,6 +11,8 @@ const mockData = {
 
       id: "123",
       members: 1,
+      image:
+        "Grouptitel%20pictures%20low_res/pexels-johannes-plenio-1690355_bj811s_e6dajb.jpg",
     },
     {
       name: "Die Angstgruppe",
@@ -20,6 +22,8 @@ const mockData = {
         "Angst angst angst angst angst angst angst angst angst angst angst angst angst angst angst angst angst angst angst",
       id: "234",
       members: 4,
+      image:
+        "Grouptitel%20pictures%20low_res/pexels-taylor-hunt-2902440_xvgnuq_nueptp.jpg",
     },
     {
       name: "Die andere Angstgruppe",
@@ -29,6 +33,8 @@ const mockData = {
         "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
       id: "456",
       members: 4372,
+      image:
+        "Grouptitel%20pictures%20low_res/pexels-taylor-hunt-2902440_xvgnuq_nueptp.jpg",
     },
   ],
   users: [

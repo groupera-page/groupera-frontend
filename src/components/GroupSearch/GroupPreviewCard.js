@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import placeholderForest from "../../assets/placeholderForest.jpg";
+//import placeholderForest from "../../assets/placeholderForest.jpg";
 import PrimaryButton from "../Buttons/PrimaryButton";
 import GroupOverviewContent from "../GroupDetails/GroupOverviewContent";
 import { motion } from "framer-motion";
+import { Image } from "cloudinary-react";
 
 const fadeInVariants = {
   hidden: { opacity: 0 },
@@ -22,12 +23,18 @@ export default function GroupPreviewCard({ group }) {
       className="flex flex-col border rounded-md shadow-md h-full transition duration-200 ease-in-out"
     >
       <div className="flex flex-col border rounded-md shadow-md h-full">
-        <div className="w-full h-64">
-          <img
+        <div className="w-full">
+          <Image
+            cloudName="di8ujuqae"
+            publicId={group.image}
+            className="rounded-t-md object-cover"
+          />
+
+          {/* <img
             src={placeholderForest}
             alt="Placeholder"
             className="rounded-t-md w-full h-full object-cover"
-          />
+          /> */}
         </div>
         <div className="flex flex-col justify-between p-4 flex-1">
           <GroupOverviewContent
