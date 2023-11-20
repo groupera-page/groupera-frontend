@@ -33,7 +33,7 @@ code {
   }
 
   h5 {
-    @apply font-medium text-TEXT_PRIMARY;
+    @apply text-TEXT_PRIMARY;
   }
 
   p {

@@ -6,7 +6,7 @@ export default function NavbarSub({ subPages }) {
     <div className="">
       <ul className="flex gap-4">
         {subPages.map((page) => (
-          <li className="flex relative hover:shadow-md" key={page}>
+          <li className="flex relative hover:shadow-md rounded-md" key={page}>
             <NavLink to={page.toLocaleLowerCase()}>
               {({ isActive }) => (
                 <div className="flex flex-row items-center ">
