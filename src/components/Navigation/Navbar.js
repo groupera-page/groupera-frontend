@@ -27,7 +27,6 @@ export default function Navbar({ handleMenuMobile, openMenuMobile }) {
           <div className="border-l border-gray-300 h-8 mx-2 "></div>
         )}
         <MenuDropDown openMenuMobile={openMenuMobile} xOffset={20}>
-          {" "}
           <NavLink to="/">
             <li className="p-4 hover:shadow-md"> Profil</li>
           </NavLink>
