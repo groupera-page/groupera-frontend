@@ -54,12 +54,19 @@ export default function GroupPreviewCard({ group }) {
           description={group.description}
           meeting={group.meeting}
         />
+        {/* TODO FIX A LINK - GRUPPE GRÜNDEN */}
         <div className="mt-4">
-          <Link to={`/groups/${group.id}/termine`}>
+          {group.id === "" ? (
             <PrimaryButton type="button" isInversed>
-              Mehr erfahren
+              Gruppe Gründen
             </PrimaryButton>
-          </Link>
+          ) : (
+            <Link to={`/groups/${group.id}/termine`}>
+              <PrimaryButton type="button" isInversed>
+                Mehr erfahren
+              </PrimaryButton>
+            </Link>
+          )}
         </div>
       </div>
     </div>
