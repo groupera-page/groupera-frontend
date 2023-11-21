@@ -3,7 +3,8 @@ import SecondaryButton from "../Buttons/SecondaryButton";
 import { Link } from "react-router-dom";
 
 export default function OverviewGroupItems({ groups }) {
-  const mockData = [
+  // TODO Loop through groups in mockdata to find the events (coming from google calendar API)
+  const mockDataEvents = [
     {
       id: "33dk58ss8dflia9emc3epprlpk_20231120T110000Z",
       start: {
@@ -54,7 +55,7 @@ export default function OverviewGroupItems({ groups }) {
   return (
     <div className="mx-2 flex-col">
       {groups.map((group, index) => {
-        const nextMeeting = getNextMeeting(group.meetings || mockData);
+        const nextMeeting = getNextMeeting(group.meetings || mockDataEvents);
 
         return (
           <div key={index}>

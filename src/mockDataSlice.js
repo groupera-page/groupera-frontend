@@ -69,8 +69,8 @@ const mockData = {
         agreed: true,
         date_agreed: "2023-01-01",
       },
-      moderatedGroups: ["Die Depressionsgruppe", "group5"],
-      joinedGroups: ["group1", "group6"],
+      moderatedGroups: ["123"],
+      joinedGroups: ["234"],
       meetings: ["meeting3", "meeting4"],
       paymentSubscription: {
         plan: "premium",
@@ -90,8 +90,8 @@ const mockData = {
     "Angehörige",
   ],
 
-  filters: [],
-  groupSearch: [],
+  filters: [""],
+  groupSearch: [""],
 };
 
 export const mockDataSlice = createSlice({

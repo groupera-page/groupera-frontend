@@ -4,8 +4,8 @@ import PrimaryButton from "./Buttons/PrimaryButton";
 export default function PageContainer({ title, text, children }) {
   return (
     <div>
-      <div className="bg-BG_PRIMARY lg:bg-BG_GRAY lg:pl-48 lg:mt-10">
-        <div className=" p-5  lg:p-10">
+      <div className="bg-BG_PRIMARY lg:bg-BG_GRAY ">
+        <div className="px-5 lg:py-10 lg:px-48 lg:mt-10">
           <div className="py-5">
             <div className="flex justify-between">
               {title === "Gruppen" ? (
@@ -24,7 +24,7 @@ export default function PageContainer({ title, text, children }) {
           <div
             className={`flex flex-col ${
               title === "Gruppen" ? "lg:flex-col" : "lg:flex-row"
-            } gap-12`}
+            } gap-8`}
           >
             {children}
           </div>

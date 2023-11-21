@@ -19,7 +19,7 @@ export default function GroupOverviewContent({
         </div>
 
         <p className="text-PURPLE_PRIMARY">{meeting}</p>
-        <p className="line-clamp-6">{description}</p>
+        <p className="line-clamp-5">{description}</p>
       </div>
     </div>
   );

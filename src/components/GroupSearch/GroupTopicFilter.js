@@ -24,7 +24,7 @@ export default function GroupTopicFilter() {
 
   return (
     <div className="overflow-x-auto">
-      <div className="flex space-x-2 my-2 white whitespace-nowrap">
+      <div className="flex space-x-2 mt-2 white whitespace-nowrap">
         {topics.map((topic, idx) => (
           <button
             onClick={() => handleFilterButtonClick(topic)}
