@@ -9,7 +9,7 @@ export default function GroupOverviewContent({
   return (
     <div>
       <div className="flex flex-col gap-2 flex-1">
-        <div className="flex flex-row justify-between items-center">
+        <div className="flex flex-row justify-between items-end">
           <h4> {name}</h4>
           {members > 0 && (
             <p className="text-TEXT_LIGHTGRAY">
@@ -19,7 +19,7 @@ export default function GroupOverviewContent({
         </div>
 
         <p className="text-PURPLE_PRIMARY">{meeting}</p>
-        <p>{description}</p>
+        <p className="line-clamp-6">{description}</p>
       </div>
     </div>
   );

@@ -52,7 +52,7 @@ export default function GroupTermineSubPage({ group }) {
   return (
     <div>
       <div className="grid grid-cols-1 mt-6 gap-2">
-        <div className={`hidden md:grid md:grid-cols-5 text-xs mx-2`}>
+        <div className={`hidden md:grid md:grid-cols-5 text-sm mx-2`}>
           <div>Datum</div>
           <div>Uhrzeit</div>
           <div>Dauer</div>

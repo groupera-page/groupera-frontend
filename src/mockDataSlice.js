@@ -50,36 +50,9 @@ const mockData = {
       ],
     },
   ],
-  users: [
+  user: [
     {
-      alias: "Fritz123",
-      email: "fritz@example.com",
-      passwordHash: "P@ssw0rd123",
-      dob: "1990-01-15",
-      questions: {
-        question1: "Answer1",
-        question2: "Answer2",
-      },
-
-      emailVerified: false,
-      authCode: "AuthenticationCode123",
-      gender: "Männlich",
-      paid: false,
-      terms: {
-        agreed: false,
-        date_agreed: null,
-      },
-      moderatedGroups: ["group1", "group2"],
-      joinedGroups: ["group3", "group4"],
-      meetings: ["meeting1", "meeting2"],
-      paymentSubscription: {
-        plan: "basic",
-        status: "active",
-      },
-      refreshToken: "RefreshToken123",
-    },
-    {
-      alias: "Alice88",
+      alias: "Username",
       email: "alice@example.com",
       passwordHash: "SecureP@ss123",
       dob: "1988-05-20",
@@ -96,7 +69,7 @@ const mockData = {
         agreed: true,
         date_agreed: "2023-01-01",
       },
-      moderatedGroups: ["group3", "group5"],
+      moderatedGroups: ["Die Depressionsgruppe", "group5"],
       joinedGroups: ["group1", "group6"],
       meetings: ["meeting3", "meeting4"],
       paymentSubscription: {

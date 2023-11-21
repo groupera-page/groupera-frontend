@@ -2,8 +2,18 @@ import logoSvg from "../../assets/imgLogos/logoNoBg.svg";
 import { Squash as Hamburger } from "hamburger-react";
 import MenuDropDown from "./Menus/MenuDropDown";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function Navbar({ handleMenuMobile, openMenuMobile }) {
+  const mockData = useSelector((state) => state.mockData.mockData);
+  const userName = mockData.user[0].alias;
+
+  const truncateString = (str, maxLength) => {
+    return str.length > maxLength ? str.substring(0, maxLength) + "..." : str;
+  };
+
+  const truncatedUserName = truncateString(userName, 20);
+
   return (
     <div className="bg-BG_GRAY lg:bg-BG_PRIMARY flex justify-between items-center lg:fixed  text-gray-600 w-full shadow-md z-10">
       <div className="w-1/4">
@@ -26,15 +36,22 @@ export default function Navbar({ handleMenuMobile, openMenuMobile }) {
         {!openMenuMobile && (
           <div className="border-l border-gray-300 h-8 mx-2 "></div>
         )}
-        <MenuDropDown openMenuMobile={openMenuMobile} xOffset={20}>
-          {/* <Link to={`/groups/${group.id}/termine`}> */}
+        <MenuDropDown
+          openMenuMobile={openMenuMobile}
+          xOffset={20}
+          title={truncatedUserName}
+        >
           <NavLink to={`/profile/${"user"}/profil`}>
-            <li className="p-4 hover:shadow-md"> Profil</li>
+            <li className="p-4 hover:shadow-md flex justify-center whitespace-nowrap">
+              {" "}
+              Profil bearbeiten
+            </li>
           </NavLink>
           <>
             <hr className="border-t border-gray-300" />
           </>
-          <NavLink to="/">
+          {/* NOT IN MVP! */}
+          {/* <NavLink to="/">
             <li className="p-4 hover:shadow-md">Einstellungen</li>
           </NavLink>
           <>
@@ -44,7 +61,7 @@ export default function Navbar({ handleMenuMobile, openMenuMobile }) {
             <li className="p-4 whitespace-nowrap hover:shadow-md">
               Abo & Zahlungen
             </li>
-          </NavLink>
+          </NavLink> */}
         </MenuDropDown>
       </div>
     </div>

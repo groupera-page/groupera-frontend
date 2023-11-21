@@ -13,13 +13,13 @@ export default function PageContainer({ title, text, children }) {
                   {title}
                 </h1>
               ) : (
-                <h3>{title}</h3>
+                <h1>{title}</h1>
               )}
               {title === "Gruppen" && (
                 <PrimaryButton>+ Gruppe Grunden</PrimaryButton>
               )}
             </div>
-            <p className="text-TEXT_GRAY ">{text} </p>
+            <p className="text-TEXT_GRAY md:text-base">{text} </p>
           </div>
           <div
             className={`flex flex-col ${

@@ -61,7 +61,7 @@ export default function OverviewGroupItems({ groups }) {
             <div className="flex justify-between items-center my-4">
               <div className="flex flex-col justify-center gap-1">
                 <p className="font-medium">{group.name}</p>
-                <p className="text-TEXT_LIGHTGRAY">Nächster Termin</p>
+                <p className="text-TEXT_LIGHTGRAY text-xs">Nächster Termin</p>
                 <p className="">
                   {nextMeeting
                     ? formatDateTime(nextMeeting.start.dateTime)

@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 export default function NavbarSub({ subPages }) {
   return (
     <div className="">
-      <ul className="flex gap-4">
+      <ul className="flex">
         {subPages.map((page) => (
           <li className="flex relative hover:shadow-md rounded-md" key={page}>
             <NavLink to={page.toLocaleLowerCase()}>

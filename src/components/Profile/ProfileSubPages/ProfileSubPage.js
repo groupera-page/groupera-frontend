@@ -1,8 +1,16 @@
-import React from "react";
+import { useState } from "react";
 import TextInput from "../../UserInputs/TextInput";
 import PrimaryButton from "../../Buttons/PrimaryButton";
+import { useSelector } from "react-redux";
 
 export default function ProfileSubPage() {
+  const mockData = useSelector((state) => state.mockData.mockData);
+  const userName = mockData.user[0].alias;
+  const [inputValue, setInputValue] = useState(userName);
+
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
   return (
     <div className="flex flex-col p-4">
       <div className="flex flex-col my-4">
@@ -11,10 +19,11 @@ export default function ProfileSubPage() {
       </div>
       <div className="flex flex-col md:w-1/4">
         <h5>Name</h5>
-        <TextInput placeholder={"Username"} />
+        <TextInput value={inputValue} onChange={handleInputChange} />
       </div>
+      <p className="h-3"></p>
       <div className="flex my-2 gap-2">
-        <PrimaryButton isInversed={true}>Abbrechen</PrimaryButton>
+        {/* <PrimaryButton isInversed={true}>Abbrechen</PrimaryButton> */}
         <PrimaryButton>Speichern</PrimaryButton>
       </div>
       <hr className="border my-4" />
@@ -37,7 +46,6 @@ export default function ProfileSubPage() {
       <div className="flex my-2 gap-2">
         <PrimaryButton isInversed={true}>Meinen Account löschen</PrimaryButton>
       </div>
-      <hr className="border my-4" />
     </div>
   );
 }

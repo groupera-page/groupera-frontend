@@ -7,7 +7,7 @@ export default function Home({ userName = "Username" }) {
 
   return (
     <PageContainer
-      title={`Hallo ${userName}, willkommen zurück`}
+      title={`Hallo ${userName}`}
       text={"hier sind alle wichtigen Infos für dich zusammengestellt."}
     >
       <OverviewGroups mockData={mockData} />

@@ -3,10 +3,9 @@ import PrimaryButton from "../../Buttons/PrimaryButton";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 
 export default function MenuDropDown({
-  title = "Username",
+  title,
   openMenuMobile,
   topOffset,
-
   isButtonDropDown = false,
   children,
 }) {

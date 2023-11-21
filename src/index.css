@@ -17,7 +17,7 @@ code {
 
 @layer base {
   h1 {
-    @apply text-4xl md:text-5xl text-TEXT_PRIMARY;
+    @apply text-4xl text-TEXT_PRIMARY;
   }
 
   h2 {
@@ -37,7 +37,7 @@ code {
   }
 
   p {
-    @apply text-TEXT_PRIMARY text-xs;
+    @apply text-TEXT_PRIMARY text-sm;
   }
 
   section {
