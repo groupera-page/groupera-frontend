@@ -42,7 +42,7 @@ export default function Carousel({ imageData, img, updateGroupFields }) {
                       : "rounded-md cursor-pointer"
                   }
                   onClick={() => {
-                    updateGroupFields({ img: item });
+                    // updateGroupFields({ img: item });
                     setSelectedImage(item);
                   }}
                 />

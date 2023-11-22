@@ -16,19 +16,17 @@ export default function GroupeditContent({ group }) {
   };
 
   return (
-    <div>
-      <div className="flex flex-col gap-8">
-        <div className="flex flex-col gap-2">
-          <h5> Name Der Gruppe</h5>
-          <TextInput value={groupNameValue} onChange={handleGroupNameChange} />
-        </div>
-        <div className="flex flex-col gap-2 h-full">
-          <h5> Beschreibung der Gruppe</h5>
-          <TextAreaInput
-            value={groupDescriptionValue}
-            onChange={handleGroupDescriptionChange}
-          />
-        </div>
+    <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-2">
+        <h5> Name Der Gruppe</h5>
+        <TextInput value={groupNameValue} onChange={handleGroupNameChange} />
+      </div>
+      <div className="flex flex-col gap-2 h-full">
+        <h5> Beschreibung der Gruppe</h5>
+        <TextAreaInput
+          value={groupDescriptionValue}
+          onChange={handleGroupDescriptionChange}
+        />
       </div>
     </div>
   );

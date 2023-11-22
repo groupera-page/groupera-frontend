@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Carousel from "../Carousel";
+import Carousel from "../../../Carousels/Carousel";
 import axios from "axios";
 import TextInput from "../../../UserInputs/TextInput";
 import InputError from "../../../UserInputs/InputError";

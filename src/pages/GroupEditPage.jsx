@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import PageContainer from "../components/PageContainer";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -12,6 +12,11 @@ import { IoSettingsOutline } from "react-icons/io5";
 import GroupDetailCard from "../components/GroupDetails/GroupDetailCard";
 
 export default function GroupEditPage() {
+  const [showImagePicker, setShowImagePicker] = useState(false);
+
+  function handleEditImage() {
+    setShowImagePicker(!showImagePicker);
+  }
   const mockData = useSelector((state) => state.mockData.mockData);
   const mockDataGroups = mockData.groups;
   const user = mockData.user[0];
@@ -42,8 +47,10 @@ export default function GroupEditPage() {
           group={thisGroup}
           isAdmin={isAdmin}
           isEditable={true}
+          handleEditImage={handleEditImage}
         />
-        <div className="bg-BG_PRIMARY rounded-md border p-4 ">
+
+        <div className="bg-BG_PRIMARY rounded-md border p-4 my-4 ">
           <ul className="flex justify-between items-center">
             <li>
               <ul className="flex gap-4 ">

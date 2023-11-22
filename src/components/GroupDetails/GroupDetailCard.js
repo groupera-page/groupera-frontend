@@ -7,9 +7,15 @@ import PrimaryButton from "../Buttons/PrimaryButton";
 import { Image } from "cloudinary-react";
 import placeholderImage from "../../assets/placeholderImage.jpg";
 import { Link } from "react-router-dom";
+import GroupEditImage from "./GroupEditImage";
 
 export default function GroupDetailCard({ group, isAdmin, isEditable }) {
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [showImagePicker, setShowImagePicker] = useState(false);
+
+  function handleEditImage() {
+    setShowImagePicker(!showImagePicker);
+  }
 
   const fadeInVariants = {
     hidden: { opacity: 0 },
@@ -21,7 +27,7 @@ export default function GroupDetailCard({ group, isAdmin, isEditable }) {
   };
 
   return (
-    <div className="my-2 md:flex items-center gap-20">
+    <div className="my-2 md:flex gap-20">
       <div className="md:w-1/2 relative">
         {!imageLoaded && (
           <img
@@ -47,15 +53,20 @@ export default function GroupDetailCard({ group, isAdmin, isEditable }) {
           />{" "}
         </motion.div>
         {isEditable && (
-          <div className="flex justify-center">
+          <div
+            className="flex justify-center cursor-pointer"
+            onClick={handleEditImage}
+          >
             <div className="text-PURPLE_PRIMARY my-2">
               Gruppenbild bearbeiten
             </div>
           </div>
         )}
+
+        {isEditable && <GroupEditImage />}
       </div>
 
-      <div className="md:w-1/3 my-4">
+      <div className="md:w-1/2 my-4">
         {isEditable ? (
           <GroupEditContent group={group} />
         ) : (
