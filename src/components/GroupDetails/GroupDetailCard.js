@@ -8,11 +8,7 @@ import { Image } from "cloudinary-react";
 import placeholderImage from "../../assets/placeholderImage.jpg";
 import { Link } from "react-router-dom";
 
-export default function GroupDetailCard({
-  group,
-  isAdmin,
-  isEditable = false,
-}) {
+export default function GroupDetailCard({ group, isAdmin, isEditable }) {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   const fadeInVariants = {
