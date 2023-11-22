@@ -3,7 +3,7 @@ import OverviewHeader from "./OverviewHeader";
 import PrimaryButton from "../Buttons/PrimaryButton";
 import SecondaryButton from "../Buttons/SecondaryButton";
 
-export default function OverviewNextEvent({ mockData, hasEvents = true }) {
+export default function OverviewNextEvent({ groups }) {
   // TODO Loop through groups in mockdata to find the events (coming from google calendar API)
   const mockDataEvents = [
     {
@@ -61,27 +61,31 @@ export default function OverviewNextEvent({ mockData, hasEvents = true }) {
     <div className="lg:w-1/2">
       <div
         className={`flex ${
-          hasEvents ? "flex-row" : "flex-col"
+          mockDataEvents.length > 0 ? "flex-row" : "flex-col"
         } rounded-md shadow-md border justify-between`}
       >
         <div className="flex flex-col p-2 ">
           <OverviewHeader
-            title={hasEvents ? "Deine nächsten Termine" : "Deine Termine"}
+            title={
+              mockDataEvents.length > 0
+                ? "Deine nächsten Termine"
+                : "Deine Termine"
+            }
             text={
-              hasEvents
+              mockDataEvents.length > 0
                 ? ""
                 : "Du hast dich noch für keinen Termin angemeldet. "
             }
           />
-          {!hasEvents && (
+          {mockDataEvents.length < 1 && (
             <div className="flex justify-center my-2">
               <PrimaryButton>Zur den Gruppen</PrimaryButton>
             </div>
           )}
-          {hasEvents && (
+          {mockDataEvents.length > 0 && (
             <div className="flex flex-col justify-center gap-1 mx-2">
               <div className="flex flex-col gap-1 mb-4">
-                <p className="font-medium">{mockData.groups[0].name}</p>
+                <p className="font-medium">{groups[0].name}</p>
                 <p className="mb-2">
                   {nextEvent
                     ? formatDateTime(nextEvent.start.dateTime)
@@ -92,7 +96,7 @@ export default function OverviewNextEvent({ mockData, hasEvents = true }) {
           )}
         </div>
 
-        {hasEvents && (
+        {mockDataEvents.length > 0 && (
           <div className="flex flex-col justify-center gap-1 mr-4">
             <SecondaryButton>Abmelden</SecondaryButton>
             <PrimaryButton>Zur Videokonferenz</PrimaryButton>

@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 
 export default function GroupsPage() {
   const mockData = useSelector((state) => state.mockData.mockData);
-  const userGroupsID = [
+  const userGroupsId = [
     ...mockData.user[0].joinedGroups,
     ...mockData.user[0].moderatedGroups,
   ];
@@ -21,8 +21,8 @@ export default function GroupsPage() {
       )
     : filteredGroups;
 
-  const myGroups = mockData.groups.filter((group) =>
-    userGroupsID.includes(group.id)
+  const userGroups = mockData.groups.filter((group) =>
+    userGroupsId.includes(group.id)
   );
 
   return (
@@ -40,7 +40,7 @@ export default function GroupsPage() {
           </div>
         </div>
       )}
-      <GroupCardContainer title={"Deine Gruppen"} groups={myGroups} />
+      <GroupCardContainer title={"Deine Gruppen"} groups={userGroups} />
     </PageContainer>
   );
 }

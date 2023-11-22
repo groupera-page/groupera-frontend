@@ -92,6 +92,33 @@ const mockData = {
       },
       refreshToken: "RefreshToken789",
     },
+    {
+      alias: "Username2",
+      email: "alice@example.com",
+      passwordHash: "SecureP@ss123",
+      dob: "1988-05-20",
+      questions: {
+        question1: "AnswerA",
+        question2: "AnswerB",
+      },
+
+      emailVerified: true,
+      authCode: "AuthenticationCode456",
+      gender: "Weiblich",
+      paid: true,
+      terms: {
+        agreed: true,
+        date_agreed: "2023-01-01",
+      },
+      moderatedGroups: [""],
+      joinedGroups: [""],
+      meetings: ["meeting3", "meeting4"],
+      paymentSubscription: {
+        plan: "premium",
+        status: "active",
+      },
+      refreshToken: "RefreshToken789",
+    },
   ],
   topics: [
     "Depression",
