@@ -14,6 +14,9 @@ export default function GroupDetailPage() {
   const user = mockData.user[0];
   const { slug } = useParams();
   const thisGroup = mockDataGroups.find((group) => group.id === slug);
+  const isAdmin = user.moderatedGroups.find(
+    (groupId) => thisGroup.id === groupId
+  );
 
   return (
     <PageContainer>
@@ -24,15 +27,15 @@ export default function GroupDetailPage() {
               <div className="flex items-center">
                 <BsArrowLeft
                   className="w-5 mr-3 text-PURPLE_PRIMARY"
-                  size={18}
+                  size={15}
                 />
-                Zurück zur Suche
+                Zur Suche
               </div>
             </Link>
           </PrimaryButton>
         </div>
 
-        <GroupDetailCard group={thisGroup} user={user} />
+        <GroupDetailCard group={thisGroup} isAdmin={isAdmin} />
         <GroupDetailTable group={thisGroup} />
       </div>
     </PageContainer>

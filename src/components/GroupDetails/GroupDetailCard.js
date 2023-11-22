@@ -6,7 +6,7 @@ import PrimaryButton from "../Buttons/PrimaryButton";
 import { Image } from "cloudinary-react";
 import placeholderImage from "../../assets/placeholderImage.jpg";
 
-export default function GroupDetailCard({ group }) {
+export default function GroupDetailCard({ group, isAdmin }) {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   const fadeInVariants = {
@@ -55,12 +55,14 @@ export default function GroupDetailCard({ group }) {
         ></GroupOverviewContent>
         <div className="flex justify-end my-4">
           <MenuDropDown
-            title={"Du bist Mitglied"}
+            title={`${isAdmin ? "Du bist Admin" : "Du bist Mitglied"}`}
             topOffset={10}
             isButtonDropDown={true}
           >
             <li className="">
-              <PrimaryButton isInversed={true}>Gruppe Verlassen</PrimaryButton>
+              <PrimaryButton isInversed={true}>
+                {`${isAdmin ? "Gruppe bearbeiten" : "Gruppe Verlassen"}`}
+              </PrimaryButton>
             </li>
           </MenuDropDown>
         </div>
