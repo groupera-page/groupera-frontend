@@ -11,6 +11,7 @@ import GroupDetailTable from "../components/GroupDetails/GroupDetailTable";
 export default function GroupDetailPage() {
   const mockData = useSelector((state) => state.mockData.mockData);
   const mockDataGroups = mockData.groups;
+  const user = mockData.user[0];
   const { slug } = useParams();
   const thisGroup = mockDataGroups.find((group) => group.id === slug);
 
@@ -31,7 +32,7 @@ export default function GroupDetailPage() {
           </PrimaryButton>
         </div>
 
-        <GroupDetailCard group={thisGroup} />
+        <GroupDetailCard group={thisGroup} user={user} />
         <GroupDetailTable group={thisGroup} />
       </div>
     </PageContainer>

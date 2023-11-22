@@ -60,11 +60,7 @@ export default function GroupDetailCard({ group }) {
             isButtonDropDown={true}
           >
             <li className="">
-              <div className="flex w-fit ">
-                <PrimaryButton isInversed={true}>
-                  Gruppe Verlassen
-                </PrimaryButton>
-              </div>
+              <PrimaryButton isInversed={true}>Gruppe Verlassen</PrimaryButton>
             </li>
           </MenuDropDown>
         </div>

@@ -36,20 +36,13 @@ export default function Navbar({ handleMenuMobile, openMenuMobile }) {
         {!openMenuMobile && (
           <div className="border-l border-gray-300 h-8 mx-2 "></div>
         )}
-        <MenuDropDown
-          openMenuMobile={openMenuMobile}
-          xOffset={20}
-          title={truncatedUserName}
-        >
+        <MenuDropDown openMenuMobile={openMenuMobile} title={truncatedUserName}>
           <NavLink to={`/profile/${"user"}/profil`}>
-            <li className="p-4 hover:shadow-md flex justify-center whitespace-nowrap">
-              {" "}
+            <li className="p-2 hover:shadow-md flex justify-center whitespace-nowrap">
               Profil bearbeiten
             </li>
           </NavLink>
-          <>
-            <hr className="border-t border-gray-300" />
-          </>
+          <>{/* <hr className="border-t border-gray-300" /> */}</>
           {/* NOT IN MVP! */}
           {/* <NavLink to="/">
             <li className="p-4 hover:shadow-md">Einstellungen</li>
