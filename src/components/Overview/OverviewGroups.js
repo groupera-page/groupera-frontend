@@ -4,7 +4,12 @@ import OverviewGroupItems from "./OverviewGroupItems";
 import PrimaryButton from "../Buttons/PrimaryButton";
 import { Link } from "react-router-dom";
 
-export default function OverviewGroups({ mockData, hasGroups = true }) {
+export default function OverviewGroups({
+  mockData,
+  groups,
+  user,
+  hasGroups = true,
+}) {
   return (
     <div className="flex flex-col p-2 rounded-md shadow-md border gap-2 lg:w-1/2">
       <OverviewHeader

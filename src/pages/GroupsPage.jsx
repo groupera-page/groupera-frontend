@@ -2,48 +2,28 @@ import React from "react";
 import PageContainer from "../components/PageContainer";
 import GroupSearchContainer from "../components/GroupSearch/GroupSearchContainer";
 import GroupCardContainer from "../components/GroupSearch/GroupCardContainer";
-import PrimaryButton from "../components/Buttons/PrimaryButton";
 import { useSelector } from "react-redux";
-import GroupPreviewCard from "../components/GroupSearch/GroupPreviewCard";
 
 export default function GroupsPage() {
   const mockData = useSelector((state) => state.mockData.mockData);
-  const mockDataUserJoinedGroups = mockData.user[0].joinedGroups;
-  const mockDataUserModeratedGroups = mockData.user[0].moderatedGroups;
-  const mockDataGroups = mockData.groups;
-  const mockDataFilters = mockData.filters;
-  const mockDataSearchedGroup = mockData.groupSearch;
+  const userGroupsID = [
+    ...mockData.user[0].joinedGroups,
+    ...mockData.user[0].moderatedGroups,
+  ];
 
-  const filteredGroups = mockDataFilters.length
-    ? mockDataGroups.filter((group) => mockDataFilters.includes(group.topic))
-    : mockDataGroups;
+  const filteredGroups = mockData.filters.length
+    ? mockData.groups.filter((group) => mockData.filters.includes(group.topic))
+    : mockData.groups;
 
-  const searchedGroups = mockDataSearchedGroup
+  const searchedGroups = mockData.groupSearch
     ? filteredGroups.filter((group) =>
-        group.name.toLowerCase().includes(mockDataSearchedGroup.toLowerCase())
+        group.name.toLowerCase().includes(mockData.groupSearch.toLowerCase())
       )
     : filteredGroups;
 
-  const myGroups = mockDataGroups.filter(
-    (group) =>
-      mockDataUserJoinedGroups.includes(group.id) ||
-      mockDataUserModeratedGroups.includes(group.id)
+  const myGroups = mockData.groups.filter((group) =>
+    userGroupsID.includes(group.id)
   );
-
-  const NoGroupCard = [
-    {
-      name: "Starte eine neue Gruppe",
-      meeting: "Nach deinen zeitlichen Vorlieben",
-      topic: "",
-      description:
-        "Aktuell gibt es für dieses wichtige Thema keine Gruppe. Sei der erste und verbinde Menschen. Du musst kein Experte sein. Wir helfen dir bei der Moderation",
-      id: "",
-      members: 0,
-      image:
-        "Grouptitel%20pictures%20low_res/pexels-johannes-plenio-1690355_bj811s_e6dajb.jpg",
-      users: [""],
-    },
-  ];
 
   return (
     <PageContainer title={`Gruppen`}>
@@ -55,7 +35,7 @@ export default function GroupsPage() {
         <div>
           <div className="flex flex-row gap- items-center">
             <div>
-              <GroupCardContainer groups={NoGroupCard} />
+              <GroupCardContainer groups={mockData.NoGroupCard} />
             </div>
           </div>
         </div>

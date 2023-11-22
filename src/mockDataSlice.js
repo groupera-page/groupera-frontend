@@ -50,6 +50,20 @@ const mockData = {
       ],
     },
   ],
+  NoGroupCard: [
+    {
+      name: "Starte eine neue Gruppe",
+      meeting: "Nach deinen zeitlichen Vorlieben",
+      topic: "",
+      description:
+        "Aktuell gibt es für dieses wichtige Thema keine Gruppe. Sei der erste und verbinde Menschen. Du musst kein Experte sein. Wir helfen dir bei der Moderation",
+      id: "",
+      members: 0,
+      image:
+        "Grouptitel%20pictures%20low_res/pexels-johannes-plenio-1690355_bj811s_e6dajb.jpg",
+      users: [""],
+    },
+  ],
   user: [
     {
       alias: "Username",
