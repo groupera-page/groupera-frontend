@@ -26,7 +26,7 @@ export default function GroupDetailPage() {
             <Link to={`/groups/`}>
               <div className="flex items-center">
                 <BsArrowLeft
-                  className="w-5 mr-3 text-PURPLE_PRIMARY"
+                  className="w-5 mr-2 text-PURPLE_PRIMARY"
                   size={15}
                 />
                 Zur Suche

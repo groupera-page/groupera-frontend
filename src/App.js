@@ -3,6 +3,7 @@ import Home from "./pages/HomePage";
 import ProfilePage from "./pages/ProfilePage";
 import GroupsPage from "./pages/GroupsPage";
 import GroupDetailPage from "./pages/GroupDetailPage";
+import GroupEditPage from "./pages/GroupEditPage";
 import MenusContainer from "./components/Navigation/MenusContainer";
 import Login from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
@@ -32,6 +33,15 @@ function App() {
           }
         />
         <Route
+          path="/groups/:slug/edit/*"
+          element={
+            <>
+              <MenusContainer />
+              <GroupEditPage />
+            </>
+          }
+        />
+        <Route
           path="/groups/:slug/*"
           element={
             <>
@@ -40,6 +50,7 @@ function App() {
             </>
           }
         />
+
         <Route
           path="/profile/:slug/*"
           element={

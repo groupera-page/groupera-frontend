@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Searchbox from "../UserInputs/Searchbox";
 import GroupTopicFilter from "./GroupTopicFilter";
 import { useDispatch } from "react-redux";
@@ -7,7 +7,10 @@ import { setGroupSearch } from "../../mockDataSlice";
 export default function GroupSearchContainer() {
   const [inputValue, setInputValue] = useState();
   const dispatch = useDispatch();
-  dispatch(setGroupSearch(inputValue));
+
+  useEffect(() => {
+    dispatch(setGroupSearch(inputValue));
+  }, [inputValue, dispatch]);
 
   return (
     <div className="w-full">

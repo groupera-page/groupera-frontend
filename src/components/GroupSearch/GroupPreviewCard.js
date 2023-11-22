@@ -48,12 +48,7 @@ export default function GroupPreviewCard({ group }) {
       </div>
 
       <div className="flex flex-col justify-between p-4 flex-1">
-        <GroupOverviewContent
-          name={group.name}
-          members={group.members}
-          description={group.description}
-          meeting={group.meeting}
-        />
+        <GroupOverviewContent clamp={true} group={group} />
         {/* TODO FIX A LINK - GRUPPE GRÜNDEN */}
         <div className="mt-4">
           {group.id === "" ? (

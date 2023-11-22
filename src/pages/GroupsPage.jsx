@@ -33,7 +33,7 @@ export default function GroupsPage() {
         <GroupCardContainer groups={searchedGroups} />
       ) : (
         <div>
-          <div className="flex flex-row gap- items-center">
+          <div className="flex flex-row items-center">
             <div>
               <GroupCardContainer groups={mockData.NoGroupCard} />
             </div>
