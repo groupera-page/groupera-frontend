@@ -39,13 +39,13 @@ export default function GroupEventPlan() {
         Du kannst alle Angaben jederzeit in den Gruppeneinstellungen ändern
       </p>
       <h4 className="mt-4 mb-2">Startdatum</h4>
-      <div className="relative">
+      <div className="relative ">
         <DatePicker
           //   showIcon
           selected={calendarDate}
           //   dateFormat="dd MMM yyyy"
           onChange={(e) => setCalendarDate(e)}
-          className=""
+          className="hover:shadow-md"
           minDate={calendarDate}
           maxDate={thirtyDaysFromNow}
           locale={de}
@@ -64,14 +64,14 @@ export default function GroupEventPlan() {
           id={"freq1"}
           title={"Einmalig"}
           checkedVariable={frequency}
-          onChange={(e) => setFrequency()}
+          onChange={(e) => setFrequency("Einmalig")}
           fullSize={false}
         />
         <RadioButton
           id={"freq2"}
           title={"Wöchentlich"}
           checkedVariable={frequency}
-          onChange={(e) => setFrequency(e)}
+          onChange={(e) => setFrequency("Wöchentlich")}
           fullSize={false}
         />
 
@@ -79,21 +79,21 @@ export default function GroupEventPlan() {
           id={"freq3"}
           title={"Alle 2 Wochen"}
           checkedVariable={frequency}
-          onChange={(e) => setFrequency(e)}
+          onChange={(e) => setFrequency("Alle 2 Wochen")}
           fullSize={false}
         />
         <RadioButton
           id={"freq4"}
           title={"Monatlich"}
           checkedVariable={frequency}
-          onChange={(e) => setFrequency(e)}
+          onChange={(e) => setFrequency("Monatlich")}
           fullSize={false}
         />
       </div>
 
       <h4 className="">Zu welcher Uhrzeit?</h4>
-      <div className="flex my-2 border border-BLUE_PRIMARY rounded-md p-2 w-fit">
-        <div className=" px-1">
+      <div className="flex my-2 border border-BLUE_PRIMARY rounded-md p-2 w-fit hover:shadow-md">
+        <div className="px-1">
           <TimePicker
             selectedTime={fromTime}
             onSelectTime={(newTime) => {
