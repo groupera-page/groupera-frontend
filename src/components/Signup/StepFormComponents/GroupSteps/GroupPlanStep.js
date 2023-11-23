@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BsArrowRight } from "react-icons/bs";
 import { BsClock } from "react-icons/bs";
 import { AiOutlineCalendar } from "react-icons/ai";
-import TimePicker from "../TimePicker";
+import TimePicker from "../../../UserInputs/TimePicker";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import de from "date-fns/locale/de";

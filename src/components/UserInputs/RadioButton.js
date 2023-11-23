@@ -15,7 +15,6 @@ export default function RadioButton({ id, title, checkedVariable, onChange }) {
         value={title}
         checked={checkedVariable === title}
         onChange={onChange}
-        // className="mr-1 absolute end-1 md:end-6"
       />
     </label>
   );
