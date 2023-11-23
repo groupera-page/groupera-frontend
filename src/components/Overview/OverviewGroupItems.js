@@ -61,9 +61,9 @@ export default function OverviewGroupItems({ groups }) {
           <div key={index}>
             <div className="flex justify-between items-center my-4">
               <div className="flex flex-col justify-center gap-1">
-                <p className="font-medium">{group.name}</p>
-                <p className="text-TEXT_LIGHTGRAY text-xs">Nächster Termin</p>
-                <p className="">
+                <p className="font-medium text-base">{group.name}</p>
+                <p className="text-TEXT_LIGHTGRAY text-sm">Nächster Termin</p>
+                <p className="text-base">
                   {nextMeeting
                     ? formatDateTime(nextMeeting.start.dateTime)
                     : "Kein Termin geplant"}

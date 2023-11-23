@@ -5,7 +5,7 @@ export default function OverviewHeader({ title, text }) {
     <div>
       <div className="m-2 ">
         <h4>{title}</h4>
-        <p>{text}</p>
+        <div className="paragraph-sm">{text}</div>
       </div>
     </div>
   );

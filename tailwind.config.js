@@ -16,7 +16,8 @@ module.exports = {
         BLUE_LINK: "rgb(24, 24, 125)",
         TEXT_PRIMARY: "#212529",
         TEXT_SECONDARY: "#8590A6",
-        TEXT_GRAY: "rgb(73, 80, 87)",
+        TEXT_GRAY: "#495057",
+
         TEXT_LIGHTGRAY: "#8590A6",
       },
       boxShadow: {

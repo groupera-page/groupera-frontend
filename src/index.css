@@ -21,19 +21,23 @@ code {
   }
 
   h2 {
-    @apply text-2xl text-TEXT_PRIMARY font-medium;
-  }
-
-  h3 {
     @apply text-3xl text-TEXT_PRIMARY;
   }
 
+  h3 {
+    @apply text-2xl text-TEXT_PRIMARY;
+  }
+
   h4 {
-    @apply font-medium text-xl text-TEXT_PRIMARY;
+    @apply text-2xl text-TEXT_PRIMARY;
   }
 
   h5 {
     @apply text-TEXT_PRIMARY;
+  }
+
+  h6 {
+    @apply text-TEXT_PRIMARY text-4xl font-light;
   }
 
   p {
@@ -52,7 +56,11 @@ code {
     @apply text-lg text-TEXT_PRIMARY;
   }
 
+  .paragraph-md {
+    @apply text-base text-TEXT_GRAY;
+  }
+
   .paragraph-sm {
-    @apply text-sm text-TEXT_LIGHTGRAY;
+    @apply text-sm text-TEXT_GRAY;
   }
 }

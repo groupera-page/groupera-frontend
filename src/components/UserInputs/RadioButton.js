@@ -10,7 +10,11 @@ export default function RadioButton({
   return (
     <label
       htmlFor={id}
-      className={`relative cursor-pointer border border-BLUE_PRIMARY rounded-md text-base py-3 px-4 flex items-center gap-4 hover:shadow-md`}
+      className={`relative cursor-pointer border ${
+        checkedVariable === title
+          ? "border-PURPLE_PRIMARY"
+          : "border-BLUE_PRIMARY"
+      }   rounded-md text-base py-3 px-4 flex items-center gap-4 hover:shadow-md`}
     >
       <div>{title}</div>
       <input

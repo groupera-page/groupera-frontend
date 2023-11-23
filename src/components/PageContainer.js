@@ -5,21 +5,15 @@ export default function PageContainer({ title, text, children }) {
   return (
     <div>
       <div className="bg-BG_PRIMARY lg:bg-BG_GRAY ">
-        <div className="px-5 py-10 lg:py-20 lg:px-48 ">
+        <div className="px-5 py-10 lg:py-20 lg:pl-48 lg:px-20 ">
           <div className="py-5">
             <div className="flex justify-between">
-              {title === "Gruppen" ? (
-                <h1 className="font-light lg:font-medium lg:text-3xl">
-                  {title}
-                </h1>
-              ) : (
-                <h1>{title}</h1>
-              )}
+              {title === "Gruppen" ? <h2>{title}</h2> : <h6>{title}</h6>}
               {title === "Gruppen" && (
                 <PrimaryButton>+ Gruppe Grunden</PrimaryButton>
               )}
             </div>
-            <p className="text-TEXT_GRAY md:text-base">{text} </p>
+            <div className="paragraph-md">{text} </div>
           </div>
           <div
             className={`flex flex-col ${

@@ -58,7 +58,7 @@ export default function OverviewNextEvent({ groups }) {
   };
 
   return (
-    <div className="lg:w-1/2">
+    <div className="lg:w-1/2 mt-10">
       <div
         className={`flex ${
           mockDataEvents.length > 0 ? "flex-row" : "flex-col"

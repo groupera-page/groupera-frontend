@@ -11,7 +11,7 @@ import { CiLogout } from "react-icons/ci";
 
 export default function Navigation({ handleMenuMobile }) {
   return (
-    <div className="flex flex-col justify-between h-1/2 lg:h-5/6 m-5 ">
+    <div className="flex flex-col justify-between h-1/2 lg:h-5/6 mx-5 ">
       <ul className="list-none flex flex-col gap-5 ">
         <li className="flex relative ">
           <NavLink to="/" onClick={() => handleMenuMobile()}>
@@ -31,7 +31,7 @@ export default function Navigation({ handleMenuMobile }) {
                       size={32}
                     />
                   </div>
-                  <div className="relative group">
+                  <div className="relative group text-lg">
                     Übersicht
                     <div className={`${!isActive ? "" : "hidden"} `}>
                       <HoverUnderline />
@@ -60,7 +60,7 @@ export default function Navigation({ handleMenuMobile }) {
                       size={32}
                     />
                   </div>
-                  <div className="relative group">
+                  <div className="relative group text-lg">
                     Gruppen
                     <div className={`${!isActive ? "" : "hidden"} `}>
                       <HoverUnderline />
@@ -75,7 +75,7 @@ export default function Navigation({ handleMenuMobile }) {
       <NavLink to="/login" onClick={() => handleMenuMobile()}>
         <div className={`flex items-center text-TEXT_PRIMARY `}>
           <CiLogout className="w-5 mr-3 text-TEXT_PRIMARY" size={32} />
-          <div className="relative group">
+          <div className="relative group text-lg">
             Ausloggen
             <HoverUnderline />
           </div>

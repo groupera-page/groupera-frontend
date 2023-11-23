@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { AiOutlineCalendar } from "react-icons/ai";
+import { BsArrowLeft } from "react-icons/bs";
+import PrimaryButton from "../Buttons/PrimaryButton";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import de from "date-fns/locale/de";
@@ -28,8 +30,8 @@ export default function GroupEventPlan() {
       <div className="paragraph-sm">
         Du kannst alle Angaben jederzeit in den Gruppeneinstellungen ändern
       </div>
-      <h4 className="mt-4 mb-2">Startdatum</h4>
-      <div className="relative ">
+      <div className="mt-4 mb-2 paragraph-lg">Startdatum</div>
+      <div className="relative mb-4">
         <DatePicker
           selected={calendarDate}
           //   dateFormat="dd MMM yyyy"
@@ -44,14 +46,28 @@ export default function GroupEventPlan() {
           size={20}
         />
       </div>
-      <RadioButtonContainer
-        title={"An welchen Tagen soll die Gruppe sich treffen?"}
-        options={frequencyOptions}
-        onChange={onHandleFreqChange}
-        checkedVariable={frequency}
-        name={"frequencyOptions"}
-      />
-      <TimePickerContainer title={"Zu welcher Uhrzeit?"} />
+      <div className="mb-4">
+        <div className="mb-2 paragraph-lg">
+          An welchen Tagen soll die Gruppe sich treffen?
+        </div>
+        <RadioButtonContainer
+          options={frequencyOptions}
+          onChange={onHandleFreqChange}
+          checkedVariable={frequency}
+          name={"frequencyOptions"}
+        />
+      </div>
+      <div className="mb-2 paragraph-lg">Zu welcher Uhrzeit?</div>
+      <TimePickerContainer />
+      <div className="flex justify-between mt-4">
+        <PrimaryButton isInversed={true}>
+          <div className="flex gap-2">
+            <BsArrowLeft className="" size={20} />
+            Abbrechen
+          </div>
+        </PrimaryButton>
+        <PrimaryButton>Speichern</PrimaryButton>
+      </div>
     </div>
   );
 }

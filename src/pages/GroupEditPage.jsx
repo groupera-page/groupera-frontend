@@ -8,20 +8,42 @@ import { BsArrowLeft } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { BsTrash3 } from "react-icons/bs";
 import { IoSettingsOutline } from "react-icons/io5";
+import { BsPeopleFill } from "react-icons/bs";
 
 import GroupDetailCard from "../components/GroupDetails/GroupDetailCard";
 
 export default function GroupEditPage() {
   const [showImagePicker, setShowImagePicker] = useState(false);
-
+  const mockEvents = [
+    {
+      id: "33dk58ss8dflia9emc3epprlpk_20231120T110000Z",
+      start: {
+        dateTime: "2023-11-20T12:00:00+01:00",
+        time: "12:00",
+      },
+      end: {
+        dateTime: "2023-11-20T12:30:00+01:00",
+      },
+    },
+    {
+      id: "33dk58ss8dflia9emc3epprlpk_20231204T110000Z",
+      start: {
+        dateTime: "2023-12-04T12:00:00+01:00",
+        time: "12:00",
+      },
+      end: {
+        dateTime: "2023-12-04T12:30:00+01:00",
+      },
+    },
+  ];
   function handleEditImage() {
     setShowImagePicker(!showImagePicker);
   }
   const mockData = useSelector((state) => state.mockData.mockData);
-  const mockDataGroups = mockData.groups;
+  const groups = mockData.groups;
   const user = mockData.user[0];
   const { slug } = useParams();
-  const thisGroup = mockDataGroups.find((group) => group.id === slug);
+  const thisGroup = groups.find((group) => group.id === slug);
   const isAdmin = user.moderatedGroups.find(
     (groupId) => thisGroup.id === groupId
   );
@@ -53,20 +75,49 @@ export default function GroupEditPage() {
         <div className="bg-BG_PRIMARY rounded-md border p-4 my-4 ">
           <ul className="flex justify-between items-center">
             <li>
-              <ul className="flex gap-4 ">
-                <li>Termin</li>
-                <li>Termin</li>
-                <li>Termin</li>
-                <li>Termin</li>
-                <li>Termin</li>
+              <ul className="flex gap-12 items-center">
+                <li className="text-PURPLE_PRIMARY">
+                  {
+                    [
+                      "Sonntags",
+                      "Montags",
+                      "Dienstags",
+                      "Mittwochs",
+                      "Donnerstags",
+                      "Freitags",
+                      "Samstags",
+                    ][new Date(mockEvents[0].start.dateTime).getDay()]
+                  }
+                </li>
+                <li className="text-PURPLE_PRIMARY">
+                  {mockEvents[0].start.time}
+                </li>
+
+                <li>
+                  {(new Date(mockEvents[0].end.dateTime) -
+                    new Date(mockEvents[0].start.dateTime)) /
+                    (1000 * 60)}
+                  Minuten
+                </li>
+                <li>Placeholder</li>
+
+                <li>
+                  <div className="flex gap-2">
+                    {thisGroup.members}
+                    <BsPeopleFill
+                      className="w-5 mr-3 text-PURPLE_PRIMARY"
+                      size={20}
+                    />
+                  </div>
+                </li>
               </ul>
             </li>
             <li>
               <ul className="flex gap-4 ">
-                <li>
+                <li className="cursor-pointer text-TEXT_LIGHTGRAY hover:text-PURPLE_PRIMARY">
                   <IoSettingsOutline size={22} />
                 </li>
-                <li>
+                <li className="cursor-pointer text-TEXT_LIGHTGRAY hover:text-PURPLE_PRIMARY">
                   <BsTrash3 size={22} />
                 </li>
               </ul>

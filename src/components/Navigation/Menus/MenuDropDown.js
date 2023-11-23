@@ -52,12 +52,12 @@ export default function MenuDropDown({
             className={`flex items-center cursor-pointer transition-all duration-300 h-full`}
           >
             <div className="flex text-TEXT_PRIMARY hover:text-PURPLE_PRIMARY items-center">
-              <div className="mr-2 ">{title}</div>
+              <div className="mr-2 paragraph-lg">{title}</div>
 
               {openMenuDropDown ? (
-                <AiOutlineUp size={15} className="text-TEXT_PRIMARY" />
+                <AiOutlineUp size={20} className="text-TEXT_PRIMARY" />
               ) : (
-                <AiOutlineDown size={15} className="text-TEXT_PRIMARY" />
+                <AiOutlineDown size={20} className="text-TEXT_PRIMARY" />
               )}
             </div>
           </div>
