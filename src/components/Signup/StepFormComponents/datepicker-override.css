@@ -20,11 +20,11 @@
 
 /* Style for the datepicker input field */
 .react-datepicker__input-container input {
-  padding: 6px;
+  padding: 12px;
   padding-left: 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: 14px;
+  font-size: 16px;
   width: 180px;
   border-color: #ACD7EB;
   color: #333;

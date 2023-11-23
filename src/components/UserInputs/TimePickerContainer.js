@@ -25,7 +25,7 @@ export default function TimePickerContainer({ title }) {
   return (
     <div>
       <h4>{title}</h4>
-      <div className="flex my-2 border border-BLUE_PRIMARY rounded-md p-2 w-fit hover:shadow-md">
+      <div className="flex my-2 border border-BLUE_PRIMARY rounded-md p-4 w-fit hover:shadow-md">
         <div className="px-1">
           <TimePicker
             selectedTime={fromTime}

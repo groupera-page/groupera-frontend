@@ -25,7 +25,7 @@ code {
   }
 
   h3 {
-    @apply text-2xl text-TEXT_PRIMARY font-light;
+    @apply text-3xl text-TEXT_PRIMARY;
   }
 
   h4 {
@@ -42,5 +42,17 @@ code {
 
   section {
     @apply pt-28 md:pt-32 lg:pt-24 px-6 lg:px-32 bg-BG_PRIMARY;
+  }
+}
+
+@layer components {
+
+
+  .paragraph-lg {
+    @apply text-lg text-TEXT_PRIMARY;
+  }
+
+  .paragraph-sm {
+    @apply text-sm text-TEXT_LIGHTGRAY;
   }
 }

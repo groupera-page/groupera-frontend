@@ -17,7 +17,7 @@ module.exports = {
         TEXT_PRIMARY: "#212529",
         TEXT_SECONDARY: "#8590A6",
         TEXT_GRAY: "rgb(73, 80, 87)",
-        TEXT_LIGHTGRAY: "#9ca3af",
+        TEXT_LIGHTGRAY: "#8590A6",
       },
       boxShadow: {
         RIGHT: "8px 0 4px -4px rgba(0, 0, 0.0, 0.08)",
