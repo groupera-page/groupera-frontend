@@ -1,6 +1,5 @@
 /* Style the datepicker container */
 .react-datepicker {
-
   border-radius: 4px;
   display: inline-block;
 }
@@ -21,15 +20,17 @@
 
 /* Style for the datepicker input field */
 .react-datepicker__input-container input {
+  padding: 6px;
+  padding-left: 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  padding: 8px;
   font-size: 14px;
-  width: 200px;
+  width: 180px;
   border-color: #ACD7EB;
-  /* Adjust as needed */
   color: #333;
+  background-color: rgb(248, 249, 250);
 }
+
 
 /* Calendar style */
 .react-datepicker {

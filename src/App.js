@@ -4,6 +4,7 @@ import ProfilePage from "./pages/ProfilePage";
 import GroupsPage from "./pages/GroupsPage";
 import GroupDetailPage from "./pages/GroupDetailPage";
 import GroupEditPage from "./pages/GroupEditPage";
+import GroupEventPage from "./pages/GroupEventPage";
 import MenusContainer from "./components/Navigation/MenusContainer";
 import Login from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
@@ -33,7 +34,7 @@ function App() {
           }
         />
         <Route
-          path="/groups/:slug/edit/*"
+          path="/groups/:slug/edit"
           element={
             <>
               <MenusContainer />
@@ -41,6 +42,16 @@ function App() {
             </>
           }
         />
+        <Route
+          path="/groups/:slug/edit/event"
+          element={
+            <>
+              <MenusContainer />
+              <GroupEventPage />
+            </>
+          }
+        />
+
         <Route
           path="/groups/:slug/*"
           element={

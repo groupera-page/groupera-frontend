@@ -74,7 +74,9 @@ export default function GroupEditPage() {
           </ul>
         </div>
         <div className="flex justify-end my-4">
-          <PrimaryButton>Termin hinzufügen</PrimaryButton>
+          <Link to={`/groups/${slug}/edit/event`}>
+            <PrimaryButton>Termin hinzufügen</PrimaryButton>
+          </Link>
         </div>
         <div className="flex gap-4">
           <PrimaryButton>speichern</PrimaryButton>
