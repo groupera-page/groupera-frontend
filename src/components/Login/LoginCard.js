@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/auth.context";
-import authService from "../services/auth.service";
-import logoSvg from "../assets/imgLogos/logoNoBg.svg";
+import { AuthContext } from "../../context/auth.context";
+import authService from "../../services/auth.service";
+import logoSvg from "../../assets/imgLogos/logoNoBg.svg";
 
 export default function LandingCard({ page, id }) {
   const [email, setEmail] = useState("");

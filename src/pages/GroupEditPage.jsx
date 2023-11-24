@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PageContainer from "../components/PageContainer";
+import PageContainer from "../components/Globals/PageContainer";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import PrimaryButton from "../components/Buttons/PrimaryButton";

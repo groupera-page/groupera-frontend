@@ -10,6 +10,7 @@ import Login from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import FunnelToSignupPage from "./pages/FunnelToSignupPage";
 import EmailVerify from "./components/EmailVerify";
+import ScrollToTop from "./util/ScrollToTop";
 
 function App() {
   return (
@@ -24,15 +25,19 @@ function App() {
             </>
           }
         />
+
         <Route
           path="/groups"
           element={
             <>
-              <MenusContainer />
-              <GroupsPage />
+              <ScrollToTop>
+                <MenusContainer />
+                <GroupsPage />
+              </ScrollToTop>
             </>
           }
         />
+
         <Route
           path="/groups/:slug/edit"
           element={

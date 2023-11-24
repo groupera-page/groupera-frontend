@@ -13,7 +13,7 @@ export default function GroupOverviewContent({ group, clamp }) {
             </p>
           )}
         </div>
-        <h4 className="mr-4 line-clamp-2"> {group.name}</h4>
+        <h4 className="mr-4 line-clamp-2 flex-wrap "> {group.name}</h4>
         <p className="text-PURPLE_PRIMARY">{group.meeting}</p>
         {
           <p className={`${clamp ? "line-clamp-5" : ""}`}>

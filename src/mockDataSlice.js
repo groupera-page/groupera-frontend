@@ -15,6 +15,7 @@ const mockData = {
         "Grouptitel%20pictures%20low_res/pexels-johannes-plenio-1690355_bj811s_e6dajb.jpg",
       users: ["Marie", "Jan"],
     },
+
     {
       name: "Die Angstgruppe",
       meeting: "",
@@ -28,7 +29,7 @@ const mockData = {
       users: ["Marie", "Jan", "Rida", "Marie"],
     },
     {
-      name: "Die andere Angstgruppeas",
+      name: "Angst",
       meeting: "",
       topic: "Angststörung",
       description:

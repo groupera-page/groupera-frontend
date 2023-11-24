@@ -1,5 +1,5 @@
 import React from "react";
-import PrimaryButton from "./Buttons/PrimaryButton";
+import PrimaryButton from "../Buttons/PrimaryButton";
 
 export default function PageContainer({ title, text, children }) {
   return (

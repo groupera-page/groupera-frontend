@@ -1,5 +1,5 @@
 import React from "react";
-import PageContainer from "../components/PageContainer";
+import PageContainer from "../components/Globals/PageContainer";
 import GroupSearchContainer from "../components/GroupSearch/GroupSearchContainer";
 import GroupCardContainer from "../components/GroupSearch/GroupCardContainer";
 import { useSelector } from "react-redux";

@@ -47,16 +47,17 @@ export default function GroupPreviewCard({ group }) {
         </motion.div>
       </div>
 
-      <div className="flex flex-col justify-between px-4 pt-1">
+      <div className="flex flex-col justify-between px-4 h-full">
         <GroupOverviewContent clamp={true} group={group} />
         {/* TODO FIX A LINK - GRUPPE GRÜNDEN */}
-        <div className="mt-4">
+        <div className="my-4">
           {group.id === "" ? (
             <PrimaryButton type="button" isInversed>
               Gruppe Gründen
             </PrimaryButton>
           ) : (
-            <Link to={`/groups/${group.id}/termine`}>
+            //Implement scroll to top when clicking here
+            <Link to={`/groups/${group.id}`}>
               <PrimaryButton type="button" isInversed>
                 Mehr erfahren
               </PrimaryButton>

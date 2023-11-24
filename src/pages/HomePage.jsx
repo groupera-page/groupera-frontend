@@ -1,6 +1,6 @@
 import OverviewGroups from "../components/Overview/OverviewGroups";
 import OverviewNextEvent from "../components/Overview/OverviewNextEvent";
-import PageContainer from "../components/PageContainer";
+import PageContainer from "../components/Globals/PageContainer";
 import { useSelector } from "react-redux";
 export default function Home() {
   const mockData = useSelector((state) => state.mockData.mockData);

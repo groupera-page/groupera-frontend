@@ -5,6 +5,7 @@ import GroupMemberSubPage from "./GroupSubPages/GroupMemberSubPage";
 import GroupDocumentSubPage from "./GroupSubPages/GroupDocumentSubPage";
 import NavbarSub from "../Navigation/NavbarSub";
 import { Routes, Route } from "react-router-dom";
+import ScrollToTop from "../../util/ScrollToTop";
 
 export default function GroupDetailTable({ group }) {
   const subPages = ["Termine", "MitgliederInnen", "Unterlagen"];
@@ -15,6 +16,16 @@ export default function GroupDetailTable({ group }) {
       <hr className="border-BLUE_PRIMARY border-l" />
       <Routes>
         <Route path="termine" element={<GroupTermineSubPage group={group} />} />
+
+        <Route
+          path="/"
+          element={
+            <ScrollToTop>
+              <GroupTermineSubPage group={group} />
+            </ScrollToTop>
+          }
+        />
+
         <Route path="Pinnwand" element={<GroupPinnwandSubPage />} />
         <Route
           path="Mitgliederinnen"

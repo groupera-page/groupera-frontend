@@ -38,7 +38,7 @@ export default function Navbar({ handleMenuMobile, openMenuMobile }) {
         )}
         <MenuDropDown openMenuMobile={openMenuMobile} title={truncatedUserName}>
           <NavLink to={`/profile/${"user"}/profil`}>
-            <li className="p-2 hover:shadow-md flex justify-center whitespace-nowrap">
+            <li className="p-2 hover:shadow-md flex justify-center whitespace-nowrap paragraph-lg">
               Profil bearbeiten
             </li>
           </NavLink>

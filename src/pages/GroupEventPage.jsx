@@ -1,5 +1,5 @@
 import React from "react";
-import PageContainer from "../components/PageContainer";
+import PageContainer from "../components/Globals/PageContainer";
 import GroupEventPlan from "../components/GroupDetails/GroupEventPlan";
 
 export default function GroupEventPage() {
