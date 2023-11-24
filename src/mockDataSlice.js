@@ -28,7 +28,7 @@ const mockData = {
       users: ["Marie", "Jan", "Rida", "Marie"],
     },
     {
-      name: "Die andere Angstgruppe",
+      name: "Die andere Angstgruppeas",
       meeting: "",
       topic: "Angststörung",
       description:

@@ -20,7 +20,7 @@ export default function GroupPreviewCard({ group }) {
   };
 
   return (
-    <div className="flex flex-col border rounded-md shadow-md h-full">
+    <div className="flex flex-col border rounded-md shadow-md h-full ">
       <div className="w-full">
         {!imageLoaded && (
           <motion.img
@@ -47,7 +47,7 @@ export default function GroupPreviewCard({ group }) {
         </motion.div>
       </div>
 
-      <div className="flex flex-col justify-between p-4 flex-1">
+      <div className="flex flex-col justify-between px-4 pt-1">
         <GroupOverviewContent clamp={true} group={group} />
         {/* TODO FIX A LINK - GRUPPE GRÜNDEN */}
         <div className="mt-4">
