@@ -3,7 +3,7 @@ import TimePicker from "./TimePicker";
 import { BsArrowRight } from "react-icons/bs";
 import { BsClock } from "react-icons/bs";
 
-export default function TimePickerContainer() {
+export default function TimePickerContainer({ title }) {
   const [fromTime, setFromTime] = useState("");
   const [toTime, setToTime] = useState("");
 
@@ -24,7 +24,8 @@ export default function TimePickerContainer() {
   };
   return (
     <div>
-      <div className="flex  border border-BLUE_PRIMARY rounded-md p-4 w-fit hover:shadow-md">
+      <div className="paragraph-lg">{title}</div>
+      <div className="flex border border-BLUE_PRIMARY rounded-md p-4 w-fit hover:shadow-md">
         <div className="px-1">
           <TimePicker
             selectedTime={fromTime}

@@ -22,11 +22,10 @@ export default function GroupEventPlan() {
   ];
 
   function onHandleFreqChange(freq) {
-    console.log(freq);
     setFrequency(freq);
   }
   return (
-    <div>
+    <div className="lg:w-2/3">
       <div className="paragraph-sm">
         Du kannst alle Angaben jederzeit in den Gruppeneinstellungen ändern
       </div>
@@ -57,8 +56,7 @@ export default function GroupEventPlan() {
           name={"frequencyOptions"}
         />
       </div>
-      <div className="mb-2 paragraph-lg">Zu welcher Uhrzeit?</div>
-      <TimePickerContainer />
+      <TimePickerContainer title={"Zu welcher Uhrzeit?"} />
       <div className="flex justify-between mt-4">
         <PrimaryButton isInversed={true}>
           <div className="flex gap-2">

@@ -9,7 +9,7 @@ export default function RadioButtonContainer({
 }) {
   return (
     <div>
-      <div className="grid lg:grid-cols-4 grid-cols-2 gap-4">
+      <div className="grid lg:grid-cols-2 grid-cols-2 gap-4">
         {options.map((option, index) => (
           <RadioButton
             key={index}
