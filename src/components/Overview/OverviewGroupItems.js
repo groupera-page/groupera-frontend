@@ -1,6 +1,8 @@
 import React from "react";
 import SecondaryButton from "../Buttons/SecondaryButton";
 import { Link } from "react-router-dom";
+import formatDateTime from "../../util/formatDateTime";
+import getNextEvent from "../../util/getNextEvent";
 
 export default function OverviewGroupItems({ groups }) {
   // TODO Loop through groups in mockdata to find the events (coming from google calendar API)
@@ -26,50 +28,31 @@ export default function OverviewGroupItems({ groups }) {
       },
     },
   ];
-  const formatDateTime = (dateTimeString) => {
-    const options = {
-      weekday: "short",
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-      timeZone: "Europe/Berlin",
-    };
-
-    return new Date(dateTimeString)
-      .toLocaleDateString("de-DE", options)
-      .replace(",", "");
-  };
-  const getNextMeeting = (meetings) => {
-    const currentDate = new Date();
-    const futureMeetings = meetings.filter(
-      (meeting) => new Date(meeting.start.dateTime) > currentDate
-    );
-    futureMeetings.sort(
-      (a, b) => new Date(a.start.dateTime) - new Date(b.start.dateTime)
-    );
-    return futureMeetings[0];
-  };
 
   return (
     <div className="mx-2 flex-col">
       {groups.map((group, index) => {
-        const nextMeeting = getNextMeeting(group.meetings || mockDataEvents);
+        const nextMeeting = getNextEvent(group.meetings || mockDataEvents);
 
         return (
           <div key={index}>
             <div className="flex justify-between items-center my-4">
-              <div className="flex flex-col justify-center gap-1">
-                <p className="font-medium text-base">{group.name}</p>
-                <p className="text-TEXT_LIGHTGRAY text-sm">Nächster Termin</p>
-                <p className="text-base">
-                  {nextMeeting
-                    ? formatDateTime(nextMeeting.start.dateTime)
-                    : "Kein Termin geplant"}
+              <div className="flex flex-col justify-center gap-2 ">
+                <p className="text-xl lg:text-base font-medium line-clamp-1">
+                  {group.name}
                 </p>
+                <div>
+                  <p className="paragraph-sm text-TEXT_LIGHTGRAY lg:text-sm ">
+                    Nächster Termin
+                  </p>
+                  <p className="text-base">
+                    {nextMeeting
+                      ? formatDateTime(nextMeeting.start.dateTime)
+                      : "Kein Termin geplant"}
+                  </p>
+                </div>
               </div>
-              <div className="">
+              <div className="ml-1">
                 <Link to={`/groups/${group.id}/termine`}>
                   <SecondaryButton> Zur Gruppe</SecondaryButton>
                 </Link>

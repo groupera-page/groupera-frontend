@@ -50,8 +50,6 @@ code {
 }
 
 @layer components {
-
-
   .paragraph-lg {
     @apply text-lg text-TEXT_PRIMARY;
   }

@@ -2,6 +2,8 @@ import React from "react";
 import OverviewHeader from "./OverviewHeader";
 import PrimaryButton from "../Buttons/PrimaryButton";
 import SecondaryButton from "../Buttons/SecondaryButton";
+import formatDateTime from "../../util/formatDateTime";
+import getNextEvent from "../../util/getNextEvent";
 
 export default function OverviewNextEvent({ groups }) {
   // TODO Loop through groups in mockdata to find the events (coming from google calendar API)
@@ -28,43 +30,16 @@ export default function OverviewNextEvent({ groups }) {
     },
   ];
 
-  const getNextMeeting = (meetings) => {
-    const currentDate = new Date();
-    const futureMeetings = meetings.filter(
-      (meeting) => new Date(meeting.start.dateTime) > currentDate
-    );
-    futureMeetings.sort(
-      (a, b) => new Date(a.start.dateTime) - new Date(b.start.dateTime)
-    );
-    return futureMeetings[0];
-  };
-
-  const nextEvent = getNextMeeting(mockDataEvents);
-
-  const formatDateTime = (dateTimeString) => {
-    const options = {
-      weekday: "short",
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-      timeZone: "Europe/Berlin",
-    };
-
-    return new Date(dateTimeString)
-      .toLocaleDateString("de-DE", options)
-      .replace(",", "");
-  };
+  const nextEvent = getNextEvent(mockDataEvents);
 
   return (
     <div className="lg:w-1/2 mt-10">
       <div
-        className={`flex ${
-          mockDataEvents.length > 0 ? "flex-row" : "flex-col"
+        className={`flex flex-col lg:flex-row ${
+          mockDataEvents.length > 0 ? "lg:flex-row" : "flex"
         } rounded-md shadow-md border justify-between`}
       >
-        <div className="flex flex-col p-2 ">
+        <div className="flex flex-col lg:p-2 ">
           <OverviewHeader
             title={
               mockDataEvents.length > 0
@@ -85,7 +60,9 @@ export default function OverviewNextEvent({ groups }) {
           {mockDataEvents.length > 0 && (
             <div className="flex flex-col justify-center gap-1 mx-2">
               <div className="flex flex-col gap-1 mb-4">
-                <p className="font-medium">{groups[0].name}</p>
+                <p className="text-xl lg:text-base font-medium line-clamp-1">
+                  {groups[0].name}
+                </p>
                 <p className="mb-2">
                   {nextEvent
                     ? formatDateTime(nextEvent.start.dateTime)
@@ -97,9 +74,9 @@ export default function OverviewNextEvent({ groups }) {
         </div>
 
         {mockDataEvents.length > 0 && (
-          <div className="flex flex-col justify-center gap-1 mr-4">
+          <div className="flex flex-row lg:flex-col justify-center gap-3 lg:gap-1 lg:mr-4 mb-2">
             <SecondaryButton>Abmelden</SecondaryButton>
-            <PrimaryButton>Zur Videokonferenz</PrimaryButton>
+            <PrimaryButton>Videokonferenz</PrimaryButton>
           </div>
         )}
       </div>
