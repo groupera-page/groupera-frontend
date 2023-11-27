@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import FunnelCard from "../components/Signup/FunnelCard";
 
-export default function RegistrationPage() {
+export default function SignupPage() {
   const location = useLocation();
   let funnelIndex;
   // Funnels 1-4

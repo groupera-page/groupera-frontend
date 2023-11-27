@@ -5,6 +5,7 @@ import GroupsPage from "./pages/GroupsPage";
 import GroupDetailPage from "./pages/GroupDetailPage";
 import GroupEditPage from "./pages/GroupEditPage";
 import GroupEventPage from "./pages/GroupEventPage";
+import GroupCreatePage from "./pages/GroupCreatePage";
 import MenusContainer from "./components/Navigation/MenusContainer";
 import Login from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
@@ -33,6 +34,18 @@ function App() {
               <ScrollToTop>
                 <MenusContainer />
                 <GroupsPage />
+              </ScrollToTop>
+            </>
+          }
+        />
+
+        <Route
+          path="/groups/group/create"
+          element={
+            <>
+              <ScrollToTop>
+                <MenusContainer />
+                <GroupCreatePage />
               </ScrollToTop>
             </>
           }

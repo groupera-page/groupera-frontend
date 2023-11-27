@@ -13,7 +13,7 @@ import { createGroup } from "../../api/groupService";
 import { verifyCode, createUser, updateUser } from "../../api/userService";
 import { validateUserForm, validateGroupForm } from "../../util/formValidation";
 
-export default function FunnelCard({ funnelIndex }) {
+export default function FunnelCard({ funnelIndex, showLogo = true }) {
   const [userData, setUserData] = useState(userDataInit);
   const [groupData, setGroupData] = useState(groupDataInit);
   const [errorMessage, setErrorMessage] = useState(undefined);
@@ -171,10 +171,12 @@ export default function FunnelCard({ funnelIndex }) {
   return (
     <div
       className="w-full md:w-1/2 lg:h-5/6 
-      px-4 rounded md:shadow-md bg-BG_PRIMARY md:p-4 "
+      px-4 rounded md:shadow-md bg-BG_PRIMARY md:px-4 "
     >
       <div className="pb-3 flex justify-center">
-        <img src={logoSvg} alt="logo" className="lg:w-40 w-28 p-2 pt-3" />
+        {showLogo && (
+          <img src={logoSvg} alt="logo" className="lg:w-40 w-28 p-2 pt-3" />
+        )}
       </div>
       <div className="flex flex-col gap-2">
         <div className="flex justify-center">

@@ -25,7 +25,7 @@ code {
   }
 
   h3 {
-    @apply text-2xl text-TEXT_PRIMARY;
+    @apply text-3xl text-TEXT_PRIMARY;
   }
 
   h4 {

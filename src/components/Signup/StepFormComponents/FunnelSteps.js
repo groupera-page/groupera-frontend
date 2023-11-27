@@ -15,7 +15,6 @@ export default function FunnelSteps(
   updateGroupFields,
   groupData,
   resendCode,
-
   errorUserSecondPass
 ) {
   let funnelSteps = [];
@@ -99,6 +98,22 @@ export default function FunnelSteps(
           updateFields={updateFields}
           resendCode={resendCode}
         />,
+        <GroupDownloadStep {...userData} updateFields={updateFields} />,
+        <GroupSettingStep
+          {...groupData}
+          updateGroupFields={updateGroupFields}
+        />,
+      ];
+      break;
+    case 5:
+      funnelSteps = [
+        <GroupThemesStep
+          {...groupData}
+          updateGroupFields={updateGroupFields}
+        />,
+        <GroupInfoStep {...groupData} updateGroupFields={updateGroupFields} />,
+        <GroupPlanStep {...groupData} updateGroupFields={updateGroupFields} />,
+
         <GroupDownloadStep {...userData} updateFields={updateFields} />,
         <GroupSettingStep
           {...groupData}
