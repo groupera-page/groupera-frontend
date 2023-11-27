@@ -11,7 +11,7 @@ export default function MenuMobile({ openMenuMobile, handleMenuMobile }) {
       } `}
     >
       <hr className="border-t border-gray-300" />
-      <div className="bg-BG_PRIMARY h-screen w-screen flex-col justify-between">
+      <div className="bg-BG_PRIMARY mt-5 lg:mt-0 h-screen w-screen flex-col justify-between">
         <NavigationItems
           handleMenuMobile={handleMenuMobile}
           openMenuMobile={openMenuMobile}
