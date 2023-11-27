@@ -113,12 +113,12 @@ export default function FunnelSteps(
         />,
         <GroupInfoStep {...groupData} updateGroupFields={updateGroupFields} />,
         <GroupPlanStep {...groupData} updateGroupFields={updateGroupFields} />,
-
-        <GroupDownloadStep {...userData} updateFields={updateFields} />,
         <GroupSettingStep
           {...groupData}
           updateGroupFields={updateGroupFields}
         />,
+
+        <GroupDownloadStep {...userData} updateFields={updateFields} />,
       ];
       break;
 

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import RadioButton from "../../../UserInputs/RadioButton";
+import StepHeader from "../StepHeader";
 
 export default function GroupSettingStep({ moderator, updateGroupFields }) {
   const [showMessage, setShowMessage] = useState(false);
@@ -11,13 +12,17 @@ export default function GroupSettingStep({ moderator, updateGroupFields }) {
 
   return (
     <div className="">
-      <h2 className="my-2">Pass die Einstellungen deiner Gruppe an.</h2>
-      <p>
-        Du kannst diese Einstellung jederzeit in den Gruppeneinstellungen
-        ändern.
-      </p>
-      <h4 className="my-2">Möchtest du Deine Gruppe selbst moderieren?</h4>
-      <div className="flex flex-col gap-4 my-4">
+      <StepHeader
+        title={"Pass die Einstellungen deiner Gruppe an."}
+        text={
+          " Du kannst diese Einstellung jederzeit in den Gruppeneinstellungen ändern."
+        }
+      />
+
+      <div className="paragraph-lg mt-4">
+        Möchtest du Deine Gruppe selbst moderieren?
+      </div>
+      <div className="flex flex-col gap-4 mb-4">
         <RadioButton
           id={"moderator1"}
           title={"Ja"}

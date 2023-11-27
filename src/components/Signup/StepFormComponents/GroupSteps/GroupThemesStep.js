@@ -22,11 +22,11 @@ const themeOptions = [
 export default function GroupThemesStep({ theme, updateGroupFields }) {
   return (
     <div>
-      <StepHeader title={"Für welche Themen suchst du Gruppen?"} />
-      <p className="paragraph-md">
+      <StepHeader title={"Zu welchem Thema möchtest du eine Gruppe gründen?"} />
+      <p className="paragraph-lg">
         Wähle eine oder mehrere der folgenden Optionen.
       </p>
-      <div className="flex flex-col gap-3 my-2">
+      <div className="flex flex-col gap-3 ">
         {themeOptions.map((option) => (
           <RadioButton
             key={option.value}

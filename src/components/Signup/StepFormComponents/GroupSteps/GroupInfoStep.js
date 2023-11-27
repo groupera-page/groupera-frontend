@@ -69,9 +69,9 @@ export default function GroupInfoStep({
         }
       />
 
-      <h4 className=" mt-4">Wie soll deine Gruppe heißen?</h4>
+      <div className="paragraph-lg mt-4">Wie soll deine Gruppe heißen?</div>
       <div className="">
-        <div className="mt-2 text-sm border-0 rounded-md">
+        <div className=" text-sm border-0 rounded-md">
           <TextInput
             value={name}
             onChange={handleNameChange}
@@ -102,8 +102,10 @@ export default function GroupInfoStep({
         </div>
         <p className="px-1 text-TEXT_LIGHTGRAY">Min 3 Zeichen.</p>
       </div>
-      <h4 className=" mt-4">Wie würdest du deine Gruppe beschreiben?</h4>
-      <div className="mt-2 text-sm rounded-md">
+      <h4 className=" paragraph-lg mt-4">
+        Wie würdest du deine Gruppe beschreiben?
+      </h4>
+      <div className=" text-sm rounded-md">
         <TextAreaInput
           name="description"
           value={description}
@@ -119,7 +121,7 @@ export default function GroupInfoStep({
       <div className="flex text-xs text-gray-500 justify-end">
         {description.length}/{maxCharacters}
       </div>
-      <p className="my-2">
+      <p className="paragraph-sm my-2">
         Du kannst ein Bild aus unseren Vorschlägen aussuchen.{" "}
       </p>
       <Carousel

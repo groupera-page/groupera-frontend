@@ -35,7 +35,7 @@ export default function GroupPlanStep({ freq, day, time, updateGroupFields }) {
         }
       />
 
-      <h4 className="mt-4 mb-2">Startdatum</h4>
+      <div className="paragraph-lg mt-4">Startdatum</div>
       <div className="relative">
         <DatePicker
           selected={calendarDate}
@@ -50,9 +50,9 @@ export default function GroupPlanStep({ freq, day, time, updateGroupFields }) {
         <AiOutlineCalendar className="absolute w-5 text-BG_PRIMARY left-40 top-1/2 transform -translate-y-1/2 pointer-events-none" />
       </div>
 
-      <h4 className="mt-4 mb-2">
+      <div className="paragraph-lg mt-4">
         An welchen Tagen soll die Gruppe sich treffen?
-      </h4>
+      </div>
       <RadioButtonContainer
         options={frequencyOptions}
         onChange={onHandleFreqChange}
@@ -60,7 +60,9 @@ export default function GroupPlanStep({ freq, day, time, updateGroupFields }) {
         name={"frequencyOptions"}
       />
 
-      <TimePickerContainer title={"Zu welcher Uhrzeit?"} />
+      <div className="my-4">
+        <TimePickerContainer title={"Zu welcher Uhrzeit?"} />
+      </div>
     </div>
   );
 }
