@@ -13,7 +13,7 @@ export default function GroupSearchContainer() {
   }, [inputValue, dispatch]);
 
   return (
-    <div className="w-full">
+    <div className="w-full mt-4">
       <Searchbox
         placeholderText={"Gib hier deine Suche ein..."}
         inputValue={inputValue}

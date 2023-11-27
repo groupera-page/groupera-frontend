@@ -1,5 +1,6 @@
 import React from "react";
 import PrimaryButton from "../Buttons/PrimaryButton";
+import { GoPlus } from "react-icons/go";
 
 export default function PageContainer({ title, text, children }) {
   return (
@@ -10,7 +11,12 @@ export default function PageContainer({ title, text, children }) {
             <div className="flex justify-between">
               {title === "Gruppen" ? <h2>{title}</h2> : <h6>{title}</h6>}
               {title === "Gruppen" && (
-                <PrimaryButton>+ Gruppe Grunden</PrimaryButton>
+                <PrimaryButton>
+                  <div className="flex flex-row gap-2">
+                    <GoPlus size={20} />
+                    <div>Gruppe Grunden</div>
+                  </div>
+                </PrimaryButton>
               )}
             </div>
             <div className="paragraph-md hidden lg:block">{text} </div>

@@ -52,8 +52,8 @@ export default function GroupEditPage() {
     <PageContainer>
       <div className="flex flex-col w-full">
         <div className="mb-4">
-          <PrimaryButton isInversed={true}>
-            <Link to={`/groups/${slug}/termine`}>
+          <Link to={`/groups/${slug}/termine`}>
+            <PrimaryButton isInversed={true}>
               <div className="flex items-center">
                 <BsArrowLeft
                   className="w-5 mr-3 text-PURPLE_PRIMARY"
@@ -61,8 +61,8 @@ export default function GroupEditPage() {
                 />
                 Zurück zur Gruppe
               </div>
-            </Link>
-          </PrimaryButton>
+            </PrimaryButton>
+          </Link>
         </div>
 
         <GroupDetailCard

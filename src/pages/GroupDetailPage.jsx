@@ -22,8 +22,8 @@ export default function GroupDetailPage() {
     <PageContainer>
       <div className="flex flex-col w-full">
         <div className="mb-4">
-          <PrimaryButton isInversed={true}>
-            <Link to={`/groups/`}>
+          <Link to={`/groups/`}>
+            <PrimaryButton isInversed={true}>
               <div className="flex items-center">
                 <BsArrowLeft
                   className="w-5 mr-2 text-PURPLE_PRIMARY"
@@ -31,8 +31,8 @@ export default function GroupDetailPage() {
                 />
                 Zur Suche
               </div>
-            </Link>
-          </PrimaryButton>
+            </PrimaryButton>
+          </Link>
         </div>
 
         <GroupDetailCard group={thisGroup} isAdmin={isAdmin} />
