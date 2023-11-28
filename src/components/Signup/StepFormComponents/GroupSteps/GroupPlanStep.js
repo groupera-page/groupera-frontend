@@ -10,6 +10,7 @@ import StepHeader from "../StepHeader";
 export default function GroupPlanStep({ freq, day, time, updateGroupFields }) {
   const [calendarDate, setCalendarDate] = useState(new Date());
   const [frequency, setFrequency] = useState("Einmalig");
+  const [timeChoice, setTimeChoice] = useState("60m");
 
   const today = new Date();
   const thirtyDaysFromNow = new Date();
@@ -21,9 +22,14 @@ export default function GroupPlanStep({ freq, day, time, updateGroupFields }) {
     "Alle 2 Wochen",
     "Monatlich",
   ];
+  const timeOptions = ["60m", "90m"];
 
   function onHandleFreqChange(freq) {
     setFrequency(freq);
+  }
+
+  function onHandleTimeChange(timeChoice) {
+    setTimeChoice(timeChoice);
   }
 
   return (
@@ -59,9 +65,20 @@ export default function GroupPlanStep({ freq, day, time, updateGroupFields }) {
         checkedVariable={frequency}
         name={"frequencyOptions"}
       />
+      <div className="paragraph-lg mt-4">Zu welcher Uhrzeit?</div>
+      <div className="flex gap-4">
+        <div className="w-1/2 ">
+          <TimePickerContainer />
+        </div>
 
-      <div className="my-4">
-        <TimePickerContainer title={"Zu welcher Uhrzeit?"} />
+        <div className="w-1/2">
+          <RadioButtonContainer
+            options={timeOptions}
+            onChange={onHandleTimeChange}
+            checkedVariable={timeChoice}
+            name={"timeOptions"}
+          />
+        </div>
       </div>
     </div>
   );

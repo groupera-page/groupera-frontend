@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Searchbox from "../UserInputs/Searchbox";
 import GroupTopicFilter from "./GroupTopicFilter";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { setGroupSearch } from "../../mockDataSlice";
 
 export default function GroupSearchContainer() {
   const [inputValue, setInputValue] = useState();
   const dispatch = useDispatch();
+  const mockData = useSelector((state) => state.mockData.mockData);
 
   useEffect(() => {
     dispatch(setGroupSearch(inputValue));

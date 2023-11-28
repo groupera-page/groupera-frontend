@@ -57,15 +57,17 @@ export default function GroupDownloadStep({ data, updateGroupFields }) {
   return (
     <div>
       <StepHeader
-        title={"Lade Dir jetzt das we.together Gruppenprogramm runter."}
+        title={"Lade Dir jetzt das Groupera Gruppenprogramm runter."}
         text={"Du findest das Programm in der Gruppe auch unter “Unterlagen”."}
       />
-      <div className="paragraph-md my-4">
+      <div className="paragraph-md my-4 text-TEXT_PRIMARY">
         Innerhalb der Gruppe könnt ihr das Programm benutzen. Es ist euch
         natürlich freigestellt.
       </div>
-      <div className="paragraph-md font-semibold mt-4">ModeratorIn:</div>
-      <div className="paragraph-md">
+      <div className="paragraph-md font-semibold mt-4 text-TEXT_PRIMARY">
+        ModeratorIn:
+      </div>
+      <div className="paragraph-md text-TEXT_PRIMARY">
         Als Rolle des Moderators liest du das Programm vor und nimmst die
         Menschen dran, wenn sie was sagen wollen und achtest drauf, dass die
         Regeln eingehalten werden. Du bist natürlich genauso TeilnehmerIn und

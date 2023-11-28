@@ -35,7 +35,10 @@ export default function GroupsPage() {
         <div>
           <div className="flex flex-row items-center">
             <div>
-              <GroupCardContainer groups={mockData.NoGroupCard} />
+              <GroupCardContainer
+                groups={mockData.NoGroupCard}
+                showNoGroupTitle={true}
+              />
             </div>
           </div>
         </div>

@@ -52,11 +52,12 @@ export default function GroupPreviewCard({ group }) {
         {/* TODO FIX A LINK - GRUPPE GRÜNDEN */}
         <div className="my-4">
           {group.id === "" ? (
-            <PrimaryButton type="button" isInversed>
-              Gruppe Gründen
-            </PrimaryButton>
+            <Link to={`group/create`}>
+              <PrimaryButton type="button" isInversed>
+                Gruppe Gründen
+              </PrimaryButton>
+            </Link>
           ) : (
-            //Implement scroll to top when clicking here
             <Link to={`/groups/${group.id}`}>
               <PrimaryButton type="button" isInversed>
                 Mehr erfahren

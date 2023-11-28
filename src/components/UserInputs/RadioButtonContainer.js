@@ -9,11 +9,11 @@ export default function RadioButtonContainer({
 }) {
   return (
     <div>
-      <div className="grid lg:grid-cols-2 grid-cols-2 gap-4">
+      <div className="grid lg:grid-cols-2 grid-cols-2 gap-3">
         {options.map((option, index) => (
           <RadioButton
             key={index}
-            id={`freq` + index}
+            id={name + index}
             title={option}
             name={name}
             checkedVariable={checkedVariable}

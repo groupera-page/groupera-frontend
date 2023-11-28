@@ -9,12 +9,12 @@ const themeOptions = [
   { title: "Essstörung", value: "Essstörung" },
   { title: "Sucht", value: "Sucht" },
   {
-    title: "Angehörige/r von Menschen mit Erkrankungen",
-    value: "Angehörige/r von Menschen mit Erkrankungen",
+    title: "Angehörige/r von Erkrankten",
+    value: "Angehörige/r von Erkrankten",
   },
   {
-    title: "Chronische Erkrankungen, körperliche Einschränkungen",
-    value: "Chronische Erkrankungen, körperliche Einschränkungen",
+    title: "Chronische Erkrankungen",
+    value: "Chronische Erkrankungen",
   },
   { title: "Andere*", value: "Andere*" },
 ];

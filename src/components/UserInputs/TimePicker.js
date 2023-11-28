@@ -13,14 +13,6 @@ export default function TimePicker({
     return formattedTime;
   });
 
-  // Disable time that passed
-  const currentTime = new Date();
-  const currentHours = currentTime.getHours();
-  const currentMinutes = currentTime.getMinutes();
-  const currentTimeString = `${currentHours
-    .toString()
-    .padStart(2, "0")}:${currentMinutes.toString().padStart(2, "0")}`;
-
   return (
     <select
       value={selectedTime}
@@ -31,33 +23,11 @@ export default function TimePicker({
       className="rounded text-base bg-BG_PRIMARY cursor-pointer hover:text-PURPLE_PRIMARY"
       style={{ WebkitAppearance: "none", appearance: "none" }}
     >
-      {timeOptions.map((timeOption) => (
-        <option
-          key={timeOption}
-          value={timeOption}
-          disabled={isTimeOptionDisabled(
-            label,
-            timeOption,
-            fromTime,
-            currentTimeString
-          )}
-          className={
-            isTimeOptionDisabled(label, timeOption, fromTime, currentTimeString)
-              ? "disabled-option"
-              : ""
-          }
-        >
+      {timeOptions.map((timeOption, index) => (
+        <option key={timeOption} value={timeOption}>
           {timeOption}
         </option>
       ))}
     </select>
   );
-}
-//Disable time before "from time"
-function isTimeOptionDisabled(label, timeOption, fromTime, currentTimeString) {
-  if (label === "To") {
-    return timeOption <= fromTime || timeOption < currentTimeString;
-  } else {
-    return timeOption < currentTimeString;
-  }
 }

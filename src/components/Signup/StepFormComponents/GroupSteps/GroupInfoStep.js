@@ -118,7 +118,7 @@ export default function GroupInfoStep({
         showMessage={errorGroupDescription && description.length < 3}
         errorMessage={errorGroupDescription}
       />
-      <div className="flex text-xs text-gray-500 justify-end hidden lg:block">
+      <div className="flex text-xs text-gray-500 justify-end">
         {description.length}/{maxCharacters}
       </div>
       <p className="paragraph-lg mt-4">

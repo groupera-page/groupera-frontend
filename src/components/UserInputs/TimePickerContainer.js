@@ -3,8 +3,8 @@ import TimePicker from "./TimePicker";
 import { BsArrowRight } from "react-icons/bs";
 import { BsClock } from "react-icons/bs";
 
-export default function TimePickerContainer({ title }) {
-  const [fromTime, setFromTime] = useState("");
+export default function TimePickerContainer() {
+  const [fromTime, setFromTime] = useState("10:00");
   const [toTime, setToTime] = useState("");
 
   const handleTimeChange = (newTime, isFrom) => {
@@ -24,8 +24,7 @@ export default function TimePickerContainer({ title }) {
   };
   return (
     <div>
-      <div className="paragraph-lg">{title}</div>
-      <div className="flex border border-TEXT_LIGHTGRAY rounded-md p-3 w-fit hover:shadow-md">
+      <div className="flex border border-TEXT_LIGHTGRAY rounded-md p-3 w-full lg:w-fit hover:shadow-md">
         <div className="px-1">
           <TimePicker
             selectedTime={fromTime}
@@ -36,10 +35,10 @@ export default function TimePickerContainer({ title }) {
             toTime={toTime}
           />
         </div>
-        <div className="mx-4 flex items-center text-TEXT_LIGHTGRAY">
+        {/* <div className="mx-4 flex items-center text-TEXT_LIGHTGRAY">
           <BsArrowRight size={15} />
-        </div>
-        <div className=" px-1 ">
+        </div> */}
+        {/* <div className=" px-1 ">
           <TimePicker
             selectedTime={toTime}
             onSelectTime={(newTime) => {
@@ -48,7 +47,7 @@ export default function TimePickerContainer({ title }) {
             label="To"
             fromTime={fromTime}
           />
-        </div>
+        </div> */}
         <div className="mx-4 flex items-center text-TEXT_LIGHTGRAY">
           <BsClock size={20} />
         </div>

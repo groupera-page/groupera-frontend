@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const mockData = {
   groups: [
     {
-      name: "Die Depressions gruppe as dasdasdasdasdasdasdasd",
+      name: "Die nächste Depressionsgruppe",
       meeting: "",
       topic: "Depression",
       description:
@@ -17,7 +17,7 @@ const mockData = {
     },
 
     {
-      name: "Die Angstgruppe",
+      name: "Angstgruppe für Berliner",
       meeting: "",
       topic: "Angststörung",
       description:

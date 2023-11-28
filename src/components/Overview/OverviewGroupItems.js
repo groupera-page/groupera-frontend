@@ -37,8 +37,8 @@ export default function OverviewGroupItems({ groups }) {
         return (
           <div key={index}>
             <div className="flex justify-between items-center my-4">
-              <div className="flex flex-col justify-center gap-2 ">
-                <p className="text-xl lg:text-base font-medium line-clamp-1">
+              <div className="flex flex-col justify-center gap-2 w-4/6 md:w-full">
+                <p className="text-xl lg:text-base font-medium line-clamp-2">
                   {group.name}
                 </p>
                 <div>
@@ -52,7 +52,7 @@ export default function OverviewGroupItems({ groups }) {
                   </p>
                 </div>
               </div>
-              <div className="ml-1">
+              <div className="ml-2">
                 <Link to={`/groups/${group.id}/termine`}>
                   <SecondaryButton> Zur Gruppe</SecondaryButton>
                 </Link>

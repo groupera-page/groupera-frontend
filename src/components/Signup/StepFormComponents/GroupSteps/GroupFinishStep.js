@@ -44,7 +44,7 @@ export default function GroupFinishStep({ updateGroupFields }) {
         </div>
       </div>
 
-      <div className="flex justify-center mt-1 text-sm opacity-75">
+      <div className="flex justify-center mt-1 text-sm opacity-75 text-PURPLE_PRIMARY">
         <div
           className={`flex transition-opacity ${
             isCopied ? "opacity-100" : "opacity-0"
@@ -55,7 +55,7 @@ export default function GroupFinishStep({ updateGroupFields }) {
       </div>
 
       <p className="paragraph-md text-TEXT_PRIMARY mt-2">
-        Sollen wir deine Gruppe im nächsten we.together Newsletter erwähnen?
+        Sollen wir deine Gruppe im nächsten Groupera Newsletter erwähnen?
       </p>
 
       <div className="mb-4">

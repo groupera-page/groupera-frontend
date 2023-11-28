@@ -16,7 +16,7 @@ export default function PageContainer({ title, text, children }) {
                   <PrimaryButton>
                     <div className="flex flex-row gap-2 items-center">
                       <GoPlus size={20} />
-                      <div>Gruppe Grunden</div>
+                      <div>Gruppe Gründen</div>
                     </div>
                   </PrimaryButton>
                 </Link>
@@ -27,7 +27,7 @@ export default function PageContainer({ title, text, children }) {
           <div
             className={`flex flex-col ${
               title === "Gruppen" ? "lg:flex-col" : "lg:flex-row"
-            } gap-8`}
+            } gap-2`}
           >
             {children}
           </div>
