@@ -60,12 +60,22 @@ export default function GroupDownloadStep({ data, updateGroupFields }) {
         title={"Lade Dir jetzt das we.together Gruppenprogramm runter."}
         text={"Du findest das Programm in der Gruppe auch unter “Unterlagen”."}
       />
-
-      <div className="flex bg-BG_PRIMARY">
+      <div className="paragraph-md my-4">
+        Innerhalb der Gruppe könnt ihr das Programm benutzen. Es ist euch
+        natürlich freigestellt.
+      </div>
+      <div className="paragraph-md font-semibold mt-4">ModeratorIn:</div>
+      <div className="paragraph-md">
+        Als Rolle des Moderators liest du das Programm vor und nimmst die
+        Menschen dran, wenn sie was sagen wollen und achtest drauf, dass die
+        Regeln eingehalten werden. Du bist natürlich genauso TeilnehmerIn und
+        kannst dich auch durch Beiträge und Anliegen zu beteiligen.
+      </div>
+      <div className="bg-BG_PRIMARY my-4">
         <a href={downloadLink} download="Depressions_Manual.pdf">
-          <div className="flex flex-between my-8 w-full cursor-pointer border border-TEXT_LIGHTGRAY rounded-md text-xs p-2 pl-4 items-center">
-            {groupTopic}_Manual
-            <BsDownload className="w-5 mx-5 text-PURPLE_PRIMARY" size={32} />
+          <div className="flex flex-row items-center justify-between cursor-pointer border border-TEXT_LIGHTGRAY rounded-md text-base p-4 items-center hover:shadow-md">
+            <div>{groupTopic}_Manual</div>
+            <BsDownload className=" text-PURPLE_PRIMARY" size={22} />
           </div>
         </a>
       </div>

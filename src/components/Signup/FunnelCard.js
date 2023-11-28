@@ -79,31 +79,31 @@ export default function FunnelCard({ funnelIndex, showLogo = true }) {
 
   const handleGroup = async (e) => {
     e.preventDefault();
-
-    if (step && step.type.name === "GroupInfoStep") {
-      const isGroupValid = validateGroupForm(groupData, updateGroupFields);
-      if (!isGroupValid) {
-        return;
-      } else {
-        console.log("group is valid");
-        next(1);
-      }
-    } else if (step && step.type.name === "GroupSettingStep") {
-      console.log("create group");
-      const success = await createGroup(groupData, userData, setErrorMessage);
-      if (success) {
-        if (isLastStep) {
-          localStorage.clear();
-          navigate("/login");
-        } else {
-          setErrorMessage("");
-          console.log("created group");
-          return next(1);
-        }
-      } else {
-        console.log("cant create group");
-      }
-    }
+    next(1);
+    // if (step && step.type.name === "GroupInfoStep") {
+    //   const isGroupValid = validateGroupForm(groupData, updateGroupFields);
+    //   if (!isGroupValid) {
+    //     return;
+    //   } else {
+    //     console.log("group is valid");
+    //     next(1);
+    //   }
+    // } else if (step && step.type.name === "GroupSettingStep") {
+    //   console.log("create group");
+    //   const success = await createGroup(groupData, userData, setErrorMessage);
+    //   if (success) {
+    //     if (isLastStep) {
+    //       localStorage.clear();
+    //       navigate("/login");
+    //     } else {
+    //       setErrorMessage("");
+    //       console.log("created group");
+    //       return next(1);
+    //     }
+    //   } else {
+    //     console.log("cant create group");
+    //   }
+    // }
   };
 
   const handleUser = async (e) => {

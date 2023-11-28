@@ -7,6 +7,7 @@ import GroupInfoStep from "./GroupSteps/GroupInfoStep";
 import GroupPlanStep from "./GroupSteps/GroupPlanStep";
 import GroupSettingStep from "./GroupSteps/GroupSettingStep";
 import GroupDownloadStep from "./GroupSteps/GroupDownloadStep";
+import GroupFinishStep from "./GroupSteps/GroupFinishStep";
 
 export default function FunnelSteps(
   funnelIndex,
@@ -115,6 +116,10 @@ export default function FunnelSteps(
         <GroupPlanStep {...groupData} updateGroupFields={updateGroupFields} />,
         <GroupDownloadStep {...userData} updateFields={updateFields} />,
         <GroupSettingStep
+          {...groupData}
+          updateGroupFields={updateGroupFields}
+        />,
+        <GroupFinishStep
           {...groupData}
           updateGroupFields={updateGroupFields}
         />,

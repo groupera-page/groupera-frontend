@@ -118,17 +118,19 @@ export default function GroupInfoStep({
         showMessage={errorGroupDescription && description.length < 3}
         errorMessage={errorGroupDescription}
       />
-      <div className="flex text-xs text-gray-500 justify-end">
+      <div className="flex text-xs text-gray-500 justify-end hidden lg:block">
         {description.length}/{maxCharacters}
       </div>
-      <p className="paragraph-lg my-2">
-        Du kannst ein Bild aus unseren Vorschlägen aussuchen.{" "}
+      <p className="paragraph-lg mt-4">
+        Du kannst ein Titelbild für deine Gruppe aussuchen.{" "}
       </p>
-      <Carousel
-        imageData={images}
-        img={img}
-        updateGroupFields={updateGroupFields}
-      />
+      <div className="mb-4">
+        <Carousel
+          imageData={images}
+          img={img}
+          updateGroupFields={updateGroupFields}
+        />
+      </div>
     </div>
   );
 }
