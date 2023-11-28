@@ -121,7 +121,7 @@ export default function GroupInfoStep({
       <div className="flex text-xs text-gray-500 justify-end">
         {description.length}/{maxCharacters}
       </div>
-      <p className="paragraph-sm my-2">
+      <p className="paragraph-lg my-2">
         Du kannst ein Bild aus unseren Vorschlägen aussuchen.{" "}
       </p>
       <Carousel

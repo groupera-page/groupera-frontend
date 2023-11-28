@@ -8,7 +8,7 @@ export default function TextInput({
   onFocusOut,
 }) {
   return (
-    <div className=" text-base border border-BLUE_PRIMARY rounded-md">
+    <div className=" text-base border border-TEXT_LIGHTGRAY rounded-md">
       <input
         type="text"
         value={value}

@@ -63,7 +63,7 @@ export default function GroupDownloadStep({ data, updateGroupFields }) {
 
       <div className="flex bg-BG_PRIMARY">
         <a href={downloadLink} download="Depressions_Manual.pdf">
-          <div className="flex flex-between my-8 w-full cursor-pointer border border-BLUE_PRIMARY rounded-md text-xs p-2 pl-4 items-center">
+          <div className="flex flex-between my-8 w-full cursor-pointer border border-TEXT_LIGHTGRAY rounded-md text-xs p-2 pl-4 items-center">
             {groupTopic}_Manual
             <BsDownload className="w-5 mx-5 text-PURPLE_PRIMARY" size={32} />
           </div>

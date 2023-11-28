@@ -57,7 +57,7 @@ export default function LandingCard({ page, id }) {
                 name="email"
                 value={email}
                 onChange={handleEmail}
-                className="w-full p-2 border bg-BG_PRIMARY rounded-md pl-2 lg:w-96 border-BLUE_PRIMARY"
+                className="w-full p-2 border bg-BG_PRIMARY rounded-md pl-2 lg:w-96 border-TEXT_LIGHTGRAY"
                 placeholder="Email"
               />
             </div>
@@ -68,7 +68,7 @@ export default function LandingCard({ page, id }) {
                 name="password"
                 value={password}
                 onChange={handlePassword}
-                className="w-full p-2 border bg-BG_PRIMARY rounded-md pl-2 lg:w-96 border-BLUE_PRIMARY"
+                className="w-full p-2 border bg-BG_PRIMARY rounded-md pl-2 lg:w-96 border-TEXT_LIGHTGRAY"
                 placeholder="Password"
               />
             </div>

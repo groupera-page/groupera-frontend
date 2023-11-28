@@ -185,7 +185,10 @@ export default function FunnelCard({ funnelIndex, showLogo = true }) {
               currentStep={currentStepIndex + 1}
               steps={steps.length}
             />
-            <div style={{ marginLeft: `${currentStepIndex * 44}px` }}>
+            <div
+              className="hidden lg:block"
+              style={{ marginLeft: `${currentStepIndex * 44}px` }}
+            >
               {currentStepIndex + 1} von {steps.length}
             </div>
           </div>

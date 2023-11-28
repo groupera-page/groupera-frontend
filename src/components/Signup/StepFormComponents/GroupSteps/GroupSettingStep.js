@@ -13,10 +13,8 @@ export default function GroupSettingStep({ moderator, updateGroupFields }) {
   return (
     <div className="">
       <StepHeader
-        title={"Pass die Einstellungen deiner Gruppe an."}
-        text={
-          " Du kannst diese Einstellung jederzeit in den Gruppeneinstellungen ändern."
-        }
+        title={"Moderation der Gruppe"}
+        text={" Du kannst uns jederzeit kontaktieren und Hilfe bekommen."}
       />
 
       <div className="paragraph-lg mt-4">
@@ -50,7 +48,7 @@ export default function GroupSettingStep({ moderator, updateGroupFields }) {
 
         {showMessage && (
           <div className="flex text- PURPLE_PRIMARY text-sm bg-BG_PRIMARY justify-center">
-            Wir werden Ihnen eine E-Mail senden
+            Wir werden Dir eine E-mail senden zum weiteren Vorgehen.
           </div>
         )}
       </div>

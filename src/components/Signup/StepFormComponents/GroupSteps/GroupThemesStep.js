@@ -23,8 +23,8 @@ export default function GroupThemesStep({ theme, updateGroupFields }) {
   return (
     <div>
       <StepHeader title={"Zu welchem Thema möchtest du eine Gruppe gründen?"} />
-      <p className="paragraph-lg">
-        Wähle eine oder mehrere der folgenden Optionen.
+      <p className="paragraph-lg text-TEXT_LIGHTGRAY ">
+        Wähle eine der folgenden Optionen.
       </p>
       <div className="flex flex-col gap-3 ">
         {themeOptions.map((option) => (

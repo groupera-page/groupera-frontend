@@ -7,7 +7,7 @@ export default function PasswordInput({
   onFocusOut,
 }) {
   return (
-    <div className="mt-4 text-sm border border-BLUE_PRIMARY rounded-md">
+    <div className="mt-4 text-sm border border-TEXT_LIGHTGRAY rounded-md">
       <input
         type="password"
         value={value}

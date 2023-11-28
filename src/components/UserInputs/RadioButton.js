@@ -13,7 +13,7 @@ export default function RadioButton({
       className={`relative cursor-pointer border ${
         checkedVariable === title
           ? "border-PURPLE_PRIMARY"
-          : "border-BLUE_PRIMARY"
+          : "border-TEXT_LIGHTGRAY "
       }   rounded-md text-base py-3 px-4 flex items-center gap-4 hover:shadow-md`}
     >
       <div>{title}</div>

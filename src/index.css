@@ -25,7 +25,7 @@ code {
   }
 
   h3 {
-    @apply text-3xl text-TEXT_PRIMARY;
+    @apply text-2xl lg:text-3xl text-TEXT_PRIMARY;
   }
 
   h4 {
@@ -51,7 +51,7 @@ code {
 
 @layer components {
   .paragraph-lg {
-    @apply text-lg text-TEXT_PRIMARY;
+    @apply text-base lg:text-lg text-TEXT_PRIMARY;
   }
 
   .paragraph-md {

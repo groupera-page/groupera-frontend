@@ -7,7 +7,7 @@ export default function PageContainer({ title, text, children }) {
   return (
     <div>
       <div className="bg-BG_PRIMARY lg:bg-BG_GRAY ">
-        <div className="px-5 py-10 lg:py-20 lg:pl-48 lg:px-20 ">
+        <div className="px-5 lg:py-20 lg:pl-48 lg:px-20 ">
           <div className="lg:py-2">
             <div className="flex justify-between">
               {title === "Gruppen" ? <h2>{title}</h2> : <h6>{title}</h6>}
