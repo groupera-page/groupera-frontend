@@ -9,9 +9,9 @@ import { userDataInit, groupDataInit } from "../../util/initData";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import PrimaryButton from "../Buttons/PrimaryButton";
 import InputError from "../UserInputs/InputError";
-import { createGroup } from "../../api/groupService";
-import { verifyCode, createUser, updateUser } from "../../api/userService";
-import { validateUserForm, validateGroupForm } from "../../util/formValidation";
+// import { createGroup } from "../../api/groupService";
+// import { verifyCode, createUser, updateUser } from "../../api/userService";
+// import { validateUserForm, validateGroupForm } from "../../util/formValidation";
 
 export default function FunnelCard({ funnelIndex, showLogo = true }) {
   const [userData, setUserData] = useState(userDataInit);
@@ -108,69 +108,69 @@ export default function FunnelCard({ funnelIndex, showLogo = true }) {
 
   const handleUser = async (e) => {
     e.preventDefault();
+    next(1);
+    // //Next step
+    // if (
+    //   step &&
+    //   step.type.name !== "UserInfoStep" &&
+    //   step.type.name !== "UserVerifyCodeStep" &&
+    //   !isLastStep
+    // ) {
+    //   console.log("Doing next without post or update");
+    //   setErrorMessage("");
+    //   return next(1);
+    // }
 
-    //Next step
-    if (
-      step &&
-      step.type.name !== "UserInfoStep" &&
-      step.type.name !== "UserVerifyCodeStep" &&
-      !isLastStep
-    ) {
-      console.log("Doing next without post or update");
-      setErrorMessage("");
-      return next(1);
-    }
+    // if (step && step.type.name === "UserInfoStep") {
+    //   const isUserFormValid = validateUserForm(
+    //     userData,
+    //     updateFields,
+    //     setErrorMessage,
+    //     step
+    //   );
+    //   if (isUserFormValid) {
+    //     await createUser(userData, isVerified, setErrorMessage);
+    //     next(1);
+    //   } else {
+    //     return;
+    //   }
+    // }
 
-    if (step && step.type.name === "UserInfoStep") {
-      const isUserFormValid = validateUserForm(
-        userData,
-        updateFields,
-        setErrorMessage,
-        step
-      );
-      if (isUserFormValid) {
-        await createUser(userData, isVerified, setErrorMessage);
-        next(1);
-      } else {
-        return;
-      }
-    }
+    // if (step && step.type.name === "UserVerifyCodeStep") {
+    //   const isUserVerified = await verifyCode(
+    //     userData,
+    //     setCurrentUser,
+    //     setisVerified,
+    //     setErrorMessage
+    //   );
+    //   if (isUserVerified) {
+    //     if (isLastStep) {
+    //       localStorage.clear();
+    //       navigate("/login");
+    //     } else {
+    //       setErrorMessage("");
+    //       return next(1);
+    //     }
+    //   }
+    //   return;
+    // }
 
-    if (step && step.type.name === "UserVerifyCodeStep") {
-      const isUserVerified = await verifyCode(
-        userData,
-        setCurrentUser,
-        setisVerified,
-        setErrorMessage
-      );
-      if (isUserVerified) {
-        if (isLastStep) {
-          localStorage.clear();
-          navigate("/login");
-        } else {
-          setErrorMessage("");
-          return next(1);
-        }
-      }
-      return;
-    }
-
-    if (isVerified) {
-      await updateUser(userData, currentUser, setErrorMessage);
-      if (isLastStep) {
-        localStorage.clear();
-        navigate("/login");
-      } else {
-        setErrorMessage("");
-        return next(1);
-      }
-      return;
-    }
+    // if (isVerified) {
+    //   await updateUser(userData, currentUser, setErrorMessage);
+    //   if (isLastStep) {
+    //     localStorage.clear();
+    //     navigate("/login");
+    //   } else {
+    //     setErrorMessage("");
+    //     return next(1);
+    //   }
+    //   return;
+    // }
   };
 
   return (
     <div
-      className="w-full md:w-1/2 lg:h-5/6 
+      className="w-full md:w-3/4 lg:w-1/2 lg:h-5/6 
       px-4 rounded md:shadow-md bg-BG_PRIMARY md:px-4 "
     >
       <div className="pb-3 flex justify-center">
