@@ -31,9 +31,9 @@ export default function Navbar({ handleMenuMobile, openMenuMobile }) {
         </div>
       </div>
       <div className="flex justify-center w-1/3 lg:hidden">
-        <Link to="/">
-          <img src={logoSvg} alt="logo" className="lg:w-32 w-20" />
-        </Link>
+        {/* <Link to="/"> */}
+        <img src={logoSvg} alt="logo" className="lg:w-32 w-20" />
+        {/* </Link> */}
       </div>
 
       <div className="flex items-center justify-end lg:mr-14  w-1/3 lg:w-1/4 z-20 h-16 ">

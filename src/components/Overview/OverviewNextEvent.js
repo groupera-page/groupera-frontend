@@ -33,7 +33,7 @@ export default function OverviewNextEvent({ groups }) {
   const nextEvent = getNextEvent(mockDataEvents);
 
   return (
-    <div className="lg:w-1/2 mt-10">
+    <div className="lg:w-1/2 mt-10 mb-20">
       <div
         className={`flex flex-col lg:flex-row ${
           mockDataEvents.length > 0 ? "lg:flex-row" : "flex"
