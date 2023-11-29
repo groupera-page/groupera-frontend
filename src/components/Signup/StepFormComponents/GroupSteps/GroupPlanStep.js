@@ -10,7 +10,7 @@ import StepHeader from "../StepHeader";
 export default function GroupPlanStep({ freq, day, time, updateGroupFields }) {
   const [calendarDate, setCalendarDate] = useState(new Date());
   const [frequency, setFrequency] = useState("Einmalig");
-  const [timeChoice, setTimeChoice] = useState("60m");
+  const [timeChoice, setTimeChoice] = useState("60 minuten");
 
   const today = new Date();
   const thirtyDaysFromNow = new Date();
@@ -22,7 +22,7 @@ export default function GroupPlanStep({ freq, day, time, updateGroupFields }) {
     "Alle 2 Wochen",
     "Monatlich",
   ];
-  const timeOptions = ["60m", "90m"];
+  const timeOptions = ["60 minuten", "90 minuten"];
 
   function onHandleFreqChange(freq) {
     setFrequency(freq);
@@ -77,6 +77,7 @@ export default function GroupPlanStep({ freq, day, time, updateGroupFields }) {
             onChange={onHandleTimeChange}
             checkedVariable={timeChoice}
             name={"timeOptions"}
+            horizontal={true}
           />
         </div>
       </div>

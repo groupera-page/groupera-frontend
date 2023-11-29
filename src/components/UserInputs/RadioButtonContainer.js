@@ -6,10 +6,17 @@ export default function RadioButtonContainer({
   options,
   checkedVariable,
   onChange,
+  horizontal,
 }) {
   return (
     <div>
-      <div className="grid lg:grid-cols-2 grid-cols-2 gap-3">
+      <div
+        className={
+          horizontal
+            ? "flex flex-col gap-2"
+            : "grid lg:grid-cols-2 grid-cols-2 gap-3"
+        }
+      >
         {options.map((option, index) => (
           <RadioButton
             key={index}

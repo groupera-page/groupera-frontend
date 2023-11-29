@@ -170,7 +170,7 @@ export default function FunnelCard({ funnelIndex, showLogo = true }) {
 
   return (
     <div
-      className="w-full md:w-3/4 lg:w-1/2 lg:h-fit
+      className="w-full md:w-3/4 lg:w-1/2 md:h-5/6
       px-4 rounded md:shadow-md bg-BG_PRIMARY md:px-4 "
     >
       <div className="pb-3 flex justify-center">
@@ -178,7 +178,7 @@ export default function FunnelCard({ funnelIndex, showLogo = true }) {
           <img src={logoSvg} alt="logo" className="lg:w-40 w-28 p-2 pt-3" />
         )}
       </div>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 h-full">
         <div className="flex justify-center">
           <div className="flex flex-col p-2 text-xs gap-2">
             <StepIndicator
@@ -193,6 +193,7 @@ export default function FunnelCard({ funnelIndex, showLogo = true }) {
             </div>
           </div>
         </div>
+
         <form
           onSubmit={
             step &&
@@ -201,7 +202,8 @@ export default function FunnelCard({ funnelIndex, showLogo = true }) {
               ? handleGroup
               : handleUser
           }
-          className="pb-4"
+          // justify-between to fix the buttons
+          className="flex flex-col pb-4 h-full"
         >
           {step}
           <div className="flex gap-2 justify-center">

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PrimaryButton from "../../Buttons/PrimaryButton";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
+import HoverUnderline from "../../Effects/HoverUnderline";
 
 export default function MenuDropDown({
   title,
@@ -49,10 +50,14 @@ export default function MenuDropDown({
           </PrimaryButton>
         ) : (
           <div
-            className={`flex items-center cursor-pointer transition-all duration-300 h-full`}
+            className={`flex items-center cursor-pointer transition-all duration-300 h-full `}
           >
-            <div className="flex text-TEXT_PRIMARY hover:text-PURPLE_PRIMARY items-center">
-              <div className="mr-2 paragraph-lg">{title}</div>
+            <div className="flex text-TEXT_PRIMARY items-center ">
+              <div className="mr-2 paragraph-lg relative">
+                <div className="group text-lg">
+                  {title} <HoverUnderline />
+                </div>
+              </div>
 
               {openMenuDropDown ? (
                 <AiOutlineUp size={20} className="text-TEXT_PRIMARY" />

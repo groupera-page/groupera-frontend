@@ -26,7 +26,7 @@ export default function GroupCardContainer({
         </div>
       )}
       {groups.length > 0 ? <h4 className="my-2">{title}</h4> : null}
-      <div className="grid md:grid-cols-3 gap-5 my-2 lg:px-0">
+      <div className="grid lg:grid-cols-3 gap-8 my-2 md:px-20 lg:px-0">
         {groups.map((group, index) => (
           <GroupPreviewCard key={index} group={group} />
         ))}

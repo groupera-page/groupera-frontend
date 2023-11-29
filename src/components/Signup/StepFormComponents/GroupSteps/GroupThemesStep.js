@@ -26,7 +26,7 @@ export default function GroupThemesStep({ theme, updateGroupFields }) {
       <p className="paragraph-lg text-TEXT_LIGHTGRAY ">
         Wähle eine der folgenden Optionen.
       </p>
-      <div className="flex flex-col gap-3 ">
+      <div className="flex flex-col gap-2.5 ">
         {themeOptions.map((option) => (
           <RadioButton
             key={option.value}

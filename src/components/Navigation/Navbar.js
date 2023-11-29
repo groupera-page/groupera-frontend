@@ -3,6 +3,8 @@ import { Squash as Hamburger } from "hamburger-react";
 import MenuDropDown from "./Menus/MenuDropDown";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
+import HoverUnderline from "../Effects/HoverUnderline";
+import { Link } from "react-router-dom";
 
 export default function Navbar({ handleMenuMobile, openMenuMobile }) {
   const mockData = useSelector((state) => state.mockData.mockData);
@@ -29,7 +31,9 @@ export default function Navbar({ handleMenuMobile, openMenuMobile }) {
         </div>
       </div>
       <div className="flex justify-center w-1/3 lg:hidden">
-        <img src={logoSvg} alt="logo" className="lg:w-32 w-20" />
+        <Link to="/">
+          <img src={logoSvg} alt="logo" className="lg:w-32 w-20" />
+        </Link>
       </div>
 
       <div className="flex items-center justify-end mr-2 lg:mr-14 w-1/3 lg:w-1/4 z-20 h-16 ">
@@ -37,11 +41,19 @@ export default function Navbar({ handleMenuMobile, openMenuMobile }) {
           <div className="border-l border-gray-300 h-8 mx-2 "></div>
         )}
         <MenuDropDown openMenuMobile={openMenuMobile} title={truncatedUserName}>
-          <NavLink to={`/profile/${"user"}/profil`}>
-            <li className="p-2 hover:shadow-md flex justify-center whitespace-nowrap paragraph-lg">
-              Profil bearbeiten
-            </li>
-          </NavLink>
+          <div className="">
+            <NavLink to={`/profile/${"user"}/profil`}>
+              <li className="p-2 flex justify-center whitespace-nowrap paragraph-lg ">
+                <div className="mr- paragraph-lg relative">
+                  <div className="group text-lg">
+                    Profil bearbeiten
+                    <HoverUnderline />
+                  </div>
+                </div>
+              </li>
+            </NavLink>
+          </div>
+
           <>{/* <hr className="border-t border-gray-300" /> */}</>
           {/* NOT IN MVP! */}
           {/* <NavLink to="/">

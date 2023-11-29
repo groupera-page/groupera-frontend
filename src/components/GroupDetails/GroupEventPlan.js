@@ -54,6 +54,7 @@ export default function GroupEventPlan() {
           onChange={onHandleFreqChange}
           checkedVariable={frequency}
           name={"frequencyOptions"}
+          horizontal={true}
         />
       </div>
       <div className="paragraph-lg">Zu welcher Uhrzeit?</div>

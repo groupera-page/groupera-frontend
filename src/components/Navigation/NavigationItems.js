@@ -11,7 +11,7 @@ import { CiLogout } from "react-icons/ci";
 
 export default function Navigation({ handleMenuMobile }) {
   return (
-    <div className="flex flex-col justify-between h-1/2 lg:h-5/6 mx-5 ">
+    <div className="flex flex-col justify-between h-1/2 lg:h-full mx-5 lg:pb-20">
       <ul className="list-none flex flex-col gap-5 ">
         <li className="flex relative ">
           <NavLink to="/" onClick={() => handleMenuMobile()}>
