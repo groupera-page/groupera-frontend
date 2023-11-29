@@ -20,7 +20,7 @@ export default function GroupDetailPage() {
 
   return (
     <PageContainer>
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col w-full lg:mx-14 ">
         <div className="mb-4">
           <Link to={`/groups/`}>
             <PrimaryButton isInversed={true}>

@@ -27,8 +27,8 @@ export default function GroupDetailCard({ group, isAdmin, isEditable }) {
   };
 
   return (
-    <div className="my-2 md:flex gap-20">
-      <div className="md:w-1/2 relative">
+    <div className="my-2 lg:flex gap-20 md:mx-20 lg:mx-0">
+      <div className="lg:w-1/2 relative">
         {!imageLoaded && (
           <img
             src={placeholderImage}
@@ -66,12 +66,16 @@ export default function GroupDetailCard({ group, isAdmin, isEditable }) {
         {isEditable && <GroupEditImage />}
       </div>
 
-      <div className="md:w-1/2 my-4">
+      <div className="lg:w-1/2 my-4">
         {isEditable ? (
           <GroupEditContent group={group} />
         ) : (
           <div>
-            <GroupOverviewContent group={group} clamp={false} />
+            <GroupOverviewContent
+              group={group}
+              clamp={false}
+              isDetailPage={true}
+            />
             <div className="flex justify-end my-4">
               <MenuDropDown
                 title={`${isAdmin ? "Du bist Admin" : "Du bist Mitglied"}`}

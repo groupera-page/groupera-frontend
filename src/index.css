@@ -64,4 +64,7 @@ code {
   .paragraph-tiny {
     @apply text-xs text-TEXT_GRAY;
   }
+  .paragraph-lead {
+    @apply text-xl text-TEXT_LIGHTGRAY font-light;
+  }
 }

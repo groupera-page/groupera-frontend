@@ -3,19 +3,21 @@ import { NavLink, useLocation, useParams } from "react-router-dom";
 
 export default function NavbarSub({ subPages }) {
   const { pathname } = useLocation();
-  const { groupId } = useParams();
 
   return (
     <div className="">
       <ul className="flex">
         {subPages.map((page, index) => (
-          <li className="flex relative hover:shadow-md rounded-md" key={index}>
+          <li
+            className="flex relative hover:shadow-md rounded-md paragraph-lead text-TEXT_GRAY"
+            key={index}
+          >
             <NavLink to={page.toLocaleLowerCase()}>
               {({ isActive }) => (
                 <div className="flex flex-row items-center">
                   {/* GROUP ID IS SET TO 123 BUT GET THE REAL SLUG LATER FROM REDUX */}
                   <div
-                    className={`p-2 rounded-t-md font-light
+                    className={`p-2 rounded-t-md 
                     
                       ${
                         (pathname === `/groups/123` && index == 0) || isActive

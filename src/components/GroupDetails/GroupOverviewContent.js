@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function GroupOverviewContent({ group, clamp }) {
+export default function GroupOverviewContent({ group, clamp, isDetailPage }) {
   return (
     <div>
       <div className="flex flex-col">
@@ -13,10 +13,22 @@ export default function GroupOverviewContent({ group, clamp }) {
             </p>
           )}
         </div>
-        <h4 className="line-clamp-1"> {group.name}</h4>
-        <p className="text-PURPLE_PRIMARY">{group.meeting}</p>
+        {isDetailPage ? (
+          <h1 className="line-clamp-2"> {group.name}</h1>
+        ) : (
+          <h4 className="line-clamp-1"> {group.name}</h4>
+        )}
+
+        <div
+          className={`${
+            isDetailPage ? "paragraph-lead" : "text-PURPLE_PRIMARY"
+          } paragraph-md my-1`}
+        >
+          Wöchentlich, Dienstag 18:00 Uhr
+        </div>
+
         {
-          <p className={`${clamp ? "line-clamp-5" : ""}`}>
+          <p className={`${clamp ? "line-clamp-5" : ""} paragraph-lg`}>
             {group.description}
           </p>
         }
