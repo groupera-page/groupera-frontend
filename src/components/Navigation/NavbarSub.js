@@ -5,7 +5,7 @@ export default function NavbarSub({ subPages }) {
   const { pathname } = useLocation();
 
   return (
-    <div className="">
+    <div className=" border-BLUE_PRIMARY border-b">
       <ul className="flex">
         {subPages.map((page, index) => (
           <li

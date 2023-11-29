@@ -14,6 +14,7 @@ const mockData = {
       image:
         "Grouptitel%20pictures%20low_res/pexels-johannes-plenio-1690355_bj811s_e6dajb.jpg",
       users: ["Marie", "Jan"],
+      moderatorId: "999",
     },
 
     {
@@ -27,6 +28,7 @@ const mockData = {
       image:
         "Grouptitel%20pictures%20low_res/pexels-taylor-hunt-2902440_xvgnuq_nueptp.jpg",
       users: ["Marie", "Jan", "Rida", "Marie"],
+      moderatorId: "666",
     },
     {
       name: "Angst",
@@ -49,6 +51,7 @@ const mockData = {
         "Jan",
         "Rida",
       ],
+      moderatorId: "777",
     },
   ],
   NoGroupCard: [
@@ -67,7 +70,8 @@ const mockData = {
   ],
   user: [
     {
-      alias: "Fred",
+      id: "999",
+      alias: "Username",
       email: "alice@example.com",
       passwordHash: "SecureP@ss123",
       dob: "1988-05-20",
@@ -94,6 +98,7 @@ const mockData = {
       refreshToken: "RefreshToken789",
     },
     {
+      id: "777",
       alias: "Username2",
       email: "alice@example.com",
       passwordHash: "SecureP@ss123",

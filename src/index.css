@@ -51,11 +51,11 @@ code {
 
 @layer components {
   .paragraph-lg {
-    @apply text-base lg:text-lg text-TEXT_PRIMARY;
+    @apply text-lg lg:text-base text-TEXT_PRIMARY;
   }
 
   .paragraph-md {
-    @apply text-base text-TEXT_GRAY;
+    @apply text-base lg:text-sm text-TEXT_PRIMARY;
   }
 
   .paragraph-sm {

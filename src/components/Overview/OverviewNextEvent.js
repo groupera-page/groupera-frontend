@@ -60,10 +60,10 @@ export default function OverviewNextEvent({ groups }) {
           {mockDataEvents.length > 0 && (
             <div className="flex flex-col justify-center gap-1 mx-2">
               <div className="flex flex-col gap-1 mb-4">
-                <p className="text-xl lg:text-base font-medium line-clamp-1">
+                <p className="paragraph-md font-semibold line-clamp-2">
                   {groups[0].name}
                 </p>
-                <p className="mb-2">
+                <p className="paragraph-md text-TEXT_PRIMARY mb-2">
                   {nextEvent
                     ? formatDateTime(nextEvent.start.dateTime) + " Uhr"
                     : "Kein Termin geplant"}

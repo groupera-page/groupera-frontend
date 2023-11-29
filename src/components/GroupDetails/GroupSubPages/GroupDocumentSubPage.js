@@ -54,15 +54,14 @@ export default function GroupDocumentSubPage({ group }) {
 
   return (
     <div>
-      <div className="flex bg-BG_GRAY">
+      <div className="flex bg-BG_GRAY border-b border-TEXT_GRAY paragraph-lg mb-20">
         <a href={downloadLink} download="Depressions_Manual.pdf">
-          <div className="flex items-center my-4 text-sm font-bold">
+          <div className="flex items-center my-4 font-bold">
             {group.topic}_Manual
             <BsDownload className="w-5 mx-5 text-PURPLE_PRIMARY" size={32} />
           </div>
         </a>
       </div>
-      <hr className="border w-full" />
     </div>
   );
 }

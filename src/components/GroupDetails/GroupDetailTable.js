@@ -13,7 +13,7 @@ export default function GroupDetailTable({ group }) {
   return (
     <div className=" my-8">
       <NavbarSub subPages={subPages} />
-      <hr className="border-BLUE_PRIMARY border-l" />
+
       <Routes>
         <Route path="termine" element={<GroupTermineSubPage group={group} />} />
 

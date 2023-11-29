@@ -60,7 +60,7 @@ export default function GroupTermineSubPage({ group }) {
     <div>
       <div className="grid grid-cols-1 mt-6 gap-2">
         <div
-          className={`hidden md:grid md:grid-cols-5 mx-2 paragraph-tiny text-black`}
+          className={`hidden md:grid md:grid-cols-5 mx-2 paragraph-tiny text-black border-b border-TEXT_LIGHTGRAY pb-4`}
         >
           <div>Datum</div>
           <div>Uhrzeit</div>
@@ -68,7 +68,7 @@ export default function GroupTermineSubPage({ group }) {
           <div>Teilnehmer</div>
           <div></div>
         </div>
-        <hr className="hidden md:block border-l my-2" />
+
         {mockData.map((meeting) => (
           <div
             key={meeting.id}
