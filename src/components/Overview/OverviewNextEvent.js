@@ -74,9 +74,9 @@ export default function OverviewNextEvent({ groups }) {
         </div>
 
         {mockDataEvents.length > 0 && (
-          <div className="flex flex-row lg:flex-col justify-center gap-3 lg:gap-1 lg:mr-4 mb-2">
+          <div className="flex flex-row lg:flex-col justify-center gap-3 lg:mr-4 mb-2">
             <SecondaryButton>Abmelden</SecondaryButton>
-            <PrimaryButton>Videokonferenz</PrimaryButton>
+            <PrimaryButton>Zur Videokonferenz</PrimaryButton>
           </div>
         )}
       </div>
