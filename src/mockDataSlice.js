@@ -67,7 +67,7 @@ const mockData = {
   ],
   user: [
     {
-      alias: "Username",
+      alias: "Fred",
       email: "alice@example.com",
       passwordHash: "SecureP@ss123",
       dob: "1988-05-20",

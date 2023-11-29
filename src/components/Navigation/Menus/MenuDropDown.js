@@ -54,15 +54,15 @@ export default function MenuDropDown({
           >
             <div className="flex text-TEXT_PRIMARY items-center ">
               <div className="mr-2 paragraph-lg relative">
-                <div className="group text-lg">
+                <div className="group text-lg line-clamp-1">
                   {title} <HoverUnderline />
                 </div>
               </div>
 
               {openMenuDropDown ? (
-                <AiOutlineUp size={20} className="text-TEXT_PRIMARY" />
+                <AiOutlineUp size={20} className="text-TEXT_PRIMARY mr-2" />
               ) : (
-                <AiOutlineDown size={20} className="text-TEXT_PRIMARY" />
+                <AiOutlineDown size={20} className="text-TEXT_PRIMARY mr-2" />
               )}
             </div>
           </div>

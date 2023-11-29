@@ -61,4 +61,7 @@ code {
   .paragraph-sm {
     @apply text-sm text-TEXT_GRAY;
   }
+  .paragraph-tiny {
+    @apply text-xs text-TEXT_GRAY;
+  }
 }

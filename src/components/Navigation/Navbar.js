@@ -14,10 +14,10 @@ export default function Navbar({ handleMenuMobile, openMenuMobile }) {
     return str.length > maxLength ? str.substring(0, maxLength) + "..." : str;
   };
 
-  const truncatedUserName = truncateString(userName, 20);
+  const truncatedUserName = truncateString(userName, 10);
 
   return (
-    <div className="bg-BG_GRAY lg:bg-BG_PRIMARY flex justify-between items-center lg:fixed  text-gray-600 w-full shadow-md z-10">
+    <div className="bg-BG_GRAY lg:bg-BG_PRIMARY flex justify-between items-center lg:fixed  text-gray-600 w-full shadow-md z-10 ">
       <div className="w-1/4">
         <div className="lg:hidden ">
           <Hamburger
@@ -36,7 +36,7 @@ export default function Navbar({ handleMenuMobile, openMenuMobile }) {
         </Link>
       </div>
 
-      <div className="flex items-center justify-end mr-2 lg:mr-14 w-1/3 lg:w-1/4 z-20 h-16 ">
+      <div className="flex items-center justify-end lg:mr-14  w-1/3 lg:w-1/4 z-20 h-16 ">
         {!openMenuMobile && (
           <div className="border-l border-gray-300 h-8 mx-2 "></div>
         )}

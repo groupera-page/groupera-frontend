@@ -39,7 +39,7 @@ export default function OverviewNextEvent({ groups }) {
           mockDataEvents.length > 0 ? "lg:flex-row" : "flex"
         } rounded-md shadow-md border justify-between`}
       >
-        <div className="flex flex-col lg:p-2 ">
+        <div className="flex flex-col pt-4 lg:p-2 ">
           <OverviewHeader
             title={
               mockDataEvents.length > 0
@@ -65,8 +65,11 @@ export default function OverviewNextEvent({ groups }) {
                 </p>
                 <p className="mb-2">
                   {nextEvent
-                    ? formatDateTime(nextEvent.start.dateTime)
+                    ? formatDateTime(nextEvent.start.dateTime) + " Uhr"
                     : "Kein Termin geplant"}
+                </p>
+                <p className="paragraph-tiny text-TEXT_LIGHTGRAY ">
+                  Ort: Online
                 </p>
               </div>
             </div>
@@ -74,7 +77,7 @@ export default function OverviewNextEvent({ groups }) {
         </div>
 
         {mockDataEvents.length > 0 && (
-          <div className="flex flex-row lg:flex-col justify-center gap-3 lg:mr-4 mb-2">
+          <div className="flex flex-row lg:flex-col justify-center gap-3 lg:mr-4 mb-2 ">
             <SecondaryButton>Abmelden</SecondaryButton>
             <PrimaryButton>Zur Videokonferenz</PrimaryButton>
           </div>

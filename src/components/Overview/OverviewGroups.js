@@ -16,7 +16,7 @@ export default function OverviewGroups({ groups }) {
         }
       />
       {groups.length > 0 && <OverviewGroupItems groups={groups} />}
-      <div className="flex flex-col items-center my-4 ">
+      <div className="flex flex-col items-center mt-4 mb-2 ">
         <Link to={`/groups`}>
           <PrimaryButton> Gruppen finden</PrimaryButton>
         </Link>

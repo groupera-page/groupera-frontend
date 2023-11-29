@@ -38,16 +38,16 @@ export default function OverviewGroupItems({ groups }) {
           <div key={index}>
             <div className="flex justify-between items-center my-4">
               <div className="flex flex-col justify-center gap-2 w-4/6 md:w-full">
-                <p className="text-xl lg:text-base font-medium line-clamp-2">
+                <p className="paragraph-md font-semibold line-clamp-2">
                   {group.name}
                 </p>
                 <div>
-                  <p className="paragraph-sm text-TEXT_LIGHTGRAY lg:text-sm ">
+                  <p className="paragraph-tiny text-TEXT_LIGHTGRAY ">
                     Nächster Termin
                   </p>
-                  <p className="text-base">
+                  <p className="paragraph-md text-TEXT_PRIMARY">
                     {nextMeeting
-                      ? formatDateTime(nextMeeting.start.dateTime)
+                      ? formatDateTime(nextMeeting.start.dateTime) + " Uhr"
                       : "Kein Termin geplant"}
                   </p>
                 </div>
