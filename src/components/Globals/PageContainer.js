@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export default function PageContainer({ title, text, children }) {
   return (
     <div>
-      <div className="bg-BG_PRIMARY lg:bg-BG_GRAY h-full">
+      <div className="bg-BG_PRIMARY lg:bg-BG_GRAY h-full pb-20 lg:pb-5">
         <div className="px-5 py-2 md:py-12 lg:py-28 lg:pl-48 lg:px-20 ">
           <div>
             <div className="flex justify-between">

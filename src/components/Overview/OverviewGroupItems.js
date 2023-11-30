@@ -36,9 +36,9 @@ export default function OverviewGroupItems({ groups }) {
 
         return (
           <div key={index}>
-            <div className="flex justify-between items-center my-4">
-              <div className="flex flex-col justify-center gap-2 w-4/6 md:w-full">
-                <p className="paragraph-md font-semibold line-clamp-2">
+            <div className="flex justify-between items-center mt-4 pb-4 border-TEXT_LIGHTGRAY border-b ">
+              <div className="flex flex-col justify-center gap-2 w-1/2 ">
+                <p className="paragraph-md font-semibold line-clamp-1 break-words">
                   {group.name}
                 </p>
                 <div>
@@ -58,7 +58,7 @@ export default function OverviewGroupItems({ groups }) {
                 </Link>
               </div>
             </div>
-            <hr className="border-t border-gray-300" />
+            {/* <hr className="border-t border-gray-300" /> */}
           </div>
         );
       })}
