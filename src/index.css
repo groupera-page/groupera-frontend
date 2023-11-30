@@ -61,9 +61,11 @@ code {
   .paragraph-sm {
     @apply text-base lg:text-sm text-TEXT_GRAY;
   }
+
   .paragraph-tiny {
     @apply text-sm lg:text-xs text-TEXT_GRAY;
   }
+
   .paragraph-lead {
     @apply text-xl text-TEXT_LIGHTGRAY font-light;
   }
