@@ -18,15 +18,20 @@ export default function GroupeditContent({ group }) {
   return (
     <div className="flex flex-col gap-8">
       <div className="flex flex-col gap-2">
-        <h5> Name Der Gruppe</h5>
+        <div className="paragraph-lg"> Name Der Gruppe</div>
         <TextInput value={groupNameValue} onChange={handleGroupNameChange} />
       </div>
       <div className="flex flex-col gap-2 h-full">
-        <h5> Beschreibung der Gruppe</h5>
+        <div className="paragraph-lg"> Beschreibung der Gruppe</div>
         <TextAreaInput
           value={groupDescriptionValue}
           onChange={handleGroupDescriptionChange}
+          maxLength={500}
         />
+        <div className="flex text-xs text-gray-500 justify-end">
+          Characters
+          {/* {description.length}/{maxCharacters} */}
+        </div>
       </div>
     </div>
   );

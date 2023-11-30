@@ -72,10 +72,10 @@ export default function GroupEditPage() {
           handleEditImage={handleEditImage}
         />
 
-        <div className="bg-BG_PRIMARY rounded-md border p-4 my-4 ">
-          <ul className="flex justify-between items-center">
+        <div className="bg-BG_PRIMARY rounded-md border border-TEXT_LIGHTGRAY p-4 my-4 ">
+          <ul className="flex flex-wrap justify-between items-center paragraph-lg">
             <li>
-              <ul className="flex gap-12 items-center">
+              <ul className="flex flex-wrap gap-4 lg:gap-12 items-center">
                 <li className="text-PURPLE_PRIMARY">
                   {
                     [
@@ -90,7 +90,7 @@ export default function GroupEditPage() {
                   }
                 </li>
                 <li className="text-PURPLE_PRIMARY">
-                  {mockEvents[0].start.time}
+                  {mockEvents[0].start.time} Uhr
                 </li>
 
                 <li>
@@ -113,7 +113,7 @@ export default function GroupEditPage() {
               </ul>
             </li>
             <li>
-              <ul className="flex gap-4 ">
+              <ul className="flex gap-4 hidden lg:block">
                 <li className="cursor-pointer text-TEXT_LIGHTGRAY hover:text-PURPLE_PRIMARY">
                   <IoSettingsOutline size={22} />
                 </li>
@@ -124,7 +124,16 @@ export default function GroupEditPage() {
             </li>
           </ul>
         </div>
-        <div className="flex justify-end my-4">
+
+        <div className="flex justify-end mb-8 gap-8">
+          <ul className="flex gap-8 lg:hidden items-center">
+            <li className="cursor-pointer text-TEXT_LIGHTGRAY hover:text-PURPLE_PRIMARY">
+              <IoSettingsOutline size={28} />
+            </li>
+            <li className="cursor-pointer text-TEXT_LIGHTGRAY hover:text-PURPLE_PRIMARY">
+              <BsTrash3 size={28} />
+            </li>
+          </ul>
           <Link to={`/groups/${slug}/edit/event`}>
             <PrimaryButton>Termin hinzufügen</PrimaryButton>
           </Link>

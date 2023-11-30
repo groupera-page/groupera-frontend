@@ -63,7 +63,7 @@ export default function GroupDetailCard({ group, isAdmin, isEditable }) {
 
       {isEditable && (
         <div className="lg:hidden">
-          <h5 className="mt-4 mb-2"> Gruppenbild ändern</h5>
+          <div className="paragraph-lg mt-4 mb-2 "> Gruppenbild ändern</div>
           <GroupEditImage />
         </div>
       )}
@@ -97,7 +97,7 @@ export default function GroupDetailCard({ group, isAdmin, isEditable }) {
         )}
         {isEditable && (
           <div className="hidden lg:block">
-            <h5 className="mt-4 mb-2 "> Gruppenbild ändern</h5>
+            <div className="paragraph-lg mt-4 mb-2 "> Gruppenbild ändern</div>
             <GroupEditImage />
           </div>
         )}

@@ -11,6 +11,8 @@ import RadioButtonContainer from "../UserInputs/RadioButtonContainer";
 export default function GroupEventPlan() {
   const [calendarDate, setCalendarDate] = useState(new Date());
   const [frequency, setFrequency] = useState("Einmalig");
+  const [timeChoice, setTimeChoice] = useState("60 minuten");
+
   const today = new Date();
   const thirtyDaysFromNow = new Date();
   thirtyDaysFromNow.setDate(today.getDate() + 30);
@@ -21,9 +23,16 @@ export default function GroupEventPlan() {
     "Monatlich",
   ];
 
+  const timeOptions = ["60 minuten", "90 minuten"];
+
   function onHandleFreqChange(freq) {
     setFrequency(freq);
   }
+
+  function onHandleTimeChange(timeChoice) {
+    setTimeChoice(timeChoice);
+  }
+
   return (
     <div className="lg:w-2/3">
       <div className="paragraph-sm">
@@ -59,6 +68,15 @@ export default function GroupEventPlan() {
       </div>
       <div className="paragraph-lg">Zu welcher Uhrzeit?</div>
       <TimePickerContainer />
+      <div className="w-1/2">
+        <RadioButtonContainer
+          options={timeOptions}
+          onChange={onHandleTimeChange}
+          checkedVariable={timeChoice}
+          name={"timeOptions"}
+          horizontal={true}
+        />
+      </div>
 
       <div className="flex justify-between mt-4">
         <PrimaryButton isInversed={true}>
