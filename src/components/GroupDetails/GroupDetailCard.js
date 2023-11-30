@@ -27,7 +27,7 @@ export default function GroupDetailCard({ group, isAdmin, isEditable }) {
   };
 
   return (
-    <div className="my-2 lg:flex gap-20 md:mx-20 lg:mx-0">
+    <div className="my-2 lg:flex gap-12 md:mx-20 lg:mx-0">
       <div className="flex lg:w-1/2 relative items-center">
         {!imageLoaded && (
           <img
@@ -50,21 +50,23 @@ export default function GroupDetailCard({ group, isAdmin, isEditable }) {
               imageLoaded ? "opacity-100" : "opacity-0"
             }`}
             onLoad={handleImageLoad}
-          />{" "}
+          />
         </motion.div>
+
         {isEditable && (
           <div
             className="flex justify-center cursor-pointer"
             onClick={handleEditImage}
-          >
-            <div className="text-PURPLE_PRIMARY my-2">
-              Gruppenbild bearbeiten
-            </div>
-          </div>
+          ></div>
         )}
-
-        {isEditable && <GroupEditImage />}
       </div>
+
+      {isEditable && (
+        <div className="lg:hidden">
+          <h5 className="mt-4 mb-2"> Gruppenbild ändern</h5>
+          <GroupEditImage />
+        </div>
+      )}
 
       <div className="lg:w-1/2 my-4">
         {isEditable ? (
@@ -91,6 +93,12 @@ export default function GroupDetailCard({ group, isAdmin, isEditable }) {
                 </Link>
               </MenuDropDown>
             </div>
+          </div>
+        )}
+        {isEditable && (
+          <div className="hidden lg:block">
+            <h5 className="mt-4 mb-2 "> Gruppenbild ändern</h5>
+            <GroupEditImage />
           </div>
         )}
       </div>
