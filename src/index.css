@@ -51,6 +51,26 @@ code {
 
 @layer components {
   .paragraph-lg {
+    @apply text-xl lg:text-lg text-TEXT_PRIMARY;
+  }
+
+  .paragraph-md {
+    @apply text-lg lg:text-base text-TEXT_PRIMARY;
+  }
+
+  .paragraph-sm {
+    @apply text-base lg:text-sm text-TEXT_GRAY;
+  }
+  .paragraph-tiny {
+    @apply text-sm lg:text-xs text-TEXT_GRAY;
+  }
+  .paragraph-lead {
+    @apply text-xl text-TEXT_LIGHTGRAY font-light;
+  }
+}
+
+/* @layer components {
+  .paragraph-lg {
     @apply text-lg lg:text-base text-TEXT_PRIMARY;
   }
 
@@ -66,5 +86,4 @@ code {
   }
   .paragraph-lead {
     @apply text-xl text-TEXT_LIGHTGRAY font-light;
-  }
-}
+  } */
