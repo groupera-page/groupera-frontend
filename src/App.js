@@ -55,8 +55,10 @@ function App() {
           path="/groups/:slug/edit"
           element={
             <>
-              <MenusContainer />
-              <GroupEditPage />
+              <ScrollToTop>
+                <MenusContainer />
+                <GroupEditPage />
+              </ScrollToTop>
             </>
           }
         />

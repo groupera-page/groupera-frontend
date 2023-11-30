@@ -24,7 +24,7 @@ export default function Searchbox({
       <div className="flex items-center"></div>
       <input
         type="search"
-        className={`w-full ps-10 p-2.5 border rounded-md  bg-BG_PRIMARY text-TEXT_PRIMARY shadow-sm
+        className={`w-full paragraph-md ps-10 p-2.5 border rounded-md  bg-BG_PRIMARY text-TEXT_PRIMARY shadow-sm
         `}
         value={inputValue}
         onChange={handleInputChange}
