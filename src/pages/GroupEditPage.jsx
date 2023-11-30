@@ -102,7 +102,7 @@ export default function GroupEditPage() {
                 <li>Placeholder</li>
 
                 <li>
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 items-center">
                     {thisGroup.members}
                     <BsPeopleFill
                       className="w-5 mr-3 text-PURPLE_PRIMARY"
@@ -113,7 +113,7 @@ export default function GroupEditPage() {
               </ul>
             </li>
             <li>
-              <ul className="flex gap-4 hidden lg:block">
+              <ul className="hidden lg:flex gap-4">
                 <li className="cursor-pointer text-TEXT_LIGHTGRAY hover:text-PURPLE_PRIMARY">
                   <IoSettingsOutline size={22} />
                 </li>
