@@ -24,8 +24,8 @@ export default function TimePickerContainer() {
   };
   return (
     <div>
-      <div className="flex border border-TEXT_LIGHTGRAY rounded-md p-3 w-full lg:w-fit hover:shadow-md">
-        <div className="px-1">
+      <div className="flex relative border border-TEXT_LIGHTGRAY rounded-md w-full h-full hover:shadow-md">
+        <div className=" w-full">
           <TimePicker
             selectedTime={fromTime}
             onSelectTime={(newTime) => {
@@ -35,20 +35,8 @@ export default function TimePickerContainer() {
             toTime={toTime}
           />
         </div>
-        {/* <div className="mx-4 flex items-center text-TEXT_LIGHTGRAY">
-          <BsArrowRight size={15} />
-        </div> */}
-        {/* <div className=" px-1 ">
-          <TimePicker
-            selectedTime={toTime}
-            onSelectTime={(newTime) => {
-              handleTimeChange(newTime, false);
-            }}
-            label="To"
-            fromTime={fromTime}
-          />
-        </div> */}
-        <div className="mx-4 flex items-center text-TEXT_LIGHTGRAY">
+
+        <div className="absolute top-1/4 right-0  mx-4 flex items-center text-TEXT_LIGHTGRAY pointer-events-none">
           <BsClock size={20} />
         </div>
       </div>

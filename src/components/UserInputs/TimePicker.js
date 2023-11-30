@@ -20,7 +20,7 @@ export default function TimePicker({
         const newTime = e.target.value;
         onSelectTime(newTime, label === "To");
       }}
-      className="rounded text-base bg-BG_PRIMARY cursor-pointer hover:text-PURPLE_PRIMARY"
+      className="w-full p-3 rounded text-base bg-BG_PRIMARY cursor-pointer hover:text-PURPLE_PRIMARY"
       style={{ WebkitAppearance: "none", appearance: "none" }}
     >
       {timeOptions.map((timeOption, index) => (

@@ -66,21 +66,25 @@ export default function GroupEventPlan() {
           horizontal={true}
         />
       </div>
-      <div className="paragraph-lg">Zu welcher Uhrzeit?</div>
-      <TimePickerContainer />
-      <div className="w-1/2">
-        <RadioButtonContainer
-          options={timeOptions}
-          onChange={onHandleTimeChange}
-          checkedVariable={timeChoice}
-          name={"timeOptions"}
-          horizontal={true}
-        />
+      <div className="paragraph-lg mt-4">Zu welcher Uhrzeit?</div>
+      <div className="flex gap-4">
+        <div className="w-1/2 lg:w-1/4 ">
+          <TimePickerContainer />
+        </div>
+        <div className="w-1/2 lg:w-1/4 whitespace-nowrap">
+          <RadioButtonContainer
+            options={timeOptions}
+            onChange={onHandleTimeChange}
+            checkedVariable={timeChoice}
+            name={"timeOptions"}
+            horizontal={true}
+          />
+        </div>
       </div>
 
       <div className="flex justify-between mt-4">
         <PrimaryButton isInversed={true}>
-          <div className="flex gap-2">
+          <div className="flex gap-2 items-center">
             <BsArrowLeft className="" size={20} />
             Abbrechen
           </div>

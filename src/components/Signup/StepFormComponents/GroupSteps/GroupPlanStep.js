@@ -67,11 +67,10 @@ export default function GroupPlanStep({ freq, day, time, updateGroupFields }) {
       />
       <div className="paragraph-lg mt-4">Zu welcher Uhrzeit?</div>
       <div className="flex gap-4">
-        <div className="w-1/2 ">
+        <div className="w-1/2 lg:w-1/4 ">
           <TimePickerContainer />
         </div>
-
-        <div className="w-1/2">
+        <div className="w-1/2 lg:w-1/4 whitespace-nowrap">
           <RadioButtonContainer
             options={timeOptions}
             onChange={onHandleTimeChange}
