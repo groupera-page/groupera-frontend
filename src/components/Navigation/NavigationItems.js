@@ -31,7 +31,7 @@ export default function Navigation({ handleMenuMobile }) {
                       size={32}
                     />
                   </div>
-                  <div className="relative group text-lg">
+                  <div className="relative group paragraph-lg">
                     Übersicht
                     <div className={`${!isActive ? "" : "hidden"} `}>
                       <HoverUnderline />
@@ -60,7 +60,7 @@ export default function Navigation({ handleMenuMobile }) {
                       size={32}
                     />
                   </div>
-                  <div className="relative group text-lg">
+                  <div className="relative group paragraph-lg">
                     Gruppen
                     <div className={`${!isActive ? "" : "hidden"} `}>
                       <HoverUnderline />
@@ -75,7 +75,7 @@ export default function Navigation({ handleMenuMobile }) {
       <NavLink to="/login" onClick={() => handleMenuMobile()}>
         <div className={`flex items-center text-TEXT_PRIMARY `}>
           <CiLogout className="w-5 mr-3 text-TEXT_PRIMARY" size={32} />
-          <div className="relative group text-lg">
+          <div className="relative group paragraph-lg">
             Ausloggen
             <HoverUnderline />
           </div>

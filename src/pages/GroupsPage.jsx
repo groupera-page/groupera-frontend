@@ -2,6 +2,9 @@ import React from "react";
 import PageContainer from "../components/Globals/PageContainer";
 import GroupSearchContainer from "../components/GroupSearch/GroupSearchContainer";
 import GroupCardContainer from "../components/GroupSearch/GroupCardContainer";
+import PrimaryButton from "../components/Buttons/PrimaryButton";
+import { Link } from "react-router-dom";
+import { GoPlus } from "react-icons/go";
 import { useSelector } from "react-redux";
 
 export default function GroupsPage() {
@@ -27,8 +30,18 @@ export default function GroupsPage() {
 
   return (
     <PageContainer title={`Gruppen`}>
+      <div className="flex justify-between mt-4 lg:mt-10">
+        <h2>Gruppen</h2>
+        <Link to={`group/create`}>
+          <PrimaryButton>
+            <div className="flex flex-row gap-2 items-center">
+              <GoPlus size={20} />
+              <div>Gruppe Gründen</div>
+            </div>
+          </PrimaryButton>
+        </Link>
+      </div>
       <GroupSearchContainer />
-
       {searchedGroups.length > 0 ? (
         <GroupCardContainer groups={searchedGroups} />
       ) : (

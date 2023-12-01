@@ -13,12 +13,19 @@ export default function Home() {
   );
 
   return (
-    <PageContainer
-      title={`Hallo ${mockData.user[0].alias}`}
-      text={"hier sind alle wichtigen Infos für dich zusammengestellt."}
-    >
-      <OverviewGroups groups={userGroups} />
-      <OverviewNextEvent groups={userGroups} />
+    <PageContainer>
+      <div className="w-full h-full">
+        <div className="flex flex-col mt-14 lg:mt-11">
+          <h6>{`Hallo ${mockData.user[0].alias}`}</h6>
+          <div className="paragraph-md hidden lg:block">
+            hier sind alle wichtigen Infos für dich zusammengestellt.
+          </div>
+        </div>
+        <div className="lg:flex justify-between">
+          <OverviewGroups groups={userGroups} />
+          <OverviewNextEvent groups={userGroups} />
+        </div>
+      </div>
     </PageContainer>
   );
 }

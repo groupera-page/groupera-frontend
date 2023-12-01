@@ -50,7 +50,7 @@ export default function GroupEditPage() {
 
   return (
     <PageContainer>
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col w-full mt-4 lg:mt-10">
         <div className="mb-4">
           <Link to={`/groups/${slug}/termine`}>
             <PrimaryButton isInversed={true}>
@@ -125,7 +125,7 @@ export default function GroupEditPage() {
           </ul>
         </div>
 
-        <div className="flex justify-end mb-8 gap-8">
+        <div className="flex justify-end mb-8 gap-8 ">
           <ul className="flex gap-8 lg:hidden items-center">
             <li className="cursor-pointer text-TEXT_LIGHTGRAY hover:text-PURPLE_PRIMARY">
               <IoSettingsOutline size={28} />

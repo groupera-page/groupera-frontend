@@ -30,38 +30,37 @@ export default function OverviewGroupItems({ groups }) {
   ];
 
   return (
-    <div className="mx-2 flex-col">
-      {groups.map((group, index) => {
-        const nextMeeting = getNextEvent(group.meetings || mockDataEvents);
-
-        return (
-          <div key={index}>
-            <div className="flex justify-between items-center mt-4 pb-4 border-BORDER_PRIMARY border-b ">
-              <div className="flex flex-col justify-center gap-2 w-1/2 ">
-                <p className="paragraph-md font-semibold line-clamp-1 break-words">
-                  {group.name}
+    <>
+      {groups.map((group, index) => (
+        <div key={index}>
+          <p className="paragraph-md mt-3 font-semibold line-clamp-1 break-words w-2/3">
+            {group.name}
+          </p>
+          <div className="flex justify-between pb-4 border-BORDER_PRIMARY border-b ">
+            <div className="flex flex-col justify-center gap-2 w-2/3 ">
+              <div>
+                <p className="paragraph-tiny text-TEXT_LIGHTGRAY mt-2">
+                  Nächster Termin:
                 </p>
-                <div>
-                  <p className="paragraph-tiny text-TEXT_LIGHTGRAY ">
-                    Nächster Termin
-                  </p>
-                  <p className="paragraph-md text-TEXT_PRIMARY">
-                    {nextMeeting
-                      ? formatDateTime(nextMeeting.start.dateTime) + " Uhr"
-                      : "Kein Termin geplant"}
-                  </p>
-                </div>
-              </div>
-              <div className="ml-2">
-                <Link to={`/groups/${group.id}/termine`}>
-                  <SecondaryButton> Zur Gruppe</SecondaryButton>
-                </Link>
+                <p className="paragraph-sm text-TEXT_PRIMARY mt-2">
+                  {getNextEvent(group.meetings || mockDataEvents)
+                    ? formatDateTime(
+                        getNextEvent(group.meetings || mockDataEvents).start
+                          .dateTime,
+                        false
+                      ) + " Uhr"
+                    : "Kein Termin geplant"}
+                </p>
               </div>
             </div>
-            {/* <hr className="border-t border-gray-300" /> */}
+            <div className=" justify-start ml-2">
+              <Link to={`/groups/${group.id}/termine`}>
+                <SecondaryButton> Zur Gruppe</SecondaryButton>
+              </Link>
+            </div>
           </div>
-        );
-      })}
-    </div>
+        </div>
+      ))}
+    </>
   );
 }

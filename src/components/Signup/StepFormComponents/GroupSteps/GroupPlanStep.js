@@ -17,7 +17,7 @@ export default function GroupPlanStep({ freq, day, time, updateGroupFields }) {
   thirtyDaysFromNow.setDate(today.getDate() + 30);
 
   const frequencyOptions = [
-    "Einmalig",
+    // "Einmalig",
     "Wöchentlich",
     "Alle 2 Wochen",
     "Monatlich",
@@ -67,10 +67,10 @@ export default function GroupPlanStep({ freq, day, time, updateGroupFields }) {
       />
       <div className="paragraph-lg mt-4">Zu welcher Uhrzeit?</div>
       <div className="flex gap-4">
-        <div className="w-1/2 lg:w-1/4 ">
+        <div className="w-1/2 lg:w-1/2 ">
           <TimePickerContainer />
         </div>
-        <div className="w-1/2 lg:w-1/4 whitespace-nowrap">
+        <div className="w-1/2 lg:w-1/2 whitespace-nowrap">
           <RadioButtonContainer
             options={timeOptions}
             onChange={onHandleTimeChange}
