@@ -4,13 +4,13 @@ import {Outlet, Navigate} from "react-router-dom";
 
 import {refreshToken, selectAuth} from "../features/auth/authSlice";
 
-const DefaultLoadingPage = () => (
+export const DefaultLoadingPage = () => (
   <div>
     Loading…
   </div>
 )
 
-const ProtectionLayout = () => {
+const ProtectionLayout = ({protect=true}) => {
   const {token, loading} = useSelector(selectAuth);
   const dispatch = useDispatch()
 
@@ -20,12 +20,19 @@ const ProtectionLayout = () => {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  return loading ?
-    <DefaultLoadingPage/>
-    : token ?
-      <Outlet key="Outlet"/>
-      :
-      <Navigate to="/auth/login" replace={true}/>
+  if (loading) {
+    return <DefaultLoadingPage/>
+  }
+
+  if (protect && !token) { // meant for protected routes, if user needs to be logged in
+    return <Navigate to="/auth/login" replace={true}/>
+  }
+
+  if (!protect && token) { // meant for auth routes, if user is already logged in
+    return <Navigate to="/" replace={true}/>
+  }
+
+  return <Outlet key="Outlet"/>
 }
 
 export default ProtectionLayout
