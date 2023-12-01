@@ -11,7 +11,7 @@ export default function ProfileTable({ user }) {
   return (
     <div className="border-2 rounded-lg w-full">
       <NavbarSub subPages={subPages} />
-      <hr className="border-BLUE_PRIMARY border-l" />
+
       <Routes>
         <Route path="Profil" element={<ProfileSubPage user={user} />} />
         <Route

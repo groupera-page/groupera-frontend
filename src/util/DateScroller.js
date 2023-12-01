@@ -66,7 +66,7 @@ export default function DateScroller({
   };
 
   return (
-    <div className="flex border border-TEXT_LIGHTGRAY rounded-md pl-4 py-2 w-fit gap-4 text-sm">
+    <div className="flex border border-BORDER_PRIMARY rounded-md pl-4 py-2 w-fit gap-4 text-sm">
       <p className="text-center text-sm w-1/2">Geburtsdatum</p>
       <div className="flex flex-nowrap px-5 gap-2">
         <select

@@ -36,7 +36,7 @@ export default function FunnelToSignupPage() {
             <label
               key={option.value}
               htmlFor={`radioOption${option.value}`}
-              className="relative w-full cursor-pointer border border-TEXT_LIGHTGRAY rounded-md text-xs p-2 pl-4 flex items-center gap-4"
+              className="relative w-full cursor-pointer border border-BORDER_PRIMARY rounded-md text-xs p-2 pl-4 flex items-center gap-4"
             >
               <div>{option.title}</div>
               <input

@@ -5,7 +5,9 @@ import ProfileTable from "../components/Profile/ProfileTable";
 export default function GroupsPage() {
   return (
     <PageContainer>
-      <ProfileTable />
+      <div className="pb-36 lg:pb-0">
+        <ProfileTable />
+      </div>
     </PageContainer>
   );
 }

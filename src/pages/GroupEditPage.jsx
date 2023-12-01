@@ -72,7 +72,7 @@ export default function GroupEditPage() {
           handleEditImage={handleEditImage}
         />
 
-        <div className="bg-BG_PRIMARY rounded-md border border-TEXT_LIGHTGRAY p-4 my-4 ">
+        <div className="bg-BG_PRIMARY rounded-md border border-BORDER_PRIMARY p-4 my-4 ">
           <ul className="flex flex-wrap justify-between items-center paragraph-lg">
             <li>
               <ul className="flex flex-wrap gap-4 lg:gap-12 items-center">

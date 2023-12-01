@@ -1,11 +1,11 @@
 import React from "react";
-import { NavLink, useLocation, useParams } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 export default function NavbarSub({ subPages }) {
   const { pathname } = useLocation();
 
   return (
-    <div className=" border-BLUE_PRIMARY border-b">
+    <div className=" border-BORDER_PRIMARY border-b">
       <ul className="flex">
         {subPages.map((page, index) => (
           <li
@@ -20,7 +20,7 @@ export default function NavbarSub({ subPages }) {
                     className={`p-2 rounded-t-md 
                     
                       ${
-                        (pathname === `/groups/123` && index == 0) || isActive
+                        (pathname === `/groups/123` && index === 0) || isActive
                           ? "bg-PURPLE_PRIMARY text-BG_PRIMARY"
                           : ""
                       }

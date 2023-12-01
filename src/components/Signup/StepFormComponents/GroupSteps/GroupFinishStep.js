@@ -37,7 +37,7 @@ export default function GroupFinishStep({ updateGroupFields }) {
       </p>
       <div className="bg-BG_PRIMARY ">
         <div
-          className="flex flex-row items-center justify-center cursor-pointer border border-TEXT_LIGHTGRAY rounded-md text-base p-2 items-center hover:shadow-md"
+          className="flex flex-row items-center justify-center cursor-pointer border border-BORDER_PRIMARY rounded-md text-base p-2 hover:shadow-md"
           onClick={copyToClipboard}
         >
           <GoShare className=" text-PURPLE_PRIMARY" size={32} />
