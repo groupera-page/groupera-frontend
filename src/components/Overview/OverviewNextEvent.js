@@ -39,7 +39,7 @@ export default function OverviewNextEvent({ groups }) {
           mockDataEvents.length > 0 ? "" : "flex"
         } rounded-md shadow-md border justify-between`}
       >
-        <div className="mt-2">
+        <div className="mt-2 px-2">
           <OverviewHeader
             title={
               mockDataEvents.length > 0

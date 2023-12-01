@@ -66,8 +66,10 @@ function App() {
           path="/groups/:slug/edit/event"
           element={
             <>
-              <MenusContainer />
-              <GroupEventPage />
+              <ScrollToTop>
+                <MenusContainer />
+                <GroupEventPage />
+              </ScrollToTop>
             </>
           }
         />
