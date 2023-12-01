@@ -111,7 +111,7 @@ export default function GroupInfoStep({
           value={description}
           onChange={handleChange}
           placeholder="Kurze Gruppenbeschreibung"
-          maxLength={500}
+          maxLength={maxCharacters}
         />
       </div>
       <InputError

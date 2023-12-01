@@ -7,11 +7,13 @@ import "react-datepicker/dist/react-datepicker.css";
 import de from "date-fns/locale/de";
 import TimePickerContainer from "../UserInputs/TimePickerContainer";
 import RadioButtonContainer from "../UserInputs/RadioButtonContainer";
+import { Link, useParams } from "react-router-dom";
 
 export default function GroupEventPlan() {
   const [calendarDate, setCalendarDate] = useState(new Date());
   const [frequency, setFrequency] = useState("Einmalig");
   const [timeChoice, setTimeChoice] = useState("60 minuten");
+  const { slug } = useParams();
 
   const today = new Date();
   const thirtyDaysFromNow = new Date();
@@ -83,12 +85,14 @@ export default function GroupEventPlan() {
       </div>
 
       <div className="flex justify-between mt-4">
-        <PrimaryButton isInversed={true}>
-          <div className="flex gap-2 items-center">
-            <BsArrowLeft className="" size={20} />
-            Abbrechen
-          </div>
-        </PrimaryButton>
+        <Link to={`/groups/${slug}/edit`}>
+          <PrimaryButton isInversed={true}>
+            <div className="flex gap-2 items-center">
+              <BsArrowLeft className="" size={20} />
+              Abbrechen
+            </div>
+          </PrimaryButton>
+        </Link>
         <PrimaryButton>Speichern</PrimaryButton>
       </div>
     </div>
