@@ -9,7 +9,7 @@ export default function ProfileTable({ user }) {
   const subPages = ["Profil"];
 
   return (
-    <div className="border-2 rounded-lg w-full">
+    <div className="shadow-md border rounded-lg w-full">
       <NavbarSub subPages={subPages} />
 
       <Routes>
