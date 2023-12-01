@@ -2,7 +2,12 @@ import React, { useState, useRef } from "react";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { Image } from "cloudinary-react";
 
-export default function Carousel({ imageData, img, updateGroupFields }) {
+export default function Carousel({
+  imageData,
+  img,
+  updateGroupFields,
+  updatePreviewImage,
+}) {
   const groupIndex = imageData.indexOf(img) ? imageData.indexOf(img) : 0;
   const [selectedImage, setSelectedImage] = useState(imageData[groupIndex]);
   const sliderRef = useRef(null);
@@ -43,6 +48,7 @@ export default function Carousel({ imageData, img, updateGroupFields }) {
                   }
                   onClick={() => {
                     // updateGroupFields({ img: item });
+                    updatePreviewImage(item);
                     setSelectedImage(item);
                   }}
                 />

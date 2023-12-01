@@ -12,9 +12,14 @@ import GroupEditImage from "./GroupEditImage";
 export default function GroupDetailCard({ group, isAdmin, isEditable }) {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [showImagePicker, setShowImagePicker] = useState(false);
+  const [previewImage, setPreviewImage] = useState(group.image);
 
   function handleEditImage() {
     setShowImagePicker(!showImagePicker);
+  }
+
+  function updatePreviewImage(image) {
+    setPreviewImage(image);
   }
 
   const fadeInVariants = {
@@ -45,7 +50,7 @@ export default function GroupDetailCard({ group, isAdmin, isEditable }) {
         >
           <Image
             cloudName="di8ujuqae"
-            publicId={group.image}
+            publicId={previewImage}
             className={`rounded-md object-cover transition-opacity ${
               imageLoaded ? "opacity-100" : "opacity-0"
             }`}
@@ -64,7 +69,7 @@ export default function GroupDetailCard({ group, isAdmin, isEditable }) {
       {isEditable && (
         <div className="lg:hidden">
           <div className="paragraph-lg mt-4 mb-2 "> Gruppenbild ändern</div>
-          <GroupEditImage />
+          <GroupEditImage updatePreviewImage={updatePreviewImage} />
         </div>
       )}
 
@@ -98,7 +103,7 @@ export default function GroupDetailCard({ group, isAdmin, isEditable }) {
         {isEditable && (
           <div className="hidden lg:block">
             <div className="paragraph-lg mt-4 mb-2 "> Gruppenbild ändern</div>
-            <GroupEditImage />
+            <GroupEditImage updatePreviewImage={updatePreviewImage} />
           </div>
         )}
       </div>
