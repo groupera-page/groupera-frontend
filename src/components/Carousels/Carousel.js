@@ -48,7 +48,10 @@ export default function Carousel({
                   }
                   onClick={() => {
                     // updateGroupFields({ img: item });
-                    updatePreviewImage(item);
+                    if (updatePreviewImage) {
+                      updatePreviewImage(item);
+                    }
+
                     setSelectedImage(item);
                   }}
                 />

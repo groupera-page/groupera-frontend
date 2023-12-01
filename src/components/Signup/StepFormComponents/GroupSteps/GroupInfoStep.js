@@ -29,37 +29,6 @@ export default function GroupInfoStep({
     updateGroupFields({ name: e.target.value });
   };
 
-  // const imageData = [
-  //   "Grouptitel%20pictures/pexels-akil-mazumder-1072824_1_tdw8si.jpg",
-  //   "Grouptitel%20pictures/pexels-ghida-basma-609749_yy95mt.jpg",
-  //   "Grouptitel%20pictures/pexels-pixabay-326235_juvylz.jpg",
-  //   "Grouptitel%20pictures/pexels-pixabay-273886_dygqro.jpg",
-  //   "Grouptitel%20pictures/pexels-johannes-plenio-1690355_bj811s.jpg",
-  //   "Grouptitel%20pictures/pexels-nandhu-kumar-1661296_ttr2gf.jpg",
-  //   "Grouptitel%20pictures/pexels-javier-gonzalez-108303_iwxfil.jpg",
-  //   "Grouptitel%20pictures/pexels-taylor-hunt-2902440_xvgnuq.jpg",
-  //   "Grouptitel%20pictures/pexels-eberhard-grossgasteiger-6_abiqd5.jpg",
-  //   "Grouptitel%20pictures/pexels-pixabay-416117_hz1ccg.jpg",
-  // ];
-  // const isGroupNameExists = (name) => {
-  //   return groupNames.includes(name);
-  // };
-  // useEffect(() => {
-  //   updateGroupFields({ errorGroupName: "" });
-  //   updateGroupFields({ errorGroupDescription: "" });
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await axios.get(`http://localhost:5005/group/groups`);
-  //       // console.log(response);
-  //       const names = response.data.map((group) => group.name);
-  //       setGroupNames(names);
-  //     } catch (error) {
-  //       console.error(error.response.data.message);
-  //     }
-  //   };
-  //   fetchData();
-  // }, []);
-
   return (
     <div>
       <StepHeader
@@ -129,6 +98,7 @@ export default function GroupInfoStep({
           imageData={images}
           img={img}
           updateGroupFields={updateGroupFields}
+          
         />
       </div>
     </div>
