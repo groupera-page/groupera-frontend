@@ -4,12 +4,14 @@ import { reducer as formReducer } from "redux-form"
 
 import authReducer from "./features/auth/authSlice";
 import alertReducer from "./features/alert/alertSlice";
+import mockDataSlice from "./mockDataSlice";
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
     alerts: alertReducer,
-    form: formReducer
+    form: formReducer,
+    mockData: mockDataSlice,
   },
   middleware: getDefaultMiddleware => getDefaultMiddleware().concat(logger)
 });

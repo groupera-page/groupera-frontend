@@ -1,4 +1,3 @@
-const today = new Date();
 const now = new Date();
 // Create default time slot 2 hours ahead of now
 now.setHours(now.getHours() + 2);

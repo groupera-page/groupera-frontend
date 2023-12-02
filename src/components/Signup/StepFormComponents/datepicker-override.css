@@ -1,0 +1,70 @@
+/* Style the datepicker container */
+.react-datepicker {
+  border-radius: 4px;
+  display: inline-block;
+}
+
+/* Style the header where the month and year are displayed */
+.react-datepicker__header {
+  background-color: #fcfcfc;
+  color: transparent;
+  border-bottom: 1px solid #ccc;
+  font-size: 10px;
+}
+
+/* Container style */
+.react-datepicker-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* Style for the datepicker input field */
+.react-datepicker__input-container input {
+  padding: 12px;
+  padding-left: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 180px;
+  border-color: #8590a6;
+  color: #333;
+  background-color: #fcfcfc;
+}
+
+/* Calendar style */
+.react-datepicker {
+  font-family: "Helvetica Neue";
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  color: #f0f0f0;
+}
+
+.react-datepicker__header {
+  background-color: #f0f0f0;
+  background-color: white;
+  border-bottom: 1px solid #a64d79;
+}
+
+.react-datepicker__navigation--previous {
+  border-right-color: #333;
+}
+
+.react-datepicker__navigation--next {
+  border-left-color: #333;
+}
+
+.react-datepicker__day--today {
+  font-weight: normal;
+}
+
+.react-datepicker__navigation {
+  top: 22px;
+}
+
+.react-datepicker__current-month {
+  font-size: 18px;
+  font-weight: light;
+}
