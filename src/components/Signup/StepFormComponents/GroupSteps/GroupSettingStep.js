@@ -20,7 +20,7 @@ export default function GroupSettingStep({ moderator, updateGroupFields }) {
       <div className="paragraph-lg mt-4">
         Möchtest du Deine Gruppe selbst moderieren?
       </div>
-      <div className="flex flex-col gap-4 mb-4">
+      <div className="flex flex-col gap-4 ">
         <RadioButton
           id={"moderator1"}
           title={"Ja"}
@@ -34,23 +34,27 @@ export default function GroupSettingStep({ moderator, updateGroupFields }) {
           id={"moderator2"}
           title={"Ja, aber mit Unterstützung"}
           checkedVariable={moderator}
-          onChange={(e) => {
-            updateGroupFields({ moderator: e.target.value });
-            setShowMessage(false);
-          }}
+          onChange={handleNoModerator}
         />
         <RadioButton
           id={"moderator3"}
           title={"Nein"}
           checkedVariable={moderator}
-          onChange={handleNoModerator}
+          onChange={(e) => {
+            updateGroupFields({ moderator: e.target.value });
+            setShowMessage(false);
+          }}
         />
 
-        {showMessage && (
-          <div className="flex text- PURPLE_PRIMARY text-sm bg-BG_PRIMARY justify-center">
+        {
+          <div
+            className={`flex PURPLE_PRIMARY text-sm bg-BG_PRIMARY justify-center ${
+              showMessage ? "opacity-100" : "opacity-0"
+            }`}
+          >
             Wir werden Dir eine E-mail senden zum weiteren Vorgehen.
           </div>
-        )}
+        }
       </div>
     </div>
   );

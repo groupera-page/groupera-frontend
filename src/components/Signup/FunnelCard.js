@@ -171,7 +171,7 @@ export default function FunnelCard({ funnelIndex, showLogo = true }) {
   return (
     <div
       className="w-full md:w-3/4 lg:w-1/2 md:h-5/6
-      px-4 rounded md:shadow-md bg-BG_PRIMARY md:px-4 "
+      px-4 rounded md:shadow-md bg-BG_PRIMARY md:px-8 lg:px-28 "
     >
       <div className="pb-3 flex justify-center">
         {showLogo && (
@@ -235,7 +235,8 @@ export default function FunnelCard({ funnelIndex, showLogo = true }) {
                 <div className="mt-5">
                   <PrimaryButton type={"submit"}>
                     <div className="flex items-center ">
-                      {isLastStep ? "Absenden" : "Weiter"}
+                      Weiter
+                      {/* {isLastStep ? "Absenden" : "Weiter"} */}
                       <BsArrowRight
                         className="w-5 ml-3 text-BG_PRIMARY"
                         size={18}

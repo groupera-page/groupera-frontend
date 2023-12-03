@@ -70,7 +70,7 @@ export default function GroupPlanStep({ freq, day, time, updateGroupFields }) {
         <div className="w-1/2 lg:w-1/2 ">
           <TimePickerContainer />
         </div>
-        <div className="w-1/2 lg:w-1/2 whitespace-nowrap">
+        <div className="w-1/2 lg:w-1/2f whitespace-nowrap">
           <RadioButtonContainer
             options={timeOptions}
             onChange={onHandleTimeChange}
