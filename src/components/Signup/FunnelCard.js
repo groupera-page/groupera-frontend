@@ -79,7 +79,7 @@ export default function FunnelCard({ funnelIndex, showLogo = true }) {
 
   const handleGroup = async (e) => {
     e.preventDefault();
-    next(1);
+    isLastStep ? navigate("/") : next(1);
     // if (step && step.type.name === "GroupInfoStep") {
     //   const isGroupValid = validateGroupForm(groupData, updateGroupFields);
     //   if (!isGroupValid) {
@@ -108,7 +108,7 @@ export default function FunnelCard({ funnelIndex, showLogo = true }) {
 
   const handleUser = async (e) => {
     e.preventDefault();
-    next(1);
+    isLastStep ? navigate("/") : next(1);
     // //Next step
     // if (
     //   step &&
@@ -207,14 +207,29 @@ export default function FunnelCard({ funnelIndex, showLogo = true }) {
         >
           {step}
           <div className="flex gap-2 justify-center">
-            <div className="flex flex-col w-full items-center">
+            <div className="flex flex-col w-full  justify-between">
               <InputError
                 showMessage={errorMessage}
                 errorMessage={errorMessage}
               />
-              <div className="flex gap-4 justify-center ">
+              <div className="flex gap-4 justify-between ">
                 <div className="mt-5">
-                  {currentStepIndex !== 0 &&
+                  {!isLastStep && (
+                    <PrimaryButton
+                      type={"button"}
+                      handleButtonClick={handleBackButton}
+                      isInversed={true}
+                    >
+                      <div className="flex items-center ">
+                        <BsArrowLeft
+                          className="w-5 mr-3 text-PURPLE_PRIMARY"
+                          size={18}
+                        />
+                        Zurück
+                      </div>
+                    </PrimaryButton>
+                  )}
+                  {/* {currentStepIndex !== 0 &&
                     verifyCodeIndex !== currentStepIndex &&
                     verifyCodeIndex + 1 !== currentStepIndex && (
                       <PrimaryButton
@@ -230,7 +245,7 @@ export default function FunnelCard({ funnelIndex, showLogo = true }) {
                           Zurück
                         </div>
                       </PrimaryButton>
-                    )}
+                    )} */}
                 </div>
                 <div className="mt-5">
                   <PrimaryButton type={"submit"}>

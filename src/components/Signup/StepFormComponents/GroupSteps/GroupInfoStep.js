@@ -98,7 +98,6 @@ export default function GroupInfoStep({
           imageData={images}
           img={img}
           updateGroupFields={updateGroupFields}
-          
         />
       </div>
     </div>
