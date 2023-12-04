@@ -14,16 +14,16 @@ export default function Home() {
 
   return (
     <PageContainer>
-      <div className="w-full h-full">
-        <div className="flex flex-col mt-14 lg:mt-11">
+      <div className="w-full h-full ">
+        <div className="flex flex-col mt-14 lg:mt-11 ">
           <h6>{`Hallo ${mockData.user[0].alias}`}</h6>
           <div className="paragraph-md hidden lg:block">
             hier sind alle wichtigen Infos für dich zusammengestellt.
           </div>
         </div>
-        <div className="lg:flex justify-between">
-          <OverviewGroups groups={userGroups} />
+        <div className="lg:flex justify-between gap-8">
           <OverviewNextEvent groups={userGroups} />
+          <OverviewGroups groups={userGroups} />
         </div>
       </div>
     </PageContainer>

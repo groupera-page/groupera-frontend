@@ -170,8 +170,8 @@ export default function FunnelCard({ funnelIndex, showLogo = true }) {
 
   return (
     <div
-      className="w-full  md:w-3/4 lg:w-1/2 
-      px-4 rounded md:shadow-md bg-BG_PRIMARY md:px-8 lg:px-28"
+      className="w-full h-full lg:min-h-[85vh] md:w-3/4 lg:w-1/2 
+      px-4 rounded md:shadow-md bg-BG_PRIMARY md:px-8 lg:px-28 "
     >
       <div className="pb-3 flex justify-center">
         {showLogo && (

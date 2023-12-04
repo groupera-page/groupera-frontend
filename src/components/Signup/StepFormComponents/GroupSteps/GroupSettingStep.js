@@ -52,7 +52,8 @@ export default function GroupSettingStep({ moderator, updateGroupFields }) {
               showMessage ? "opacity-100" : "opacity-0"
             }`}
           >
-            Wir werden Dir eine E-mail senden zum weiteren Vorgehen.
+            Wir werden die Gruppe die ersten 2 Meetings durch unsere Community
+            Managerin begleiten.
           </div>
         }
       </div>

@@ -68,13 +68,13 @@ export default function GroupEventPlan() {
           horizontal={true}
         />
       </div>
-      <div className="w-1/2">
+      <div className="lg:w-1/2">
         <div className="paragraph-lg mt-4">Zu welcher Uhrzeit?</div>
         <div className="flex gap-4">
-          <div className="w-1/2 lg:w-1/2 ">
+          <div className="w-1/2 ">
             <TimePickerContainer />
           </div>
-          <div className="w-1/2 lg:w-1/2 whitespace-nowrap">
+          <div className="w-1/2 whitespace-nowrap">
             <RadioButtonContainer
               options={timeOptions}
               onChange={onHandleTimeChange}
@@ -86,7 +86,7 @@ export default function GroupEventPlan() {
         </div>
       </div>
 
-      <div className="flex justify-between mt-4 w-1/2">
+      <div className="flex justify-between mt-4 lg:w-1/2">
         <Link to={`/groups/${slug}/edit`}>
           <PrimaryButton isInversed={true}>
             <div className="flex gap-2 items-center">

@@ -12,17 +12,23 @@ export default function GroupFinishStep({ updateGroupFields, moderator }) {
   }
 
   function copyToClipboard() {
-    const textToCopy = "https://groupera.de"; // Replace with your actual group link
-    navigator.clipboard
-      .writeText(textToCopy)
-      .then(() => {
-        setIsCopied(true);
-        setTimeout(() => setIsCopied(false), 3000); // Reset isCopied after 3 seconds
-      })
-      .catch((error) => {
-        console.error("Failed to copy link to clipboard:", error);
-        // Handle the error or provide user feedback
-      });
+    const textToCopy = "https://groupera.de"; // Replace with actual group link
+
+    const textarea = document.createElement("textarea");
+    textarea.value = textToCopy;
+    textarea.setAttribute("readonly", "");
+    textarea.style.position = "absolute";
+    textarea.style.left = "-9999px";
+
+    document.body.appendChild(textarea);
+
+    textarea.select();
+    document.execCommand("copy");
+
+    document.body.removeChild(textarea);
+
+    setIsCopied(true);
+    setTimeout(() => setIsCopied(false), 3000);
   }
 
   return (
@@ -32,7 +38,7 @@ export default function GroupFinishStep({ updateGroupFields, moderator }) {
           <h6 className="mb-4">
             Super, deine Gruppe ist eröffnet. Bringe jetzt Menschen zusammen!
           </h6>
-          <div className="paragraph-md text-TEXT_LIGHTGRAY my-4">
+          <div className="paragraph-md my-4">
             Klicke auf Link kopieren und schicke ihnen deinen Freunden und
             Bekannten um sie in die Gruppe einzuladen.
           </div>
@@ -43,7 +49,6 @@ export default function GroupFinishStep({ updateGroupFields, moderator }) {
               onClick={copyToClipboard}
             >
               Link Kopieren
-              {/* <GoShare className=" text-PURPLE_PRIMARY" size={32} /> */}
             </div>
           </div>
           <div className="flex justify-center mt-1 text-sm opacity-75 text-PURPLE_PRIMARY">

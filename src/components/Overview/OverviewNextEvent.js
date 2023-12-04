@@ -11,21 +11,21 @@ export default function OverviewNextEvent({ groups }) {
     {
       id: "33dk58ss8dflia9emc3epprlpk_20231120T110000Z",
       start: {
-        dateTime: "2023-11-20T12:00:00+01:00",
+        dateTime: "2023-12-20T12:00:00+01:00",
         time: "12:00",
       },
       end: {
-        dateTime: "2023-11-20T12:30:00+01:00",
+        dateTime: "2023-12-20T12:30:00+01:00",
       },
     },
     {
       id: "33dk58ss8dflia9emc3epprlpk_20231204T110000Z",
       start: {
-        dateTime: "2023-12-04T12:00:00+01:00",
+        dateTime: "2023-12-24T12:00:00+01:00",
         time: "12:00",
       },
       end: {
-        dateTime: "2023-12-04T12:30:00+01:00",
+        dateTime: "2023-12-24T12:30:00+01:00",
       },
     },
   ];
@@ -83,7 +83,7 @@ export default function OverviewNextEvent({ groups }) {
           </div>
           <div className="w-full lg:w-1/2">
             {mockDataEvents.length > 0 && (
-              <div className="flex flex-row lg:flex-col p-2  h-full justify-center items-end gap-3 w-full ">
+              <div className="flex flex-row lg:flex-col p-2 h-full justify-center items-end gap-3 w-full ">
                 <SecondaryButton>Abmelden</SecondaryButton>
                 <PrimaryButton>Videokonferenz</PrimaryButton>
               </div>
