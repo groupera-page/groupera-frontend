@@ -39,7 +39,7 @@ export default function OverviewNextEvent({ groups }) {
           mockDataEvents.length > 0 ? "" : "flex-row"
         } rounded-md shadow-md border justify-between`}
       >
-        <div className="flex flex-col lg:flex-row w-full">
+        <div className="flex flex-col lg:flex-row w-full justify-between">
           <div className="p-2">
             <OverviewHeader
               title={
@@ -83,7 +83,7 @@ export default function OverviewNextEvent({ groups }) {
           </div>
           <div className="w-full lg:w-1/2">
             {mockDataEvents.length > 0 && (
-              <div className="flex flex-row lg:flex-col m-2 h-full justify-center items-end gap-3 ">
+              <div className="flex flex-row lg:flex-col p-2  h-full justify-center items-end gap-3 w-full ">
                 <SecondaryButton>Abmelden</SecondaryButton>
                 <PrimaryButton>Videokonferenz</PrimaryButton>
               </div>
