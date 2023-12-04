@@ -6,25 +6,26 @@ import getNextEvent from "../../util/getNextEvent";
 
 export default function OverviewGroupItems({ groups }) {
   // TODO Loop through groups in mockdata to find the events (coming from google calendar API)
+
   const mockDataEvents = [
     {
       id: "33dk58ss8dflia9emc3epprlpk_20231120T110000Z",
       start: {
-        dateTime: "2023-11-20T12:00:00+01:00",
+        dateTime: "2023-12-20T12:00:00+01:00",
         time: "12:00",
       },
       end: {
-        dateTime: "2023-11-20T12:30:00+01:00",
+        dateTime: "2023-12-20T12:30:00+01:00",
       },
     },
     {
       id: "33dk58ss8dflia9emc3epprlpk_20231204T110000Z",
       start: {
-        dateTime: "2023-12-04T12:00:00+01:00",
+        dateTime: "2023-12-24T12:00:00+01:00",
         time: "12:00",
       },
       end: {
-        dateTime: "2023-12-04T12:30:00+01:00",
+        dateTime: "2023-12-24T12:30:00+01:00",
       },
     },
   ];
@@ -43,10 +44,9 @@ export default function OverviewGroupItems({ groups }) {
                   Nächster Termin:
                 </p>
                 <p className="paragraph-sm text-TEXT_PRIMARY mt-2">
-                  {getNextEvent(group.meetings || mockDataEvents)
+                  {getNextEvent(mockDataEvents)
                     ? formatDateTime(
-                        getNextEvent(group.meetings || mockDataEvents).start
-                          .dateTime,
+                        getNextEvent(mockDataEvents).start.dateTime,
                         false
                       ) + " Uhr"
                     : "Kein Termin geplant"}

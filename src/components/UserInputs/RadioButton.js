@@ -10,7 +10,7 @@ export default function RadioButton({
   return (
     <label
       htmlFor={id}
-      className={`relative cursor-pointer border ${
+      className={`relative cursor-pointer border whitespace-nowrap ${
         checkedVariable === title
           ? "border-PURPLE_PRIMARY"
           : "border-BORDER_PRIMARY "

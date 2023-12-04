@@ -16,7 +16,7 @@ const themeOptions = [
     title: "Chronische Erkrankungen",
     value: "Chronische Erkrankungen",
   },
-  { title: "Andere*", value: "Andere*" },
+  { title: "Sonstige", value: "Sonstige" },
 ];
 
 export default function GroupThemesStep({ theme, updateGroupFields }) {

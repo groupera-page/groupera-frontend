@@ -33,12 +33,10 @@ export default function GroupFinishStep({ updateGroupFields, moderator }) {
             Super, deine Gruppe ist eröffnet. Bringe jetzt Menschen zusammen!
           </h6>
           <div className="paragraph-md text-TEXT_LIGHTGRAY my-4">
-            Du kannst den Link kopieren und mit Bekannten und Freunden teilen.
-          </div>
-          <div className="paragraph-md my-4">
             Klicke auf Link kopieren und schicke ihnen deinen Freunden und
-            Bekannten, um sie in die Gruppe einzuladen.
+            Bekannten um sie in die Gruppe einzuladen.
           </div>
+
           <div className="">
             <div
               className="flex flex-row items-center justify-center cursor-pointer border border-BORDER_PRIMARY rounded-md text-base p-2 hover:shadow-md bg-PURPLE_PRIMARY text-BG_PRIMARY font-bold"

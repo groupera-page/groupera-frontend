@@ -23,7 +23,7 @@ const userData = {
 };
 
 const groupData = {
-  theme: "Andere*",
+  theme: "Sonstige",
   name: "",
   description: "",
   users: [],
