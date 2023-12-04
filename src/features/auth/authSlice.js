@@ -1,4 +1,4 @@
-import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
+import {createAsyncThunk, createReducer} from "@reduxjs/toolkit";
 
 import authService from "./authApi";
 
@@ -27,6 +27,14 @@ export const logInUser = createAsyncThunk(
   },
 );
 
+export const logout = createAsyncThunk(
+  "auth/logout",
+  async () => {
+    const result = await authService.logout()
+    return result.data
+  },
+);
+
 export const refreshToken = createAsyncThunk(
   "auth/refreshToken",
   async () => {
@@ -36,19 +44,20 @@ export const refreshToken = createAsyncThunk(
   }
 );
 
-const authSlice = createSlice({
-  name: "auth",
+const authReducer = createReducer(
+  // name: "auth",
   initialState,
-  reducers: {
-    logout: state => {
-      tokenService.removeUser()
-      state.token = null;
-      state.loading = false;
-      state.user = null;
-    },
-  },
-  extraReducers: (builder) => {
+  (builder) => {
     builder
+      .addCase(logout.rejected, (state, action) => {
+        state.error = action.error.message
+      })
+      .addCase(logout.fulfilled, (state) => {
+        tokenService.removeUser()
+        state.token = null;
+        state.loading = false;
+        state.user = null;
+      })
       .addCase(registerUser.rejected, (state, action) => {
         state.loading = false;
         state.token = null;
@@ -100,11 +109,9 @@ const authSlice = createSlice({
         }
       })
   },
-});
-
-export const {logout} = authSlice.actions;
+);
 
 export const selectAuth = (state) => state.auth;
-export const selectUser = (state) => state.auth.user;
+// export const selectUser = (state) => state.auth.user;
 
-export default authSlice.reducer;
+export default authReducer;

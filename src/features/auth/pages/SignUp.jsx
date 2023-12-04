@@ -10,7 +10,7 @@ import getFunnelSteps from "../../../util/getFunnelSteps";
 
 const SignUp = () => {
   const [searchParams] = useSearchParams()
-  const steps = getFunnelSteps(searchParams.get("funnel"))
+  const steps = getFunnelSteps(searchParams)
   const dispatch = useDispatch()
 
   const { step, isFirstStep, isLastStep, back, next } =
@@ -38,15 +38,13 @@ const SignUp = () => {
   }
 
   return (
-    <div
-      className="h-full w-full md:h-fit md:w-1/2 px-4 rounded bg-primaryBg md:p-8"
-    >
-      <div className="pb-3">
-        <img src={logoSvg} alt="logo" className="lg:w-40 w-28 p-2 pt-3" />
+    <div>
+      <div>
+        <img src={logoSvg} alt="logo" className="lg:w-40 w-28" />
       </div>
-      <div className="flex flex-col gap-2">
+      <div>
         <div>
-          <h2 className="">{step.header}</h2>
+          <h2>{step.header}</h2>
           {
             step.desc &&
             <p className="text-textLightGray">
@@ -65,6 +63,7 @@ const SignUp = () => {
             </AuthForm>
           }
         </div>
+        {/*  img */}
       </div>
     </div>
   )

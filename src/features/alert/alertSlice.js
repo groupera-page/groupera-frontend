@@ -38,7 +38,7 @@ const alertSlice = createSlice({
       .addCase(logInUser.fulfilled, (state) => {
         state.items.push(getNewAlert("success", "Your in!", "Successfully logged in. Have fun!"))
       })
-      .addCase(logout, (state) => {
+      .addCase(logout.fulfilled, (state) => {
         state.items.push(getNewAlert("success", "Logged out", "Bye bye, log in again to gain access"))
       })
   },

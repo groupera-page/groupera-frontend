@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import logoSvg from "../../assets/imgLogos/logoNoBg.svg";
 import UserVerifyCodeStep from "./StepFormComponents/UserSteps/UserVerifyCodeStep";
-import StepIndicator from "./StepFormComponents/StepIndicator";
-import useMultiStepForm from "../../util/hooks/useMultiStepForm";
+import StepIndicator from "../../features/auth/components/RegStepper";
+import useMultiStepForm from "../../util/hooks/multistepHook";
 import FunnelSteps from "./StepFormComponents/FunnelSteps";
-import { userDataInit, groupDataInit } from "../../util/initData";
+// import { userDataInit, groupDataInit } from "../../util/initData";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import PrimaryButton from "../Buttons/PrimaryButton";
 import InputError from "../UserInputs/InputError";
@@ -14,8 +14,8 @@ import InputError from "../UserInputs/InputError";
 // import { validateUserForm, validateGroupForm } from "../../util/formValidation";
 
 export default function FunnelCard({ funnelIndex, showLogo = true }) {
-  const [userData, setUserData] = useState(userDataInit);
-  const [groupData, setGroupData] = useState(groupDataInit);
+  const [userData, setUserData] = useState({});
+  const [groupData, setGroupData] = useState({});
   const [errorMessage, setErrorMessage] = useState(undefined);
   const [isVerified, setisVerified] = useState(false);
   const [currentUser, setCurrentUser] = useState("");

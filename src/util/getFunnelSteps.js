@@ -1,7 +1,8 @@
 import {
   authFields,
+  chooseFunnelField,
   groupFields,
-  questionnaireFields,
+  groupExperienceField,
 } from "./form.helper";
 import { registerUser } from "../features/auth/authSlice";
 
@@ -22,13 +23,28 @@ const userProfileStep = {
 
 const authStep = {
   header: "Verifiziere deine Emailadresse",
-  desc: "Wir haben Dir einen 4 stelligen Verifizierungscode per E-Mail geschickt. Bitte schau auch in deinem Spam nach.",
+  desc: "Wir haben Dir einen 4 stelligen Verifizierungscode per E-Mail geschickt.",
   fields: [authFields.authCode],
   goBackOption: true
 }
 
+const chooseFunnelStep = {
+  header: "Was trifft am ehesten auf Dich zu?",
+  fields: [chooseFunnelField],
+  goBackOption: false,
+  showProgressBar: false
+}
+
 const interestedInGroupsWithThemeStep = {
   header: "Für welche Themen suchst du Gruppen?",
+  fields: [
+    groupFields.theme
+  ],
+  goBackOption: true
+}
+
+const groupThemeStep = {
+  header: "Zu welchem Thema möchtest du eine Gruppe gründen?",
   fields: [
     groupFields.theme
   ],
@@ -66,14 +82,45 @@ const experienceStep = {
   header: "Hast Du bereist Erfahrung mit Selbsthilfegruppen?",
   desc: "Du kannst alle Angaben jederzeit in den Gruppeneinstellungen ändern",
   fields: [
-    questionnaireFields.groupExperience
+    groupExperienceField
   ],
   goBackOption: true
 }
 
-const getFunnelSteps = (search) => {
-  switch (search){
-    case "funnel1":
+const getFunnelSteps = (searchParams) => {
+  const funnelNumber = searchParams.get("funnel")
+  const funnelType = searchParams.get("type")
+
+  switch (funnelNumber){
+    case "1": {
+      switch (funnelType) {
+        case "create":
+          return [
+            {
+              ...experienceStep,
+              goBackOption: false
+            },
+            groupThemeStep,
+            groupInfoStep,
+            // groupMeetingStep,
+            userProfileStep,
+            authStep,
+            {
+              ...groupSettingsStep,
+              goBackOption: false
+            },
+            groupDownloadStep
+          ]
+        default:
+          return [
+            interestedInGroupsWithThemeStep,
+            experienceStep,
+            userProfileStep,
+            authStep
+          ]
+      }
+    }
+    case "2":
       return [
         userProfileStep,
         authStep,
@@ -82,39 +129,26 @@ const getFunnelSteps = (search) => {
           goBackOption: false
         }
       ]
-    case "funnel2":
+    case "3":
       return [
-        interestedInGroupsWithThemeStep,
-        experienceStep,
-        userProfileStep,
-        authStep,
-      ]
-    case "funnel3":
-      return [
-        experienceStep,
-        interestedInGroupsWithThemeStep,
+        groupThemeStep,
         groupInfoStep,
-        // groupPlanStep,
+        // groupMeetingStep,
         userProfileStep,
         authStep,
-        groupDownloadStep,
-        groupSettingsStep,
-      ]
-    default:
-      return [
-        interestedInGroupsWithThemeStep,
-        groupInfoStep,
-        // groupPlanStep,
-        userProfileStep,
-        authStep,
-        {
-          ...groupDownloadStep,
-          goBackOption: false
-        },
         {
           ...groupSettingsStep,
           goBackOption: false
         },
+        groupDownloadStep
+      ]
+    default:
+      return [
+        chooseFunnelStep,
+        interestedInGroupsWithThemeStep,
+        experienceStep,
+        userProfileStep,
+        authStep
       ]
   }
 }

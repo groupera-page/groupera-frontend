@@ -33,17 +33,20 @@ const MySelect = ({
       }
       {
         options.map((opt, idx) => (
-          <div key={idx}>
-            <label>
-              <input type={isMultiSelect() ? "checkbox" : "radio"}
-                     name={`${input.name}[${idx}]`}
-                     value={opt.value}
-                     checked={Array.isArray(input.value) ? input.value.indexOf(opt.value) !== -1 : input.value === opt.value}
-                     onChange={(event) => handleOnChange(event, opt)}
-              />
-              {opt.label}
-            </label>
-          </div>
+          <label
+            key={idx}
+            htmlFor={`opt-${idx}`}
+          >
+            {opt.label}
+            <input
+              type={isMultiSelect() ? "checkbox" : "radio"}
+              id={`opt-${idx}`}
+              name={`${input.name}[${idx}]`}
+              value={opt.value}
+              checked={Array.isArray(input.value) ? input.value.indexOf(opt.value) !== -1 : input.value === opt.value}
+              onChange={(event) => handleOnChange(event, opt)}
+            />
+          </label>
         ))
       }
       {

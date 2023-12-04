@@ -167,13 +167,27 @@ const experienceOptions = [
   {label: "Ja, ich habe bereits Gruppen organisiert.", value: "Ja, ich habe bereits Gruppen organisiert."},
 ];
 
-export const questionnaireFields = {
-  groupExperience: {
-    type: "inlineSelect",
-    value: experienceOptions[0].value,
-    label: "",
-    name: "experience",
-    options: experienceOptions,
-    validate: [required]
-  },
+export const groupExperienceField = {
+  type: "inlineSelect",
+  value: experienceOptions[0].value,
+  label: "",
+  name: "experience",
+  options: experienceOptions,
+  validate: [required]
+}
+
+const chooseFunnelOptions = [
+  {label: "Ich möchte an einer Selbsthilfegruppe teilnehmen.", value: "find group", onClick: (navigate) => navigate("/auth/signup?funnel=1?type=find")},
+  {label: "Ich möchte eine Selbsthilfegruppe eröffnen.", value: "create group", onClick: (navigate) => navigate("/auth/signup?funnel=1?type=create")},
+  {label: "Ich kann mir beides vorstellen.", value: "both", onClick: (navigate) => navigate("/auth/signup?funnel=1?type=find")},
+  {label: "Ich weiß es noch nicht.", value: "dont know", onClick: (navigate) => navigate("/auth/signup?funnel=1?type=find")}
+]
+
+export const chooseFunnelField = {
+  type: "inlineSelect",
+  value: experienceOptions[0].value,
+  label: "",
+  name: "experience",
+  options: chooseFunnelOptions,
+  validate: [required]
 }

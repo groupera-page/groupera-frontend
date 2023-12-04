@@ -10,6 +10,14 @@ const login = (email, password) => {
     })
 };
 
+const logout = () => {
+  return api
+    .get("/auth/logout", {
+      withCredentials: true
+    })
+};
+
+
 const register = (email, password, fullName) => {
   return api
     .post("/auth/register", {
@@ -63,6 +71,7 @@ const getCurrentUser = () => JSON.parse(localStorage.getItem("user"));
 
 const authService = {
   login,
+  logout,
   register,
   refreshToken,
   getCurrentUser,
