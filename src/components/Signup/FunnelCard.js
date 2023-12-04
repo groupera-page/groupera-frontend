@@ -9,6 +9,7 @@ import { userDataInit, groupDataInit } from "../../util/initData";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import PrimaryButton from "../Buttons/PrimaryButton";
 import InputError from "../UserInputs/InputError";
+import ScrollToTop from "../../util/ScrollToTop";
 // import { createGroup } from "../../api/groupService";
 // import { verifyCode, createUser, updateUser } from "../../api/userService";
 // import { validateUserForm, validateGroupForm } from "../../util/formValidation";
@@ -77,8 +78,13 @@ export default function FunnelCard({ funnelIndex, showLogo = true }) {
     setErrorMessage("");
   }
 
+  const handleScrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   const handleGroup = async (e) => {
     e.preventDefault();
+    handleScrollToTop();
     isLastStep ? navigate("/") : next(1);
     // if (step && step.type.name === "GroupInfoStep") {
     //   const isGroupValid = validateGroupForm(groupData, updateGroupFields);
@@ -108,6 +114,7 @@ export default function FunnelCard({ funnelIndex, showLogo = true }) {
 
   const handleUser = async (e) => {
     e.preventDefault();
+    handleScrollToTop();
     isLastStep ? navigate("/") : next(1);
     // //Next step
     // if (
