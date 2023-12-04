@@ -81,7 +81,7 @@ export default function OverviewNextEvent({ groups }) {
               </div>
             </div>
           </div>
-          <div className="w-full">
+          <div className="w-full lg:w-1/2">
             {mockDataEvents.length > 0 && (
               <div className="flex flex-row lg:flex-col m-2 h-full justify-center items-end gap-3 ">
                 <SecondaryButton>Abmelden</SecondaryButton>
