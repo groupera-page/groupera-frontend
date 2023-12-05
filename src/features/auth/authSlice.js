@@ -1,4 +1,4 @@
-import {createAsyncThunk, createReducer} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
 import authService from "./authApi";
 
@@ -18,6 +18,24 @@ export const registerUser = createAsyncThunk(
     return result.data
   },
 );
+
+export const updateUserQuestions = createAsyncThunk(
+  "user/editQuestions",
+  async (formValues) => {
+    debugger
+    const result = await authService.updateUser(formValues)
+    return result.data
+  },
+);
+
+export const verifyEmail = createAsyncThunk(
+  "auth/verifyEmail",
+  async (formValues) => {
+    const result = await authService.verifyEmail(formValues.email, formValues.authCode)
+    return result.data
+  },
+);
+
 
 export const logInUser = createAsyncThunk(
   "auth/login",
@@ -44,10 +62,26 @@ export const refreshToken = createAsyncThunk(
   }
 );
 
-const authReducer = createReducer(
-  // name: "auth",
+export const isAuthenticated = createAsyncThunk(
+  "auth/isAuthenticated",
+  async () => {
+    // const currentRefreshToken = tokenService.getLocalRefreshToken();
+    const result = await authService.refreshToken()
+    return result.data;
+  }
+);
+
+const authSlice = createSlice({
+  name: "auth",
   initialState,
-  (builder) => {
+  reducers: {
+    setAuthToken: (state) => {
+      const token = localStorage.getItem("tempAuthToken");
+      state.token = token;
+      localStorage.removeItem("tempAuthToken");
+    }
+  },
+  extraReducers: (builder) => {
     builder
       .addCase(logout.rejected, (state, action) => {
         state.error = action.error.message
@@ -58,21 +92,16 @@ const authReducer = createReducer(
         state.loading = false;
         state.user = null;
       })
-      .addCase(registerUser.rejected, (state, action) => {
-        state.loading = false;
-        state.token = null;
-        state.error = action.error.message
-        tokenService.removeUser()
+      .addCase(verifyEmail.fulfilled, (state, {payload}) => {
+        localStorage.setItem("tempAuthToken", payload.authToken);
+        state.user = payload.user;
       })
-      .addCase(registerUser.pending, state => {
-        state.loading = true;
-      })
-      .addCase(registerUser.fulfilled, (state, {payload}) => {
-        state.loading = false;
-        state.token = payload.authToken;
-        state.user = payload.data;
-        tokenService.updateTokens(payload.authToken, payload.refreshToken)
-      })
+      // .addCase(registerUser.fulfilled, (state, {payload}) => {
+      //   state.loading = false;
+      //   state.token = payload.authToken;
+      //   state.user = payload.data;
+      //   tokenService.updateTokens(payload.authToken, payload.refreshToken)
+      // })
       .addCase(refreshToken.rejected, (state, action) => {
         state.loading = false;
         state.token = null;
@@ -83,6 +112,21 @@ const authReducer = createReducer(
         state.loading = true;
       })
       .addCase(refreshToken.fulfilled, (state, {payload}) => {
+        state.loading = false;
+        state.token = payload.authToken;
+        state.user = payload.user;
+        tokenService.updateLocalAuthToken(payload.authToken)
+      })
+      .addCase(isAuthenticated.rejected, (state, action) => {
+        state.loading = false;
+        state.token = null;
+        state.error = action.error.message
+        tokenService.removeUser()
+      })
+      .addCase(isAuthenticated.pending, state => {
+        state.loading = true;
+      })
+      .addCase(isAuthenticated.fulfilled, (state, {payload}) => {
         state.loading = false;
         state.token = payload.authToken;
         state.user = payload.user;
@@ -108,10 +152,12 @@ const authReducer = createReducer(
           state.user = payload.user;
         }
       })
-  },
-);
+  }
+});
+
+export const {setAuthToken} = authSlice.actions;
 
 export const selectAuth = (state) => state.auth;
 // export const selectUser = (state) => state.auth.user;
 
-export default authReducer;
+export default authSlice.reducer;

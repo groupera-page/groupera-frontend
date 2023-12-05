@@ -42,14 +42,14 @@ const Login = () => {
             <div className="flex flex-col items-center">
               <p className="my-8">
                 Du hast noch kein Konto?
-                <Link to={"/signup"} className="text-primarypurple">
+                <Link to={"/signup"} className="text-PURPLE_SECONDARY">
                   Jetzt Registrieren
                 </Link>
               </p>
 
               <button
                 type="submit"
-                className={` items-center bg-primarypurple text-slate-100 hover:text-white p-2 rounded-md whitespace-nowrap transition-color duration-300 ease-in-out lg:text-base text-1xl`}
+                className={` items-center bg-PURPLE_SECONDARY text-slate-100 hover:text-white p-2 rounded-md whitespace-nowrap transition-color duration-300 ease-in-out lg:text-base text-1xl`}
               >
                 Anmelden
               </button>

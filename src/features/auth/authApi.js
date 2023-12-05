@@ -1,7 +1,7 @@
-import api from "../../api/axios";
+import api, {noRefreshRequest} from "../../api/axios";
 
 const login = (email, password) => {
-  return api
+  return noRefreshRequest
     .post("/auth/login", {
       email,
       password
@@ -11,19 +11,34 @@ const login = (email, password) => {
 };
 
 const logout = () => {
-  return api
+  return noRefreshRequest
     .get("/auth/logout", {
       withCredentials: true
     })
 };
 
 
-const register = (email, password, fullName) => {
-  return api
-    .post("/auth/register", {
-      email,
-      password,
-      fullName
+const register = (formValues) => {
+  return noRefreshRequest
+    .post("/auth/signup", formValues)
+};
+
+const verifyEmail = (email, authCode) => {
+  return noRefreshRequest
+    .patch(`/auth/verifyEmail`, {
+      code: authCode,
+      email
+    }, {
+      withCredentials: true
+    })
+};
+
+const updateUser = (id, body) => {
+  return noRefreshRequest
+    .patch(`/user/${id}`, {
+      ...body
+    }, {
+      withCredentials: true
     })
 };
 
@@ -54,7 +69,7 @@ const refreshToken = () => {
 };
 
 const getResetPasswordInstr = (email) => {
-  return api
+  return noRefreshRequest
     .post("/auth/resetPassword", {
       email
     })
@@ -73,6 +88,8 @@ const authService = {
   login,
   logout,
   register,
+  verifyEmail,
+  updateUser,
   refreshToken,
   getCurrentUser,
   getResetPasswordInstr,

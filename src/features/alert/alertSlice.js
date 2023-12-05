@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {v4 as uuidv4} from "uuid";
-import {logInUser, logout, refreshToken} from "../auth/authSlice";
+import {isAuthenticated, logInUser, logout, refreshToken} from "../auth/authSlice";
 
 export const getNewAlert = (type, header, desc, expiry=5000) => {
   return {
@@ -17,7 +17,7 @@ const initialState = {
 };
 
 const alertSlice = createSlice({
-  name: "auth",
+  name: "alert",
   initialState,
   reducers: {
     addAlert: (state, {payload}) => {
@@ -34,6 +34,9 @@ const alertSlice = createSlice({
       })
       .addCase(refreshToken.rejected, (state) => {
         state.items.push(getNewAlert("error", "Credentials expired", "You need to log in again to gain access"))
+      })
+      .addCase(isAuthenticated.fulfilled, (state) => {
+        state.items.push(getNewAlert("success", "Credentials valid", "You are already logged in"))
       })
       .addCase(logInUser.fulfilled, (state) => {
         state.items.push(getNewAlert("success", "Your in!", "Successfully logged in. Have fun!"))

@@ -14,10 +14,10 @@ const getLocalAuthToken = () => {
 };
 
 const updateLocalAuthToken = token => {
-  const authToken = localStorage.getItem("authToken");
-  if (authToken !== null) {
-    localStorage.setItem("authToken", token);
-  }
+  // const authToken = localStorage.getItem("authToken");
+  // if (authToken !== null) {
+  localStorage.setItem("authToken", token);
+  // }
 };
 
 const getUser = () => {

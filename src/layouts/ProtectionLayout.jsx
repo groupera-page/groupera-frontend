@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Outlet, Navigate} from "react-router-dom";
 
-import {refreshToken, selectAuth} from "../features/auth/authSlice";
+import {isAuthenticated, refreshToken, selectAuth} from "../features/auth/authSlice";
 
 export const DefaultLoadingPage = () => (
   <div>
@@ -16,7 +16,11 @@ const ProtectionLayout = ({protect=true}) => {
 
   useEffect(() => {
     if (!token) {
-      dispatch(refreshToken())
+      if (protect) {
+        dispatch(refreshToken())
+      } else{
+        dispatch(isAuthenticated())
+      }
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 

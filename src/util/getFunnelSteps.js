@@ -4,28 +4,36 @@ import {
   groupFields,
   groupExperienceField,
 } from "./form.helper";
-import { registerUser } from "../features/auth/authSlice";
+import {registerUser, updateUserQuestions, verifyEmail} from "../features/auth/authSlice";
 
 const userProfileStep = {
   header: "Erstelle jetzt Dein Nutzerprofil",
   desc: "Du kannst Deine Informationen jederzeit in den Einstellungen ändern.",
   fields: [
-    authFields.firstName,
-    authFields.lastName,
+    authFields.alias,
     authFields.email,
     authFields.gender,
     authFields.password,
     authFields.passwordConfirmation,
   ],
   goBackOption: true,
-  onSubmit: registerUser
+  onSubmit: (values) => registerUser({
+    alias: values.alias,
+    email: values.email,
+    password: values.password,
+    gender: values.gender,
+  })
 }
 
 const authStep = {
   header: "Verifiziere deine Emailadresse",
   desc: "Wir haben Dir einen 4 stelligen Verifizierungscode per E-Mail geschickt.",
   fields: [authFields.authCode],
-  goBackOption: true
+  goBackOption: true,
+  onSubmit: (values) => verifyEmail({
+    authCode: values.auth_code,
+    email: values.email
+  })
 }
 
 const chooseFunnelStep = {
@@ -107,7 +115,12 @@ const getFunnelSteps = (searchParams) => {
             authStep,
             {
               ...groupSettingsStep,
-              goBackOption: false
+              goBackOption: false,
+              // onSubmit: (values) => updateUserQuestions({
+              //   experience: values.experience,
+              //   interestedInGroupsWithTheme: values.interestedInGroupsWithTheme,
+              //   chooseFunnel: values.chooseFunnel,
+              // }) // todo change to update Group
             },
             groupDownloadStep
           ]
@@ -126,7 +139,12 @@ const getFunnelSteps = (searchParams) => {
         authStep,
         {
           ...experienceStep,
-          goBackOption: false
+          goBackOption: false,
+          // onSubmit: (values) => updateUserQuestions({
+          //   experience: values.experience,
+          //   interestedInGroupsWithTheme: values.interestedInGroupsWithTheme,
+          //   chooseFunnel: values.chooseFunnel,
+          // })
         }
       ]
     case "3":
@@ -138,15 +156,20 @@ const getFunnelSteps = (searchParams) => {
         authStep,
         {
           ...groupSettingsStep,
-          goBackOption: false
+          goBackOption: false,
+          // onSubmit: (values) => updateUserQuestions({
+          //   experience: values.experience,
+          //   interestedInGroupsWithTheme: values.interestedInGroupsWithTheme,
+          //   chooseFunnel: values.chooseFunnel,
+          // }) // todo change to update Group
         },
         groupDownloadStep
       ]
     default:
       return [
-        chooseFunnelStep,
-        interestedInGroupsWithThemeStep,
-        experienceStep,
+        // chooseFunnelStep,
+        // interestedInGroupsWithThemeStep,
+        // experienceStep,
         userProfileStep,
         authStep
       ]

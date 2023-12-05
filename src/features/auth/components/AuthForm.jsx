@@ -3,6 +3,7 @@ import { Field, reduxForm } from "redux-form";
 import VerificationCodeWrapper from "./VerificationCodeWrapper";
 import MySelect from "./MySelect";
 import myInput from "./MyInput";
+import {connect} from "react-redux";
 
 const renderField = (field) => {
   switch (field.type) {
@@ -28,7 +29,7 @@ const renderField = (field) => {
   }
 }
 
-const AuthForm = ({ handleSubmit, fields, children }) => {
+let AuthForm = ({ handleSubmit, fields, children }) => {
   return(
     <form onSubmit={handleSubmit}>
       {
@@ -39,7 +40,23 @@ const AuthForm = ({ handleSubmit, fields, children }) => {
   )
 }
 
-export default reduxForm({
+const mapStateToProps = (state) => {
+  return {
+    initialValues: {
+      alias: 'Fritz',
+      email: 'frit.er@asdmfa.de',
+      password: 'fritz-Meyer1',
+      password_confirmation: 'fritz-Meyer1',
+      gender: 'male',
+    }
+  };
+};
+
+AuthForm = reduxForm({
   form: "authForm",
   destroyOnUnmount: false,
+  forceUnregisterOnUnmount: true,
+  // enableReinitialize : true
 })(AuthForm)
+
+export default connect(mapStateToProps)(AuthForm)

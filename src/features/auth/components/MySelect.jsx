@@ -1,4 +1,5 @@
 import React from "react";
+import {useNavigate} from "react-router-dom";
 
 const MySelect = ({
                         input,
@@ -10,8 +11,12 @@ const MySelect = ({
                       }) => {
 
   const isMultiSelect = () => type.toLowerCase().includes("multiselect")
+  const navigate = useNavigate()
 
   const handleOnChange = (e, opt) => {
+    if (opt.onClick) {
+      opt.onClick(navigate)
+    }
     if (!isMultiSelect()) {
       return input.onChange(opt.value)
     }

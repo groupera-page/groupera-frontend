@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {ThemeProvider} from "styled-components";
 
+import styleTheme from "./styleTheme";
 import ProtectionLayout from "./layouts/ProtectionLayout";
 
 import Home from "./pages/HomePage";
@@ -17,94 +19,96 @@ import ProfilePage from "./pages/ProfilePage";
 
 function Navigation() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/auth" element={<ProtectionLayout protect={false}/>}>
-          <Route path="/auth/login" element={ <Login/> } />
-          <Route path="/auth/signup" element={ <SignUp/> } />
-        </Route>
-        <Route element={<ProtectionLayout/>}>
-          <Route
-            path="/"
-            element={
-              <>
-                <MenusContainer />
-                <Home />
-              </>
-            }
-          />
-
-          <Route
-            path="/groups"
-            element={
-              <>
-                <ScrollToTop>
+    <ThemeProvider theme={styleTheme}>
+      <Router>
+        <Routes>
+          <Route path="/auth" element={<ProtectionLayout protect={false}/>}>
+            <Route path="/auth/login" element={ <Login/> } />
+            <Route path="/auth/signup" element={ <SignUp/> } />
+          </Route>
+          <Route element={<ProtectionLayout/>}>
+            <Route
+              path="/"
+              element={
+                <>
                   <MenusContainer />
-                  <GroupsPage />
-                </ScrollToTop>
-              </>
-            }
-          />
+                  <Home />
+                </>
+              }
+            />
 
-          <Route
-            path="/groups/group/create"
-            element={
-              <>
-                <ScrollToTop>
+            <Route
+              path="/groups"
+              element={
+                <>
+                  <ScrollToTop>
+                    <MenusContainer />
+                    <GroupsPage />
+                  </ScrollToTop>
+                </>
+              }
+            />
+
+            <Route
+              path="/groups/group/create"
+              element={
+                <>
+                  <ScrollToTop>
+                    <MenusContainer />
+                    <GroupCreatePage />
+                  </ScrollToTop>
+                </>
+              }
+            />
+
+            <Route
+              path="/groups/:slug/edit"
+              element={
+                <>
+                  <ScrollToTop>
+                    <MenusContainer />
+                    <GroupEditPage />
+                  </ScrollToTop>
+                </>
+              }
+            />
+            <Route
+              path="/groups/:slug/edit/event"
+              element={
+                <>
+                  <ScrollToTop>
+                    <MenusContainer />
+                    <GroupEventPage />
+                  </ScrollToTop>
+                </>
+              }
+            />
+
+            <Route
+              path="/groups/:slug/*"
+              element={
+                <>
                   <MenusContainer />
-                  <GroupCreatePage />
-                </ScrollToTop>
-              </>
-            }
-          />
+                  <GroupDetailPage />
+                </>
+              }
+            />
 
-          <Route
-            path="/groups/:slug/edit"
-            element={
-              <>
-                <ScrollToTop>
+            <Route
+              path="/profile/:slug/*"
+              element={
+                <>
                   <MenusContainer />
-                  <GroupEditPage />
-                </ScrollToTop>
-              </>
-            }
-          />
-          <Route
-            path="/groups/:slug/edit/event"
-            element={
-              <>
-                <ScrollToTop>
-                  <MenusContainer />
-                  <GroupEventPage />
-                </ScrollToTop>
-              </>
-            }
-          />
-
-          <Route
-            path="/groups/:slug/*"
-            element={
-              <>
-                <MenusContainer />
-                <GroupDetailPage />
-              </>
-            }
-          />
-
-          <Route
-            path="/profile/:slug/*"
-            element={
-              <>
-                <MenusContainer />
-                <ProfilePage />
-              </>
-            }
-          />
-          <Route path="/profile" element={<div>Profile</div>} />
-        </Route>
-      </Routes>
-      <AlertsWrapper/>
-    </Router>
+                  <ProfilePage />
+                </>
+              }
+            />
+            <Route path="/profile" element={<div>Profile</div>} />
+          </Route>
+        </Routes>
+        <AlertsWrapper/>
+      </Router>
+    </ThemeProvider>
   );
 }
 

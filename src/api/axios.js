@@ -8,4 +8,12 @@ const instance = axios.create({
   responseType: "json"
 });
 
+export const noRefreshRequest = axios.create({
+  baseURL: process.env.REACT_APP_BACKEND_BASE_URL,
+  headers: {
+    "Content-Type": "application/json",
+  },
+  responseType: "json"
+});
+
 export default instance;

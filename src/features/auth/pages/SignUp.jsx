@@ -1,5 +1,5 @@
 import React from "react";
-import {useSearchParams} from "react-router-dom";
+import {useNavigate, useSearchParams} from "react-router-dom";
 import {useDispatch} from "react-redux";
 
 import AuthForm from "../components/AuthForm";
@@ -7,34 +7,50 @@ import AuthForm from "../components/AuthForm";
 import logoSvg from "../../../assets/imgLogos/logoNoBg.svg";
 import useMultistepHook from "../../../util/hooks/multistepHook";
 import getFunnelSteps from "../../../util/getFunnelSteps";
+import StepIndicator from "../components/RegStepper";
+import {setAuthToken} from "../authSlice";
+import tokenService from "../../../util/tokenServices";
 
 const SignUp = () => {
   const [searchParams] = useSearchParams()
   const steps = getFunnelSteps(searchParams)
   const dispatch = useDispatch()
 
-  const { step, isFirstStep, isLastStep, back, next } =
+  const { currentStepIndex, step, isFirstStep, isLastStep, back, next } =
     useMultistepHook(steps)
 
-  const handleSubmit = async (values) => {
+  const handleLastSubmit = () => {
     if (!isLastStep) {
-      if(step.onSubmit){
-        try {
-          const response = await dispatch(step.onSubmit(values))
-
-          // if (response.error) throw Error(response.error.message)
-          console.log(response)
-          next()
-        } catch (e) {
-          console.log(e)
-        }
-        // handle the response
-        // if an error than don't go to next step but show the error, otherwise proceed to next step.
-      } else{
-        next()
+      next()
+    } else{
+      try {
+        const token = tokenService.getLocalAuthToken();
+        console.log("token", token)
+        dispatch(setAuthToken({token: token}))
+        // if (response.error) throw Error(response.error.message)
+      } catch (e) {
+        console.log("Error", e)
       }
     }
-    console.log("submit form", values)
+  }
+
+  const handleSubmit = async (values) => {
+    if(step.onSubmit){
+      try {
+        const response = await dispatch(step.onSubmit(values))
+        console.log(response)
+        if (response.error) throw Error(response.error.message)
+
+
+        handleLastSubmit()
+      } catch (e) {
+        console.log("Error", e)
+      }
+      // handle the response
+      // if an error than don't go to next step but show the error, otherwise proceed to next step.
+    } else {
+      handleLastSubmit()
+    }
   }
 
   return (
@@ -44,6 +60,10 @@ const SignUp = () => {
       </div>
       <div>
         <div>
+          <StepIndicator
+            currentStepIdx={currentStepIndex}
+            totalStepsCounts={steps.length}
+          />
           <h2>{step.header}</h2>
           {
             step.desc &&

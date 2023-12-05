@@ -43,6 +43,15 @@ export const authFields = {
     hint: "Bitte gib hier Deinen Namen ein, mit dem Du in der Gruppe angesprochen werden möchtest und der für andere Mitglieder:innen angezeigt werden darf.",
     validate: [required]
   },
+  alias: {
+    type: "text",
+    name: "alias",
+    value: "",
+    label: "Alias",
+    placeholder: "Dein Alias",
+    hint: "Bitte gib hier Deinen Namen ein, mit dem Du in der Gruppe angesprochen werden möchtest und der für andere Mitglieder:innen angezeigt werden darf.",
+    validate: [required]
+  },
   email: {
     type: "email",
     name: "email",
@@ -177,17 +186,17 @@ export const groupExperienceField = {
 }
 
 const chooseFunnelOptions = [
-  {label: "Ich möchte an einer Selbsthilfegruppe teilnehmen.", value: "find group", onClick: (navigate) => navigate("/auth/signup?funnel=1?type=find")},
-  {label: "Ich möchte eine Selbsthilfegruppe eröffnen.", value: "create group", onClick: (navigate) => navigate("/auth/signup?funnel=1?type=create")},
-  {label: "Ich kann mir beides vorstellen.", value: "both", onClick: (navigate) => navigate("/auth/signup?funnel=1?type=find")},
-  {label: "Ich weiß es noch nicht.", value: "dont know", onClick: (navigate) => navigate("/auth/signup?funnel=1?type=find")}
+  {label: "Ich möchte an einer Selbsthilfegruppe teilnehmen.", value: "find group", onClick: (navigate) => navigate("/auth/signup?funnel=1&type=find", {replace: true})},
+  {label: "Ich möchte eine Selbsthilfegruppe eröffnen.", value: "create group", onClick: (navigate) => navigate("/auth/signup?funnel=1&type=create", {replace: true})},
+  {label: "Ich kann mir beides vorstellen.", value: "both", onClick: (navigate) => navigate("/auth/signup?funnel=1&type=find", {replace: true})},
+  {label: "Ich weiß es noch nicht.", value: "dont know", onClick: (navigate) => navigate("/auth/signup?funnel=1&type=find, {replace: true}")}
 ]
 
 export const chooseFunnelField = {
   type: "inlineSelect",
   value: experienceOptions[0].value,
   label: "",
-  name: "experience",
+  name: "chooseFunnel",
   options: chooseFunnelOptions,
   validate: [required]
 }
