@@ -9,7 +9,7 @@ import { userDataInit, groupDataInit } from "../../util/initData";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import PrimaryButton from "../Buttons/PrimaryButton";
 import InputError from "../UserInputs/InputError";
-import ScrollToTop from "../../util/ScrollToTop";
+
 // import { createGroup } from "../../api/groupService";
 // import { verifyCode, createUser, updateUser } from "../../api/userService";
 // import { validateUserForm, validateGroupForm } from "../../util/formValidation";
@@ -72,7 +72,7 @@ export default function FunnelCard({ funnelIndex, showLogo = true }) {
     //Implement when backend is done
     console.log("Resent code -");
   }
-
+  console.log(currentStepIndex);
   function handleBackButton() {
     back(1);
     setErrorMessage("");
@@ -85,7 +85,13 @@ export default function FunnelCard({ funnelIndex, showLogo = true }) {
   const handleGroup = async (e) => {
     e.preventDefault();
     handleScrollToTop();
+    console.log(groupData.theme);
+
     isLastStep ? navigate("/") : next(1);
+
+    if (currentStepIndex === 2 && groupData.theme === "Sonstige") {
+      next(1);
+    }
     // if (step && step.type.name === "GroupInfoStep") {
     //   const isGroupValid = validateGroupForm(groupData, updateGroupFields);
     //   if (!isGroupValid) {
@@ -112,6 +118,7 @@ export default function FunnelCard({ funnelIndex, showLogo = true }) {
     // }
   };
 
+  //Not used
   const handleUser = async (e) => {
     e.preventDefault();
     handleScrollToTop();
@@ -203,11 +210,11 @@ export default function FunnelCard({ funnelIndex, showLogo = true }) {
 
         <form
           onSubmit={
-            step &&
-            (step.type.name === "GroupSettingStep" ||
-              step.type.name === "GroupInfoStep")
-              ? handleGroup
-              : handleUser
+            step && handleGroup
+            // (step.type.name === "GroupSettingStep" ||
+            //   step.type.name === "GroupInfoStep")
+            //   ? handleGroup
+            //   : handleUser
           }
           // justify-between to fix the buttons
           className="flex flex-col pb-4 h-full"

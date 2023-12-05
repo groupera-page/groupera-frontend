@@ -6,7 +6,6 @@ import reportWebVitals from "./reportWebVitals";
 import { AuthProviderWrapper } from "./context/auth.context";
 import { Provider } from "react-redux";
 import { store } from "./store";
-import ScrollToTop from "./util/ScrollToTop";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
