@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Carousel from "../../../Carousels/Carousel";
-// import axios from "axios";
 import TextInput from "../../../UserInputs/TextInput";
 import InputError from "../../../UserInputs/InputError";
 import TextAreaInput from "../../../UserInputs/TextAreaInput";
@@ -12,14 +11,14 @@ export default function GroupInfoStep({
   description,
   updateGroupFields,
   img,
-  errorGroupName,
+  // errorGroupName,
   errorGroupDescription,
 }) {
   const images = useSelector((state) => state.mockData.mockData.imageData);
 
   const maxCharacters = 500;
-  const [groupNames, setGroupNames] = useState([]);
-  const [nameError, setNameError] = useState("");
+  // const [groupNames, setGroupNames] = useState([]);
+  // const [nameError, setNameError] = useState("");
 
   const handleChange = (e) => {
     updateGroupFields({ description: e.target.value });
@@ -60,14 +59,14 @@ export default function GroupInfoStep({
             placeholder="Name"
             maxLength={70}
           />
-          <InputError
+          {/* <InputError
             showMessage={errorGroupName && name.length < 3}
             errorMessage={"Min 3 Zeichen bitte"}
           />
           <InputError
             showMessage={nameError && name.length > 3}
             errorMessage={nameError}
-          />
+          /> */}
         </div>
         <p className="px-1 text-TEXT_LIGHTGRAY">Min 3 Zeichen.</p>
       </div>

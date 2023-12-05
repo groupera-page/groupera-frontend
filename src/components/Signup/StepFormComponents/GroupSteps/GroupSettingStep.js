@@ -11,7 +11,7 @@ export default function GroupSettingStep({ moderator, updateGroupFields }) {
   };
 
   return (
-    <div className="">
+    <div>
       <StepHeader
         title={"Moderation der Gruppe"}
         text={" Du kannst uns jederzeit kontaktieren und Hilfe bekommen."}

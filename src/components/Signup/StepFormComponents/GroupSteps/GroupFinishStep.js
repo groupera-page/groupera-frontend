@@ -1,15 +1,7 @@
 import React, { useState } from "react";
-import RadioButtonContainer from "../../../UserInputs/RadioButtonContainer";
-import { GoShare } from "react-icons/go";
 
 export default function GroupFinishStep({ updateGroupFields, moderator }) {
-  const [emailOption, setEmailOption] = useState("Ja");
   const [isCopied, setIsCopied] = useState(false);
-  const emailOptions = ["Ja", "Nein"];
-
-  function onHandleEmailChange(option) {
-    setEmailOption(option);
-  }
 
   function copyToClipboard() {
     const textToCopy = "https://groupera.de"; // Replace with actual group link

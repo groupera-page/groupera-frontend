@@ -37,7 +37,7 @@ const mockData = {
       description:
         "Unter 25. Offener Raum für Verständnis, Wachstum und Heilung. Gemeinschaft, Hoffnung, gemeinsame Bewältigung. ",
       id: "456",
-      members: 4372,
+      members: 72,
       image:
         "Grouptitel%20pictures%20low_res/pexels-nandhu-kumar-1661296_ttr2gf_ijeg4r.jpg",
       users: [
@@ -132,9 +132,10 @@ const mockData = {
     "Angststörung",
     "Stress & Burnout",
     "Trauer",
-    "chronische Erkrankungen",
+    "Chronische Erkrankungen",
     "Essstörung",
     "Angehörige",
+    "Sonstige",
   ],
 
   filters: [""],
