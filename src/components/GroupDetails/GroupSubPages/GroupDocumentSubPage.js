@@ -57,7 +57,7 @@ export default function GroupDocumentSubPage({ group }) {
       <div className="flex bg-BG_GRAY border-b border-TEXT_GRAY paragraph-lg mb-20">
         <a href={downloadLink} download="Depressions_Manual.pdf">
           <div className="flex items-center my-4 font-bold">
-            {group.topic}_Manual
+            {group.topic}__Programm
             <BsDownload className="w-5 mx-5 text-PURPLE_PRIMARY" size={32} />
           </div>
         </a>

@@ -72,7 +72,7 @@ export default function FunnelCard({ funnelIndex, showLogo = true }) {
     //Implement when backend is done
     console.log("Resent code -");
   }
-  console.log(currentStepIndex);
+
   function handleBackButton() {
     back(1);
     setErrorMessage("");
@@ -85,7 +85,6 @@ export default function FunnelCard({ funnelIndex, showLogo = true }) {
   const handleGroup = async (e) => {
     e.preventDefault();
     handleScrollToTop();
-    console.log(groupData.theme);
 
     isLastStep ? navigate("/") : next(1);
 

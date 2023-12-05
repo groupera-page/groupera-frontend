@@ -27,7 +27,7 @@ export default function ProfileSubPage() {
         {/* <PrimaryButton isInversed={true}>Abbrechen</PrimaryButton> */}
         <PrimaryButton>Speichern</PrimaryButton>
       </div>
-      <hr className="border-l border-BORDER_PRIMARY my-4" />
+      {/* <hr className="border-l border-BORDER_PRIMARY my-4" />
       <div className="flex flex-col ">
         <div className="paragraph-lg">Passwort</div>
         <div className="text-TEXT_LIGHTGRAY paragraph-sm">
@@ -36,7 +36,7 @@ export default function ProfileSubPage() {
       </div>
       <div className="flex my-2 gap-2">
         <PrimaryButton isInversed={true}>Passwort ändern</PrimaryButton>
-      </div>
+      </div> */}
       <hr className="border-l border-BORDER_PRIMARY my-4" />
       <div className="flex flex-col">
         <div className="paragraph-lg ">Achtung!</div>

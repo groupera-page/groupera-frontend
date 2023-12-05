@@ -2,9 +2,10 @@ import { BsDownload } from "react-icons/bs";
 import StepHeader from "../StepHeader";
 import { useSelector } from "react-redux";
 
-export default function GroupDownloadStep({ data, updateGroupFields }) {
+export default function GroupDownloadStep({ data, updateGroupFields, theme }) {
   const mockData = useSelector((state) => state.mockData.mockData);
-  const groupTopic = "Depression";
+  const groupTopic = theme;
+
   // 0 "Depression",
   // 1 "Sucht",
   // 2 "Angststörung",
@@ -77,7 +78,7 @@ export default function GroupDownloadStep({ data, updateGroupFields }) {
       <div className="bg-BG_PRIMARY my-4 paragraph-lg">
         <a href={downloadLink} download="Depressions_Manual.pdf">
           <div className="flex flex-row justify-between cursor-pointer border border-BORDER_PRIMARY rounded-md  p-4 items-center hover:shadow-md">
-            <div>{groupTopic}_Manual</div>
+            <div>{groupTopic}_Programm</div>
             <BsDownload className=" text-PURPLE_PRIMARY" size={22} />
           </div>
         </a>
