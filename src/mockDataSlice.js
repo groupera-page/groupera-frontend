@@ -33,7 +33,7 @@ const mockData = {
     {
       name: "Depression für junge Menschen bis 25",
       meeting: "",
-      topic: "Angst",
+      topic: "Depression",
       description:
         "Unter 25. Offener Raum für Verständnis, Wachstum und Heilung. Gemeinschaft, Hoffnung, gemeinsame Bewältigung. ",
       id: "456",

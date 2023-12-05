@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 export default function OverviewGroups({ groups }) {
   return (
-    <div className="flex p-2.5 lg:px-4 lg:pt-2 flex-col rounded-md shadow-md border lg:w-1/2 mt-6 lg:mt-20">
+    <div className="flex w-full p-2.5 lg:px-4 lg:pt-2 flex-col rounded-md shadow-md border mt-6 lg:mt-20">
       <OverviewHeader
         title={"Deine Gruppen"}
         text={

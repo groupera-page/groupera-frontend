@@ -15,7 +15,7 @@ export default function PrimaryButton({
         isLarge ? "text-lg lg:text-base" : "text-base lg:text-sm"
       } font-normal w-fit whitespace-nowrap ${
         isInversed
-          ? "text-PURPLE_PRIMARY hover:text-PURPLE_SECONDARY rounded-md   hover:border-PURPLE_SECONDARY hover:shadow-md"
+          ? "text-PURPLE_PRIMARY hover:text-PURPLE_SECONDARY rounded-md border border-PURPLE_PRIMARY hover:border-PURPLE_SECONDARY hover:shadow-md"
           : "text-slate-100 hover:text-white bg-PURPLE_PRIMARY rounded-md   hover:bg-PURPLE_SECONDARY hover:shadow-md"
       }`}
     >

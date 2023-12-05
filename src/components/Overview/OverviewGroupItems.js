@@ -9,7 +9,7 @@ export default function OverviewGroupItems({ groups }) {
 
   const mockDataEvents = [
     {
-      id: "33dk58ss8dflia9emc3epprlpk_20231120T110000Z",
+      id: "33dk58ss8dflia9emc3epprlpk_20231120T110000",
       start: {
         dateTime: "2023-12-20T12:00:00+01:00",
         time: "12:00",
