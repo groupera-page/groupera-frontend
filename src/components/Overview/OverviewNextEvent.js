@@ -33,14 +33,14 @@ export default function OverviewNextEvent({ groups }) {
   const nextEvent = getNextEvent(mockDataEvents);
 
   return (
-    <div className="lg:w-1/2 mt-6 lg:mt-20">
+    <div className="lg:w-1/2 mt-6 lg:mt-20 ">
       <div
         className={`flex flex-col ${
           mockDataEvents.length > 0 ? "" : "flex-row"
         } rounded-md shadow-md border justify-between`}
       >
         <div className="flex flex-col lg:flex-row w-full justify-between">
-          <div className="p-2">
+          <div className="p-2.5 lg:px-4 lg:pt-2.5">
             <OverviewHeader
               title={
                 mockDataEvents.length > 0

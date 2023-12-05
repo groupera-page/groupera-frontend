@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 export default function OverviewGroups({ groups }) {
   return (
-    <div className="flex p-2 flex-col rounded-md shadow-md border lg:w-1/2 mt-6 lg:mt-20">
+    <div className="flex p-2.5 lg:px-4 lg:pt-2 flex-col rounded-md shadow-md border lg:w-1/2 mt-6 lg:mt-20">
       <OverviewHeader
         title={"Deine Gruppen"}
         text={
@@ -18,7 +18,7 @@ export default function OverviewGroups({ groups }) {
       {groups.length > 0 && <OverviewGroupItems groups={groups} />}
       <div className="flex flex-col items-center mt-4 mb-2 ">
         <Link to={`/groups`}>
-          <PrimaryButton> Gruppen finden</PrimaryButton>
+          <PrimaryButton isLarge={true}> Gruppen finden</PrimaryButton>
         </Link>
       </div>
     </div>

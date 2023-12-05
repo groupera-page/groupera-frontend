@@ -51,7 +51,6 @@ export default function GroupDocumentSubPage({ group }) {
       break;
     default:
   }
-
   return (
     <div>
       <div className="flex bg-BG_GRAY border-b border-TEXT_GRAY paragraph-lg mb-20">
