@@ -6,9 +6,9 @@ export default function GroupOverviewContent({ group, clamp, isDetailPage }) {
       <div className="flex flex-row justify-between mt-2">
         <div className="w-3/4 break-words ">
           {isDetailPage ? (
-            <h1 className="line-clamp-2 text-lg">{group.name}</h1>
+            <h1 className="line-clamp-2 ">{group.name}</h1>
           ) : (
-            <h4 className="line-clamp-2 text-lg">{group.name}</h4>
+            <h4 className="line-clamp-2 ">{group.name}</h4>
           )}
         </div>
         <div className="flex justify-end whitespace-nowrap">
