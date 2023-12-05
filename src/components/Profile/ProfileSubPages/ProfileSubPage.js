@@ -12,7 +12,7 @@ export default function ProfileSubPage() {
     setInputValue(event.target.value);
   };
   return (
-    <div className="flex flex-col p-4">
+    <div className="flex flex-col p-4 ">
       <div className="flex flex-col my-4">
         <h5>Deine Information</h5>
         <div className="text-TEXT_LIGHTGRAY paragraph-sm">
