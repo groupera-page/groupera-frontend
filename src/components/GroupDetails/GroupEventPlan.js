@@ -38,10 +38,10 @@ export default function GroupEventPlan() {
   return (
     <div>
       <div className="paragraph-sm">
-        Du kannst alle Angaben jederzeit in den Gruppeneinstellungen ändern
+        Du kannst alle Angaben jederzeit in den Gruppeneinstellungen ändern.
       </div>
-      <div className="mt-4 paragraph-lg">Startdatum</div>
-      <div className="relative mb-4">
+      <div className="mt-4 paragraph-lg">Ab wann startet die Gruppe?</div>
+      <div className="relative mb-4 mt-2">
         <DatePicker
           selected={calendarDate}
           //   dateFormat="dd MMM yyyy"
@@ -57,7 +57,7 @@ export default function GroupEventPlan() {
         />
       </div>
       <div className="mb-4 w-1/2">
-        <div className=" paragraph-lg">
+        <div className="paragraph-lg mb-2">
           An welchen Tagen soll die Gruppe sich treffen?
         </div>
         <RadioButtonContainer
@@ -69,9 +69,9 @@ export default function GroupEventPlan() {
         />
       </div>
       <div className="lg:w-1/2">
-        <div className="paragraph-lg mt-4">Zu welcher Uhrzeit?</div>
+        <div className="paragraph-lg mt-4 mb-2">Zu welcher Uhrzeit?</div>
         <div className="flex gap-4">
-          <div className="w-1/2 ">
+          <div className="w-1/2">
             <TimePickerContainer />
           </div>
           <div className="w-1/2 whitespace-nowrap">

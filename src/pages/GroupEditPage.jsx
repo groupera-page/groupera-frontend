@@ -141,10 +141,8 @@ export default function GroupEditPage() {
           </Link>
         </div>
         <div className="flex gap-4">
-          <PrimaryButton>Speichern</PrimaryButton>
-          <SecondaryButton>
-            <div className="text-lg lg:text-base">Gruppe löschen</div>
-          </SecondaryButton>
+          <PrimaryButton isLarge={true}>Speichern</PrimaryButton>
+          <SecondaryButton isLarge={true}>Gruppe löschen</SecondaryButton>
         </div>
       </div>
     </PageContainer>

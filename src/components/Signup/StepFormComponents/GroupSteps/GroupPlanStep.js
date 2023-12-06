@@ -41,8 +41,8 @@ export default function GroupPlanStep({ freq, day, time, updateGroupFields }) {
         }
       />
 
-      <div className="paragraph-lg mt-4">Startdatum</div>
-      <div className="relative">
+      <div className="paragraph-lg mt-4">Ab wann startet die Gruppe?</div>
+      <div className="relative mt-2">
         <DatePicker
           selected={calendarDate}
           // dateFormat="dd MMM yyyy"
@@ -56,7 +56,7 @@ export default function GroupPlanStep({ freq, day, time, updateGroupFields }) {
         <AiOutlineCalendar className="absolute w-5 text-BG_PRIMARY left-40 top-1/2 transform -translate-y-1/2 pointer-events-none" />
       </div>
 
-      <div className="paragraph-lg mt-4">
+      <div className="paragraph-lg mt-4 mb-2">
         An welchen Tagen soll die Gruppe sich treffen?
       </div>
       <RadioButtonContainer
@@ -65,7 +65,7 @@ export default function GroupPlanStep({ freq, day, time, updateGroupFields }) {
         checkedVariable={frequency}
         name={"frequencyOptions"}
       />
-      <div className="paragraph-lg mt-4">Zu welcher Uhrzeit?</div>
+      <div className="paragraph-lg mt-4 mb-2">Zu welcher Uhrzeit?</div>
       <div className="flex gap-4">
         <div className="w-1/2 lg:w-1/2 ">
           <TimePickerContainer />

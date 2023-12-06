@@ -21,7 +21,7 @@ code {
   }
 
   h2 {
-    @apply text-3xl text-TEXT_PRIMARY;
+    @apply text-3xl font-medium text-TEXT_PRIMARY;
   }
 
   h3 {

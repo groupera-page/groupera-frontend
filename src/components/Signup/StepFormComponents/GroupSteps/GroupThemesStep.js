@@ -27,10 +27,10 @@ export default function GroupThemesStep({ theme, updateGroupFields }) {
   return (
     <div>
       <StepHeader title={"Zu welchem Thema möchtest du eine Gruppe gründen?"} />
-      <p className="paragraph-lg text-TEXT_LIGHTGRAY ">
+      <p className="paragraph-md text-TEXT_LIGHTGRAY ">
         Wähle eine der folgenden Optionen.
       </p>
-      <div className="flex flex-col gap-2.5 ">
+      <div className="flex flex-col gap-2.5 mt-2">
         {topics.map((option) => (
           <RadioButton
             key={option}

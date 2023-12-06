@@ -31,7 +31,7 @@ export default function GroupeditContent({ group }) {
           onChange={handleGroupDescriptionChange}
           maxLength={maxCharacters}
         />
-        <div className="flex text-xs text-gray-500 justify-end">
+        <div className="flex paragraph-tiny justify-end">
           {groupDescriptionValue.length}/{maxCharacters}
         </div>
       </div>

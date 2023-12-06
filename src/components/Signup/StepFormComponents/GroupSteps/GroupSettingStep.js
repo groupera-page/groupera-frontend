@@ -20,7 +20,7 @@ export default function GroupSettingStep({ moderator, updateGroupFields }) {
       <div className="paragraph-lg mt-4">
         Möchtest du Deine Gruppe selbst moderieren?
       </div>
-      <div className="flex flex-col gap-4 ">
+      <div className="flex flex-col gap-4 mt-2">
         <RadioButton
           id={"moderator1"}
           title={"Ja"}
