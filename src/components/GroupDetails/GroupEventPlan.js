@@ -88,14 +88,14 @@ export default function GroupEventPlan() {
 
       <div className="flex justify-between mt-4 lg:w-1/2">
         <Link to={`/groups/${slug}/edit`}>
-          <PrimaryButton isInversed={true}>
+          <PrimaryButton isInversed={true} isLarge={true}>
             <div className="flex gap-2 items-center">
               <BsArrowLeft className="" size={20} />
               Abbrechen
             </div>
           </PrimaryButton>
         </Link>
-        <PrimaryButton>Speichern</PrimaryButton>
+        <PrimaryButton isLarge={true}>Speichern</PrimaryButton>
       </div>
     </div>
   );

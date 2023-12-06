@@ -127,9 +127,11 @@ export default function GroupEditPage() {
 
         <div className="flex justify-end mb-8 gap-8 ">
           <ul className="flex gap-8 lg:hidden items-center">
-            <li className="cursor-pointer text-TEXT_LIGHTGRAY hover:text-PURPLE_PRIMARY">
-              <IoSettingsOutline size={28} />
-            </li>
+            <Link to={`/groups/${slug}/edit/event`}>
+              <li className="cursor-pointer text-TEXT_LIGHTGRAY hover:text-PURPLE_PRIMARY">
+                <IoSettingsOutline size={28} />
+              </li>
+            </Link>
             <li className="cursor-pointer text-TEXT_LIGHTGRAY hover:text-PURPLE_PRIMARY">
               <BsTrash3 size={28} />
             </li>
