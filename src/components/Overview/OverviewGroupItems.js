@@ -43,7 +43,7 @@ export default function OverviewGroupItems({ groups }) {
                 <p className="paragraph-tiny text-TEXT_LIGHTGRAY mt-2">
                   Nächster Termin:
                 </p>
-                <p className="paragraph-sm text-TEXT_PRIMARY lg:mt-2">
+                <p className="paragraph-sm text-TEXT_PRIMARY lg:mt-1">
                   {getNextEvent(mockDataEvents)
                     ? formatDateTime(
                         getNextEvent(mockDataEvents).start.dateTime,
