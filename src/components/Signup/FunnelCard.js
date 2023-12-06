@@ -227,11 +227,12 @@ export default function FunnelCard({ funnelIndex, showLogo = true }) {
               />
               <div className="flex gap-4 justify-between ">
                 <div className="mt-5">
-                  {!isLastStep && (
+                  {!isLastStep && currentStepIndex !== 0 && (
                     <PrimaryButton
                       type={"button"}
                       handleButtonClick={handleBackButton}
                       isInversed={true}
+                      isLarge={true}
                     >
                       <div className="flex items-center ">
                         <BsArrowLeft
@@ -261,7 +262,7 @@ export default function FunnelCard({ funnelIndex, showLogo = true }) {
                     )} */}
                 </div>
                 <div className="mt-5">
-                  <PrimaryButton type={"submit"}>
+                  <PrimaryButton type={"submit"} isLarge={true}>
                     <div className="flex items-center ">
                       Weiter
                       {/* {isLastStep ? "Absenden" : "Weiter"} */}
