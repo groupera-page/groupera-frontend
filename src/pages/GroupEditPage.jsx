@@ -44,10 +44,16 @@ export default function GroupEditPage() {
   const user = mockData.user[0];
   const { slug } = useParams();
   const thisGroup = groups.find((group) => group.id === slug);
+
+  // DELETE THESE?
   const isAdmin = user.moderatedGroups.find(
     (groupId) => thisGroup.id === groupId
   );
+  const isMember = user.joinedGroups.find(
+    (groupId) => thisGroup.id === groupId
+  );
 
+  console.log(isAdmin);
   return (
     <PageContainer>
       <div className="flex flex-col w-full mt-4 lg:mt-10">
@@ -68,6 +74,7 @@ export default function GroupEditPage() {
         <GroupDetailCard
           group={thisGroup}
           isAdmin={isAdmin}
+          isMember={isMember}
           isEditable={true}
           handleEditImage={handleEditImage}
         />

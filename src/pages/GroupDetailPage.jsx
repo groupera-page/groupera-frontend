@@ -17,6 +17,9 @@ export default function GroupDetailPage() {
   const isAdmin = user.moderatedGroups.find(
     (groupId) => thisGroup.id === groupId
   );
+  const isMember = user.joinedGroups.find(
+    (groupId) => thisGroup.id === groupId
+  );
 
   return (
     <PageContainer>
@@ -35,8 +38,12 @@ export default function GroupDetailPage() {
           </Link>
         </div>
 
-        <GroupDetailCard group={thisGroup} isAdmin={isAdmin} />
-        <GroupDetailTable group={thisGroup} />
+        <GroupDetailCard
+          group={thisGroup}
+          isAdmin={isAdmin}
+          isMember={isMember}
+        />
+        {(isAdmin || isMember) && <GroupDetailTable group={thisGroup} />}
       </div>
     </PageContainer>
   );

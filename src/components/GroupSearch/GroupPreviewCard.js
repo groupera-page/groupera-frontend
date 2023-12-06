@@ -54,7 +54,7 @@ export default function GroupPreviewCard({ group }) {
           {group.id === "" ? (
             <Link to={`group/create`}>
               <PrimaryButton type="button" isInversed>
-                Gruppe Gründen
+                Gruppe gründen
               </PrimaryButton>
             </Link>
           ) : (

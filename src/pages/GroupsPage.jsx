@@ -36,27 +36,33 @@ export default function GroupsPage() {
           <PrimaryButton>
             <div className="flex flex-row gap-2 items-center">
               <GoPlus size={20} />
-              <div>Gruppe Gründen</div>
+              <div>Gruppe gründen</div>
             </div>
           </PrimaryButton>
         </Link>
       </div>
       <GroupSearchContainer />
-      {searchedGroups.length > 0 ? (
-        <GroupCardContainer groups={searchedGroups} />
-      ) : (
-        <div>
-          <div className="flex flex-row items-center">
-            <div>
-              <GroupCardContainer
-                groups={mockData.NoGroupCard}
-                showNoGroupTitle={true}
-              />
+      <div className="flex flex-col gap-8">
+        {searchedGroups.length > 0 ? (
+          <GroupCardContainer groups={searchedGroups} />
+        ) : (
+          <div>
+            <div className="flex flex-row items-center">
+              <div>
+                <GroupCardContainer
+                  groups={mockData.NoGroupCard}
+                  showNoGroupTitle={true}
+                />
+              </div>
             </div>
           </div>
-        </div>
-      )}
-      <GroupCardContainer title={"Deine Gruppen"} groups={userGroups} />
+        )}
+        <GroupCardContainer
+          title={"Deine Gruppen"}
+          groups={userGroups}
+          showGroupCount={false}
+        />
+      </div>
     </PageContainer>
   );
 }
