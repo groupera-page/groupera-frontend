@@ -23,13 +23,19 @@ export default function GroupOverviewContent({ group, clamp, isDetailPage }) {
       </div>
       <div
         className={`${
-          isDetailPage ? "paragraph-lead" : "text-PURPLE_PRIMARY"
+          isDetailPage
+            ? "paragraph-lead "
+            : "lg:text-PURPLE_PRIMARY text-TEXT_LIGHTGRAY"
         } paragraph-md my-1`}
       >
         Wöchentlich, Dienstag 18:00 Uhr
       </div>
 
-      <p className={`${clamp ? "line-clamp-5" : ""} paragraph-lg`}>
+      <p
+        className={`${clamp ? "line-clamp-5" : ""} ${
+          isDetailPage ? "paragraph-lg" : "paragraph-md"
+        }`}
+      >
         {group.description}
       </p>
     </div>

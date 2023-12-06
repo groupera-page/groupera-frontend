@@ -67,21 +67,21 @@ export default function OverviewNextEvent({ groups }) {
                       <p className="paragraph-md font-semibold line-clamp-1 break-words">
                         {groups[0].name}
                       </p>
-                      <p className="paragraph-sm text-TEXT_PRIMARY mt-2">
+                      <p className="paragraph-sm text-TEXT_PRIMARY lg:mt-2">
                         {nextEvent
                           ? formatDateTime(nextEvent.start.dateTime) + " Uhr"
                           : "Kein Termin geplant"}
                       </p>
-                      <p className="paragraph-tiny text-TEXT_LIGHTGRAY mt-2">
+                      {/* <p className="paragraph-tiny text-TEXT_LIGHTGRAY mt-2">
                         Ort: Online
-                      </p>
+                      </p> */}
                     </div>
                   </div>
                 )}
               </div>
             </div>
           </div>
-          <div className="w-full lg:w-1/2 pb-5 p-2.5 lg:px-4">
+          <div className="w-full lg:w-1/2 pb-5 lg:p-2.5 lg:px-4">
             {mockDataEvents.length > 0 && (
               <div className="flex flex-row lg:flex-col h-full justify-center items-end gap-3 w-full ">
                 <SecondaryButton>Abmelden</SecondaryButton>

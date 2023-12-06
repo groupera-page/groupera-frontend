@@ -89,7 +89,7 @@ export default function GroupInfoStep({
       <div className="flex text-xs text-gray-500 justify-end">
         {description.length}/{maxCharacters}
       </div>
-      <p className="paragraph-lg mt-4">
+      <p className="paragraph-lg mt-2">
         Du kannst ein Titelbild für deine Gruppe aussuchen.{" "}
       </p>
       <div className="mb-4">
