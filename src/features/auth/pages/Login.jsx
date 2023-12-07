@@ -42,7 +42,7 @@ const Login = () => {
             <div className="flex flex-col items-center">
               <p className="my-8">
                 Du hast noch kein Konto?
-                <Link to={"/signup"} className="text-PURPLE_SECONDARY">
+                <Link to={"/auth/signup"} className="text-PURPLE_SECONDARY">
                   Jetzt Registrieren
                 </Link>
               </p>

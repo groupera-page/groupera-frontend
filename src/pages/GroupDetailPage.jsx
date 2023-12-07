@@ -41,10 +41,10 @@ const GroupDetailPage = () => {
         </div>
 
         {
-          group && (
-            <GroupDetailCard group={group} isAdmin={user.id === group.moderator._id} />,
-            <GroupDetailTable group={group} />
-          )
+          group && [
+            <GroupDetailCard key={"groupDetailCard"} group={group} isAdmin={user.id === group.moderator._id} />,
+            <GroupDetailTable key={"groupDetailTable"} group={group} />
+          ]
         }
       </div>
     </PageContainer>

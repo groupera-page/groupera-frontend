@@ -153,10 +153,10 @@ export const groupFields = {
   selfModerated: {
     type: "inlineSelect",
     name: "groupSelfModerated",
-    label: "Name",
     value: false,
     placeholder: "Name",
     // hint: "",
+    options: moderatingOptions
   },
   downloadProgram: {
     type: "pdf_download",
