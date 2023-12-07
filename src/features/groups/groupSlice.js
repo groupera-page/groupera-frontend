@@ -75,7 +75,14 @@ const groupSlice = createSlice({
     builder
       .addCase(createGroup.fulfilled, (state, {payload}) => {
         state.loading = false
-        state.groups.push(payload.data)
+        state.groups = [...state.groups, payload.group]
+
+        if (state.pagination.totalCount) {
+          state.pagination = {
+            ...state.pagination,
+            totalCount: state.pagination.totalCount + 1
+          }
+        }
       })
       .addCase(updateGroup.fulfilled, (state, {payload}) => {
         state.groups = state.groups.map(group => {
@@ -99,7 +106,8 @@ const groupSlice = createSlice({
       })
       .addCase(findGroup.fulfilled, (state, {payload}) => {
         state.loading = false
-        if (state.groups.some(d => d.id === payload.data.id)) {
+
+        if (state.groups.some(d => d.id === payload.data.id)) { // if group already present
           state.groups = state.groups.map(group => {
             if (group.id === payload.id) {
               return payload
@@ -107,7 +115,7 @@ const groupSlice = createSlice({
             return group
           })
         } else {
-          state.groups.push(payload)
+          state.groups = [...state.groups, payload]
         }
       })
       .addCase(deleteGroup.fulfilled, (state, {payload}) => {

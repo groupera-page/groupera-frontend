@@ -29,16 +29,16 @@ const renderField = (field) => {
   }
 }
 
-let AuthForm = ({ handleSubmit, fields, children }) => {
-  return(
-    <form onSubmit={handleSubmit}>
-      {
-        fields.map((field) => renderField(field))
-      }
-      {children}
-    </form>
-  )
-}
+export const SharedForm = ({ handleSubmit, fields, children }) => (
+  <form onSubmit={handleSubmit}>
+    {
+      fields.map((field) => renderField(field))
+    }
+    {children}
+  </form>
+)
+
+let AuthForm = (props) => <SharedForm {...props}/>
 
 const mapStateToProps = (state, ownProps) => {
   if (ownProps.groupId) {

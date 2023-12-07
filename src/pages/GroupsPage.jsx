@@ -57,9 +57,13 @@ export default function GroupsPage() {
 
   }
   const handleSearch = (searchTerm) => {
-    if (!searchTerm) return
-
-    if (filter.topic) {
+    if (!searchTerm && filter.topic) {
+      setFilter({
+        ...filter,
+        searchTerm: "",
+        groups: groups.filter(group => group.topic === filter.topic),
+      })
+    } else if (filter.topic) {
       setFilter({
         ...filter,
         searchTerm,

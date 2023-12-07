@@ -11,11 +11,11 @@ import AlertsWrapper from "./features/alert/AlertsWrapper";
 import MenusContainer from "./components/Navigation/MenusContainer";
 import ScrollToTop from "./util/ScrollToTop";
 import GroupsPage from "./pages/GroupsPage";
-import GroupCreatePage from "./pages/GroupCreatePage";
 import GroupEditPage from "./pages/GroupEditPage";
 import GroupEventPage from "./pages/GroupEventPage";
 import GroupDetailPage from "./pages/GroupDetailPage";
 import ProfilePage from "./pages/ProfilePage";
+import MultiStepGroupCreate from "./features/groups/components/MultiStepGroupCreate";
 
 function Navigation() {
   return (
@@ -55,7 +55,7 @@ function Navigation() {
                 <>
                   <ScrollToTop>
                     <MenusContainer />
-                    <GroupCreatePage />
+                    <MultiStepGroupCreate />
                   </ScrollToTop>
                 </>
               }
