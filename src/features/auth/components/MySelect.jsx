@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { AiOutlineWarning } from "react-icons/ai";
 
 const MySelect = ({
   input,
@@ -31,13 +32,13 @@ const MySelect = ({
   };
 
   return (
-    <div>
+    <div className="relative">
       {label && <label>{label}</label>}
       {options.map((opt, idx) => (
         <label
           key={idx}
           htmlFor={`opt-${idx}`}
-          className={`relative cursor-pointer border my-2 ${
+          className={`relative cursor-pointer my-2 border ${
             Array.isArray(input.value)
               ? input.value.indexOf(opt.value) !== -1
                 ? "border-PURPLE_PRIMARY"
@@ -63,8 +64,18 @@ const MySelect = ({
           />
         </label>
       ))}
-      {hint && <span className="text-xs text-slate-500">{hint}</span>}
-      {touched && error && <div className="footer error">{error}</div>}
+
+      <div className="absolute w-full -bottom-7 flex justify-center">
+        {hint && <span className="text-sm text-slate-500">{hint}</span>}
+        {touched && error && (
+          <div className="flex text-right gap-2 items-center bg-BG_PRIMARY text-PURPLE_PRIMARY">
+            <div className="">
+              <AiOutlineWarning className="text-red" size={26} />
+            </div>
+            {error}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
