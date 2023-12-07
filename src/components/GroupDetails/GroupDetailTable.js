@@ -8,7 +8,7 @@ import { Routes, Route } from "react-router-dom";
 import ScrollToTop from "../../util/ScrollToTop";
 
 export default function GroupDetailTable({ group }) {
-  const subPages = ["Termine", "MitgliederInnen", "Unterlagen"];
+  const subPages = ["MitgliederInnen", "Unterlagen"];
 
   return (
     <div className=" my-8">
@@ -19,11 +19,7 @@ export default function GroupDetailTable({ group }) {
 
         <Route
           path="/"
-          element={
-            <ScrollToTop>
-              <GroupTermineSubPage group={group} />
-            </ScrollToTop>
-          }
+          element={<GroupMemberSubPage group={group} />}
         />
 
         <Route path="Pinnwand" element={<GroupPinnwandSubPage />} />

@@ -1,22 +1,27 @@
-import React from "react";
+import React, {useEffect} from "react";
 import PageContainer from "../components/Globals/PageContainer";
-import { useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { useParams } from "react-router-dom";
 import PrimaryButton from "../components/Buttons/PrimaryButton";
 import { BsArrowLeft } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import GroupDetailCard from "../components/GroupDetails/GroupDetailCard";
 import GroupDetailTable from "../components/GroupDetails/GroupDetailTable";
+import {selectAuth} from "../features/auth/authSlice";
+import {findGroup} from "../features/groups/groupSlice";
 
-export default function GroupDetailPage() {
-  const mockData = useSelector((state) => state.mockData.mockData);
-  const mockDataGroups = mockData.groups;
-  const user = mockData.user[0];
-  const { slug } = useParams();
-  const thisGroup = mockDataGroups.find((group) => group.id === slug);
-  const isAdmin = user.moderatedGroups.find(
-    (groupId) => thisGroup.id === groupId
-  );
+const GroupDetailPage = () => {
+  const { groupId } = useParams();
+
+  const group = useSelector((state) => state.groups.groups.find(group => group.id === groupId));
+  const {user} = useSelector(selectAuth)
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (group) return
+    dispatch(findGroup(groupId))
+  }, [])
 
   return (
     <PageContainer>
@@ -35,9 +40,15 @@ export default function GroupDetailPage() {
           </Link>
         </div>
 
-        <GroupDetailCard group={thisGroup} isAdmin={isAdmin} />
-        <GroupDetailTable group={thisGroup} />
+        {
+          group && (
+            <GroupDetailCard group={group} isAdmin={user.id === group.moderator._id} />,
+            <GroupDetailTable group={group} />
+          )
+        }
       </div>
     </PageContainer>
   );
 }
+
+export default GroupDetailPage

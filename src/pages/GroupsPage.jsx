@@ -1,49 +1,88 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import PageContainer from "../components/Globals/PageContainer";
-import GroupSearchContainer from "../components/GroupSearch/GroupSearchContainer";
 import GroupCardContainer from "../components/GroupSearch/GroupCardContainer";
-import { useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {findGroups, selectGroups} from "../features/groups/groupSlice";
+import Searchbox from "../components/UserInputs/Searchbox";
+import GroupTopicFilter from "../components/GroupSearch/GroupTopicFilter";
 
 export default function GroupsPage() {
-  const mockData = useSelector((state) => state.mockData.mockData);
-  const userGroupsId = [
-    ...mockData.user[0].joinedGroups,
-    ...mockData.user[0].moderatedGroups,
-  ];
+  const {groups} = useSelector(selectGroups)
+  const [filter, setFilter] = useState({
+    groups: groups || [],
+    searchTerm: ""
+  })
+  const dispatch = useDispatch()
 
-  const filteredGroups = mockData.filters.length
-    ? mockData.groups.filter((group) => mockData.filters.includes(group.topic))
-    : mockData.groups;
+  useEffect(() => {
+    // if (groups.length) return
+    dispatch(findGroups())
+  }, [])
 
-  const searchedGroups = mockData.groupSearch
-    ? filteredGroups.filter((group) =>
-        group.name.toLowerCase().includes(mockData.groupSearch.toLowerCase())
-      )
-    : filteredGroups;
+  useEffect(() => {
+    setFilter({
+      searchTerm: "",
+      groups
+    })
+  }, [groups])
 
-  const userGroups = mockData.groups.filter((group) =>
-    userGroupsId.includes(group.id)
-  );
+  console.log(filter.groups)
+
+  const handleThemeFilter = (topic) => {
+    if (filter.topic === topic && !filter.searchTerm) {
+      setFilter({
+        searchTerm: "",
+        groups: groups || []
+      })
+    } else if(filter.topic === topic && filter.searchTerm) {
+      setFilter({
+        searchTerm: filter.searchTerm,
+        groups: groups.filter(group => group.name.toLowerCase().includes(filter.searchTerm.toLowerCase()))
+      })
+    } else if(filter.searchTerm) {
+      setFilter({
+        ...filter,
+        topic,
+        groups: groups.filter(group => group.topic === topic && group.name.toLowerCase().includes(filter.searchTerm.toLowerCase()))
+      })
+    } else {
+      setFilter({
+        ...filter,
+        topic,
+        groups: groups.filter(group => group.topic === topic)
+      })
+    }
+
+  }
+  const handleSearch = (searchTerm) => {
+    if (filter.topic) {
+      setFilter({
+        ...filter,
+        searchTerm,
+        groups: groups.filter(group => group.topic === filter.topic && group.name.toLowerCase().includes(searchTerm.toLowerCase()))
+      })
+    } else{
+      setFilter({
+        searchTerm,
+        groups: groups.filter(group => group.name.toLowerCase().includes(searchTerm.toLowerCase()))
+      })
+    }
+
+  }
 
   return (
     <PageContainer title={`Gruppen`}>
-      <GroupSearchContainer />
+      <div className="w-full mt-4">
+        <Searchbox
+          searchTerm={filter.searchTerm}
+          onSearch={handleSearch}
+        />
+        <GroupTopicFilter onFilter={handleThemeFilter} selectedTopic={filter.topic}/>
+      </div>
 
-      {searchedGroups.length > 0 ? (
-        <GroupCardContainer groups={searchedGroups} />
-      ) : (
-        <div>
-          <div className="flex flex-row items-center">
-            <div>
-              <GroupCardContainer
-                groups={mockData.NoGroupCard}
-                showNoGroupTitle={true}
-              />
-            </div>
-          </div>
-        </div>
-      )}
-      <GroupCardContainer title={"Deine Gruppen"} groups={userGroups} />
+      {filter.groups.length > 0 &&
+        <GroupCardContainer groups={filter.groups} showGroupCount={true} />
+      }
     </PageContainer>
   );
 }

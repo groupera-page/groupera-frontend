@@ -26,7 +26,7 @@ export default function GroupOverviewContent({ group, clamp, isDetailPage }) {
           isDetailPage ? "paragraph-lead" : "text-PURPLE_PRIMARY"
         } paragraph-md my-1`}
       >
-        Wöchentlich, Dienstag 18:00 Uhr
+        Wöchentlich, Dienstag 18:00 Uhr {/*// todo switch with actual next event*/}
       </div>
 
       <p className={`${clamp ? "line-clamp-5" : ""} paragraph-lg`}>

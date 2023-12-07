@@ -3,6 +3,7 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import authService from "./authApi";
 
 import tokenService from "../../util/tokenServices";
+import profileService from "../profile/profileApi";
 
 const initialState = {
   token: false,
@@ -19,19 +20,10 @@ export const registerUser = createAsyncThunk(
   },
 );
 
-export const updateUserQuestions = createAsyncThunk(
-  "user/editQuestions",
-  async (formValues) => {
-    debugger
-    const result = await authService.updateUser(formValues)
-    return result.data
-  },
-);
-
 export const verifyEmail = createAsyncThunk(
   "auth/verifyEmail",
   async (formValues) => {
-    const result = await authService.verifyEmail(formValues.email, formValues.authCode)
+    const result = await authService.verifyEmail(formValues)
     return result.data
   },
 );
@@ -76,9 +68,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     setAuthToken: (state) => {
-      const token = localStorage.getItem("tempAuthToken");
-      state.token = token;
-      localStorage.removeItem("tempAuthToken");
+      state.token = tokenService.getLocalAuthToken()
     }
   },
   extraReducers: (builder) => {
@@ -93,7 +83,8 @@ const authSlice = createSlice({
         state.user = null;
       })
       .addCase(verifyEmail.fulfilled, (state, {payload}) => {
-        localStorage.setItem("tempAuthToken", payload.authToken);
+        // localStorage.setItem("tempAuthToken", payload.authToken);
+        tokenService.updateLocalAuthToken(payload.authToken)
         state.user = payload.user;
       })
       // .addCase(registerUser.fulfilled, (state, {payload}) => {

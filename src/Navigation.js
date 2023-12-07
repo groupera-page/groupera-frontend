@@ -85,7 +85,7 @@ function Navigation() {
             />
 
             <Route
-              path="/groups/:slug/*"
+              path="/groups/:groupId/*"
               element={
                 <>
                   <MenusContainer />
@@ -95,7 +95,7 @@ function Navigation() {
             />
 
             <Route
-              path="/profile/:slug/*"
+              path="/profile/*"
               element={
                 <>
                   <MenusContainer />
@@ -103,7 +103,7 @@ function Navigation() {
                 </>
               }
             />
-            <Route path="/profile" element={<div>Profile</div>} />
+            {/*<Route path="/profile" element={<div>Profile</div>} />*/}
           </Route>
         </Routes>
         <AlertsWrapper/>

@@ -1,9 +1,16 @@
 import React from "react";
 
 export default function GroupMemberSubPage({ group }) {
+  if (!group.members || group.members.length === 0) {
+    return (
+      <div className="mt-8">
+        No Members yet
+      </div>
+    )
+  }
   return (
     <div className="mt-8">
-      {group.users.map((member, id) => (
+      {group.members.map((member, id) => (
         <div className="flex bg-BG_GRAY py-2 justify-center" key={id}>
           <div className="w-full border-b border-TEXT_GRAY">
             <div className="flex justify-between items-center mb-4 ">

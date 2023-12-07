@@ -3,7 +3,8 @@ import { Field, reduxForm } from "redux-form";
 import VerificationCodeWrapper from "./VerificationCodeWrapper";
 import MySelect from "./MySelect";
 import myInput from "./MyInput";
-import {connect} from "react-redux";
+import {connect, useDispatch} from "react-redux";
+import {useLocation} from "react-router-dom";
 
 const renderField = (field) => {
   switch (field.type) {
@@ -40,16 +41,25 @@ let AuthForm = ({ handleSubmit, fields, children }) => {
   )
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
+  if (ownProps.groupId) {
+    return {
+      initialValues: {
+        alias: 'Fritz',
+        email: 'frit.meyer@allesfritz.de',
+        password: 'fritz-Meyer1',
+        passwordConfirmation: 'fritz-Meyer1',
+        gender: 'male',
+        joinedGroups: [ownProps.groupId],
+        groupSelfModerated: false
+      }
+    };
+  }
   return {
     initialValues: {
-      alias: 'Fritz',
-      email: 'frit.er@asdmfa.de',
-      password: 'fritz-Meyer1',
-      password_confirmation: 'fritz-Meyer1',
-      gender: 'male',
+      groupSelfModerated: false
     }
-  };
+  }
 };
 
 AuthForm = reduxForm({

@@ -4,14 +4,7 @@ import GroupTopicFilter from "./GroupTopicFilter";
 import { useDispatch } from "react-redux";
 import { setGroupSearch } from "../../mockDataSlice";
 
-export default function GroupSearchContainer() {
-  const [inputValue, setInputValue] = useState();
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(setGroupSearch(inputValue));
-  }, [inputValue, dispatch]);
-
+const GroupSearchContainer = (searchTerm, handleSearch) => {
   return (
     <div className="w-full mt-4">
       <Searchbox
@@ -23,3 +16,5 @@ export default function GroupSearchContainer() {
     </div>
   );
 }
+
+export default GroupSearchContainer

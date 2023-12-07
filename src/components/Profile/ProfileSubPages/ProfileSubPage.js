@@ -2,10 +2,11 @@ import { useState } from "react";
 import TextInput from "../../UserInputs/TextInput";
 import PrimaryButton from "../../Buttons/PrimaryButton";
 import { useSelector } from "react-redux";
+import {selectAuth} from "../../../features/auth/authSlice";
 
 export default function ProfileSubPage() {
-  const mockData = useSelector((state) => state.mockData.mockData);
-  const userName = mockData.user[0].alias;
+  const {user} = useSelector(selectAuth)
+  const userName = user.alias;
   const [inputValue, setInputValue] = useState(userName);
 
   const handleInputChange = (event) => {

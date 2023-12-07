@@ -1,22 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import { BsSearch } from "react-icons/bs";
-import { useNavigate } from "react-router-dom";
 
 export default function Searchbox({
-  placeholderText,
-  inputValue = "",
-  setInputValue,
+  placeholderText="Gib hier deine Suche ein...",
+  searchTerm = "",
+  onSearch,
 }) {
-  //const [inputValue, setInputValue] = useState();
-  const navigate = useNavigate();
-
-  const handleInputChange = (e) => {
-    setInputValue(e.target.value);
+  const handleChange = (e) => {
+    onSearch(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // navigate("/groups", { state: inputValue });
+    debugger
+    // onSearch(values)
   };
 
   return (
@@ -26,8 +23,8 @@ export default function Searchbox({
         type="search"
         className={`w-full paragraph-md ps-10 p-2.5 border rounded-md  bg-BG_PRIMARY text-TEXT_PRIMARY shadow-sm
         `}
-        value={inputValue}
-        onChange={handleInputChange}
+        value={searchTerm}
+        onChange={handleChange}
         placeholder={placeholderText}
       />
 

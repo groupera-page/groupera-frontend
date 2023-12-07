@@ -2,14 +2,15 @@ import { configureStore } from "@reduxjs/toolkit";
 import logger from "redux-logger"
 import { reducer as formReducer } from "redux-form"
 
-import authReducer, {registerUser} from "./features/auth/authSlice";
+import authReducer from "./features/auth/authSlice";
+import groupsReducer from "./features/groups/groupSlice";
 import alertReducer from "./features/alert/alertSlice";
 import mockDataSlice from "./mockDataSlice";
-import tokenService from "./util/tokenServices";
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
+    groups: groupsReducer,
     alerts: alertReducer,
     form: formReducer,
     // form: formReducer.plugin({

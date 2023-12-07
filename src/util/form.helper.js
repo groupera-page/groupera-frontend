@@ -70,7 +70,7 @@ export const authFields = {
   },
   passwordConfirmation: {
     type: "password",
-    name: "password_confirmation",
+    name: "passwordConfirmation",
     value: "",
     label: "Password Confirmation",
     placeholder: "Password Confirmation",
@@ -78,7 +78,7 @@ export const authFields = {
   },
   authCode: {
     type: "authCode",
-    name: "auth_code",
+    name: "authCode",
     // value: "",
     label: "Auth Code",
     hint: "You can find this code in your email.",
@@ -122,22 +122,21 @@ const groupThemeOptions = [
 ];
 
 const moderatingOptions = [
-  {label: "Ja", value: "Ja"},
-  {label: "Ja, aber mit Unterstützung", value: "Ja, aber mit Unterstützung"},
-  {label: "Nein", value: "Nein"},
+  {label: "Ja", value: true},
+  {label: "Nein", value: false},
 ]
 
 export const groupFields = {
   theme: {
     type: "inlineMultiSelect",
-    name: "interestedInGroupsWithTheme",
+    name: "groupTheme",
     value: [],
     options: groupThemeOptions,
     validate: [(value) => minArrayLength(value, 1)]
   },
   name: {
     type: "name",
-    name: "name",
+    name: "groupName",
     label: "Name",
     value: "",
     placeholder: "Name",
@@ -146,23 +145,22 @@ export const groupFields = {
   },
   description: {
     type: "textarea",
-    name: "description",
+    name: "groupDescription",
     label: "Wie würdest du deine Gruppe beschreiben?",
     value: "",
     placeholder: "Wie würdest du deine Gruppe beschreiben?",
   },
-  moderationType: {
+  selfModerated: {
     type: "inlineSelect",
-    name: "moderationType",
+    name: "groupSelfModerated",
     label: "Name",
-    value: moderatingOptions[0].value,
+    value: false,
     placeholder: "Name",
     // hint: "",
-    options: moderatingOptions
   },
   downloadProgram: {
     type: "pdf_download",
-    name: "program",
+    name: "groupProgram",
     value: testManual,
     label: "Download Program",
     placeholder: "Download Program",
@@ -170,16 +168,15 @@ export const groupFields = {
 }
 
 const experienceOptions = [
-  {label: "Nein, ich hab noch nie an einer Gruppe teilgenommen.", value: "Nein, ich hab noch nie an einer Gruppe teilgenommen."},
-  {label: "Ein wenig, ich habe schonmal an einer Gruppe teilgenommen.", value: "Ein wenig, ich habe schonmal an einer Gruppe teilgenommen."},
-  {label: "Ja, ich habe regelmäßig an Gruppen teilgenommen.", value: "Ja, ich habe regelmäßig an Gruppen teilgenommen."},
-  {label: "Ja, ich habe bereits Gruppen organisiert.", value: "Ja, ich habe bereits Gruppen organisiert."},
+  {label: "Nein, ich hab noch nie an einer Gruppe teilgenommen.", value: "never participated"},
+  {label: "Ein wenig, ich habe schonmal an einer Gruppe teilgenommen.", value: "a little, I have participated before"},
+  {label: "Ja, ich habe regelmäßig an Gruppen teilgenommen.", value: "Yes, I participate regularly"},
+  {label: "Ja, ich habe bereits Gruppen organisiert.", value: "Yes, I have organised groups before"},
 ];
 
 export const groupExperienceField = {
   type: "inlineSelect",
   value: experienceOptions[0].value,
-  label: "",
   name: "experience",
   options: experienceOptions,
   validate: [required]
@@ -195,7 +192,6 @@ const chooseFunnelOptions = [
 export const chooseFunnelField = {
   type: "inlineSelect",
   value: experienceOptions[0].value,
-  label: "",
   name: "chooseFunnel",
   options: chooseFunnelOptions,
   validate: [required]

@@ -42,7 +42,7 @@ export default function Navbar({ handleMenuMobile, openMenuMobile }) {
         )}
         <MenuDropDown openMenuMobile={openMenuMobile} title={truncatedUserName}>
           <div className="">
-            <NavLink to={`/profile/${"user"}/profil`}>
+            <NavLink to={`/profile/Profil`}>
               <li className="p-2 flex justify-center whitespace-nowrap paragraph-lg ">
                 <div className="mr- paragraph-lg relative">
                   <div className="group text-lg">

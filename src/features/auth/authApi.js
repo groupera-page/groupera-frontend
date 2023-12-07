@@ -23,24 +23,13 @@ const register = (formValues) => {
     .post("/auth/signup", formValues)
 };
 
-const verifyEmail = (email, authCode) => {
+const verifyEmail = (body) => {
   return noRefreshRequest
-    .patch(`/auth/verifyEmail`, {
-      code: authCode,
-      email
-    }, {
+    .patch(`/auth/verifyEmail`, body, {
       withCredentials: true
     })
 };
 
-const updateUser = (id, body) => {
-  return noRefreshRequest
-    .patch(`/user/${id}`, {
-      ...body
-    }, {
-      withCredentials: true
-    })
-};
 
 // const acceptInvite = (token, nickName, fullName, password) => {
 //   return api
@@ -89,7 +78,6 @@ const authService = {
   logout,
   register,
   verifyEmail,
-  updateUser,
   refreshToken,
   getCurrentUser,
   getResetPasswordInstr,

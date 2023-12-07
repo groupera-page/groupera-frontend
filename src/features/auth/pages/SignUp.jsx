@@ -1,32 +1,37 @@
 import React from "react";
 import {useNavigate, useSearchParams} from "react-router-dom";
 import {useDispatch} from "react-redux";
+import { createAction } from '@reduxjs/toolkit'
 
 import AuthForm from "../components/AuthForm";
 
 import logoSvg from "../../../assets/imgLogos/logoNoBg.svg";
 import useMultistepHook from "../../../util/hooks/multistepHook";
-import getFunnelSteps from "../../../util/getFunnelSteps";
+import getFunnelSteps from "../util/getFunnelSteps";
 import StepIndicator from "../components/RegStepper";
 import {setAuthToken} from "../authSlice";
-import tokenService from "../../../util/tokenServices";
+
+
+const populateAuthForm = createAction('populateAuthForm')
 
 const SignUp = () => {
   const [searchParams] = useSearchParams()
-  const steps = getFunnelSteps(searchParams)
+  const {steps, joinGroupId} = getFunnelSteps(searchParams)
   const dispatch = useDispatch()
+  const navitate = useNavigate()
 
   const { currentStepIndex, step, isFirstStep, isLastStep, back, next } =
     useMultistepHook(steps)
 
-  const handleLastSubmit = () => {
+
+
+  const handleLastSubmit = async () => {
     if (!isLastStep) {
       next()
     } else{
       try {
-        const token = tokenService.getLocalAuthToken();
-        console.log("token", token)
-        dispatch(setAuthToken({token: token}))
+        await dispatch(setAuthToken())
+        navitate("/profile")
         // if (response.error) throw Error(response.error.message)
       } catch (e) {
         console.log("Error", e)
@@ -42,14 +47,14 @@ const SignUp = () => {
         if (response.error) throw Error(response.error.message)
 
 
-        handleLastSubmit()
+        await handleLastSubmit()
       } catch (e) {
         console.log("Error", e)
       }
       // handle the response
       // if an error than don't go to next step but show the error, otherwise proceed to next step.
     } else {
-      handleLastSubmit()
+      await handleLastSubmit()
     }
   }
 
@@ -74,7 +79,9 @@ const SignUp = () => {
           {
             <AuthForm
               fields={step.fields}
-              onSubmit={handleSubmit}>
+              onSubmit={handleSubmit}
+              groupId={joinGroupId}
+            >
               {
                 !isFirstStep && step.goBackOption &&
                 <button onClick={back}>Back</button>

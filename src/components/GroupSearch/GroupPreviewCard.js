@@ -12,7 +12,7 @@ const fadeInVariants = {
   exit: { opacity: 0 },
 };
 
-export default function GroupPreviewCard({ group }) {
+const GroupPreviewCard = ({ group }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   const handleImageLoad = () => {
@@ -49,23 +49,16 @@ export default function GroupPreviewCard({ group }) {
 
       <div className="flex flex-col justify-between px-4 h-full">
         <GroupOverviewContent clamp={true} group={group} />
-        {/* TODO FIX A LINK - GRUPPE GRÜNDEN */}
         <div className="my-4">
-          {group.id === "" ? (
-            <Link to={`group/create`}>
-              <PrimaryButton type="button" isInversed>
-                Gruppe Gründen
-              </PrimaryButton>
-            </Link>
-          ) : (
-            <Link to={`/groups/${group.id}`}>
-              <PrimaryButton type="button" isInversed>
-                Mehr erfahren
-              </PrimaryButton>
-            </Link>
-          )}
+          <Link to={`/groups/${group.id}`}>
+            <PrimaryButton type="button" isInversed>
+              Mehr erfahren
+            </PrimaryButton>
+          </Link>
         </div>
       </div>
     </div>
   );
 }
+
+export default GroupPreviewCard
