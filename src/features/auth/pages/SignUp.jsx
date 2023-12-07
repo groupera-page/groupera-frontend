@@ -11,14 +11,11 @@ import getFunnelSteps from "../util/getFunnelSteps";
 import StepIndicator from "../components/RegStepper";
 import {setAuthToken} from "../authSlice";
 
-
-const populateAuthForm = createAction('populateAuthForm')
-
 const SignUp = () => {
   const [searchParams] = useSearchParams()
   const {steps, joinGroupId} = getFunnelSteps(searchParams)
   const dispatch = useDispatch()
-  const navitate = useNavigate()
+  const navigate = useNavigate()
 
   const { currentStepIndex, step, isFirstStep, isLastStep, back, next } =
     useMultistepHook(steps)
@@ -31,7 +28,7 @@ const SignUp = () => {
     } else{
       try {
         await dispatch(setAuthToken())
-        navitate("/profile")
+        navigate("/profile")
         // if (response.error) throw Error(response.error.message)
       } catch (e) {
         console.log("Error", e)
