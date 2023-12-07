@@ -2,12 +2,14 @@ import React, {useEffect, useState} from "react";
 import PageContainer from "../components/Globals/PageContainer";
 import GroupCardContainer from "../components/GroupSearch/GroupCardContainer";
 import {useDispatch, useSelector} from "react-redux";
-import {findGroups, selectGroups} from "../features/groups/groupSlice";
+import {findGroups, selectGroups, selectGroupsPagination} from "../features/groups/groupSlice";
 import Searchbox from "../components/UserInputs/Searchbox";
 import GroupTopicFilter from "../components/GroupSearch/GroupTopicFilter";
 
 export default function GroupsPage() {
   const {groups} = useSelector(selectGroups)
+  const {currentPage, pageSize} = useSelector(selectGroupsPagination)
+
   const [filter, setFilter] = useState({
     groups: groups || [],
     searchTerm: ""
@@ -16,8 +18,8 @@ export default function GroupsPage() {
 
   useEffect(() => {
     // if (groups.length) return
-    dispatch(findGroups())
-  }, [])
+    dispatch(findGroups({page: currentPage, limit: pageSize}))
+  }, [currentPage, pageSize])
 
   useEffect(() => {
     setFilter({
@@ -55,6 +57,8 @@ export default function GroupsPage() {
 
   }
   const handleSearch = (searchTerm) => {
+    if (!searchTerm) return
+
     if (filter.topic) {
       setFilter({
         ...filter,
@@ -67,7 +71,6 @@ export default function GroupsPage() {
         groups: groups.filter(group => group.name.toLowerCase().includes(searchTerm.toLowerCase()))
       })
     }
-
   }
 
   return (

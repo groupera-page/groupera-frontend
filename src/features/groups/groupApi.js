@@ -1,4 +1,5 @@
 import api from "../../api/axios";
+import createUrl from "../../util/createQueryUrl";
 
 const createOne = (formValues) => {
   return api
@@ -14,9 +15,10 @@ const findOne = (groupId) => {
     })
 };
 
-const findAll = () => {
+const findAll = (queryParams) => {
+  const {search} = createUrl("/group", queryParams)
   return api
-    .get(`/group`, {
+    .get(`/group${search}`, {
       withCredentials: true
     })
 };

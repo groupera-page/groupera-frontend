@@ -1,12 +1,16 @@
-import {createAsyncThunk, createReducer} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
-import tokenService from "../../util/tokenServices";
 import groupService from "./groupApi";
 
 const initialState = {
   loading: true,
   error: null,
   groups: [],
+  pagination: {
+    currentPage: 1,
+    pageSize: 50,
+    totalCount: undefined
+  }
 };
 
 export const createGroup = createAsyncThunk(
@@ -27,8 +31,8 @@ export const findGroup = createAsyncThunk(
 
 export const findGroups = createAsyncThunk(
   "groups/findAll",
-  async () => {
-    const result = await groupService.findAll()
+  async (queryParams) => {
+    const result = await groupService.findAll(queryParams)
     return result.data;
   }
 );
@@ -50,11 +54,24 @@ export const deleteGroup = createAsyncThunk(
   }
 );
 
-
-const groupReducer = createReducer(
-  // name: "groups",
+const groupSlice = createSlice({
+  name: "groups",
   initialState,
-  (builder) => {
+  reducers: {
+    setCurrentPage: (state, action) => {
+      state.pagination = {
+        ...state.pagination,
+        currentPage: action.payload,
+      }
+    },
+    setPageSize: (state, action) => {
+      state.pagination = {
+        ...state.pagination,
+        pageSize: action.payload,
+      }
+    }
+  },
+  extraReducers: (builder) => {
     builder
       .addCase(createGroup.fulfilled, (state, {payload}) => {
         state.loading = false
@@ -74,18 +91,22 @@ const groupReducer = createReducer(
       })
       .addCase(findGroups.fulfilled, (state, {payload}) => {
         state.loading = false
-        state.groups = payload
+        state.groups = payload.groups
+        state.pagination = {
+          ...state.pagination,
+          totalCount: payload.totalCount
+        }
       })
       .addCase(findGroup.fulfilled, (state, {payload}) => {
         state.loading = false
-        if(state.groups.some(d => d.id === payload.data.id)){
+        if (state.groups.some(d => d.id === payload.data.id)) {
           state.groups = state.groups.map(group => {
             if (group.id === payload.id) {
               return payload
             }
             return group
           })
-        } else{
+        } else {
           state.groups.push(payload)
         }
       })
@@ -93,8 +114,11 @@ const groupReducer = createReducer(
         state.groups = state.groups.filter(group => group.id !== payload)
       })
   }
-);
+});
+
+export const {setPageSize, setCurrentPage} = groupSlice.actions;
 
 export const selectGroups = (state) => state.groups;
+export const selectGroupsPagination = (state) => state.groups.pagination;
 
-export default groupReducer;
+export default groupSlice.reducer;

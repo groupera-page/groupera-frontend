@@ -3,8 +3,7 @@ import { Field, reduxForm } from "redux-form";
 import VerificationCodeWrapper from "./VerificationCodeWrapper";
 import MySelect from "./MySelect";
 import myInput from "./MyInput";
-import {connect, useDispatch} from "react-redux";
-import {useLocation} from "react-router-dom";
+import {connect} from "react-redux";
 
 const renderField = (field) => {
   switch (field.type) {
@@ -50,6 +49,8 @@ const mapStateToProps = (state, ownProps) => {
         password: 'fritz-Meyer1',
         passwordConfirmation: 'fritz-Meyer1',
         gender: 'male',
+        groupName: 'Group Test',
+        groupDescription: 'Group Test description',
         joinedGroups: [ownProps.groupId],
         groupSelfModerated: false
       }
@@ -57,6 +58,13 @@ const mapStateToProps = (state, ownProps) => {
   }
   return {
     initialValues: {
+      alias: 'Fritz',
+      email: 'frit.meyer@allesfritz.de',
+      password: 'fritz-Meyer1',
+      passwordConfirmation: 'fritz-Meyer1',
+      gender: 'male',
+      groupName: 'Group Test',
+      groupDescription: 'Group Test description',
       groupSelfModerated: false
     }
   }
