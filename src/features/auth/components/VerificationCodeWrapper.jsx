@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import VerificationCodeInput from "./VerificationCodeInput";
+import { AiOutlineWarning } from "react-icons/ai";
 
 const VerificationCodeWrapper = ({
   codeLength = 4,
@@ -45,8 +46,8 @@ const VerificationCodeWrapper = ({
   };
 
   return (
-    <div>
-      <div className="flex justify-center mx-10 gap-2 my-6">
+    <div className="mx-10">
+      <div className="flex justify-center gap-2 my-2">
         {code.map((char, index) => (
           <VerificationCodeInput
             // style={{ display: "flex", columnGap: "10px" }}
@@ -59,8 +60,16 @@ const VerificationCodeWrapper = ({
           />
         ))}
       </div>
-      {hint && <span className="text-xs text-slate-500">{hint}</span>}
-      {touched && error && <div className="footer error">{error}</div>}
+
+      {touched && error && (
+        <div className="flex px-4 text-right gap-2 items-right bg-BG_PRIMARY text-PURPLE_PRIMARY border border-PURPLE_PRIMARY rounded-md p-1 my-1">
+          <div>
+            <AiOutlineWarning className="text-red" size={26} />
+          </div>
+          {error}
+        </div>
+      )}
+      {hint && <span className="paragraph-tiny">{hint}</span>}
     </div>
   );
 };

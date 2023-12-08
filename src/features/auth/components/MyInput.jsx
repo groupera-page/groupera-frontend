@@ -17,19 +17,19 @@ const MyInput = ({
           {...input}
           placeholder={placeholder || label}
           type={type}
-          className="w-full rounded-md p-2 placeholder-TEXT_PRIMARY bg-BG_PRIMARY border border-BORDER_PRIMARY"
+          className="w-full paragraph-md rounded-md py-2 px-4  placeholder-TEXT_PRIMARY bg-BG_PRIMARY border border-BORDER_PRIMARY"
         />
       </div>
 
       {touched && error && (
-        <div className="flex px-2 text-right gap-2 items-right bg-BG_PRIMARY text-PURPLE_PRIMARY border border-PURPLE_PRIMARY rounded-md p-1 my-1">
+        <div className="flex px-4 text-right gap-2 items-right bg-BG_PRIMARY text-PURPLE_PRIMARY border border-PURPLE_PRIMARY rounded-md p-1 my-1">
           <div>
             <AiOutlineWarning className="text-red" size={26} />
           </div>
           {error}
         </div>
       )}
-      {hint && <p className="px-1 text-TEXT_LIGHTGRAY">{hint}</p>}
+      {hint && <p className="paragraph-tiny">{hint}</p>}
     </div>
   );
 };

@@ -33,7 +33,7 @@ const MySelect = ({
 
   return (
     <div>
-      {label && <label>{label}</label>}
+      <div className="paragraph-lg my-1.5">{label}</div>
       {options.map((opt, idx) => (
         <label
           key={idx}
@@ -66,14 +66,14 @@ const MySelect = ({
       ))}
 
       {touched && error && (
-        <div className="flex px-2 text-right gap-2 items-right bg-BG_PRIMARY text-PURPLE_PRIMARY border border-PURPLE_PRIMARY rounded-md p-1 my-1">
+        <div className="flex px-4 text-right gap-2 items-right bg-BG_PRIMARY text-PURPLE_PRIMARY border border-PURPLE_PRIMARY rounded-md p-1 my-1">
           <div>
             <AiOutlineWarning className="text-red" size={26} />
           </div>
           {error}
         </div>
       )}
-      {hint && <span className="text-sm text-slate-500">{hint}</span>}
+      {hint && <span className="paragraph-tiny">{hint}</span>}
     </div>
   );
 };
