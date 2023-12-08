@@ -111,7 +111,7 @@ export const authFields = {
     name: "authCode",
     // value: "",
     label: "Auth Code",
-    hint: "You can find this code in your email.",
+    hint: "Du findest den Code in deinen Emails",
     validate: [required, (value) => length(value, 4)],
   },
   gender: {
@@ -123,16 +123,16 @@ export const authFields = {
     validate: [required],
     options: [
       {
-        value: "male",
-        label: "Male",
+        value: "männlich",
+        label: "Männlich",
       },
       {
-        value: "female",
-        label: "Female",
+        value: "weiblich",
+        label: "Weiblich",
       },
       {
-        value: "other",
-        label: "Other",
+        value: "divers",
+        label: "Divers",
       },
     ],
   },
