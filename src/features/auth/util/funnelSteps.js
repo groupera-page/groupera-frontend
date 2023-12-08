@@ -54,7 +54,10 @@ export const interestedInGroupsWithThemeStep = {
 export const groupThemeStep = {
 	header: "Zu welchem Thema möchtest du eine Gruppe gründen?",
 	fields: [
-		groupFields.theme
+		{
+			...groupFields.theme,
+			type: "inlineSelect"
+		},
 	],
 	goBackOption: true
 }
