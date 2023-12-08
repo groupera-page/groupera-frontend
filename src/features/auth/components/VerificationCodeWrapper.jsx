@@ -64,12 +64,12 @@ const VerificationCodeWrapper = ({
       {touched && error && (
         <div className="flex px-4 text-right gap-2 items-right bg-BG_PRIMARY text-PURPLE_PRIMARY border border-PURPLE_PRIMARY rounded-md p-1 my-1">
           <div>
-            <AiOutlineWarning className="text-red" size={26} />
+            <AiOutlineWarning size={26} />
           </div>
           {error}
         </div>
       )}
-      {hint && <span className="paragraph-tiny">{hint}</span>}
+      {hint && <span className="paragraph-tiny my-1">{hint}</span>}
     </div>
   );
 };
