@@ -9,9 +9,10 @@ export const isEmail = (value) => {
   return value && !!value.match(emailRegex);
 };
 
-export const required = (value) => (value ? undefined : "Can't be blank");
+export const required = (value) =>
+  value ? undefined : "Das Feld darf nicht leer sein";
 export const number = (value) =>
-  value && isNaN(Number(value)) ? "Must be a number" : undefined;
+  value && isNaN(Number(value)) ? "Es muss eine Nummer sein" : undefined;
 export const email = (value) =>
   // value && !isEmail(value) ? "Invalid email address" : undefined;
   value && !isEmail(value)
@@ -21,24 +22,26 @@ export const email = (value) =>
 export const length = (value, minLength) =>
   value.length >= minLength
     ? undefined
-    : `Must be min ${minLength} characters long`;
+    : `Muss mindestens ${minLength} Zeichen lang sein`;
 
 export const minArrayLength = (value, minLength) =>
   !value || value.length < minLength
-    ? `Choose at least ${minLength}`
+    ? `Wähle mindestens ${minLength}`
     : undefined;
 
 const containNumberRegex = /\d+/;
 const containCapsLetterRegex = /[A-Z]/;
 export const includeNumber = (value) =>
-  containNumberRegex.test(value) ? undefined : "Must contain a number";
+  containNumberRegex.test(value) ? undefined : " Es muss eine Zahl beinhalten";
 export const includeCapital = (value) =>
   containCapsLetterRegex.test(value)
     ? undefined
-    : "Must contain a capital letter";
+    : "Ihr Passwort sollte ein Großbuchstaben";
 
 export const passwordConfirmation = (value, allValues) =>
-  value !== allValues.password ? "Passwords don't match" : undefined;
+  value !== allValues.password
+    ? "Die Passwörter stammen nicht überein"
+    : undefined;
 
 export const authFields = {
   firstName: {
@@ -188,7 +191,7 @@ export const groupFields = {
     value: false,
     placeholder: "Name",
     // hint: "",
-    options: moderatingOptions
+    options: moderatingOptions,
   },
   downloadProgram: {
     type: "pdf_download",
