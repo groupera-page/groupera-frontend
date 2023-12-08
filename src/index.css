@@ -3,6 +3,7 @@ body {
   font-family: "Helvetica Neue", "Arial", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(248, 249, 250);
 }
 
 code {
@@ -16,30 +17,56 @@ code {
 
 @layer base {
   h1 {
-    @apply text-4xl md:text-5xl xl:text-7xl text-primaryText;
+    @apply text-3xl md:text-4xl text-TEXT_PRIMARY;
   }
 
   h2 {
-    @apply lg:text-3xl md:text-2xl text-xl text-primaryText font-medium;
+    @apply text-3xl font-medium text-TEXT_PRIMARY;
   }
 
   h3 {
-    @apply md:text-2xl text-lg text-primaryText font-medium;
+    @apply text-2xl md:text-3xl text-TEXT_PRIMARY;
   }
 
   h4 {
-    @apply md:text-xl font-medium text-primaryText;
+    @apply text-2xl font-medium text-TEXT_PRIMARY;
   }
 
   h5 {
-    @apply font-medium text-primaryText;
+    @apply text-2xl lg:text-xl text-TEXT_PRIMARY;
+  }
+
+  h6 {
+    @apply text-TEXT_PRIMARY text-4xl font-light;
   }
 
   p {
-    @apply text-primaryText md:text-primaryText text-sm;
+    @apply text-TEXT_PRIMARY text-sm;
   }
 
   section {
-    @apply pt-28 md:pt-32 lg:pt-24 px-6 lg:px-32 bg-primaryBg;
+    @apply pt-28 md:pt-32 lg:pt-24 px-6 lg:px-32 bg-BG_PRIMARY;
+  }
+}
+
+@layer components {
+  .paragraph-lg {
+    @apply text-xl lg:text-lg text-TEXT_PRIMARY;
+  }
+
+  .paragraph-md {
+    @apply text-lg lg:text-base text-TEXT_PRIMARY;
+  }
+
+  .paragraph-sm {
+    @apply text-base lg:text-sm text-TEXT_GRAY;
+  }
+
+  .paragraph-tiny {
+    @apply text-sm lg:text-xs text-TEXT_GRAY;
+  }
+
+  .paragraph-lead {
+    @apply text-xl text-TEXT_LIGHTGRAY font-light;
   }
 }

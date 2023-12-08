@@ -1,0 +1,65 @@
+.alert {
+  background: white;
+  display: flex;
+  color: black;
+  width: 350px;
+}
+.alertBody {
+  position: relative;
+  padding: 16px 8px 24px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: 8px;
+  align-items: center;
+  flex: 1;
+}
+.alertBody svg.close{
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  color: gray;
+}
+.alertBody .alertContent{
+  display: grid;
+  grid-auto-flow: row;
+  grid-gap: 4px;
+}
+.alertBody .alertContent .header{
+  font-size: 20px;
+}
+.alertBody .alertContent .desc{
+  font-size: 16px;
+}
+.alertTypeBanner{
+  width: 14px;
+  border-radius: 4px 0 0 4px;
+  background: cornflowerblue;
+}
+.alertIcon{
+  color: cornflowerblue;
+}
+.alert.success{
+  box-shadow: 0 2px 12px rgba(25, 135, 84, 0.06), 0 2px 4px rgba(25, 135, 84, 0.08);
+}
+.alert.success .alertTypeBanner {
+  background: green;
+}
+.alert.success .alertIcon{
+  color: green;
+}
+.alert.error .alertTypeBanner{
+  background: red;
+}
+.alert.error .alertIcon{
+  color: red;
+}
+
+.alert.warning .alertTypeBanner {
+  background: yellow;
+}
+.alert.warning .alertIcon{
+  color: yellow;
+}

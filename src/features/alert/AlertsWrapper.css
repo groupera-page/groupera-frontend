@@ -1,0 +1,14 @@
+.alertsWrapper {
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
+}
+
+.alertsWrapper .alertList{
+  display: grid;
+  grid-gap: 6px;
+}
+
+.alertsWrapper .remove-btn {
+  margin-right: 0.5rem;
+}

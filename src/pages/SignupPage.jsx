@@ -1,18 +1,31 @@
-import Signup from "../components/SignupCard";
-import backgroundImage from "../assets/hands4.jpg";
-function SignupPage() {
+import { useLocation } from "react-router-dom";
+import FunnelCard from "../components/Signup/FunnelCard";
+
+export default function SignupPage() {
+  const location = useLocation();
+  let funnelIndex;
+  // Funnels 1-4
+  switch (location.pathname) {
+    case "/signup-user":
+      funnelIndex = 1;
+      break;
+    case "/signup-option-join":
+      funnelIndex = 2;
+      break;
+    case "/signup-option-create":
+      funnelIndex = 3;
+      break;
+    case "/signup-user-group":
+      funnelIndex = 4;
+      break;
+    default:
+      console.log("No page");
+  }
   return (
-    <div className="h-screen">
-      <div
-        className="bg-cover bg-center h-screen flex items-center justify-center"
-        style={{
-          backgroundImage: `url(${backgroundImage})`,
-        }}
-      >
-        <Signup />
+    <div className="md:py-20">
+      <div className="bg-cover bg-center flex items-center justify-center">
+        <FunnelCard funnelIndex={funnelIndex} />
       </div>
     </div>
   );
 }
-
-export default SignupPage;
