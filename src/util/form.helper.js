@@ -13,7 +13,11 @@ export const required = (value) => (value ? undefined : "Can't be blank");
 export const number = (value) =>
   value && isNaN(Number(value)) ? "Must be a number" : undefined;
 export const email = (value) =>
-  value && !isEmail(value) ? "Invalid email address" : undefined;
+  // value && !isEmail(value) ? "Invalid email address" : undefined;
+  value && !isEmail(value)
+    ? "Bitte geben Sie eine gültige E-Mail Adresse ein"
+    : undefined;
+
 export const length = (value, minLength) =>
   value.length >= minLength
     ? undefined
