@@ -8,6 +8,7 @@ const GroupMemberSubPage = ({ group }) => {
       </div>
     )
   }
+
   return (
     <div className="mt-8">
       {group.members.map((member, id) => (

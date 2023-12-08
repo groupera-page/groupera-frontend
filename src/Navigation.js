@@ -62,7 +62,7 @@ function Navigation() {
             />
 
             <Route
-              path="/groups/:slug/edit"
+              path="/groups/:groupId/edit"
               element={
                 <>
                   <ScrollToTop>
@@ -73,7 +73,7 @@ function Navigation() {
               }
             />
             <Route
-              path="/groups/:slug/edit/event"
+              path="/groups/:groupId/edit/event"
               element={
                 <>
                   <ScrollToTop>
