@@ -1,4 +1,5 @@
 import React from "react";
+import { AiOutlineWarning } from "react-icons/ai";
 
 const MyInput = ({
   input,
@@ -9,18 +10,26 @@ const MyInput = ({
   meta: { touched, error },
 }) => {
   return (
-    <div>
-      <label>{label}</label>
-      <div className="text-sm border border-primaryblue rounded-md">
+    <div className="my-2.5">
+      <div className="paragraph-lg my-1.5">{label}</div>
+      <div>
         <input
           {...input}
           placeholder={placeholder || label}
           type={type}
-          className="w-full border rounded-md p-2 placeholder-primaryText bg-primaryBg"
+          className="w-full rounded-md p-2 placeholder-TEXT_PRIMARY bg-BG_PRIMARY border border-BORDER_PRIMARY"
         />
       </div>
-      {hint && <span className="text-xs text-slate-500">{hint}</span>}
-      {touched && error && <div className="footer error">{error}</div>}
+
+      {touched && error && (
+        <div className="flex px-2 text-right gap-2 items-right bg-BG_PRIMARY text-PURPLE_PRIMARY border border-PURPLE_PRIMARY rounded-md p-1 my-1">
+          <div>
+            <AiOutlineWarning className="text-red" size={26} />
+          </div>
+          {error}
+        </div>
+      )}
+      {hint && <p className="px-1 text-TEXT_LIGHTGRAY">{hint}</p>}
     </div>
   );
 };

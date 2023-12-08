@@ -32,7 +32,7 @@ const MySelect = ({
   };
 
   return (
-    <div className="relative">
+    <div>
       {label && <label>{label}</label>}
       {options.map((opt, idx) => (
         <label
@@ -65,17 +65,15 @@ const MySelect = ({
         </label>
       ))}
 
-      <div className="absolute w-full -bottom-7 flex justify-center">
-        {hint && <span className="text-sm text-slate-500">{hint}</span>}
-        {touched && error && (
-          <div className="flex text-right gap-2 items-center bg-BG_PRIMARY text-PURPLE_PRIMARY">
-            <div className="">
-              <AiOutlineWarning className="text-red" size={26} />
-            </div>
-            {error}
+      {touched && error && (
+        <div className="flex px-2 text-right gap-2 items-right bg-BG_PRIMARY text-PURPLE_PRIMARY border border-PURPLE_PRIMARY rounded-md p-1 my-1">
+          <div>
+            <AiOutlineWarning className="text-red" size={26} />
           </div>
-        )}
-      </div>
+          {error}
+        </div>
+      )}
+      {hint && <span className="text-sm text-slate-500">{hint}</span>}
     </div>
   );
 };
