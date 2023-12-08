@@ -107,7 +107,7 @@ const groupSlice = createSlice({
       .addCase(findGroup.fulfilled, (state, {payload}) => {
         state.loading = false
 
-        if (state.groups.some(d => d.id === payload.data.id)) { // if group already present
+        if (state.groups && state.groups.some(d => d.id === payload.id)) { // if group already present
           state.groups = state.groups.map(group => {
             if (group.id === payload.id) {
               return payload

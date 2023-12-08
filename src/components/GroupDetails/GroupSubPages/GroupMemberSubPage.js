@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function GroupMemberSubPage({ group }) {
+const GroupMemberSubPage = ({ group }) => {
   if (!group.members || group.members.length === 0) {
     return (
       <div className="mt-8">
@@ -16,11 +16,11 @@ export default function GroupMemberSubPage({ group }) {
             <div className="flex justify-between items-center mb-4 ">
               <div className="flex items-center">
                 <div className="flex justify-center items-center bg-BLUE_PRIMARY h-10 w-10 p-2 rounded-md mx-4 text-BG_PRIMARY">
-                  {member.at(0)}
+                  {member.alias.at(0)}
                 </div>
                 <p className="paragraph-md text-black font-semibold">
                   {" "}
-                  {member}
+                  {member.alias}
                 </p>
               </div>
               <p className="paragraph-md text-PURPLE_PRIMARY mr-12">
@@ -33,3 +33,5 @@ export default function GroupMemberSubPage({ group }) {
     </div>
   );
 }
+
+export default GroupMemberSubPage;

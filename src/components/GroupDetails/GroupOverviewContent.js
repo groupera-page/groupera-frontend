@@ -12,11 +12,9 @@ export default function GroupOverviewContent({ group, clamp, isDetailPage }) {
           )}
         </div>
         <div className="flex justify-end whitespace-nowrap">
-          {group.members > 0 && (
+          {group.members && group.members.length > 0 && (
             <p className="text-TEXT_LIGHTGRAY flex">
-              {group.members === 1
-                ? `${group.members} Mitglied`
-                : `${group.members} Mitglieder`}
+              {`${group.members.length} ${group.members.length === 1 ? "Mitglied" : "Mitglieder"}`}
             </p>
           )}
         </div>

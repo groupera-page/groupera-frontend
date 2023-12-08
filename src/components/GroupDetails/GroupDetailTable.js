@@ -5,9 +5,8 @@ import GroupMemberSubPage from "./GroupSubPages/GroupMemberSubPage";
 import GroupDocumentSubPage from "./GroupSubPages/GroupDocumentSubPage";
 import NavbarSub from "../Navigation/NavbarSub";
 import { Routes, Route } from "react-router-dom";
-import ScrollToTop from "../../util/ScrollToTop";
 
-export default function GroupDetailTable({ group }) {
+const GroupDetailTable = ({ group }) => {
   const subPages = ["MitgliederInnen", "Unterlagen"];
 
   return (
@@ -35,3 +34,5 @@ export default function GroupDetailTable({ group }) {
     </div>
   );
 }
+
+export default GroupDetailTable;

@@ -8,7 +8,7 @@ import GroupTopicFilter from "../components/GroupSearch/GroupTopicFilter";
 
 export default function GroupsPage() {
   const {groups} = useSelector(selectGroups)
-  const {currentPage, pageSize} = useSelector(selectGroupsPagination)
+  const {currentPage, pageSize, totalCount} = useSelector(selectGroupsPagination)
 
   const [filter, setFilter] = useState({
     groups: groups || [],
@@ -17,7 +17,7 @@ export default function GroupsPage() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    // if (groups.length) return
+    if (totalCount) return
     dispatch(findGroups({page: currentPage, limit: pageSize}))
   }, [currentPage, pageSize])
 
@@ -27,8 +27,6 @@ export default function GroupsPage() {
       groups
     })
   }, [groups])
-
-  console.log(filter.groups)
 
   const handleThemeFilter = (topic) => {
     if (filter.topic === topic && !filter.searchTerm) {

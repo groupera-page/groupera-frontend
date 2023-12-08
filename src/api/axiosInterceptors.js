@@ -44,7 +44,6 @@ const setupInterceptors = store => {
           originalConfig._retry = true;
 
           try {
-            console.log("refresh Token!", originalConfig.url)
             await dispatch(refreshToken());
 
             return api(originalConfig);

@@ -1,7 +1,6 @@
 import React from "react";
 import {useNavigate, useSearchParams} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import { createAction } from '@reduxjs/toolkit'
 
 import AuthForm from "../components/AuthForm";
 
@@ -40,7 +39,6 @@ const SignUp = () => {
     if(step.onSubmit){
       try {
         const response = await dispatch(step.onSubmit(values))
-        console.log(response)
         if (response.error) throw Error(response.error.message)
 
 

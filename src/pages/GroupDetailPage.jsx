@@ -19,7 +19,7 @@ const GroupDetailPage = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (group) return
+    // if (group) return
     dispatch(findGroup(groupId))
   }, [])
 
@@ -42,7 +42,7 @@ const GroupDetailPage = () => {
 
         {
           group && [
-            <GroupDetailCard key={"groupDetailCard"} group={group} isAdmin={user.id === group.moderator._id} />,
+            <GroupDetailCard key={"groupDetailCard"} group={group} isAdmin={user.id === group.moderator.id} />,
             <GroupDetailTable key={"groupDetailTable"} group={group} />
           ]
         }
