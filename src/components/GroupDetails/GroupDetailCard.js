@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import GroupOverviewContent from "./GroupOverviewContent";
 import GroupEditContent from "./GroupEditContent";
 import MenuDropDown from "../Navigation/Menus/MenuDropDown";
@@ -7,9 +7,9 @@ import placeholderImage from "../../assets/placeholderImage.jpg";
 import { Link } from "react-router-dom";
 // import GroupEditImage from "./GroupEditImage";
 
-export default function GroupDetailCard({ group, isAdmin, isEditable }) {
+const GroupDetailCard = ({ group, isAdmin, isMember, isEditable }) => {
   return (
-    <div className="my-2 lg:flex gap-12 md:mx-20 lg:mx-0">
+    <div className="my-2 lg:flex gap-12 lg:mx-0">
       <div className="flex lg:w-1/2 relative items-center">
         <img
           src={placeholderImage}
@@ -36,19 +36,31 @@ export default function GroupDetailCard({ group, isAdmin, isEditable }) {
               isDetailPage={true}
             />
             <div className="flex justify-end my-4">
-              <MenuDropDown
-                title={`${isAdmin ? "Du bist Admin" : "Du bist Mitglied"}`}
-                topOffset={10}
-                isButtonDropDown={true}
-              >
-                <Link to={`/groups/${group.id}/edit`}>
-                  <li className="">
-                    <PrimaryButton isInversed={true}>
-                      {`${isAdmin ? "Gruppe bearbeiten" : "Gruppe Verlassen"}`}
-                    </PrimaryButton>
-                  </li>
-                </Link>
-              </MenuDropDown>
+              {!isMember && !isAdmin ? (
+                <PrimaryButton>{`Mitglied werden`}</PrimaryButton>
+              ) : (
+                <MenuDropDown
+                  title={`${isAdmin ? "Du bist Admin" : "Du bist Mitglied"}`}
+                  topOffset={10}
+                  isButtonDropDown={true}
+                >
+                  <Link
+                    to={`${
+                      isAdmin
+                        ? `/groups/${group.id}/edit`
+                        : "/groups"
+                    }`}
+                  >
+                    <li className="">
+                      <PrimaryButton isInversed={true}>
+                        {`${
+                          isAdmin ? "Gruppe bearbeiten" : "Gruppe verlassen"
+                        }`}
+                      </PrimaryButton>
+                    </li>
+                  </Link>
+                </MenuDropDown>
+              )}
             </div>
           </div>
         )}
@@ -62,3 +74,5 @@ export default function GroupDetailCard({ group, isAdmin, isEditable }) {
     </div>
   );
 }
+
+export default GroupDetailCard;

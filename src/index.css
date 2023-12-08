@@ -17,11 +17,11 @@ code {
 
 @layer base {
   h1 {
-    @apply text-4xl text-TEXT_PRIMARY;
+    @apply text-3xl md:text-4xl text-TEXT_PRIMARY;
   }
 
   h2 {
-    @apply text-3xl text-TEXT_PRIMARY;
+    @apply text-3xl font-medium text-TEXT_PRIMARY;
   }
 
   h3 {
@@ -29,7 +29,7 @@ code {
   }
 
   h4 {
-    @apply text-2xl text-TEXT_PRIMARY;
+    @apply text-2xl font-medium text-TEXT_PRIMARY;
   }
 
   h5 {
@@ -70,22 +70,3 @@ code {
     @apply text-xl text-TEXT_LIGHTGRAY font-light;
   }
 }
-
-/* @layer components {
-  .paragraph-lg {
-    @apply text-lg lg:text-base text-TEXT_PRIMARY;
-  }
-
-  .paragraph-md {
-    @apply text-base lg:text-sm text-TEXT_PRIMARY;
-  }
-
-  .paragraph-sm {
-    @apply text-sm text-TEXT_GRAY;
-  }
-  .paragraph-tiny {
-    @apply text-xs text-TEXT_GRAY;
-  }
-  .paragraph-lead {
-    @apply text-xl text-TEXT_LIGHTGRAY font-light;
-  } */

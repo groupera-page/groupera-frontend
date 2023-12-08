@@ -3,11 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 const mockData = {
   groups: [
     {
-      name: "nächsteasdasdasdasdasdasd ",
+      name: "Depression für Frauen",
       meeting: "",
       topic: "Depression",
       description:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
+        "Stärke durch Teilen. Verbindung, Selbstliebe, Heilung. Zusammen gegen Depressionen. ",
 
       id: "123",
       members: 1,
@@ -18,11 +18,11 @@ const mockData = {
     },
 
     {
-      name: "Angstgruppe für Berliner",
+      name: "Depression und Burnout im Beruf",
       meeting: "",
-      topic: "Angststörung",
+      topic: "Stress & Burnout",
       description:
-        "Angst angst angst angst angst angst angst angst angst angst angst angst angst angst angst angst angst angst angst",
+        "Gemeinsam gegen Depressionen. Offene Unterstützung. Erfahrungen teilen. Heilung finden. Zusammen stark. ",
       id: "234",
       members: 4,
       image:
@@ -31,14 +31,15 @@ const mockData = {
       moderatorId: "666",
     },
     {
-      name: "Angst",
+      name: "Depression für junge Menschen bis 25",
       meeting: "",
-      topic: "Angststörung",
-      description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr",
+      topic: "Depression",
+      description:
+        "Unter 25. Offener Raum für Verständnis, Wachstum und Heilung. Gemeinschaft, Hoffnung, gemeinsame Bewältigung. ",
       id: "456",
-      members: 4372,
+      members: 72,
       image:
-        "Grouptitel%20pictures%20low_res/pexels-taylor-hunt-2902440_xvgnuq_nueptp.jpg",
+        "Grouptitel%20pictures%20low_res/pexels-nandhu-kumar-1661296_ttr2gf_ijeg4r.jpg",
       users: [
         "Marie",
         "Jan",
@@ -70,7 +71,7 @@ const mockData = {
   user: [
     {
       id: "999",
-      alias: "Username",
+      alias: "John",
       email: "alice@example.com",
       passwordHash: "SecureP@ss123",
       dob: "1988-05-20",
@@ -131,9 +132,10 @@ const mockData = {
     "Angststörung",
     "Stress & Burnout",
     "Trauer",
-    "chronische Erkrankungen",
+    "Chronische Erkrankungen",
     "Essstörung",
     "Angehörige",
+    "Sonstige",
   ],
 
   filters: [""],

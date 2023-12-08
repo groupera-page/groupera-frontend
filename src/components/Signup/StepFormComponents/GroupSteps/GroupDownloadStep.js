@@ -1,12 +1,11 @@
-import testManual from "../../../../assets/manual.pdf";
-import { Link } from "react-router-dom";
 import { BsDownload } from "react-icons/bs";
 import StepHeader from "../StepHeader";
 import { useSelector } from "react-redux";
 
-export default function GroupDownloadStep({ data, updateGroupFields }) {
+export default function GroupDownloadStep({ data, updateGroupFields, theme }) {
   const mockData = useSelector((state) => state.mockData.mockData);
-  const groupTopic = "Depression";
+  const groupTopic = theme;
+
   // 0 "Depression",
   // 1 "Sucht",
   // 2 "Angststörung",
@@ -60,9 +59,13 @@ export default function GroupDownloadStep({ data, updateGroupFields }) {
         title={"Lade Dir jetzt das Groupera Gruppenprogramm runter."}
         text={"Du findest das Programm in der Gruppe auch unter “Unterlagen”."}
       />
-      <div className="paragraph-md my-4 text-TEXT_PRIMARY">
-        Innerhalb der Gruppe könnt ihr das Programm benutzen. Es ist euch
-        natürlich freigestellt.
+      <div className="paragraph-md font-semibold mt-4 text-TEXT_PRIMARY">
+        Das Programm:
+      </div>
+      <div className="paragraph-md text-TEXT_PRIMARY">
+        Groupera hat für euch ein 12- Schritte Programm entwickelt, dass ihr
+        innerhalb der Gruppe nutzen könnt. In diesem Programm sind unsere Regeln
+        sowie der Ablauf beschrieben. Alle Infos findet ihr im Download.
       </div>
       <div className="paragraph-md font-semibold mt-4 text-TEXT_PRIMARY">
         ModeratorIn:
@@ -70,13 +73,12 @@ export default function GroupDownloadStep({ data, updateGroupFields }) {
       <div className="paragraph-md text-TEXT_PRIMARY">
         Als Rolle des Moderators liest du das Programm vor und nimmst die
         Menschen dran, wenn sie was sagen wollen und achtest drauf, dass die
-        Regeln eingehalten werden. Du bist natürlich genauso TeilnehmerIn und
-        kannst dich auch durch Beiträge und Anliegen zu beteiligen.
+        Regeln eingehalten werden.
       </div>
       <div className="bg-BG_PRIMARY my-4 paragraph-lg">
         <a href={downloadLink} download="Depressions_Manual.pdf">
           <div className="flex flex-row justify-between cursor-pointer border border-BORDER_PRIMARY rounded-md  p-4 items-center hover:shadow-md">
-            <div>{groupTopic}_Manual</div>
+            <div>{groupTopic}_Programm</div>
             <BsDownload className=" text-PURPLE_PRIMARY" size={22} />
           </div>
         </a>

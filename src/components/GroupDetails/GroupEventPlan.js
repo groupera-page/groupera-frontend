@@ -19,7 +19,7 @@ export default function GroupEventPlan() {
   const thirtyDaysFromNow = new Date();
   thirtyDaysFromNow.setDate(today.getDate() + 30);
   const frequencyOptions = [
-    "Einmalig",
+    // "Einmalig",
     "Wöchentlich",
     "Alle 2 Wochen",
     "Monatlich",
@@ -36,12 +36,12 @@ export default function GroupEventPlan() {
   }
 
   return (
-    <div className="lg:w-2/3">
+    <div>
       <div className="paragraph-sm">
-        Du kannst alle Angaben jederzeit in den Gruppeneinstellungen ändern
+        Du kannst alle Angaben jederzeit in den Gruppeneinstellungen ändern.
       </div>
-      <div className="mt-4 paragraph-lg">Startdatum</div>
-      <div className="relative mb-4">
+      <div className="mt-4 paragraph-lg">Ab wann startet die Gruppe?</div>
+      <div className="relative mb-4 mt-2">
         <DatePicker
           selected={calendarDate}
           //   dateFormat="dd MMM yyyy"
@@ -56,8 +56,8 @@ export default function GroupEventPlan() {
           size={20}
         />
       </div>
-      <div className="mb-4">
-        <div className=" paragraph-lg">
+      <div className="mb-4 w-1/2">
+        <div className="paragraph-lg mb-2">
           An welchen Tagen soll die Gruppe sich treffen?
         </div>
         <RadioButtonContainer
@@ -68,32 +68,34 @@ export default function GroupEventPlan() {
           horizontal={true}
         />
       </div>
-      <div className="paragraph-lg mt-4">Zu welcher Uhrzeit?</div>
-      <div className="flex gap-4">
-        <div className="w-1/2 lg:w-1/4 ">
-          <TimePickerContainer />
-        </div>
-        <div className="w-1/2 lg:w-1/4 whitespace-nowrap">
-          <RadioButtonContainer
-            options={timeOptions}
-            onChange={onHandleTimeChange}
-            checkedVariable={timeChoice}
-            name={"timeOptions"}
-            horizontal={true}
-          />
+      <div className="lg:w-1/2">
+        <div className="paragraph-lg mt-4 mb-2">Zu welcher Uhrzeit?</div>
+        <div className="flex gap-4">
+          <div className="w-1/2">
+            <TimePickerContainer />
+          </div>
+          <div className="w-1/2 whitespace-nowrap">
+            <RadioButtonContainer
+              options={timeOptions}
+              onChange={onHandleTimeChange}
+              checkedVariable={timeChoice}
+              name={"timeOptions"}
+              horizontal={true}
+            />
+          </div>
         </div>
       </div>
 
-      <div className="flex justify-between mt-4">
+      <div className="flex justify-between mt-4 lg:w-1/2">
         <Link to={`/groups/${slug}/edit`}>
-          <PrimaryButton isInversed={true}>
+          <PrimaryButton isInversed={true} isLarge={true}>
             <div className="flex gap-2 items-center">
               <BsArrowLeft className="" size={20} />
               Abbrechen
             </div>
           </PrimaryButton>
         </Link>
-        <PrimaryButton>Speichern</PrimaryButton>
+        <PrimaryButton isLarge={true}>Speichern</PrimaryButton>
       </div>
     </div>
   );

@@ -44,6 +44,9 @@ const GroupEditPage = () => {
   const {user} = useSelector(selectAuth)
   const dispatch = useDispatch()
 
+  const isMember = group?.members?.length > 0 && group.members.any(m => m.id === user.id)
+  const isAdmin = user.id === group?.moderator.id
+
   useEffect(() => {
     // if (group) return
     dispatch(findGroup(groupId))
@@ -59,7 +62,7 @@ const GroupEditPage = () => {
 
   return (
     <PageContainer>
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col w-full mt-4 lg:mt-10">
         <div className="mb-4">
           <Link to={`/groups/${groupId}`}>
             <PrimaryButton isInversed={true}>
@@ -76,7 +79,8 @@ const GroupEditPage = () => {
 
         <GroupDetailCard
           group={group}
-          isAdmin={user.id === group.moderator.id}
+          isAdmin={isAdmin}
+          isMember={isMember}
           isEditable={true}
           handleEditImage={handleEditImage}
         />
@@ -136,9 +140,11 @@ const GroupEditPage = () => {
 
         <div className="flex justify-end mb-8 gap-8">
           <ul className="flex gap-8 lg:hidden items-center">
-            <li className="cursor-pointer text-TEXT_LIGHTGRAY hover:text-PURPLE_PRIMARY">
-              <IoSettingsOutline size={28} />
-            </li>
+            <Link to={`/groups/${groupId}/edit/event`}>
+              <li className="cursor-pointer text-TEXT_LIGHTGRAY hover:text-PURPLE_PRIMARY">
+                <IoSettingsOutline size={28} />
+              </li>
+            </Link>
             <li className="cursor-pointer text-TEXT_LIGHTGRAY hover:text-PURPLE_PRIMARY">
               <BsTrash3 size={28} />
             </li>
@@ -148,10 +154,8 @@ const GroupEditPage = () => {
           {/*</Link>*/}
         </div>
         <div className="flex gap-4">
-          <PrimaryButton>Speichern</PrimaryButton>
-          <SecondaryButton>
-            <div className="text-lg lg:text-base">Gruppe löschen</div>
-          </SecondaryButton>
+          <PrimaryButton isLarge={true}>Speichern</PrimaryButton>
+          <SecondaryButton isLarge={true}>Gruppe löschen</SecondaryButton>
         </div>
       </div>
     </PageContainer>

@@ -11,7 +11,7 @@ import { CiLogout } from "react-icons/ci";
 import {useDispatch} from "react-redux";
 import {logout} from "../../features/auth/authSlice";
 
-export default function Navigation({ handleMenuMobile }) {
+const Navigation = ({ handleMenuMobile }) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
@@ -52,7 +52,7 @@ export default function Navigation({ handleMenuMobile }) {
                       size={32}
                     />
                   </div>
-                  <div className="relative group text-lg">
+                  <div className="relative group paragraph-lg">
                     Übersicht
                     <div className={`${!isActive ? "" : "hidden"} `}>
                       <HoverUnderline />
@@ -81,7 +81,7 @@ export default function Navigation({ handleMenuMobile }) {
                       size={32}
                     />
                   </div>
-                  <div className="relative group text-lg">
+                  <div className="relative group paragraph-lg">
                     Gruppen
                     <div className={`${!isActive ? "" : "hidden"} `}>
                       <HoverUnderline />
@@ -95,7 +95,7 @@ export default function Navigation({ handleMenuMobile }) {
       </ul>
       <div className={`flex items-center text-TEXT_PRIMARY `} onClick={() => handleLogout()}>
         <CiLogout className="w-5 mr-3 text-TEXT_PRIMARY" size={32} />
-        <div className="relative group text-lg">
+        <div className="relative group paragraph-lg">
           Ausloggen
           <HoverUnderline />
         </div>
@@ -104,3 +104,5 @@ export default function Navigation({ handleMenuMobile }) {
     </div>
   );
 }
+
+export default Navigation

@@ -24,9 +24,7 @@ const GroupMemberSubPage = ({ group }) => {
                   {member.alias}
                 </p>
               </div>
-              <p className="paragraph-md text-PURPLE_PRIMARY mr-12">
-                Admin/Da bist du
-              </p>
+              <p className="paragraph-md text-PURPLE_PRIMARY mr-12">Admin?</p>
             </div>
           </div>
         </div>

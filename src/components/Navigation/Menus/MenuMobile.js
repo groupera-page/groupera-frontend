@@ -10,7 +10,7 @@ export default function MenuMobile({ openMenuMobile, handleMenuMobile }) {
           : "opacity-50 -left-full"
       } `}
     >
-      <hr className="border-t border-gray-300" />
+      <hr className="border-l border-BORDER_PRIMARY" />
       <div className="bg-BG_PRIMARY mt-5 lg:mt-0 h-screen w-screen flex-col justify-between">
         <NavigationItems
           handleMenuMobile={handleMenuMobile}

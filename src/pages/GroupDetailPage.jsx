@@ -16,6 +16,9 @@ const GroupDetailPage = () => {
   const group = useSelector((state) => state.groups.groups.find(group => group.id === groupId));
   const {user} = useSelector(selectAuth)
 
+  const isMember = group?.members?.length > 0 && group.members.any(m => m.id === user.id)
+  const isAdmin = user.id === group?.moderator.id
+
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -25,7 +28,7 @@ const GroupDetailPage = () => {
 
   return (
     <PageContainer>
-      <div className="flex flex-col w-full lg:mx-14 ">
+      <div className="flex flex-col w-full lg:mx-14 mt-4 lg:mt-10 lg:pr-28">
         <div className="mb-4">
           <Link to={`/groups/`}>
             <PrimaryButton isInversed={true}>
@@ -41,10 +44,11 @@ const GroupDetailPage = () => {
         </div>
 
         {
-          group && [
-            <GroupDetailCard key={"groupDetailCard"} group={group} isAdmin={user.id === group.moderator.id} />,
-            <GroupDetailTable key={"groupDetailTable"} group={group} />
-          ]
+          group && <GroupDetailCard key={"GroupdetailCard"} group={group} isAdmin={isAdmin} isMember={isMember} />
+        }
+        {
+          (isMember || isAdmin) &&
+          <GroupDetailTable key={"GroupdetailTable"} group={group} />
         }
       </div>
     </PageContainer>

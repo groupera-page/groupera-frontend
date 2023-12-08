@@ -9,6 +9,7 @@ import FunnelSteps from "./StepFormComponents/FunnelSteps";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import PrimaryButton from "../Buttons/PrimaryButton";
 import InputError from "../UserInputs/InputError";
+
 // import { createGroup } from "../../api/groupService";
 // import { verifyCode, createUser, updateUser } from "../../api/userService";
 // import { validateUserForm, validateGroupForm } from "../../util/formValidation";
@@ -77,9 +78,19 @@ export default function FunnelCard({ funnelIndex, showLogo = true }) {
     setErrorMessage("");
   }
 
+  const handleScrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   const handleGroup = async (e) => {
     e.preventDefault();
-    next(1);
+    handleScrollToTop();
+
+    isLastStep ? navigate("/") : next(1);
+
+    if (currentStepIndex === 2 && groupData.theme === "Sonstige") {
+      next(1);
+    }
     // if (step && step.type.name === "GroupInfoStep") {
     //   const isGroupValid = validateGroupForm(groupData, updateGroupFields);
     //   if (!isGroupValid) {
@@ -106,9 +117,11 @@ export default function FunnelCard({ funnelIndex, showLogo = true }) {
     // }
   };
 
+  //Not used
   const handleUser = async (e) => {
     e.preventDefault();
-    next(1);
+    handleScrollToTop();
+    isLastStep ? navigate("/") : next(1);
     // //Next step
     // if (
     //   step &&
@@ -170,8 +183,8 @@ export default function FunnelCard({ funnelIndex, showLogo = true }) {
 
   return (
     <div
-      className="w-full md:w-3/4 lg:w-1/2 md:h-5/6
-      px-4 rounded md:shadow-md bg-BG_PRIMARY md:px-4 "
+      className="w-full h-full min-h-[85vh] lg:min-h-[85vh] md:w-3/4 lg:w-1/2 
+      px-4 rounded md:shadow-md bg-BG_PRIMARY md:px-8 lg:px-28 "
     >
       <div className="pb-3 flex justify-center">
         {showLogo && (
@@ -196,25 +209,41 @@ export default function FunnelCard({ funnelIndex, showLogo = true }) {
 
         <form
           onSubmit={
-            step &&
-            (step.type.name === "GroupSettingStep" ||
-              step.type.name === "GroupInfoStep")
-              ? handleGroup
-              : handleUser
+            step && handleGroup
+            // (step.type.name === "GroupSettingStep" ||
+            //   step.type.name === "GroupInfoStep")
+            //   ? handleGroup
+            //   : handleUser
           }
           // justify-between to fix the buttons
           className="flex flex-col pb-4 h-full"
         >
           {step}
           <div className="flex gap-2 justify-center">
-            <div className="flex flex-col w-full items-center">
+            <div className="flex flex-col w-full  justify-between">
               <InputError
                 showMessage={errorMessage}
                 errorMessage={errorMessage}
               />
-              <div className="flex gap-4 justify-center ">
+              <div className="flex gap-4 justify-between ">
                 <div className="mt-5">
-                  {currentStepIndex !== 0 &&
+                  {!isLastStep && currentStepIndex !== 0 && (
+                    <PrimaryButton
+                      type={"button"}
+                      handleButtonClick={handleBackButton}
+                      isInversed={true}
+                      isLarge={true}
+                    >
+                      <div className="flex items-center ">
+                        <BsArrowLeft
+                          className="w-5 mr-3 text-PURPLE_PRIMARY"
+                          size={18}
+                        />
+                        Zurück
+                      </div>
+                    </PrimaryButton>
+                  )}
+                  {/* {currentStepIndex !== 0 &&
                     verifyCodeIndex !== currentStepIndex &&
                     verifyCodeIndex + 1 !== currentStepIndex && (
                       <PrimaryButton
@@ -230,12 +259,13 @@ export default function FunnelCard({ funnelIndex, showLogo = true }) {
                           Zurück
                         </div>
                       </PrimaryButton>
-                    )}
+                    )} */}
                 </div>
                 <div className="mt-5">
-                  <PrimaryButton type={"submit"}>
+                  <PrimaryButton type={"submit"} isLarge={true}>
                     <div className="flex items-center ">
-                      {isLastStep ? "Absenden" : "Weiter"}
+                      Weiter
+                      {/* {isLastStep ? "Absenden" : "Weiter"} */}
                       <BsArrowRight
                         className="w-5 ml-3 text-BG_PRIMARY"
                         size={18}
