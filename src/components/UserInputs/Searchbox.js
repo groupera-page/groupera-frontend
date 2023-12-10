@@ -12,7 +12,6 @@ export default function Searchbox({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    debugger
     // onSearch(values)
   };
 

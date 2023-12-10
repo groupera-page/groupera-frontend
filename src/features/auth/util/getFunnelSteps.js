@@ -1,4 +1,4 @@
-import {verifyEmail} from "../../auth/authSlice";
+import {verifyEmail} from "../authSlice";
 import {updateProfile} from "../../profile/profileSlice";
 import {createGroup} from "../../groups/groupSlice";
 
@@ -31,7 +31,7 @@ const chooseFunnelCreateSteps = [
       name: values.groupName,
       description: values.groupDescription,
       selfModerated: values.groupSelfModerated,
-      topic: values.groupTheme[0],
+      topic: values.groupTheme,
       // meetings: [] // todo add meeting logic, dependent on backend
     }) // todo add img
   },
@@ -79,7 +79,7 @@ const createGroupFunnelSteps = [
       name: values.groupName,
       description: values.groupDescription,
       selfModerated: values.groupSelfModerated,
-      topic: values.groupTheme[0],
+      topic: values.groupTheme,
       // meetings: [] // todo add meeting logic, dependent on backend
     }) // todo add img
   },
