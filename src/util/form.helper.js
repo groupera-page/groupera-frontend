@@ -18,10 +18,15 @@ export const email = (value) =>
     ? "Bitte geben Sie eine gültige E-Mail Adresse ein"
     : undefined;
 
-export const length = (value, minLength) =>
-  value.length >= minLength
+export const minLength = (value, length) =>
+  value.length >= length
     ? undefined
-    : `Must be min ${minLength} characters long`;
+    : `Must be min ${length} characters long`;
+
+export const maxLength = (value, length) =>
+  value.length <= length
+    ? undefined
+    : `Can't be more than ${length} characters long`;
 
 export const minArrayLength = (value, minLength) =>
   !value || value.length < minLength
@@ -84,7 +89,7 @@ export const authFields = {
     placeholder: "Password",
     validate: [
       required,
-      (value) => length(value, 8),
+      (value) => minLength(value, 8),
       includeNumber,
       includeCapital,
     ],
@@ -97,7 +102,7 @@ export const authFields = {
     placeholder: "Password Confirmation",
     validate: [
       required,
-      (value) => length(value, 8),
+      (value) => minLength(value, 8),
       includeNumber,
       includeCapital,
       passwordConfirmation,
@@ -109,7 +114,7 @@ export const authFields = {
     // value: "",
     label: "Auth Code",
     hint: "You can find this code in your email.",
-    validate: [required, (value) => length(value, 4)],
+    validate: [required, (value) => minLength(value, 4)],
   },
   gender: {
     type: "inlineSelect",
@@ -181,6 +186,9 @@ export const groupFields = {
     label: "Wie würdest du deine Gruppe beschreiben?",
     value: "",
     placeholder: "Kurze Gruppenbeschreibung",
+    maxLength: 500,
+    validate: [required, value => maxLength(value, 500)],
+
   },
   selfModerated: {
     type: "inlineSelect",

@@ -1,50 +1,54 @@
-import {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import PageContainer from "../components/Globals/PageContainer";
 import {useDispatch, useSelector} from "react-redux";
-import { useParams } from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import PrimaryButton from "../components/Buttons/PrimaryButton";
-import SecondaryButton from "../components/Buttons/SecondaryButton";
+// import SecondaryButton from "../components/Buttons/SecondaryButton";
 import { BsArrowLeft } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { BsTrash3 } from "react-icons/bs";
 import { IoSettingsOutline } from "react-icons/io5";
-import { BsPeopleFill } from "react-icons/bs";
+// import { BsPeopleFill } from "react-icons/bs";
 
-import GroupDetailCard from "../components/GroupDetails/GroupDetailCard";
 import {selectAuth} from "../features/auth/authSlice";
-import {findGroup} from "../features/groups/groupSlice";
+import {findGroup, updateGroup} from "../features/groups/groupSlice";
+import placeholderImage from "../assets/placeholderImage.jpg";
+import GroupEditForm from "../features/groups/components/GroupEditForm";
+// import GroupEditImage from "../components/GroupDetails/GroupEditImage";
 
-const mockEvents = [
-  {
-    id: "33dk58ss8dflia9emc3epprlpk_20231120T110000Z",
-    start: {
-      dateTime: "2023-11-20T12:00:00+01:00",
-      time: "12:00",
-    },
-    end: {
-      dateTime: "2023-11-20T12:30:00+01:00",
-    },
-  },
-  {
-    id: "33dk58ss8dflia9emc3epprlpk_20231204T110000Z",
-    start: {
-      dateTime: "2023-12-04T12:00:00+01:00",
-      time: "12:00",
-    },
-    end: {
-      dateTime: "2023-12-04T12:30:00+01:00",
-    },
-  },
-];
+// const mockEvents = [
+//   {
+//     id: "33dk58ss8dflia9emc3epprlpk_20231120T110000Z",
+//     start: {
+//       dateTime: "2023-11-20T12:00:00+01:00",
+//       time: "12:00",
+//     },
+//     end: {
+//       dateTime: "2023-11-20T12:30:00+01:00",
+//     },
+//   },
+//   {
+//     id: "33dk58ss8dflia9emc3epprlpk_20231204T110000Z",
+//     start: {
+//       dateTime: "2023-12-04T12:00:00+01:00",
+//       time: "12:00",
+//     },
+//     end: {
+//       dateTime: "2023-12-04T12:30:00+01:00",
+//     },
+//   },
+// ];
+
 const GroupEditPage = () => {
-  const [showImagePicker, setShowImagePicker] = useState(false);
+  // const [showImagePicker, setShowImagePicker] = useState(false);
   const { groupId } = useParams();
 
   const group = useSelector((state) => state.groups.groups.find(group => group.id === groupId));
   const {user} = useSelector(selectAuth)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
-  const isMember = group?.members?.length > 0 && group.members.any(m => m.id === user.id)
+  // const isMember = group?.members?.length > 0 && group.members.some(m => m.id === user.id)
   const isAdmin = user.id === group?.moderator.id
 
   useEffect(() => {
@@ -52,9 +56,28 @@ const GroupEditPage = () => {
     dispatch(findGroup(groupId))
   }, [])
 
-  const handleEditImage = () => {
-    setShowImagePicker(!showImagePicker);
+  const handleUpdate = async (values) => {
+    if (!isAdmin) return
+    try {
+      const response = await dispatch(updateGroup({
+        groupId: group.id,
+        body: {
+          name: values.name,
+          description: values.description
+        }
+      }))
+      if (!response) throw Error("something went wrong")
+      navigate(`/groups/${group.id}`)
+    } catch (e) {
+      // handle the response
+      // if an error than don't go to next step but show the error, otherwise proceed to next step.
+      console.log("Error", e)
+    }
   }
+
+  // const handleEditImage = () => {
+  //   setShowImagePicker(!showImagePicker);
+  // }
 
   if (!group) {
     return <div>Loading</div>
@@ -77,13 +100,28 @@ const GroupEditPage = () => {
           </Link>
         </div>
 
-        <GroupDetailCard
-          group={group}
-          isAdmin={isAdmin}
-          isMember={isMember}
-          isEditable={true}
-          handleEditImage={handleEditImage}
-        />
+        <div className="my-2 lg:flex gap-12 lg:mx-0">
+          <div className="flex lg:w-1/2 relative items-center">
+            <img
+              src={placeholderImage}
+              alt="Placeholder"
+              className="rounded-md object-cover filter blur-md"
+            />
+          </div>
+
+          {/*<div className="lg:hidden">*/}
+          {/*  <div className="paragraph-lg mt-4 mb-2 "> Gruppenbild ändern</div>*/}
+          {/*  <GroupEditImage updatePreviewImage={updatePreviewImage} />*/}
+          {/*</div>*/}
+
+          <div className="lg:w-1/2 my-4">
+            <GroupEditForm onSubmit={handleUpdate} group={group}/>
+            {/*<div className="hidden lg:block">*/}
+            {/*  <div className="paragraph-lg mt-4 mb-2 "> Gruppenbild ändern</div>*/}
+            {/*  <GroupEditImage updatePreviewImage={updatePreviewImage} />*/}
+            {/*</div>*/}
+          </div>
+        </div>
 
         {/*<div className="bg-BG_PRIMARY rounded-md border border-BORDER_PRIMARY p-4 my-4 ">*/}
         {/*  <ul className="flex flex-wrap justify-between items-center paragraph-lg">*/}
@@ -152,10 +190,6 @@ const GroupEditPage = () => {
           {/*<Link to={`/groups/${groupId}/edit/event`}>*/}
           {/*  <PrimaryButton>Termin hinzufügen</PrimaryButton>*/}
           {/*</Link>*/}
-        </div>
-        <div className="flex gap-4">
-          <PrimaryButton isLarge={true}>Speichern</PrimaryButton>
-          <SecondaryButton isLarge={true}>Gruppe löschen</SecondaryButton>
         </div>
       </div>
     </PageContainer>

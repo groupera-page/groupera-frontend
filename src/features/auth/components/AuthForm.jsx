@@ -5,7 +5,7 @@ import MySelect from "./MySelect";
 import myInput from "./MyInput";
 import {connect} from "react-redux";
 
-const renderField = (field) => {
+export const renderField = (field) => {
   switch (field.type) {
     case "inlineMultiSelect":
     case "inlineSelect":

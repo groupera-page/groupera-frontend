@@ -16,7 +16,7 @@ const GroupDetailPage = () => {
   const group = useSelector((state) => state.groups.groups.find(group => group.id === groupId));
   const {user} = useSelector(selectAuth)
 
-  const isMember = group?.members?.length > 0 && group.members.any(m => m.id === user.id)
+  const isMember = group?.members?.length > 0 && group.members.some(m => m.id === user.id)
   const isAdmin = user.id === group?.moderator.id
 
   const dispatch = useDispatch()
@@ -44,11 +44,11 @@ const GroupDetailPage = () => {
         </div>
 
         {
-          group && <GroupDetailCard key={"GroupdetailCard"} group={group} isAdmin={isAdmin} isMember={isMember} />
+          group && <GroupDetailCard group={group} isAdmin={isAdmin} isMember={isMember} />
         }
         {
           (isMember || isAdmin) &&
-          <GroupDetailTable key={"GroupdetailTable"} group={group} />
+          <GroupDetailTable group={group} />
         }
       </div>
     </PageContainer>

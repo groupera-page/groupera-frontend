@@ -40,7 +40,7 @@ export const findGroups = createAsyncThunk(
 
 export const updateGroup = createAsyncThunk(
   "groups/updateOne",
-  async (groupId, body) => {
+  async ({groupId, body}) => {
     const result = await groupService.updateOne(groupId, body)
     return result.data;
   }
