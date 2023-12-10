@@ -2,17 +2,15 @@ import React from "react";
 import GroupOverviewContent from "./GroupOverviewContent";
 import MenuDropDown from "../Navigation/Menus/MenuDropDown";
 import PrimaryButton from "../Buttons/PrimaryButton";
-import placeholderImage from "../../assets/placeholderImage.jpg";
 import {Link} from "react-router-dom";
+import LazyLoadImg from "../LazyLoadImg";
 
 const GroupDetailCard = ({ group, isAdmin, isMember }) => {
   return (
     <div className="my-2 lg:flex gap-12 lg:mx-0">
       <div className="flex lg:w-1/2 relative items-center">
-        <img
-          src={placeholderImage}
-          alt="Placeholder"
-          className="rounded-md object-cover filter blur-md"
+        <LazyLoadImg
+          img={group.img}
         />
       </div>
 

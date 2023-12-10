@@ -1,17 +1,38 @@
-import {reduxForm} from "redux-form";
+import {Field, reduxForm} from "redux-form";
 import React from "react";
-import {renderField} from "../../auth/components/AuthForm";
 import {connect} from "react-redux";
 import SecondaryButton from "../../../components/Buttons/SecondaryButton";
 import PrimaryButton from "../../../components/Buttons/PrimaryButton";
 import {groupFields} from "../../../util/form.helper";
+import MyImgInput from "./MyImgInput";
+import MyInput from "../../auth/components/MyInput";
 
 let GroupEditForm = ({ handleSubmit, reset }) => (
 	<form onSubmit={handleSubmit}>
-		{
-			[{...groupFields.name, name: "name"}, {...groupFields.description, name: "description"}].map((field) => renderField(field))
-		}
-		<div className="flex gap-4">
+		<div className={"flex flex-col-reverse lg:flex-col"}>
+			<div>
+				<Field
+					{...groupFields.name}
+					key={"name"}
+					component={MyInput}
+					name={"name"}
+				/>
+				<Field
+					{...groupFields.description}
+					key={"description"}
+					component={MyInput}
+					name={"description"}
+				/>
+			</div>
+			<Field
+				{...groupFields.img}
+				key={"img"}
+				component={MyImgInput}
+				name={"img"}
+			/>
+		</div>
+
+		<div className="flex gap-4 justify-end">
 			<SecondaryButton isLarge={true} handleButtonClick={reset}>Abbrechen</SecondaryButton>
 			<PrimaryButton type={"submit"} isLarge={true}>Speichern</PrimaryButton>
 		</div>
@@ -24,11 +45,11 @@ GroupEditForm = reduxForm({
 })(GroupEditForm)
 
 const mapStateToProps = (state, ownProps) => {
-	// const group = state.groups?.groups?.find(group => group.id === ownProps.groupId)
 	return {
 		initialValues: {
 			name: ownProps.group.name,
 			description: ownProps.group.description,
+			img: ownProps.group.img,
 		}
 	}
 };
