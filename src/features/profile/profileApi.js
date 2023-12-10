@@ -1,5 +1,13 @@
 import api from "../../api/axios";
 
+const find = () => {
+  return api
+    .get("/profile", {
+      withCredentials: true
+    })
+};
+
+
 const update = (body) => {
   return api
     .patch("/profile", body, {
@@ -29,6 +37,7 @@ const destroy = () => {
 };
 
 const profileService = {
+  find,
   update,
   updateEmail,
   updatePassword,
