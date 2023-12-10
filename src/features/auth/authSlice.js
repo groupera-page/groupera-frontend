@@ -3,7 +3,7 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import authService from "./authApi";
 
 import tokenService from "../../util/tokenServices";
-import profileService from "../profile/profileApi";
+import {updateProfile} from "../profile/profileSlice";
 
 const initialState = {
   token: false,
@@ -142,6 +142,11 @@ const authSlice = createSlice({
           state.token = payload.authToken;
           state.user = payload.user;
         }
+      })
+      .addCase(updateProfile.fulfilled, (state, {payload}) => {
+        tokenService.setUser(payload.user)
+        debugger
+        state.user = payload.user;
       })
   }
 });

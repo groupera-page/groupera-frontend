@@ -4,12 +4,15 @@ import {renderField} from "../../auth/components/AuthForm";
 import {connect} from "react-redux";
 import SecondaryButton from "../../../components/Buttons/SecondaryButton";
 import PrimaryButton from "../../../components/Buttons/PrimaryButton";
-import {groupFields} from "../../../util/form.helper";
+import {authFields} from "../../../util/form.helper";
 
-let GroupEditForm = ({ handleSubmit, reset }) => (
+let ProfileEditForm = ({ handleSubmit, reset }) => (
 	<form onSubmit={handleSubmit}>
 		{
-			[{...groupFields.name, name: "name"}, {...groupFields.description, name: "description"}].map((field) => renderField(field))
+			[{
+				...authFields.alias,
+				hint: "Der Name, mit dem Du in der Gruppe angesprochen werden möchtest."
+			}].map((field) => renderField(field))
 		}
 		<div className="flex gap-4">
 			<SecondaryButton isLarge={true} handleButtonClick={reset}>Abbrechen</SecondaryButton>
@@ -18,19 +21,18 @@ let GroupEditForm = ({ handleSubmit, reset }) => (
 	</form>
 )
 
-GroupEditForm = reduxForm({
-	form: "editGroupForm",
+ProfileEditForm = reduxForm({
+	form: "editProfileForm",
 	// enableReinitialize : true
-})(GroupEditForm)
+})(ProfileEditForm)
 
 const mapStateToProps = (state, ownProps) => {
 	// const group = state.groups?.groups?.find(group => group.id === ownProps.groupId)
 	return {
 		initialValues: {
-			name: ownProps.group.name,
-			description: ownProps.group.description,
+			alias: ownProps.user.alias,
 		}
 	}
 };
 
-export default connect(mapStateToProps)(GroupEditForm);
+export default connect(mapStateToProps)(ProfileEditForm);

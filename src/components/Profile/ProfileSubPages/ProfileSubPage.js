@@ -1,17 +1,26 @@
-import { useState } from "react";
-import TextInput from "../../UserInputs/TextInput";
 import PrimaryButton from "../../Buttons/PrimaryButton";
-import { useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {selectAuth} from "../../../features/auth/authSlice";
+import ProfileEditForm from "../../../features/profile/components/ProfileEditForm";
+import {updateProfile} from "../../../features/profile/profileSlice";
 
 export default function ProfileSubPage() {
   const {user} = useSelector(selectAuth)
-  const userName = user.alias;
-  const [inputValue, setInputValue] = useState(userName);
+  const dispatch = useDispatch()
 
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value);
-  };
+  const handleUpdate = async (values) => {
+    try {
+      const response = await dispatch(updateProfile({
+        alias: values.alias,
+      }))
+      if (!response) throw Error("something went wrong")
+    } catch (e) {
+      // handle the response
+      // if an error than don't go to next step but show the error, otherwise proceed to next step.
+      console.log("Error", e)
+    }
+  }
+
   return (
     <div className="flex flex-col p-4 ">
       <div className="flex flex-col my-4">
@@ -20,13 +29,8 @@ export default function ProfileSubPage() {
           Ändere deine informationen hier
         </div>
       </div>
-      <div className="flex flex-col md:w-1/4">
-        <div className="paragraph-lg ">Name</div>
-        <TextInput value={inputValue} onChange={handleInputChange} />
-      </div>
-      <div className="flex my-2 gap-2">
-        {/* <PrimaryButton isInversed={true}>Abbrechen</PrimaryButton> */}
-        <PrimaryButton>Speichern</PrimaryButton>
+      <div className={"max-w-lg"}>
+        <ProfileEditForm onSubmit={handleUpdate} user={user}/>
       </div>
       {/* <hr className="border-l border-BORDER_PRIMARY my-4" />
       <div className="flex flex-col ">
