@@ -119,7 +119,7 @@ export const authFields = {
     validate: [required],
     options: [
       {
-        value: "männlich",
+        value: "male",
         label: "Männlich",
       },
       {
