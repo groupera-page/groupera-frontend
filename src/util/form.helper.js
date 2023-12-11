@@ -123,7 +123,7 @@ export const authFields = {
         label: "Männlich",
       },
       {
-        value: "weiblich",
+        value: "female",
         label: "Weiblich",
       },
       {
