@@ -9,9 +9,10 @@ export const isEmail = (value) => {
   return value && !!value.match(emailRegex);
 };
 
-export const required = (value) => (value ? undefined : "Can't be blank");
+export const required = (value) =>
+  value ? undefined : "Das Feld darf nicht leer sein";
 export const number = (value) =>
-  value && isNaN(Number(value)) ? "Must be a number" : undefined;
+  value && isNaN(Number(value)) ? "Es muss eine Nummer sein" : undefined;
 export const email = (value) =>
   // value && !isEmail(value) ? "Invalid email address" : undefined;
   value && !isEmail(value)
@@ -21,29 +22,31 @@ export const email = (value) =>
 export const minLength = (value, length) =>
   value.length >= length
     ? undefined
-    : `Must be min ${length} characters long`;
+    : `Muss mindestens ${length} Zeichen lang sein`;
 
 export const maxLength = (value, length) =>
   value.length <= length
     ? undefined
-    : `Can't be more than ${length} characters long`;
+    : `Darf maximum ${length} Zeichen lang sein`;
 
 export const minArrayLength = (value, minLength) =>
   !value || value.length < minLength
-    ? `Choose at least ${minLength}`
+    ? `Wähle mindestens ${minLength}`
     : undefined;
 
 const containNumberRegex = /\d+/;
 const containCapsLetterRegex = /[A-Z]/;
 export const includeNumber = (value) =>
-  containNumberRegex.test(value) ? undefined : "Must contain a number";
+  containNumberRegex.test(value) ? undefined : " Es muss eine Zahl beinhalten";
 export const includeCapital = (value) =>
   containCapsLetterRegex.test(value)
     ? undefined
-    : "Must contain a capital letter";
+    : "Ihr Passwort sollte ein Großbuchstaben";
 
 export const passwordConfirmation = (value, allValues) =>
-  value !== allValues.password ? "Passwords don't match" : undefined;
+  value !== allValues.password
+    ? "Die Passwörter stammen nicht überein"
+    : undefined;
 
 export const authFields = {
   firstName: {
@@ -106,7 +109,7 @@ export const authFields = {
     type: "authCode",
     name: "authCode",
     label: "Auth Code",
-    hint: "You can find this code in your email.",
+    hint: "Du findest den Code in deinen Emails",
     validate: [required, (value) => minLength(value, 4)],
   },
   gender: {
@@ -117,15 +120,15 @@ export const authFields = {
     options: [
       {
         value: "male",
-        label: "Male",
+        label: "Männlich",
       },
       {
         value: "female",
-        label: "Female",
+        label: "Weiblich",
       },
       {
-        value: "other",
-        label: "Other",
+        value: "divers",
+        label: "Divers",
       },
     ],
   },
@@ -190,7 +193,7 @@ export const groupFields = {
     type: "inlineSelect",
     name: "groupSelfModerated",
     placeholder: "Name",
-    options: moderatingOptions
+    options: moderatingOptions,
   },
   downloadProgram: {
     type: "pdfDownload",
