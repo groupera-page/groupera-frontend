@@ -158,12 +158,15 @@ const moderatingOptions = [
 ];
 
 const imgOptions = [
-  'Grouptitel%20pictures%20low_res/pexels-johannes-plenio-1690355_bj811s_e6dajb.jpg',
-  'Grouptitel%20pictures%20low_res/pexels-taylor-hunt-2902440_xvgnuq_nueptp.jpg',
-  'Grouptitel%20pictures%20low_res/pexels-nandhu-kumar-1661296_ttr2gf_ijeg4r.jpg',
-  'Grouptitel%20pictures%20low_res/pexels-nandhu-kumar-1661296_ttr2gf_ijeg4r.jpg',
-]
-
+  "Grouptitel%20pictures%20low_res/pexels-johannes-plenio-1690355_bj811s_e6dajb.jpg",
+  "Grouptitel%20pictures%20low_res/pexels-taylor-hunt-2902440_xvgnuq_nueptp.jpg",
+  "Grouptitel%20pictures%20low_res/pexels-pixabay-416117_hz1ccg_f4bssx.jpg",
+  "Grouptitel%20pictures%20low_res/pexels-eberhard-grossgasteiger-6_abiqd5_r1jcey.jpg",
+  "Grouptitel%20pictures%20low_res/pexels-akil-mazumder-1072824_1_hqufud_pjiaof.jpg",
+  "Grouptitel%20pictures%20low_res/pexels-javier-gonzalez-108303_iwxfil_t8mk04.jpg",
+  "Grouptitel%20pictures%20low_res/pexels-pixabay-273886_dygqro_wt5ega.jpg",
+  "Grouptitel%20pictures%20low_res/pexels-nandhu-kumar-1661296_ttr2gf_ijeg4r.jpg",
+];
 
 export const groupFields = {
   theme: {
@@ -186,8 +189,7 @@ export const groupFields = {
     label: "Wie würdest du deine Gruppe beschreiben?",
     placeholder: "Kurze Gruppenbeschreibung",
     maxLength: 500,
-    validate: [required, value => maxLength(value, 500)],
-
+    validate: [required, (value) => maxLength(value, 500)],
   },
   selfModerated: {
     type: "inlineSelect",
@@ -205,8 +207,8 @@ export const groupFields = {
     type: "imgCarousel",
     name: "groupImg",
     label: "Gruppenbild",
-    options: imgOptions
-  }
+    options: imgOptions,
+  },
 };
 
 const experienceOptions = [

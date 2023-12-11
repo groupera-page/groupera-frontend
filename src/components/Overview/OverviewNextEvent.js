@@ -33,7 +33,7 @@ const OverviewNextEvent = ({ groups }) => {
   const handleButtonClick = () => {
     // setJoinEventWarning((prev) => !prev);
     setJoinEventWarning(true);
-  }
+  };
 
   useEffect(() => {
     let timeoutId;
@@ -62,7 +62,7 @@ const OverviewNextEvent = ({ groups }) => {
             <div className="flex flex-col justify-center ">
               <div className="flex flex-col mb-2 ">
                 <p className="paragraph-md font-semibold line-clamp-1 break-words">
-                  {groups[0].name}
+                  {groups[0]?.name}
                 </p>
                 <p className="paragraph-sm text-TEXT_PRIMARY lg:mt-2">
                   {nextEvent
@@ -88,14 +88,13 @@ const OverviewNextEvent = ({ groups }) => {
           )}
         </div>
       </div>
-      {
-        joinEventWarning &&
+      {joinEventWarning && (
         <div className="flex justify-center paragraph-md text-PURPLE_PRIMARY mt-1 transition-opacity duration-300">
           Dein Termin hat noch nicht begonnen.
         </div>
-      }
+      )}
     </div>
   );
-}
+};
 
 export default OverviewNextEvent;
