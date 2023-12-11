@@ -1,38 +1,46 @@
-import React, {useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {Link} from "react-router-dom";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 import PageContainer from "../components/Globals/PageContainer";
 import PrimaryButton from "../components/Buttons/PrimaryButton";
 import OverviewGroupItem from "../components/Overview/OverviewGroupItem";
 
-import {selectAuth} from "../features/auth/authSlice";
-import {findProfile} from "../features/profile/profileSlice";
+import { selectAuth } from "../features/auth/authSlice";
+import { findProfile } from "../features/profile/profileSlice";
 import OverviewNextEvent from "../components/Overview/OverviewNextEvent";
 
-const OverviewCard = ({title, desc, children}) => (
-  <div className={"flex w-full p-2.5 lg:px-4 lg:pt-2 flex-col rounded-md shadow-md border"}>
+const OverviewCard = ({ title, desc, children }) => (
+  <div
+    className={
+      "flex w-full p-2.5 lg:px-4 lg:pt-2 flex-col rounded-md shadow-md border"
+    }
+  >
     <div>
       <h4>{title}</h4>
-      {desc && <div className="paragraph-sm lg:paragraph-sm text-TEXT_GRAY">{desc}</div>}
+      {desc && (
+        <div className="paragraph-sm lg:paragraph-sm text-TEXT_GRAY">
+          {desc}
+        </div>
+      )}
     </div>
     {children}
   </div>
-)
+);
 
 const Home = () => {
-  const {user} = useSelector(selectAuth)
-  const dispatch = useDispatch()
+  const { user } = useSelector(selectAuth);
+  const dispatch = useDispatch();
 
-  useEffect( () => {
-    dispatch(findProfile())
-  }, [])
+  useEffect(() => {
+    dispatch(findProfile());
+  }, []);
 
   if (!user?.joinedGroups) {
-    return <div>Loading…</div>
+    return <div>Loading…</div>;
   }
 
-  const allUserGroups = [...user.joinedGroups, ...user.moderatedGroups]
+  const allUserGroups = [...user.joinedGroups];
 
   return (
     <PageContainer>
@@ -43,9 +51,7 @@ const Home = () => {
             hier sind alle wichtigen Infos für dich zusammengestellt.
           </div>
         </div>
-        {
-
-        }
+        {}
         <div className="flex flex-col lg:flex-row-reverse gap-2 lg:gap-11 mt-6 md:mt-10">
           <div className="lg:w-1/2">
             <OverviewCard
@@ -73,9 +79,10 @@ const Home = () => {
                   : "Du bist noch keiner Gruppe beigetreten. "
               }
             >
-              {
-                allUserGroups.length > 0 && allUserGroups.map((group) => <OverviewGroupItem key={group.id} group={group}/>)
-              }
+              {allUserGroups.length > 0 &&
+                allUserGroups.map((group) => (
+                  <OverviewGroupItem key={group.id} group={group} />
+                ))}
               <div className="flex flex-col items-center mt-4 mb-2 ">
                 <Link to={`/groups`}>
                   <PrimaryButton isLarge={true}> Gruppen finden</PrimaryButton>
@@ -87,6 +94,6 @@ const Home = () => {
       </div>
     </PageContainer>
   );
-}
+};
 
 export default Home;

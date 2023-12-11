@@ -163,6 +163,7 @@ const authSlice = createSlice({
           joinedGroups: state.user.joinedGroups ? state.user.joinedGroups.filter(g => g.id === payload.groupId) : []
         };
       })
+     
   }
 });
 
