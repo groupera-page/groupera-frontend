@@ -37,6 +37,20 @@ const destroy = (groupId) => {
     })
 };
 
+const join = (groupId) => {
+  return api
+    .put(`/groupMembership/${groupId}/join`, {
+      withCredentials: true
+    })
+};
+
+const leave = (groupId) => {
+  return api
+    .put(`/groupMembership/${groupId}/leave`, {
+      withCredentials: true
+    })
+};
+
 
 const groupService = {
   createOne,
@@ -44,6 +58,8 @@ const groupService = {
   findAll,
   updateOne,
   destroy,
+  join,
+  leave
 };
 
 export default groupService;

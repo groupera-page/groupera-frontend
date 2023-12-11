@@ -1,11 +1,26 @@
 import React from "react";
+import {useDispatch} from "react-redux";
+import {useNavigate} from "react-router-dom";
+
 import GroupOverviewContent from "./GroupOverviewContent";
 import MenuDropDown from "../Navigation/Menus/MenuDropDown";
 import PrimaryButton from "../Buttons/PrimaryButton";
-import {Link} from "react-router-dom";
 import LazyLoadImg from "../LazyLoadImg";
 
-const GroupDetailCard = ({ group, isAdmin, isMember }) => {
+import {joinGroup, leaveGroup} from "../../features/groups/groupSlice";
+
+const GroupDetailCard = ({ group, user, isAdmin, isMember }) => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const handleJoinGroup = () => {
+    dispatch(joinGroup(group.id))
+  }
+
+  const handleLeaveGroup = () => {
+    dispatch(leaveGroup({groupId: group.id, memberId: user.id}))
+  }
+
   return (
     <div className="my-2 lg:flex gap-12 lg:mx-0">
       <div className="flex lg:w-1/2 relative items-center">
@@ -23,28 +38,20 @@ const GroupDetailCard = ({ group, isAdmin, isMember }) => {
             />
             <div className="flex justify-end my-4">
               {!isMember && !isAdmin ? (
-                <PrimaryButton>{`Mitglied werden`}</PrimaryButton>
+                <PrimaryButton handleButtonClick={handleJoinGroup}>{`Mitglied werden`}</PrimaryButton>
               ) : (
                 <MenuDropDown
                   title={`${isAdmin ? "Du bist Admin" : "Du bist Mitglied"}`}
                   topOffset={10}
                   isButtonDropDown={true}
                 >
-                  <Link
-                    to={`${
-                      isAdmin
-                        ? `/groups/${group.id}/edit`
-                        : "/groups"
-                    }`}
-                  >
-                    <li className="">
-                      <PrimaryButton isInversed={true}>
-                        {`${
-                          isAdmin ? "Gruppe bearbeiten" : "Gruppe verlassen"
-                        }`}
-                      </PrimaryButton>
-                    </li>
-                  </Link>
+                  <li className="">
+                    <PrimaryButton isInversed={true} handleButtonClick={isAdmin ? () => navigate(`/groups/${group.id}/edit`) : handleLeaveGroup}>
+                      {`${
+                        isAdmin ? "Gruppe bearbeiten" : "Gruppe verlassen"
+                      }`}
+                    </PrimaryButton>
+                  </li>
                 </MenuDropDown>
               )}
             </div>

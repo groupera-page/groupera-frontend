@@ -42,7 +42,7 @@ const GroupDetailPage = () => {
         </div>
 
         {
-          group && <GroupDetailCard group={group} isAdmin={isAdmin} isMember={isMember} />
+          group && <GroupDetailCard group={group} user={user} isAdmin={isAdmin} isMember={isMember} />
         }
         {
           (isMember || isAdmin) &&

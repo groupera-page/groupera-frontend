@@ -4,6 +4,7 @@ import authService from "./authApi";
 
 import tokenService from "../../util/tokenServices";
 import {findProfile, updateProfile} from "../profile/profileSlice";
+import {joinGroup, leaveGroup} from "../groups/groupSlice";
 
 const initialState = {
   token: false,
@@ -144,12 +145,23 @@ const authSlice = createSlice({
         }
       })
       .addCase(updateProfile.fulfilled, (state, {payload}) => {
-        tokenService.setUser({...state.user, payload})
-        state.user = {...state.user, payload};
+        tokenService.setUser({...state.user, ...payload})
+        state.user = {...state.user, ...payload};
       })
       .addCase(findProfile.fulfilled, (state, {payload}) => {
-        tokenService.setUser(payload)
         state.user = payload;
+      })
+      .addCase(joinGroup.fulfilled, (state, {payload}) => {
+        state.user = {
+          ...state.user,
+          joinedGroups: state.user.joinedGroups ? [...state.user.joinedGroups, payload.group] : [payload.group]
+        };
+      })
+      .addCase(leaveGroup.fulfilled, (state, {payload}) => {
+        state.user = {
+          ...state.user,
+          joinedGroups: state.user.joinedGroups ? state.user.joinedGroups.filter(g => g.id === payload.groupId) : []
+        };
       })
   }
 });
