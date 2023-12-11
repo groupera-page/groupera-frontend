@@ -2,18 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PrimaryButton from "../Buttons/PrimaryButton";
 import GroupOverviewContent from "../GroupDetails/GroupOverviewContent";
-import { motion } from "framer-motion";
-import placeholderImage from "../../assets/placeholderImage.jpg";
+import LazyLoadImg from "../LazyLoadImg";
 
 const GroupPreviewCard = ({ group }) => {
   return (
     <div className="flex flex-col border rounded-md shadow-md h-full ">
       <div className="w-full">
-        <motion.img
-          src={placeholderImage}
-          alt="Placeholder"
-          className="rounded-md object-cover filter blur-md"
-        />
+        <LazyLoadImg img={group.img}/>
       </div>
 
       <div className="flex flex-col justify-between px-4 h-full">

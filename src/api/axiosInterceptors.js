@@ -38,19 +38,17 @@ const setupInterceptors = store => {
     },
     async err => {
       const originalConfig = err.config;
-      if (originalConfig.url !== "/auth/login" && err.response) {
-        // Access Token was expired
-        if (err.response.status === 401 && !originalConfig._retry) {
-          originalConfig._retry = true;
+      // Access Token was expired
+      if (err.response.status === 401 && !originalConfig._retry) {
+        originalConfig._retry = true;
 
-          try {
-            await dispatch(refreshToken());
+        try {
+          await dispatch(refreshToken());
 
-            return api(originalConfig);
-          } catch (_error) {
-            dispatch(logout());
-            return Promise.reject(_error);
-          }
+          return api(originalConfig);
+        } catch (_error) {
+          dispatch(logout());
+          return Promise.reject(_error);
         }
       }
 

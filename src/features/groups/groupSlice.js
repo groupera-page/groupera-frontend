@@ -40,8 +40,11 @@ export const findGroups = createAsyncThunk(
 
 export const updateGroup = createAsyncThunk(
   "groups/updateOne",
-  async (groupId, body) => {
+  async ({groupId, body}) => {
     const result = await groupService.updateOne(groupId, body)
+    if (result.status === 200) {
+      return {id: groupId, ...body}
+    }
     return result.data;
   }
 );
@@ -51,6 +54,25 @@ export const deleteGroup = createAsyncThunk(
   async (groupId) => {
     await groupService.destroy(groupId)
     return groupId;
+  }
+);
+
+export const joinGroup = createAsyncThunk(
+  "groups/join",
+  async (groupId) => {
+    const result = await groupService.join(groupId)
+    return result.data;
+  }
+);
+
+export const leaveGroup = createAsyncThunk(
+  "groups/leave",
+  async ({groupId, memberId}) => {
+    const result = await groupService.leave(groupId)
+    if (result.status === 200) {
+      return {groupId, memberId}
+    }
+    return result.data;
   }
 );
 
@@ -89,8 +111,7 @@ const groupSlice = createSlice({
           if (group.id === payload.id) {
             return {
               ...group,
-              name: payload.name,
-              description: payload.description
+              ...payload
             }
           }
           return group
@@ -116,6 +137,32 @@ const groupSlice = createSlice({
           })
         } else {
           state.groups = [...state.groups, payload]
+        }
+      })
+      .addCase(joinGroup.fulfilled, (state, {payload}) => {
+        state.loading = false
+
+        if (state.groups && state.groups.some(d => d.id === payload.group.id)) { // if group already present
+
+          state.groups = state.groups.map(group => {
+            if (group.id === payload.group.id) {
+              return payload.group
+            }
+            return group
+          })
+        }
+      })
+      .addCase(leaveGroup.fulfilled, (state, {payload}) => {
+        state.loading = false
+
+        if (state.groups && state.groups.some(d => d.id === payload.groupId)) { // if group already present
+          state.groups = state.groups.map(group => {
+            if (group.id === payload.groupId) {
+              delete group.members
+              return group
+            }
+            return group
+          })
         }
       })
       .addCase(deleteGroup.fulfilled, (state, {payload}) => {

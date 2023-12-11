@@ -1,11 +1,12 @@
 import React from "react";
+import {connect} from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import VerificationCodeWrapper from "./VerificationCodeWrapper";
 import MySelect from "./MySelect";
 import myInput from "./MyInput";
-import {connect} from "react-redux";
+import MyImgInput from "../../groups/components/MyImgInput";
 
-const renderField = (field) => {
+export const renderField = (field) => {
   switch (field.type) {
     case "inlineMultiSelect":
     case "inlineSelect":
@@ -18,6 +19,12 @@ const renderField = (field) => {
       return <Field
         key={field.name}
         component={VerificationCodeWrapper}
+        {...field}
+      />
+    case "imgCarousel":
+      return <Field
+        key={field.name}
+        component={MyImgInput}
         {...field}
       />
     default:

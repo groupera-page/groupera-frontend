@@ -13,7 +13,7 @@ export default function ProfileTable({ user }) {
       <NavbarSub subPages={subPages} />
 
       <Routes>
-        <Route path="Profil" element={<ProfileSubPage user={user} />} />
+        <Route path="Profil" element={<ProfileSubPage />} />
         <Route
           path="Einstellungen"
           element={<UserSettingsSubPage user={user} />}

@@ -3,7 +3,8 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import authService from "./authApi";
 
 import tokenService from "../../util/tokenServices";
-import profileService from "../profile/profileApi";
+import {findProfile, updateProfile} from "../profile/profileSlice";
+import {joinGroup, leaveGroup} from "../groups/groupSlice";
 
 const initialState = {
   token: false,
@@ -142,6 +143,25 @@ const authSlice = createSlice({
           state.token = payload.authToken;
           state.user = payload.user;
         }
+      })
+      .addCase(updateProfile.fulfilled, (state, {payload}) => {
+        tokenService.setUser({...state.user, ...payload})
+        state.user = {...state.user, ...payload};
+      })
+      .addCase(findProfile.fulfilled, (state, {payload}) => {
+        state.user = payload;
+      })
+      .addCase(joinGroup.fulfilled, (state, {payload}) => {
+        state.user = {
+          ...state.user,
+          joinedGroups: state.user.joinedGroups ? [...state.user.joinedGroups, payload.group] : [payload.group]
+        };
+      })
+      .addCase(leaveGroup.fulfilled, (state, {payload}) => {
+        state.user = {
+          ...state.user,
+          joinedGroups: state.user.joinedGroups ? state.user.joinedGroups.filter(g => g.id === payload.groupId) : []
+        };
       })
   }
 });

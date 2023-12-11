@@ -1,4 +1,4 @@
-import testManual from "../assets/manual.pdf";
+// import testManual from "../assets/manual.pdf";
 
 // noinspection RegExpRedundantEscape
 const emailRegex =
@@ -19,10 +19,15 @@ export const email = (value) =>
     ? "Bitte geben Sie eine gültige E-Mail Adresse ein"
     : undefined;
 
-export const length = (value, minLength) =>
-  value.length >= minLength
+export const minLength = (value, length) =>
+  value.length >= length
     ? undefined
-    : `Muss mindestens ${minLength} Zeichen lang sein`;
+    : `Muss mindestens ${length} Zeichen lang sein`;
+
+export const maxLength = (value, length) =>
+  value.length <= length
+    ? undefined
+    : `Darf maximum ${length} Zeichen lang sein`;
 
 export const minArrayLength = (value, minLength) =>
   !value || value.length < minLength
@@ -47,7 +52,6 @@ export const authFields = {
   firstName: {
     type: "text",
     name: "firstName",
-    value: "",
     label: "Last name",
     placeholder: "firstName",
     hint: "Bitte gib hier Deinen Namen ein, mit dem Du in der Gruppe angesprochen werden möchtest und der für andere Mitglieder:innen angezeigt werden darf.",
@@ -56,7 +60,6 @@ export const authFields = {
   lastName: {
     type: "text",
     name: "lastName",
-    value: "",
     label: "First name",
     placeholder: "lastName",
     hint: "Bitte gib hier Deinen Namen ein, mit dem Du in der Gruppe angesprochen werden möchtest und der für andere Mitglieder:innen angezeigt werden darf.",
@@ -65,7 +68,6 @@ export const authFields = {
   alias: {
     type: "text",
     name: "alias",
-    value: "",
     label: "Alias",
     placeholder: "Dein Alias",
     hint: "Bitte gib hier Deinen Namen ein, mit dem Du in der Gruppe angesprochen werden möchtest und der für andere Mitglieder:innen angezeigt werden darf.",
@@ -74,7 +76,6 @@ export const authFields = {
   email: {
     type: "email",
     name: "email",
-    value: "",
     label: "Email",
     placeholder: "Email",
     validate: [required, email],
@@ -82,12 +83,11 @@ export const authFields = {
   password: {
     type: "password",
     name: "password",
-    value: "",
     label: "Password",
     placeholder: "Password",
     validate: [
       required,
-      (value) => length(value, 8),
+      (value) => minLength(value, 8),
       includeNumber,
       includeCapital,
     ],
@@ -95,12 +95,11 @@ export const authFields = {
   passwordConfirmation: {
     type: "password",
     name: "passwordConfirmation",
-    value: "",
     label: "Password Confirmation",
     placeholder: "Password Confirmation",
     validate: [
       required,
-      (value) => length(value, 8),
+      (value) => minLength(value, 8),
       includeNumber,
       includeCapital,
       passwordConfirmation,
@@ -109,17 +108,14 @@ export const authFields = {
   authCode: {
     type: "authCode",
     name: "authCode",
-    // value: "",
     label: "Auth Code",
     hint: "Du findest den Code in deinen Emails",
-    validate: [required, (value) => length(value, 4)],
+    validate: [required, (value) => minLength(value, 4)],
   },
   gender: {
     type: "inlineSelect",
     name: "gender",
-    // value: "",
     label: "Gender",
-    // hint: "",
     validate: [required],
     options: [
       {
@@ -161,11 +157,18 @@ const moderatingOptions = [
   { label: "Nein", value: false },
 ];
 
+const imgOptions = [
+  'Grouptitel%20pictures%20low_res/pexels-johannes-plenio-1690355_bj811s_e6dajb.jpg',
+  'Grouptitel%20pictures%20low_res/pexels-taylor-hunt-2902440_xvgnuq_nueptp.jpg',
+  'Grouptitel%20pictures%20low_res/pexels-nandhu-kumar-1661296_ttr2gf_ijeg4r.jpg',
+  'Grouptitel%20pictures%20low_res/pexels-nandhu-kumar-1661296_ttr2gf_ijeg4r.jpg',
+]
+
+
 export const groupFields = {
   theme: {
     type: "inlineMultiSelect",
     name: "groupTheme",
-    value: [],
     options: groupThemeOptions,
     validate: [(value) => minArrayLength(value, 1)],
   },
@@ -173,7 +176,6 @@ export const groupFields = {
     type: "name",
     name: "groupName",
     label: "Wie soll deine Gruppe heißen?",
-    value: "",
     placeholder: "Name",
     hint: "Bitte gib den Gruppen Namen ein.",
     validate: [required],
@@ -182,24 +184,29 @@ export const groupFields = {
     type: "textarea",
     name: "groupDescription",
     label: "Wie würdest du deine Gruppe beschreiben?",
-    value: "",
     placeholder: "Kurze Gruppenbeschreibung",
+    maxLength: 500,
+    validate: [required, value => maxLength(value, 500)],
+
   },
   selfModerated: {
     type: "inlineSelect",
     name: "groupSelfModerated",
-    value: false,
     placeholder: "Name",
-    // hint: "",
     options: moderatingOptions,
   },
   downloadProgram: {
-    type: "pdf_download",
+    type: "pdfDownload",
     name: "groupProgram",
-    value: testManual,
     label: "Download Program",
     placeholder: "Download Program",
   },
+  img: {
+    type: "imgCarousel",
+    name: "groupImg",
+    label: "Gruppenbild",
+    options: imgOptions
+  }
 };
 
 const experienceOptions = [
@@ -223,7 +230,6 @@ const experienceOptions = [
 
 export const groupExperienceField = {
   type: "inlineSelect",
-  value: experienceOptions[0].value,
   name: "experience",
   options: experienceOptions,
   validate: [required],
@@ -258,7 +264,6 @@ const chooseFunnelOptions = [
 
 export const chooseFunnelField = {
   type: "inlineSelect",
-  value: experienceOptions[0].value,
   name: "chooseFunnel",
   options: chooseFunnelOptions,
   validate: [required],

@@ -5,6 +5,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {findGroups, selectGroups, selectGroupsPagination} from "../features/groups/groupSlice";
 import Searchbox from "../components/UserInputs/Searchbox";
 import GroupTopicFilter from "../components/GroupSearch/GroupTopicFilter";
+import {Link} from "react-router-dom";
+import PrimaryButton from "../components/Buttons/PrimaryButton";
+import {GoPlus} from "react-icons/go";
 
 export default function GroupsPage() {
   const {groups} = useSelector(selectGroups)
@@ -78,6 +81,17 @@ export default function GroupsPage() {
   return (
     <PageContainer title={`Gruppen`}>
       <div className="w-full mt-4">
+        <div className="flex justify-between mt-4 lg:mt-10">
+          <h2>Gruppen</h2>
+          <Link to={`group/create`}>
+            <PrimaryButton>
+              <div className="flex flex-row gap-2 items-center">
+                <GoPlus size={20} />
+                <div>Gruppe gründen</div>
+              </div>
+            </PrimaryButton>
+          </Link>
+        </div>
         <Searchbox
           searchTerm={filter.searchTerm}
           onSearch={handleSearch}

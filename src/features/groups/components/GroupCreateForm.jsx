@@ -6,8 +6,6 @@ let GroupCreateForm = (props) => <SharedForm {...props}/>
 
 GroupCreateForm = reduxForm({
 	form: "createGroupForm",
-	destroyOnUnmount: false,
-	forceUnregisterOnUnmount: true,
 	// enableReinitialize : true
 })(GroupCreateForm)
 

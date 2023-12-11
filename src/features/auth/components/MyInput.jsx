@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { AiOutlineWarning } from "react-icons/ai";
 
 const MyInput = ({
@@ -8,15 +8,15 @@ const MyInput = ({
   type,
   hint,
   meta: { touched, error },
+  maxLength
 }) => {
-  const [charCount, setCharCount] = useState(
-    input.value ? input.value.length : 0
-  );
-
   const handleTextareaChange = (e) => {
-    const inputValue = e.target.value;
-    input.onChange(e);
-    setCharCount(inputValue.length);
+    if (!maxLength) return input.onChange(e)
+
+    const newValue = e.target.value;
+    if (newValue.length > maxLength) return
+    return input.onChange(e);
+    // setCharCount(inputValue.length);
   };
 
   return (
@@ -27,12 +27,11 @@ const MyInput = ({
           <textarea
             {...input}
             placeholder={placeholder || label}
-            type={type}
             maxLength={500}
             onChange={handleTextareaChange}
             className="w-full h-36 resize-none paragraph-md rounded-md py-2 px-4  placeholder-TEXT_PRIMARY bg-BG_PRIMARY border border-BORDER_PRIMARY"
           />
-          <div className="text-right paragraph-tiny">{charCount}/500</div>
+          {maxLength && <div className="text-right paragraph-tiny">{input.value.length}/{maxLength}</div>}
         </div>
       ) : (
         <div>

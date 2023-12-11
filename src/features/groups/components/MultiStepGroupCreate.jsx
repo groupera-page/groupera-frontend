@@ -30,7 +30,7 @@ const MultiStepGroupCreate = () => {
 				name: values.groupName,
 				description: values.groupDescription,
 				selfModerated: values.groupSelfModerated,
-				topic: values.groupTheme[0],
+				topic: values.groupTheme,
 				// meetings: [] // todo add meeting logic, dependent on backend
 			}))
 			if (!response) throw Error("something went wrong")
