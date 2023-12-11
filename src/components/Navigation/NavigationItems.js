@@ -1,4 +1,4 @@
-import {NavLink, useNavigate} from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import HoverUnderline from "../Effects/HoverUnderline";
 
 import {
@@ -8,28 +8,28 @@ import {
   BsPeopleFill,
 } from "react-icons/bs";
 import { CiLogout } from "react-icons/ci";
-import {useDispatch} from "react-redux";
-import {logout} from "../../features/auth/authSlice";
+import { useDispatch } from "react-redux";
+import { logout } from "../../features/auth/authSlice";
 
 const Navigation = ({ handleMenuMobile }) => {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   // const [cookies, setCookie, removeCookie] = useCookies(['refreshToken']);
 
   const handleLogout = async () => {
     try {
-      const response = await dispatch(logout())
+      const response = await dispatch(logout());
 
-      if (response.error) throw Error(response.error.message)
+      if (response.error) throw Error(response.error.message);
 
-      handleMenuMobile()
-      navigate("/auth/login")
+      handleMenuMobile();
+      navigate("/auth/login");
     } catch (e) {
       // handle the error response
-      console.log(e)
+      console.log(e);
     }
-  }
+  };
 
   return (
     <div className="flex flex-col justify-between h-1/2 lg:h-full mx-5 lg:pb-20">
@@ -93,7 +93,10 @@ const Navigation = ({ handleMenuMobile }) => {
           </NavLink>
         </li>
       </ul>
-      <div className={`flex items-center text-TEXT_PRIMARY `} onClick={() => handleLogout()}>
+      <div
+        className={`flex items-center text-TEXT_PRIMARY cursor-pointer`}
+        onClick={() => handleLogout()}
+      >
         <CiLogout className="w-5 mr-3 text-TEXT_PRIMARY" size={32} />
         <div className="relative group paragraph-lg">
           Ausloggen
@@ -103,6 +106,6 @@ const Navigation = ({ handleMenuMobile }) => {
       <hr className="border-gray-300 lg:hidden mt-2" />
     </div>
   );
-}
+};
 
-export default Navigation
+export default Navigation;
