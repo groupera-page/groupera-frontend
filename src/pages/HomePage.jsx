@@ -74,7 +74,7 @@ const Home = () => {
               }
             >
               {
-                allUserGroups.length > 0 && allUserGroups.map((group) => <OverviewGroupItem group={group}/>)
+                allUserGroups.length > 0 && allUserGroups.map((group) => <OverviewGroupItem key={group.id} group={group}/>)
               }
               <div className="flex flex-col items-center mt-4 mb-2 ">
                 <Link to={`/groups`}>

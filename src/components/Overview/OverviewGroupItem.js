@@ -46,7 +46,7 @@ const OverviewGroupItem = ({ group }) => (
         </div>
       </div>
       <div className=" justify-start ml-2">
-        <Link to={`/groups/${group.id}/termine`}>
+        <Link to={`/groups/${group.id}`}>
           <SecondaryButton> Zur Gruppe</SecondaryButton>
         </Link>
       </div>

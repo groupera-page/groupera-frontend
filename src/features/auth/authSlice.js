@@ -144,8 +144,8 @@ const authSlice = createSlice({
         }
       })
       .addCase(updateProfile.fulfilled, (state, {payload}) => {
-        tokenService.setUser(payload.user)
-        state.user = payload.user;
+        tokenService.setUser({...state.user, payload})
+        state.user = {...state.user, payload};
       })
       .addCase(findProfile.fulfilled, (state, {payload}) => {
         tokenService.setUser(payload)

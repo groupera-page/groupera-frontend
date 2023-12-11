@@ -30,13 +30,13 @@ const GroupDetailPage = () => {
     <PageContainer>
       <div className="flex flex-col w-full lg:mx-14 mt-4 lg:mt-10 lg:pr-28">
         <div className="mb-4">
-          <PrimaryButton isInversed={true} handleButtonClick={() => navigate(-1)}>
+          <PrimaryButton isInversed={true} handleButtonClick={() => navigate("/groups")}>
             <div className="flex items-center">
               <BsArrowLeft
                 className="w-5 mr-2 text-PURPLE_PRIMARY"
                 size={15}
               />
-              Zurück
+              Zur Suche
             </div>
           </PrimaryButton>
         </div>

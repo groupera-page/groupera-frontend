@@ -87,7 +87,7 @@ export default function GroupTermineSubPage({ group }) {
               </div>
 
               <div className="flex items-center gap-4 justify-center paragraph-md">
-                {group.users.length}/15
+                {group.members.length}/15
                 <BsPeopleFill
                   className={`w-5 mr-3 text-PURPLE_PRIMARY `}
                   size={32}
@@ -105,7 +105,7 @@ export default function GroupTermineSubPage({ group }) {
               <div>{formatDateTime(meeting.start.dateTime, false)}</div>
               <div>{meeting.start.time} Uhr </div>
               <div>{calculateDuration(meeting.start, meeting.end)}</div>
-              <div>{group.users.length} / 15</div>
+              <div>{group.members.length} / 15</div>
 
               <div className="flex justify-end">
                 <SecondaryButton>Anmelden</SecondaryButton>

@@ -42,6 +42,9 @@ export const updateGroup = createAsyncThunk(
   "groups/updateOne",
   async ({groupId, body}) => {
     const result = await groupService.updateOne(groupId, body)
+    if (result.status === 200) {
+      return {id: groupId, ...body}
+    }
     return result.data;
   }
 );
@@ -89,8 +92,7 @@ const groupSlice = createSlice({
           if (group.id === payload.id) {
             return {
               ...group,
-              name: payload.name,
-              description: payload.description
+              ...payload
             }
           }
           return group
