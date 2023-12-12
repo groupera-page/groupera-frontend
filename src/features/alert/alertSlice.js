@@ -7,6 +7,7 @@ import {
   logout,
   refreshToken,
 } from "../auth/authSlice";
+import {updateProfile} from "../profile/profileSlice";
 
 export const getNewAlert = (type, header, desc, expiry = 5000) => {
   return {
@@ -84,6 +85,17 @@ const alertSlice = createSlice({
       })
       .addCase(registerUser.rejected, (state) => {
         state.items.push(getNewAlert("error", "Falsch oder Unvollständig"));
+      })
+      .addCase(updateProfile.fulfilled, (state) => {
+        state.items.push(
+          getNewAlert(
+            "success",
+            "Profil erfolgreich geupdated",
+          )
+        );
+      })
+      .addCase(updateProfile.rejected, (state) => {
+        state.items.push(getNewAlert("error", "Etwas ist schiefgegangen", "Dein Profil konnte nicht geupdated werden."));
       });
   },
 });
