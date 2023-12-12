@@ -7,6 +7,7 @@ import myInput from "./MyInput";
 import MyImgInput from "../../groups/components/MyImgInput";
 import MyDownloadButton from "./MyDownloadButton";
 import MyTextarea from "./MyTextarea";
+import MySimpleSelect from "./MySimpleSelect";
 
 export const renderField = (field) => {
   switch (field.type) {
@@ -29,6 +30,8 @@ export const renderField = (field) => {
       return <Field key={field.name} component={MyImgInput} {...field} />;
     case "pdfDownload":
       return <Field key={field.name} component={MyDownloadButton} {...field} />;
+    case "checkbox":
+      return <Field key={field.name} component={MySimpleSelect} {...field} />;
     default:
       return <Field key={field.name} component={myInput} {...field} />;
   }

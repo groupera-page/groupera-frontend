@@ -11,6 +11,8 @@ export const isEmail = (value) => {
 
 export const required = (value) =>
   value ? undefined : "Das Feld darf nicht leer sein";
+export const isTrue = (value) =>
+  value === true ? undefined : "Terms müssen akzeptiert sein";
 export const number = (value) =>
   value && isNaN(Number(value)) ? "Es muss eine Nummer sein" : undefined;
 export const email = (value) =>
@@ -131,6 +133,11 @@ export const authFields = {
         label: "Divers",
       },
     ],
+  },
+  terms: {
+    type: "checkbox",
+    name: "terms",
+    validate: [required, isTrue],
   },
 };
 
@@ -268,5 +275,5 @@ export const chooseFunnelField = {
   type: "inlineSelect",
   name: "chooseFunnel",
   options: chooseFunnelOptions,
-  validate: [required],
+  validate: [required, isTrue],
 };

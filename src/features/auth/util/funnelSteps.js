@@ -15,6 +15,7 @@ export const userProfileStep = {
     authFields.gender,
     authFields.password,
     authFields.passwordConfirmation,
+    authFields.terms,
   ],
   goBackOption: true,
   onSubmit: (values) =>

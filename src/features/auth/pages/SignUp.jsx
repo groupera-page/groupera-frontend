@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import AuthForm from "../components/AuthForm";
@@ -12,20 +12,31 @@ import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 
 const SignUp = () => {
   const [searchParams] = useSearchParams();
-  const { steps, joinGroupId } = getFunnelSteps(searchParams);
+  const { type, steps, joinGroupId } = getFunnelSteps(searchParams);
+  const [createdGroupId, setCreatedGroupId] = useState()
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { currentStepIndex, step, isFirstStep, isLastStep, back, next } =
     useMultistepHook(steps);
 
-  const handleLastSubmit = async () => {
+  const handleLastSubmit = async (groupId) => {
     if (!isLastStep) {
       next();
     } else {
       try {
         await dispatch(setAuthToken());
-        navigate("/profile");
+        switch (type) {
+          case "chooseFunnelCreate":
+          case "createGroupFunnel":
+            navigate(`/groups/${groupId || createdGroupId}`);
+            break
+          case "joinGroupFunnel":
+            navigate(`/groups/${joinGroupId}`);
+            break
+          default:
+            navigate("/");
+        }
         // if (response.error) throw Error(response.error.message)
       } catch (e) {
         console.log("Error", e);
@@ -39,7 +50,11 @@ const SignUp = () => {
         const response = await dispatch(step.onSubmit(values));
         if (response.error) throw Error(response.error.message);
 
-        await handleLastSubmit();
+        if (response.payload && response.payload.group) {
+          setCreatedGroupId(response.payload.group.id)
+        }
+
+        await handleLastSubmit(response.payload?.group?.id);
       } catch (e) {
         console.log("Error", e);
       }
