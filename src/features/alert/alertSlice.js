@@ -1,16 +1,22 @@
-import {createSlice} from "@reduxjs/toolkit";
-import {v4 as uuidv4} from "uuid";
-import {isAuthenticated, logInUser, logout, refreshToken} from "../auth/authSlice";
+import { createSlice } from "@reduxjs/toolkit";
+import { v4 as uuidv4 } from "uuid";
+import { registerUser } from "../auth/authSlice";
+import {
+  isAuthenticated,
+  logInUser,
+  logout,
+  refreshToken,
+} from "../auth/authSlice";
 
-export const getNewAlert = (type, header, desc, expiry=5000) => {
+export const getNewAlert = (type, header, desc, expiry = 5000) => {
   return {
     id: uuidv4(),
     header,
     desc,
     type,
-    expiry
-  }
-}
+    expiry,
+  };
+};
 
 const initialState = {
   items: [],
@@ -20,34 +26,69 @@ const alertSlice = createSlice({
   name: "alert",
   initialState,
   reducers: {
-    addAlert: (state, {payload}) => {
-      state.items.push(payload)
+    addAlert: (state, { payload }) => {
+      state.items.push(payload);
     },
-    removeAlert: (state, {payload}) => {
-      state.items = state.items.filter(a => a.id !== payload)
+    removeAlert: (state, { payload }) => {
+      state.items = state.items.filter((a) => a.id !== payload);
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(logInUser.rejected, (state) => {
-        state.items.push(getNewAlert("error", "Login failed", "Wrong email or password", 3000))
+        state.items.push(
+          getNewAlert(
+            "error",
+            "LogIn fehlgeschlagen",
+            "falsches Passwort oder Email-Adresse",
+            3000
+          )
+        );
       })
+
       .addCase(refreshToken.rejected, (state) => {
-        state.items.push(getNewAlert("error", "Credentials expired", "You need to log in again to gain access"))
+        state.items.push(
+          getNewAlert(
+            "error",
+            "Anmeldedaten abgelaufen",
+            "Du musst dich erneut Anmelden, um Zugriff zu erhalten"
+          )
+        );
       })
       .addCase(isAuthenticated.fulfilled, (state) => {
-        state.items.push(getNewAlert("success", "Credentials valid", "You are already logged in"))
+        state.items.push(
+          getNewAlert(
+            "success",
+            "Anmeldedaten gültig",
+            "Du bist bereits angemeldet"
+          )
+        );
       })
       .addCase(logInUser.fulfilled, (state) => {
-        state.items.push(getNewAlert("success", "Your in!", "Successfully logged in. Have fun!"))
+        state.items.push(
+          getNewAlert(
+            "success",
+            "Super, du bist dabei.",
+            "Du bist erfolgreich eingeloggt. Wir wünschen einen schönen Austausch!"
+          )
+        );
       })
       .addCase(logout.fulfilled, (state) => {
-        state.items.push(getNewAlert("success", "Logged out", "Bye bye, log in again to gain access"))
+        state.items.push(
+          getNewAlert(
+            "success",
+            "Du hast dich erfolgreich ausgeloggt.",
+            "Wir freuen uns, wenn du das nächste Mal wieder dabei bist."
+          )
+        );
       })
+      .addCase(registerUser.rejected, (state) => {
+        state.items.push(getNewAlert("error", "Falsch oder Unvollständig"));
+      });
   },
 });
 
-export const {addAlert, removeAlert} = alertSlice.actions;
+export const { addAlert, removeAlert } = alertSlice.actions;
 
 export const selectAlerts = (state) => state.alerts;
 
