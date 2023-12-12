@@ -40,7 +40,9 @@ const Home = () => {
     return <div>Loading…</div>;
   }
 
-  const allUserGroups = [...user.joinedGroups];
+  debugger
+
+  const allUserGroups = [...user.joinedGroups, ...user.moderatedGroups];
 
   return (
     <PageContainer>
@@ -51,22 +53,24 @@ const Home = () => {
             hier sind alle wichtigen Infos für dich zusammengestellt.
           </div>
         </div>
-        {}
         <div className="flex flex-col lg:flex-row-reverse gap-2 lg:gap-11 mt-6 md:mt-10">
           <div className="lg:w-1/2">
             <OverviewCard
               title={
-                user.nextEvents?.length > 0
+                user.nextMeeting
                   ? "Dein nächster Termin"
                   : "Keine Termine"
               }
               desc={
-                user.nextEvents?.length > 0
+                user.nextMeeting?.length > 0
                   ? ""
-                  : "Du hast dich noch für keinen Termin angemeldet. "
+                  : "Keine Gruppe in der du Mitglied bist hat kommende Termine."
               }
             >
-              <OverviewNextEvent groups={allUserGroups} />
+              {
+                user.nextMeeting &&
+                <OverviewNextEvent nextEvent={user.nextMeeting} />
+              }
             </OverviewCard>
           </div>
 

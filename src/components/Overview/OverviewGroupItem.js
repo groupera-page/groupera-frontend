@@ -1,31 +1,7 @@
 import React from "react";
 import SecondaryButton from "../Buttons/SecondaryButton";
 import { Link } from "react-router-dom";
-import formatDateTime from "../../util/formatDateTime";
-// import getNextEvent from "../../util/getNextEvent";
-
-// const mockDataEvents = [
-//   {
-//     id: "33dk58ss8dflia9emc3epprlpk_20231120T110000",
-//     start: {
-//       dateTime: "2023-12-20T12:00:00+01:00",
-//       time: "12:00",
-//     },
-//     end: {
-//       dateTime: "2023-12-20T12:30:00+01:00",
-//     },
-//   },
-//   {
-//     id: "33dk58ss8dflia9emc3epprlpk_20231204T110000Z",
-//     start: {
-//       dateTime: "2023-12-24T12:00:00+01:00",
-//       time: "12:00",
-//     },
-//     end: {
-//       dateTime: "2023-12-24T12:30:00+01:00",
-//     },
-//   },
-// ];
+import getFormatedDate from "../../util/formatMeetingDate";
 
 const OverviewGroupItem = ({ group }) => (
   <div>
@@ -39,8 +15,10 @@ const OverviewGroupItem = ({ group }) => (
             Nächster Termin:
           </p>
           <p className="paragraph-sm text-TEXT_PRIMARY lg:mt-1">
-            {group.nextEvent
-              ? formatDateTime(group.nextEvent, false) + " Uhr"
+            {group.meetings && group.meetings.length > 0
+              ? <span>
+                {group.meetings.map((meeting) => getFormatedDate(meeting)).join(', ')}
+              </span>
               : "Kein Termin geplant"}
           </p>
         </div>

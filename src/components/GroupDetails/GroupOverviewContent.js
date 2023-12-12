@@ -1,4 +1,5 @@
 import React from "react";
+import getFormatedDate from "../../util/formatMeetingDate";
 
 export default function GroupOverviewContent({ group, clamp, isDetailPage }) {
   return (
@@ -19,15 +20,31 @@ export default function GroupOverviewContent({ group, clamp, isDetailPage }) {
           )}
         </div>
       </div>
-      <div
-        className={`${
-          isDetailPage
-            ? "paragraph-lead "
-            : "lg:text-PURPLE_PRIMARY text-TEXT_LIGHTGRAY"
-        } paragraph-md my-1`}
-      >
-        Wöchentlich, Dienstag 18:00 Uhr {/*// todo switch with actual next event*/}
-      </div>
+      {
+        group.meetings && group.meetings.length > 0 ? (
+          <div
+            className={`${
+              isDetailPage
+                ? "paragraph-lead"
+                : "lg:text-PURPLE_PRIMARY text-TEXT_LIGHTGRAY"
+            } paragraph-md my-1`}
+          >
+            <span>
+              {group.meetings.map((meeting) => getFormatedDate(meeting)).join(', ')}
+            </span>
+          </div>
+        ) : (
+          <div
+            className={`${
+              isDetailPage
+                ? "paragraph-lead"
+                : "lg:text-PURPLE_PRIMARY text-TEXT_LIGHTGRAY"
+            } paragraph-md my-1`}
+          >
+            Keine Treffen geplant
+          </div>
+        )
+      }
 
       <p
         className={`${clamp ? "line-clamp-5" : ""} ${
