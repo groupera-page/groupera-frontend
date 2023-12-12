@@ -5,7 +5,7 @@ import {createGroup} from "../../groups/groupSlice";
 import {
   authStep,
   chooseFunnelStep,
-  experienceStep,
+  experienceStep, groupCreateSuccessStep,
   groupDownloadStep,
   groupInfoStep,
   groupSettingsStep,
@@ -36,6 +36,7 @@ const chooseFunnelCreateSteps = [
       // meetings: [] // todo add meeting logic, dependent on backend
     }) // todo add img
   },
+  groupCreateSuccessStep
 ]
 
 const chooseFunnelFindSteps = [
@@ -51,7 +52,7 @@ const joinGroupFunnelSteps = [
     onSubmit: (values) => verifyEmail({
       authCode: values.authCode,
       email: values.email,
-      joinedGroups: [values.groupId]
+      joinedGroups: values.joinedGroups
     })
   },
   {
@@ -72,6 +73,7 @@ const createGroupFunnelSteps = [
   // groupMeetingStep,
   userProfileStep,
   authStep,
+  groupDownloadStep,
   {
     ...groupSettingsStep,
     goBackOption: false,
@@ -83,7 +85,6 @@ const createGroupFunnelSteps = [
       // meetings: [] // todo add meeting logic, dependent on backend
     }) // todo add img
   },
-  groupDownloadStep
 ]
 
 
@@ -98,7 +99,8 @@ const getFunnelSteps = (searchParams) => {
         case "create":
           return {
             type: "chooseFunnelCreate",
-            steps: chooseFunnelCreateSteps
+            steps: chooseFunnelCreateSteps,
+            stepCount: chooseFunnelCreateSteps.length - 1
           }
         default:
           return {

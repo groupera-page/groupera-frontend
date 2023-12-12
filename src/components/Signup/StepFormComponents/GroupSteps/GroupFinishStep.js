@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-export default function GroupFinishStep({ updateGroupFields, moderator }) {
+const GroupFinishStep = ({ groupId, isModerator }) => {
   const [isCopied, setIsCopied] = useState(false);
 
   function copyToClipboard() {
-    const textToCopy = "https://groupera.de"; // Replace with actual group link
+    const textToCopy = `http://localhost:8080/groups/${groupId}`; // Replace with actual group link
 
     const textarea = document.createElement("textarea");
     textarea.value = textToCopy;
@@ -25,7 +25,7 @@ export default function GroupFinishStep({ updateGroupFields, moderator }) {
 
   return (
     <>
-      {moderator === "Ja" ? (
+      {isModerator ? (
         <div>
           <h6 className="mb-4">
             Super, deine Gruppe ist eröffnet. Bringe jetzt Menschen zusammen!
@@ -76,3 +76,5 @@ export default function GroupFinishStep({ updateGroupFields, moderator }) {
     </>
   );
 }
+
+export default GroupFinishStep;

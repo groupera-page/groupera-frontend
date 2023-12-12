@@ -29,6 +29,7 @@ export const userProfileStep = {
         groupTheme: values.groupTheme,
         chooseFunnel: values.chooseFunnel,
       },
+      terms: values.terms
     }),
 };
 
@@ -74,6 +75,11 @@ export const groupInfoStep = {
   fields: [groupFields.name, groupFields.description],
   goBackOption: true,
 };
+
+export const groupCreateSuccessStep = {
+  type: "success"
+};
+
 
 export const groupSettingsStep = {
   header: "Pass die Einstellungen deiner Gruppe an.",
