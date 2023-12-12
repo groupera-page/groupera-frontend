@@ -5,6 +5,7 @@ import VerificationCodeWrapper from "./VerificationCodeWrapper";
 import MySelect from "./MySelect";
 import myInput from "./MyInput";
 import MyImgInput from "../../groups/components/MyImgInput";
+import MyTextarea from "./MyTextarea";
 
 export const renderField = (field) => {
   switch (field.type) {
@@ -21,12 +22,20 @@ export const renderField = (field) => {
         component={VerificationCodeWrapper}
         {...field}
       />
+    case "textarea":
+      return <Field
+        key={field.name}
+        component={MyTextarea}
+        {...field}
+      />
     case "imgCarousel":
       return <Field
         key={field.name}
         component={MyImgInput}
         {...field}
       />
+    case "pdfDownload":
+      return <button>My Download</button>
     default:
       return <Field
         key={field.name}

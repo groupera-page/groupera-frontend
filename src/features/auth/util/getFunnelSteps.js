@@ -24,6 +24,7 @@ const chooseFunnelCreateSteps = [
   // groupMeetingStep,
   userProfileStep,
   authStep,
+  groupDownloadStep,
   {
     ...groupSettingsStep,
     goBackOption: false,
@@ -35,7 +36,6 @@ const chooseFunnelCreateSteps = [
       // meetings: [] // todo add meeting logic, dependent on backend
     }) // todo add img
   },
-  groupDownloadStep
 ]
 
 const chooseFunnelFindSteps = [
