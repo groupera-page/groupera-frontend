@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import PrimaryButton from "../../../components/Buttons/PrimaryButton";
@@ -8,7 +8,8 @@ import StepIndicator from "../../auth/components/RegStepper";
 import {
   groupCreateSuccessStep,
   groupDownloadStep,
-  groupInfoStep, groupMeetingStep,
+  groupInfoStep,
+  groupMeetingStep,
   groupSettingsStep,
   groupThemeStep,
 } from "../../auth/util/funnelSteps";
@@ -23,29 +24,32 @@ const steps = [
   groupDownloadStep,
   {
     ...groupSettingsStep,
-    onSubmit: (values) => createGroup({
-      name: values.groupName,
-      description: values.groupDescription,
-      selfModerated: values.groupSelfModerated,
-      topic: values.groupTheme,
-      firstMeeting: {
-        startDate: new Date(`${values.meetingStartDate} ${values.meetingTime}`),
-        recurrence: {
-          type: values.meetingRecurrenceType,
-          days: values.meetingRecurrenceDays
+    onSubmit: (values) =>
+      createGroup({
+        name: values.groupName,
+        description: values.groupDescription,
+        selfModerated: values.groupSelfModerated,
+        topic: values.groupTheme,
+        firstMeeting: {
+          startDate: new Date(
+            `${values.meetingStartDate} ${values.meetingTime}`
+          ),
+          recurrence: {
+            type: values.meetingRecurrenceType,
+            days: values.meetingRecurrenceDays,
+          },
+          duration: values.meetingDuration,
         },
-        duration: values.meetingDuration
-      }
-    })
+      }),
   },
-  groupCreateSuccessStep
+  groupCreateSuccessStep,
 ];
 
 const MultiStepGroupCreate = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [createdGroupId, setCreatedGroupId] = useState()
-  const [isModerator, setIsModerator] = useState()
+  const [createdGroupId, setCreatedGroupId] = useState();
+  const [isModerator, setIsModerator] = useState();
 
   const { currentStepIndex, step, isFirstStep, isLastStep, back, next } =
     useMultistepHook(steps);
@@ -55,22 +59,22 @@ const MultiStepGroupCreate = () => {
       next();
     } else {
       if (isModerator) {
-        navigate(`/groups/${createdGroupId}`)
-      } else{
-        navigate(`/groups`)
+        navigate(`/groups/${createdGroupId}`);
+      } else {
+        navigate(`/groups`);
       }
     }
   };
 
   const handleSubmit = async (values) => {
-    setIsModerator(values.groupSelfModerated)
+    setIsModerator(values.groupSelfModerated);
     if (step.onSubmit) {
       try {
         const response = await dispatch(step.onSubmit(values));
         if (response.error) throw Error(response.error.message);
 
         if (response.payload && response.payload.group) {
-          setCreatedGroupId(response.payload.group.id)
+          setCreatedGroupId(response.payload.group.id);
         }
 
         await handleLastSubmit();
@@ -85,10 +89,10 @@ const MultiStepGroupCreate = () => {
   };
 
   return (
-    <div className={"flex md:justify-center md:mt-10 lg:mt-28"}>
+    <div className={"flex md:justify-center "}>
       <div
         className="min-h-[85vh] lg:min-h-[85vh] md:w-3/4 lg:w-1/2
-		px-4 rounded md:shadow-md bg-BG_PRIMARY md:px-8 lg:px-28 pt-4 pb-4"
+		px-4 rounded md:shadow-md bg-BG_PRIMARY md:px-8 lg:px-28 pt-4 pb-4 md:mt-10 lg:mt-28"
       >
         <div>
           <StepIndicator
@@ -99,41 +103,49 @@ const MultiStepGroupCreate = () => {
             <h3>{step.header}</h3>
             {step.desc && <p className="text-textLightGray">{step.desc}</p>}
           </div>
-          {
-            step.type !== "success" ? (
-              <GroupCreateForm fields={step.fields} onSubmit={handleSubmit}>
-                <div className="flex justify-end gap-8 mt-8">
-                  {!isFirstStep && step.goBackOption && (
-                    <PrimaryButton
-                      type={"button"}
-                      handleButtonClick={back}
-                      isInversed={true}
-                      isLarge={true}
-                    >
-                      <div className="flex items-center ">
-                        <BsArrowLeft
-                          className="w-5 mr-3 text-PURPLE_PRIMARY"
-                          size={18}
-                        />
-                        Zurück
-                      </div>
-                    </PrimaryButton>
-                  )}
-                  <PrimaryButton type={"submit"} isLarge={true}>
+          {step.type !== "success" ? (
+            <GroupCreateForm fields={step.fields} onSubmit={handleSubmit}>
+              <div className="flex justify-end gap-8 mt-8">
+                {!isFirstStep && step.goBackOption && (
+                  <PrimaryButton
+                    type={"button"}
+                    handleButtonClick={back}
+                    isInversed={true}
+                    isLarge={true}
+                  >
                     <div className="flex items-center ">
-                      {isLastStep ? "Submit" : "Weiter"}
-                      <BsArrowRight
-                        className="w-5 ml-3 text-BG_PRIMARY"
+                      <BsArrowLeft
+                        className="w-5 mr-3 text-PURPLE_PRIMARY"
                         size={18}
                       />
+                      Zurück
                     </div>
                   </PrimaryButton>
-                </div>
-              </GroupCreateForm>
-            ) :  [
-              <GroupFinishStep key="groupFinishStep" groupId={createdGroupId} isModerator={isModerator}/>,
+                )}
+                <PrimaryButton type={"submit"} isLarge={true}>
+                  <div className="flex items-center ">
+                    {isLastStep ? "Submit" : "Weiter"}
+                    <BsArrowRight
+                      className="w-5 ml-3 text-BG_PRIMARY"
+                      size={18}
+                    />
+                  </div>
+                </PrimaryButton>
+              </div>
+            </GroupCreateForm>
+          ) : (
+            [
+              <GroupFinishStep
+                key="groupFinishStep"
+                groupId={createdGroupId}
+                isModerator={isModerator}
+              />,
               <div className="flex justify-end gap-8 mt-8" key={"buttons"}>
-                <PrimaryButton type={"submit"} isLarge={true} handleButtonClick={handleLastSubmit}>
+                <PrimaryButton
+                  type={"submit"}
+                  isLarge={true}
+                  handleButtonClick={handleLastSubmit}
+                >
                   <div className="flex items-center ">
                     Weiter
                     <BsArrowRight
@@ -142,9 +154,9 @@ const MultiStepGroupCreate = () => {
                     />
                   </div>
                 </PrimaryButton>
-              </div>
+              </div>,
             ]
-          }
+          )}
         </div>
       </div>
     </div>
