@@ -99,7 +99,8 @@ const createGroupFunnelSteps = [
         },
         duration: values.meetingDuration
       }
-    }) // todo add img
+    }), // todo add img
+    groupCreateSuccessStep
   },
 ]
 
@@ -134,7 +135,8 @@ const getFunnelSteps = (searchParams) => {
     case "3":
       return {
         type: "createGroupFunnel",
-        steps: createGroupFunnelSteps
+        steps: createGroupFunnelSteps,
+        stepCount: createGroupFunnelSteps.length - 1
       }
     default:
       return {
