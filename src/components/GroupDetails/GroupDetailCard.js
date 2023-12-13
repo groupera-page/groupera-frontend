@@ -22,7 +22,7 @@ const GroupDetailCard = ({ group, user, isAdmin, isMember }) => {
   }
 
   return (
-    <div className="my-2 lg:flex gap-12 lg:mx-0">
+    <div className="my-2 lg:flex gap-12 lg:mx-0 ">
       <div className="flex lg:w-1/2 relative items-center">
         <LazyLoadImg
           img={group.img}
