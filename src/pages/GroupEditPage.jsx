@@ -1,13 +1,13 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import PageContainer from "../components/Globals/PageContainer";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate, useParams} from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import PrimaryButton from "../components/Buttons/PrimaryButton";
 import { BsArrowLeft } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
-import {selectAuth} from "../features/auth/authSlice";
-import {findGroup, updateGroup} from "../features/groups/groupSlice";
+import { selectAuth } from "../features/auth/authSlice";
+import { findGroup, updateGroup } from "../features/groups/groupSlice";
 import GroupEditForm from "../features/groups/components/GroupEditForm";
 import LazyLoadImg from "../components/LazyLoadImg";
 
@@ -36,47 +36,56 @@ import LazyLoadImg from "../components/LazyLoadImg";
 
 const GroupEditPage = () => {
   const { groupId } = useParams();
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const group = useSelector((state) => state.groups.groups.find(group => group.id === groupId));
+  const group = useSelector((state) =>
+    state.groups.groups.find((group) => group.id === groupId)
+  );
   const formImg = useSelector((state) => state.form.editGroupForm?.values?.img);
-  const {user} = useSelector(selectAuth)
+  const { user } = useSelector(selectAuth);
 
   // const isMember = group?.members?.length > 0 && group.members.some(m => m.id === user.id)
-  const isAdmin = user.id === group?.moderator.id
+  const isAdmin = user.id === group?.moderator.id;
 
   useEffect(() => {
     // if (group) return
-    dispatch(findGroup(groupId))
-  }, [])
+    dispatch(findGroup(groupId));
+  }, []);
 
   const handleUpdate = async (values) => {
-    if (!isAdmin) return
+    if (!isAdmin) return;
     try {
-      const response = await dispatch(updateGroup({
-        groupId: group.id,
-        body: {
-          name: values.name,
-          description: values.description,
-          img: values.img
-        }
-      }))
-      if (!response) throw Error("something went wrong")
-      navigate(`/groups/${group.id}`)
+      const response = await dispatch(
+        updateGroup({
+          groupId: group.id,
+          body: {
+            name: values.name,
+            description: values.description,
+            img: values.img,
+          },
+        })
+      );
+      if (!response) throw Error("something went wrong");
+      navigate(`/groups/${group.id}`);
     } catch (e) {
       // handle the response
       // if an error than don't go to next step but show the error, otherwise proceed to next step.
-      console.log("Error", e)
+      console.log("Error", e);
     }
-  }
+  };
 
   // const handleEditImage = () => {
   //   setShowImagePicker(!showImagePicker);
   // }
 
   if (!group) {
-    return <div>Loading</div>
+    return (
+      <div className="flex justify-center items-center p-10">
+        <div className="animate-spin rounded-full border-t-4 border-PURPLE_PRIMARY border-solid h-12 w-12 mr-3"></div>
+        {/* <h3>Laden...</h3> */}
+      </div>
+    );
   }
 
   return (
@@ -98,13 +107,11 @@ const GroupEditPage = () => {
 
         <div className="my-2 lg:flex gap-12 lg:mx-0 items-start">
           <div className="flex lg:w-1/2 relative items-center">
-            <LazyLoadImg
-              img={formImg || group.img}
-            />
+            <LazyLoadImg img={formImg || group.img} />
           </div>
 
           <div className="lg:w-1/2">
-            <GroupEditForm onSubmit={handleUpdate} group={group}/>
+            <GroupEditForm onSubmit={handleUpdate} group={group} />
           </div>
         </div>
 
@@ -179,6 +186,6 @@ const GroupEditPage = () => {
       </div>
     </PageContainer>
   );
-}
+};
 
 export default GroupEditPage;

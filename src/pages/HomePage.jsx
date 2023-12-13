@@ -37,7 +37,12 @@ const Home = () => {
   }, []);
 
   if (!user?.joinedGroups) {
-    return <div>Loading…</div>;
+    return (
+      <div className="flex justify-center items-center p-10">
+        <div className="animate-spin rounded-full border-t-4 border-PURPLE_PRIMARY border-solid h-12 w-12 mr-3"></div>
+        {/* <h3>Laden...</h3> */}
+      </div>
+    );
   }
 
   const allUserGroups = [...user.joinedGroups, ...user.moderatedGroups];
@@ -55,9 +60,7 @@ const Home = () => {
           <div className="lg:w-1/2">
             <OverviewCard
               title={
-                user.nextMeeting
-                  ? "Dein nächster Termin"
-                  : "Keine Termine"
+                user.nextMeeting ? "Dein nächster Termin" : "Keine Termine"
               }
               desc={
                 user.nextMeeting?.length > 0
@@ -65,10 +68,9 @@ const Home = () => {
                   : "Keine Gruppe in der du Mitglied bist hat kommende Termine."
               }
             >
-              {
-                user.nextMeeting &&
+              {user.nextMeeting && (
                 <OverviewNextEvent nextEvent={user.nextMeeting} />
-              }
+              )}
             </OverviewCard>
           </div>
 

@@ -51,15 +51,13 @@ export const minArrayLength = (value, minLength) =>
 const containNumberRegex = /\d+/;
 const containCapsLetterRegex = /[A-Z]/;
 export const includeNumber = (value) =>
-  containNumberRegex.test(value) ? undefined : " Es muss eine Zahl beinhalten";
+  containNumberRegex.test(value) ? undefined : " Eine Zahl benötigt";
 export const includeCapital = (value) =>
-  containCapsLetterRegex.test(value)
-    ? undefined
-    : "Ihr Passwort sollte ein Großbuchstaben";
+  containCapsLetterRegex.test(value) ? undefined : "Ein Großbuchstabe benötigt";
 
 export const passwordConfirmation = (value, allValues) =>
   value !== allValues.password
-    ? "Die Passwörter stammen nicht überein"
+    ? "Die Passwörter stimmen nicht überein"
     : undefined;
 
 export const authFields = {
@@ -97,8 +95,8 @@ export const authFields = {
   password: {
     type: "password",
     name: "password",
-    label: "Password",
-    placeholder: "Password",
+    label: "Passwort",
+    placeholder: "Passwort",
     validate: [
       required,
       (value) => minLength(value, 8),
@@ -109,8 +107,8 @@ export const authFields = {
   passwordConfirmation: {
     type: "password",
     name: "passwordConfirmation",
-    label: "Password Confirmation",
-    placeholder: "Password Confirmation",
+    label: "Passwort bestätigen",
+    placeholder: "Passwort bestätigen",
     validate: [
       required,
       passwordConfirmation,
@@ -132,7 +130,7 @@ export const authFields = {
   gender: {
     type: "inlineSelect",
     name: "gender",
-    label: "Gender",
+    label: "Geschlecht",
     validate: [required],
     options: [
       {
@@ -157,23 +155,60 @@ export const authFields = {
 };
 
 export const groupThemeOptions = [
-  { label: "Depression", value: "Depression", program: "https://drive.google.com/uc?export=download&id=1Itf0fW1k5PDWePohGNLPhJtr-QLTv2KC" },
-  { label: "Stress und Burnout", value: "Stress und Burnout", program: "https://drive.google.com/uc?export=download&id=1dKMW_q64TAymBgyq4_P2uu8c8WrBXr8S" },
-  { label: "Panik- & Angststörung", value: "Panik- & Angststörung", program: "https://drive.google.com/uc?export=download&id=1kxWY4uvhNTcuRG26BtmubKwkGCE1irbl" },
-  { label: "Trauer & Verlust", value: "Trauer & Verlust", program: "https://drive.google.com/uc?export=download&id=1MxblzkBmzwc_zMKDvWmZplEQ47Ld2kUa" },
-  { label: "Essstörung", value: "Essstörung", program: "https://drive.google.com/uc?export=download&id=1oTu9xUQSzigpAPBXurMJMi65gZNusZIw" },
-  { label: "Alkohol & Sucht", value: "Alkohol & Sucht", program: "https://drive.google.com/uc?export=download&id=19_jk_FraBAjYc8c2J6p4hj9f_aN3jnRY" },
+  {
+    label: "Depression",
+    value: "Depression",
+    program:
+      "https://drive.google.com/uc?export=download&id=1Itf0fW1k5PDWePohGNLPhJtr-QLTv2KC",
+  },
+  {
+    label: "Stress & Burnout",
+    value: "Stress & Burnout",
+    program:
+      "https://drive.google.com/uc?export=download&id=1dKMW_q64TAymBgyq4_P2uu8c8WrBXr8S",
+  },
+  {
+    label: "Panik- & Angststörung",
+    value: "Panik- & Angststörung",
+    program:
+      "https://drive.google.com/uc?export=download&id=1kxWY4uvhNTcuRG26BtmubKwkGCE1irbl",
+  },
+  {
+    label: "Trauer & Verlust",
+    value: "Trauer & Verlust",
+    program:
+      "https://drive.google.com/uc?export=download&id=1MxblzkBmzwc_zMKDvWmZplEQ47Ld2kUa",
+  },
+  {
+    label: "Essstörung",
+    value: "Essstörung",
+    program:
+      "https://drive.google.com/uc?export=download&id=1oTu9xUQSzigpAPBXurMJMi65gZNusZIw",
+  },
+  {
+    label: "Sucht",
+    value: "Sucht",
+    program:
+      "https://drive.google.com/uc?export=download&id=19_jk_FraBAjYc8c2J6p4hj9f_aN3jnRY",
+  },
   {
     label: "Angehörige/r von Menschen mit Erkrankungen",
     value: "Angehörige/r von Menschen mit Erkrankungen",
-    program: "https://drive.google.com/uc?export=download&id=1iacvuMd7zVMAdN0mucpwDEEutYnm5Ms"
+    program:
+      "https://drive.google.com/uc?export=download&id=1iacvuMd7zVMAdN0mucpwDEEutYnm5Ms",
   },
   {
     label: "Chronische Erkrankungen, körperliche Einschränkungen",
     value: "Chronische Erkrankungen, körperliche Einschränkungen",
-    program: "https://drive.google.com/uc?export=download&id=1HbArHcswi9qezNbTiyEmEAx1a8r187uy"
+    program:
+      "https://drive.google.com/uc?export=download&id=1HbArHcswi9qezNbTiyEmEAx1a8r187uy",
   },
-  { label: "Sonstige", value: "Sonstige" },
+  {
+    label: "Sonstige",
+    value: "Sonstige",
+    program:
+      "https://drive.google.com/uc?export=download&id=10dUfmzccf06HIJCV3j89UTqhR5lpwzoo",
+  },
 ];
 
 const moderatingOptions = [
@@ -235,7 +270,6 @@ export const groupFields = {
   },
 };
 
-
 const meetingRecurrenceTypes = [
   { label: "Wöchentlich", value: "weekly" },
   { label: "Alle 2 Wochen", value: "bi-weekly" },
@@ -244,7 +278,7 @@ const meetingRecurrenceTypes = [
 
 const durationOptions = [
   { label: "60 Minuten", value: 60 },
-  { label: "90 Minuten", value: 90 }
+  { label: "90 Minuten", value: 90 },
 ];
 
 const meetingRecurrenceDays = [
