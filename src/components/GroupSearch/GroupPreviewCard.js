@@ -8,10 +8,10 @@ const GroupPreviewCard = ({ group }) => {
   return (
     <div className="flex flex-col border rounded-md shadow-md h-full ">
       <div className="w-full">
-        <LazyLoadImg img={group.img}/>
+        <LazyLoadImg img={group.img} />
       </div>
 
-      <div className="flex flex-col justify-between px-4 h-full">
+      <div className="flex flex-col justify-between px-4 h-full max-w-sm">
         <GroupOverviewContent clamp={true} group={group} />
         <div className="my-4">
           <Link to={`/groups/${group.id}`}>
@@ -23,6 +23,6 @@ const GroupPreviewCard = ({ group }) => {
       </div>
     </div>
   );
-}
+};
 
-export default GroupPreviewCard
+export default GroupPreviewCard;
