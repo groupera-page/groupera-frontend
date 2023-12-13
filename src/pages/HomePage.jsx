@@ -38,7 +38,7 @@ const Home = () => {
 
   if (!user?.joinedGroups) {
     return (
-      <div className="flex justify-center items-center p-10">
+      <div className="flex justify-center items-center p-12 lg:mt-20">
         <div className="animate-spin rounded-full border-t-4 border-PURPLE_PRIMARY border-solid h-12 w-12 mr-3"></div>
         {/* <h3>Laden...</h3> */}
       </div>
