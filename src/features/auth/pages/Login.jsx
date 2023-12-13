@@ -34,7 +34,7 @@ const Login = () => {
           <div className="paragraph-sm">
             jetzt einloggen und alle Gruppen und Termine sehen
           </div>
-          <div className="px-12">
+          <div className="max-w-xs lg:px-4">
             <AuthForm
               fields={[authFields.email, authFields.password]}
               onSubmit={handleSubmit}
