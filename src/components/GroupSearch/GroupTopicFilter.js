@@ -9,7 +9,7 @@ const GroupTopicFilter = ({onFilter, selectedTopic}) => {
           <button
             onClick={() => onFilter(opt.value)}
             className={`border p-2 my-1 rounded text-base  cursor-pointer transition duration-200 ease-in-out hover:shadow-md ${
-              selectedTopic === opt
+              selectedTopic === opt.value
                 ? "bg-BLUE_PRIMARY text-BG_PRIMARY"
                 : "bg-transparent"
             }`}
