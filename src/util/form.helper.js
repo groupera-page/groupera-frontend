@@ -15,6 +15,18 @@ export const isTrue = (value) =>
   value === true ? undefined : "Terms müssen akzeptiert sein";
 export const number = (value) =>
   value && isNaN(Number(value)) ? "Es muss eine Nummer sein" : undefined;
+
+export const isMinAge = (value, minAge) => {
+  const today = new Date()
+  today.setFullYear(today.getFullYear() - 18)
+  debugger
+  if (value < today) {
+    return undefined
+  } else{
+    return `Muss mindestens ${minAge} Jahre alt sein`;
+  }
+}
+
 export const email = (value) =>
   // value && !isEmail(value) ? "Invalid email address" : undefined;
   value && !isEmail(value)
@@ -101,9 +113,6 @@ export const authFields = {
     placeholder: "Password Confirmation",
     validate: [
       required,
-      (value) => minLength(value, 8),
-      includeNumber,
-      includeCapital,
       passwordConfirmation,
     ],
   },
@@ -113,6 +122,12 @@ export const authFields = {
     label: "Auth Code",
     hint: "Du findest den Code in deinen Emails",
     validate: [required, (value) => minLength(value, 4)],
+  },
+  dob: {
+    type: "date",
+    name: "dob",
+    label: "Geburtstag",
+    validate: [required, (value) => isMinAge(value, 18)],
   },
   gender: {
     type: "inlineSelect",
@@ -147,7 +162,7 @@ export const groupThemeOptions = [
   { label: "Panik- & Angststörung", value: "Panik- & Angststörung", program: "https://drive.google.com/uc?export=download&id=1kxWY4uvhNTcuRG26BtmubKwkGCE1irbl" },
   { label: "Trauer & Verlust", value: "Trauer & Verlust", program: "https://drive.google.com/uc?export=download&id=1MxblzkBmzwc_zMKDvWmZplEQ47Ld2kUa" },
   { label: "Essstörung", value: "Essstörung", program: "https://drive.google.com/uc?export=download&id=1oTu9xUQSzigpAPBXurMJMi65gZNusZIw" },
-  { label: "Sucht", value: "Sucht", program: "https://drive.google.com/uc?export=download&id=19_jk_FraBAjYc8c2J6p4hj9f_aN3jnRY" },
+  { label: "Alkohol & Sucht", value: "Alkohol & Sucht", program: "https://drive.google.com/uc?export=download&id=19_jk_FraBAjYc8c2J6p4hj9f_aN3jnRY" },
   {
     label: "Angehörige/r von Menschen mit Erkrankungen",
     value: "Angehörige/r von Menschen mit Erkrankungen",
@@ -158,7 +173,7 @@ export const groupThemeOptions = [
     value: "Chronische Erkrankungen, körperliche Einschränkungen",
     program: "https://drive.google.com/uc?export=download&id=1HbArHcswi9qezNbTiyEmEAx1a8r187uy"
   },
-  { label: "Andere*", value: "Andere*" },
+  { label: "Sonstige", value: "Sonstige" },
 ];
 
 const moderatingOptions = [
@@ -190,7 +205,7 @@ export const groupFields = {
     label: "Wie soll deine Gruppe heißen?",
     placeholder: "Name",
     hint: "Bitte gib den Gruppen Namen ein.",
-    validate: [required],
+    validate: [required, (value) => maxLength(value, 70)],
   },
   description: {
     type: "textarea",
@@ -322,18 +337,18 @@ const chooseFunnelOptions = [
     onClick: (navigate) =>
       navigate("/auth/signup?funnel=1&type=create", { replace: true }),
   },
-  {
-    label: "Ich kann mir beides vorstellen.",
-    value: "both",
-    onClick: (navigate) =>
-      navigate("/auth/signup?funnel=1&type=find", { replace: true }),
-  },
-  {
-    label: "Ich weiß es noch nicht.",
-    value: "dont know",
-    onClick: (navigate) =>
-      navigate("/auth/signup?funnel=1&type=find, {replace: true}"),
-  },
+  // {
+  //   label: "Ich kann mir beides vorstellen.",
+  //   value: "both",
+  //   onClick: (navigate) =>
+  //     navigate("/auth/signup?funnel=1&type=find", { replace: true }),
+  // },
+  // {
+  //   label: "Ich weiß es noch nicht.",
+  //   value: "dont know",
+  //   onClick: (navigate) =>
+  //     navigate("/auth/signup?funnel=1&type=find, {replace: true}"),
+  // },
 ];
 
 export const chooseFunnelField = {

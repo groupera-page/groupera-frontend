@@ -12,6 +12,7 @@ export const userProfileStep = {
   fields: [
     authFields.alias,
     authFields.email,
+    authFields.dob,
     authFields.gender,
     authFields.password,
     authFields.passwordConfirmation,
@@ -82,7 +83,7 @@ export const groupCreateSuccessStep = {
 
 
 export const groupSettingsStep = {
-  header: "Pass die Einstellungen deiner Gruppe an.",
+  header: "Möchtest Du die Gruppe moderieren?",
   desc: "Du kannst diese Einstellung jederzeit in den Gruppeneinstellungen ändern.",
   fields: [groupFields.selfModerated],
   goBackOption: true,

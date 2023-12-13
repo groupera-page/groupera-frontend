@@ -1,5 +1,4 @@
 import React from "react";
-import SecondaryButton from "../../Buttons/SecondaryButton";
 import moment from "moment";
 import getFormatedDate from "../../../util/formatMeetingDate";
 
@@ -10,26 +9,18 @@ const GroupMeetingItem = ({meeting}) => {
       className="flex items-center bg-BG_GRAY paragraph-lg "
     >
       <div className="md:hidden grid grid-cols-3 py-2 items-center px-2 border rounded-2xl md:border-none w-full">
-        <div>
-          <div className="paragraph-md">
-            {moment(meeting.startDate).format()}
-          </div>
-
-          <div className="flex gap-2 paragraph-sm">
-            <div>{meeting.duration}</div>
-          </div>
+        <div className="paragraph-sm col-span-2">
+          {getFormatedDate(meeting)}
+          {/*{moment(meeting.startDate).format("HH:mm")} Uhr*/}
         </div>
-
-        <div className="flex justify-end">
-          <SecondaryButton>Anmelden</SecondaryButton>
-        </div>
+        <div className="paragraph-sm">{meeting.duration} min</div>
       </div>
       <div
         key={meeting.id}
         className="hidden md:grid grid-cols-5 py-2 items-center mx-2 border rounded-md md:border-none w-full paragraph-md"
       >
         <div>{getFormatedDate(meeting, false)}</div>
-        <div>{moment(meeting.startDate).format("hh:mm")} Uhr</div>
+        <div>{moment(meeting.startDate).format("HH:mm")} Uhr</div>
         <div>{meeting.duration}</div>
       </div>
     </div>
