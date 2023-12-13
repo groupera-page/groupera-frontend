@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import AuthForm from "../components/AuthForm";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
+import PrimaryButton from "../../../components/Buttons/PrimaryButton";
 import { authFields } from "../../../util/form.helper";
 import { logInUser } from "../authSlice";
 
@@ -26,32 +26,38 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center h-screen bg-BG_PRIMARY rounded p-12 ">
-      <div className="lg:flex  justify-center">
-        <div className="flex flex-col items-center mt-10 gap-5">
+    <div className="flex justify-center min-h-[100vh] bg-BG_PRIMARY rounded">
+      <div className="lg:flex justify-center">
+        <div className="flex flex-col items-center mt-10 gap-5 ">
           <img src={logoSvg} alt="logo" className="w-60 mb-12" />
           <h2 className="mb-5">Anmelden</h2>
-          <p>jetzt einloggen und alle Gruppen und Termine sehen</p>
-          <AuthForm
-            fields={[authFields.email, authFields.password]}
-            onSubmit={handleSubmit}
-          >
-            <div className="flex flex-col items-center">
-              <p className="my-8">
-                Du hast noch kein Konto?{" "}
-                <Link to={"/auth/signup"} className="text-PURPLE_SECONDARY">
-                  Jetzt Registrieren
-                </Link>
-              </p>
-
-              <button
-                type="submit"
-                className={` items-center bg-PURPLE_SECONDARY text-slate-100 hover:text-white p-2 rounded-md whitespace-nowrap transition-color duration-300 ease-in-out lg:text-base text-1xl`}
-              >
-                Anmelden
-              </button>
-            </div>
-          </AuthForm>
+          <div className="paragraph-sm">
+            jetzt einloggen und alle Gruppen und Termine sehen
+          </div>
+          <div className="px-12">
+            <AuthForm
+              fields={[authFields.email, authFields.password]}
+              onSubmit={handleSubmit}
+            >
+              <div className="flex flex-col items-center">
+                <div className="my-8 paragraph-sm">
+                  Du hast noch kein Konto?{" "}
+                  <Link to={"/auth/signup"} className="text-PURPLE_SECONDARY">
+                    Jetzt Registrieren
+                  </Link>
+                </div>
+                <PrimaryButton type="submit" isLarge={true}>
+                  Anmelden
+                </PrimaryButton>
+                {/* <button
+                  type="submit"
+                  className={` items-center bg-PURPLE_SECONDARY text-slate-100 hover:text-white p-2 rounded-md whitespace-nowrap transition-color duration-300 ease-in-out lg:text-base text-1xl`}
+                >
+                  Anmelden
+                </button> */}
+              </div>
+            </AuthForm>
+          </div>
         </div>
       </div>
     </div>
