@@ -4,7 +4,10 @@ import { BsCheckLg } from "react-icons/bs";
 const MySimpleSelect = ({ input, label, type, meta: { touched, error } }) => {
   console.log(error);
   return (
-    <label htmlFor={`opt-${input.name}`} className={"flex gap-4 relative"}>
+    <label
+      htmlFor={`opt-${input.name}`}
+      className={"flex gap-4 relative cursor-pointer"}
+    >
       <input
         {...input}
         type={type}

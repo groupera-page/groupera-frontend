@@ -26,7 +26,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center min-h-[100vh] bg-BG_PRIMARY rounded">
+    <div className="flex justify-center min-h-[100vh] bg-BG_PRIMARY rounded px-4">
       <div className="lg:flex justify-center">
         <div className="flex flex-col items-center mt-10 gap-5 ">
           <img src={logoSvg} alt="logo" className="w-60 mb-12" />
