@@ -40,8 +40,6 @@ const Home = () => {
     return <div>Loading…</div>;
   }
 
-  debugger
-
   const allUserGroups = [...user.joinedGroups, ...user.moderatedGroups];
 
   return (

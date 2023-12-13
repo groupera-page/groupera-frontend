@@ -141,20 +141,22 @@ export const authFields = {
   },
 };
 
-const groupThemeOptions = [
-  { label: "Depression", value: "Depression" },
-  { label: "Stress und Burnout", value: "Stress und Burnout" },
-  { label: "Panik- & Angststörung", value: "Panik- & Angststörung" },
-  { label: "Trauer & Verlust", value: "Trauer & Verlust" },
-  { label: "Essstörung", value: "Essstörung" },
-  { label: "Sucht", value: "Sucht" },
+export const groupThemeOptions = [
+  { label: "Depression", value: "Depression", program: "https://drive.google.com/uc?export=download&id=1Itf0fW1k5PDWePohGNLPhJtr-QLTv2KC" },
+  { label: "Stress und Burnout", value: "Stress und Burnout", program: "https://drive.google.com/uc?export=download&id=1dKMW_q64TAymBgyq4_P2uu8c8WrBXr8S" },
+  { label: "Panik- & Angststörung", value: "Panik- & Angststörung", program: "https://drive.google.com/uc?export=download&id=1kxWY4uvhNTcuRG26BtmubKwkGCE1irbl" },
+  { label: "Trauer & Verlust", value: "Trauer & Verlust", program: "https://drive.google.com/uc?export=download&id=1MxblzkBmzwc_zMKDvWmZplEQ47Ld2kUa" },
+  { label: "Essstörung", value: "Essstörung", program: "https://drive.google.com/uc?export=download&id=1oTu9xUQSzigpAPBXurMJMi65gZNusZIw" },
+  { label: "Sucht", value: "Sucht", program: "https://drive.google.com/uc?export=download&id=19_jk_FraBAjYc8c2J6p4hj9f_aN3jnRY" },
   {
     label: "Angehörige/r von Menschen mit Erkrankungen",
     value: "Angehörige/r von Menschen mit Erkrankungen",
+    program: "https://drive.google.com/uc?export=download&id=1iacvuMd7zVMAdN0mucpwDEEutYnm5Ms"
   },
   {
     label: "Chronische Erkrankungen, körperliche Einschränkungen",
     value: "Chronische Erkrankungen, körperliche Einschränkungen",
+    program: "https://drive.google.com/uc?export=download&id=1HbArHcswi9qezNbTiyEmEAx1a8r187uy"
   },
   { label: "Andere*", value: "Andere*" },
 ];
@@ -183,7 +185,7 @@ export const groupFields = {
     validate: [(value) => minArrayLength(value, 1)],
   },
   name: {
-    type: "name",
+    type: "text",
     name: "groupName",
     label: "Wie soll deine Gruppe heißen?",
     placeholder: "Name",
@@ -206,7 +208,7 @@ export const groupFields = {
   },
   downloadProgram: {
     type: "pdfDownload",
-    name: "groupProgram",
+    name: "groupTheme",
     label: "Download Program",
     placeholder: "Download Program",
   },
@@ -215,6 +217,69 @@ export const groupFields = {
     name: "groupImg",
     label: "Gruppenbild",
     options: imgOptions,
+  },
+};
+
+
+const meetingRecurrenceTypes = [
+  { label: "Wöchentlich", value: "weekly" },
+  { label: "Alle 2 Wochen", value: "bi-weekly" },
+  { label: "Monatlich", value: "monthly" },
+];
+
+const durationOptions = [
+  { label: "60 Minuten", value: 60 },
+  { label: "90 Minuten", value: 90 }
+];
+
+const meetingRecurrenceDays = [
+  { label: "Mo", value: 1 },
+  { label: "Di", value: 2 },
+  { label: "Mi", value: 3 },
+  { label: "Do", value: 4 },
+  { label: "Fr", value: 5 },
+  { label: "Sa", value: 6 },
+  { label: "So", value: 0 },
+];
+
+export const meetingFields = {
+  title: {
+    type: "text",
+    name: "meetingTitle",
+    label: "Meeting Titel",
+    placeholder: "Titel",
+    validate: [required],
+  },
+  recurrenceType: {
+    type: "inlineSelect",
+    name: "meetingRecurrenceType",
+    label: "In welchem Rythmus soll sich die Gruppe sich treffen?",
+    options: meetingRecurrenceTypes,
+    validate: [required],
+  },
+  recurrenceDays: {
+    type: "inlineMultiSelect",
+    name: "meetingRecurrenceDays",
+    label: "An welchen Tagen soll die Gruppe sich treffen?",
+    options: meetingRecurrenceDays,
+  },
+  startDate: {
+    type: "date",
+    name: "meetingStartDate",
+    label: "Ab wann startet die Gruppe?",
+    validate: [required],
+  },
+  time: {
+    type: "time",
+    name: "meetingTime",
+    label: "Zu welcher Uhrzeit?",
+    validate: [required],
+  },
+  duration: {
+    type: "inlineSelect",
+    name: "meetingDuration",
+    options: durationOptions,
+    validate: [required],
   },
 };
 

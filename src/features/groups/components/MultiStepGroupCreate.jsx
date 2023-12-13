@@ -8,7 +8,7 @@ import StepIndicator from "../../auth/components/RegStepper";
 import {
   groupCreateSuccessStep,
   groupDownloadStep,
-  groupInfoStep,
+  groupInfoStep, groupMeetingStep,
   groupSettingsStep,
   groupThemeStep,
 } from "../../auth/util/funnelSteps";
@@ -19,7 +19,7 @@ import GroupFinishStep from "../../../components/Signup/StepFormComponents/Group
 const steps = [
   groupThemeStep,
   groupInfoStep,
-  // groupMeetingStep,
+  groupMeetingStep,
   groupDownloadStep,
   {
     ...groupSettingsStep,
@@ -28,7 +28,14 @@ const steps = [
       description: values.groupDescription,
       selfModerated: values.groupSelfModerated,
       topic: values.groupTheme,
-      // meetings: [] // todo add meeting logic, dependent on backend
+      firstMeeting: {
+        startDate: new Date(`${values.meetingStartDate} ${values.meetingTime}`),
+        recurrence: {
+          type: values.meetingRecurrenceType,
+          days: values.meetingRecurrenceDays
+        },
+        duration: values.meetingDuration
+      }
     })
   },
   groupCreateSuccessStep

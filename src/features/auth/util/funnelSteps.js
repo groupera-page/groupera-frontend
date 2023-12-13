@@ -2,7 +2,7 @@ import {
   authFields,
   chooseFunnelField,
   groupExperienceField,
-  groupFields,
+  groupFields, meetingFields,
 } from "../../../util/form.helper";
 import { registerUser, verifyEmail } from "../authSlice";
 
@@ -92,6 +92,13 @@ export const groupDownloadStep = {
   header: "Lade Dir jetzt das Groupera Gruppenprogramm runter.",
   desc: "Du findest das Programm in der Gruppe auch unter “Unterlagen”.",
   fields: [groupFields.downloadProgram],
+  goBackOption: true,
+};
+
+export const groupMeetingStep = {
+  header: "Gruppentreffen planen",
+  desc: "Du kannst alle Angaben jederzeit in den Gruppeneinstellungen ändern",
+  fields: [meetingFields.startDate, meetingFields.recurrenceType, meetingFields.recurrenceDays, meetingFields.time, meetingFields.duration],
   goBackOption: true,
 };
 

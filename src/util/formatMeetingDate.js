@@ -14,17 +14,27 @@ const translateDay = {
 	6: "Sa"
 }
 
-const getFormatedDate = (meeting) => {
+const getFormatedDate = (meeting, withTime=true) => {
 	const translatedType = translateType[meeting.recurrence.type]
 	const translatedDays = meeting.recurrence.days.map(d => translateDay[d])
 
 	const hrs = new Date(meeting.startDate).getHours().toString().padStart(2, "0")
 	const min = new Date(meeting.startDate).getMinutes().toString().padStart(2, "0")
-	if (meeting.recurrence.type === "weekly" || meeting.recurrence.type === "bi-weekly") {
-		return `${translatedType}, ${translatedDays.join("+")} ${hrs}:${min} Uhr`
+
+	if (withTime) {
+		if (meeting.recurrence.type === "weekly" || meeting.recurrence.type === "bi-weekly") {
+			return `${translatedType}, ${translatedDays.join("+")} ${hrs}:${min} Uhr`
+		} else{
+			return `${translatedType}, ${hrs}:${min} Uhr`
+		}
 	} else{
-		return `${translatedType}, ${hrs}:${min} Uhr`
+		if (meeting.recurrence.type === "weekly" || meeting.recurrence.type === "bi-weekly") {
+			return `${translatedType}, ${translatedDays.join("+")}`
+		} else{
+			return `${translatedType}`
+		}
 	}
+
 }
 
 export default getFormatedDate

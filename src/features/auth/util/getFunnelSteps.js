@@ -5,9 +5,11 @@ import {createGroup} from "../../groups/groupSlice";
 import {
   authStep,
   chooseFunnelStep,
-  experienceStep, groupCreateSuccessStep,
+  experienceStep,
+  groupCreateSuccessStep,
   groupDownloadStep,
   groupInfoStep,
+  groupMeetingStep,
   groupSettingsStep,
   groupThemeStep,
   interestedInGroupsWithThemeStep,
@@ -21,7 +23,7 @@ const chooseFunnelCreateSteps = [
   },
   groupThemeStep,
   groupInfoStep,
-  // groupMeetingStep,
+  groupMeetingStep,
   userProfileStep,
   authStep,
   groupDownloadStep,
@@ -33,7 +35,14 @@ const chooseFunnelCreateSteps = [
       description: values.groupDescription,
       selfModerated: values.groupSelfModerated,
       topic: values.groupTheme,
-      // meetings: [] // todo add meeting logic, dependent on backend
+      firstMeeting: {
+        startDate: new Date(`${values.meetingStartDate} ${values.meetingTime}`),
+        recurrence: {
+          type: values.meetingRecurrenceType,
+          days: values.meetingRecurrenceDays
+        },
+        duration: values.meetingDuration
+      }
     }) // todo add img
   },
   groupCreateSuccessStep
@@ -70,7 +79,7 @@ const joinGroupFunnelSteps = [
 const createGroupFunnelSteps = [
   groupThemeStep,
   groupInfoStep,
-  // groupMeetingStep,
+  groupMeetingStep,
   userProfileStep,
   authStep,
   groupDownloadStep,
@@ -82,7 +91,14 @@ const createGroupFunnelSteps = [
       description: values.groupDescription,
       selfModerated: values.groupSelfModerated,
       topic: values.groupTheme,
-      // meetings: [] // todo add meeting logic, dependent on backend
+      firstMeeting: {
+        startDate: new Date(`${values.meetingStartDate} ${values.meetingTime}`),
+        recurrence: {
+          type: values.meetingRecurrenceType,
+          days: values.meetingRecurrenceDays
+        },
+        duration: values.meetingDuration
+      }
     }) // todo add img
   },
 ]

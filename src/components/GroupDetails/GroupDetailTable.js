@@ -7,19 +7,19 @@ import NavbarSub from "../Navigation/NavbarSub";
 import { Routes, Route } from "react-router-dom";
 
 const GroupDetailTable = ({ group }) => {
-  const subPages = ["MitgliederInnen", "Unterlagen"];
+  const subPages = ["termine", "MitgliederInnen", "Unterlagen"];
 
   return (
     <div className=" my-8">
       <NavbarSub subPages={subPages} />
 
       <Routes>
-        <Route path="termine" element={<GroupTermineSubPage group={group} />} />
-
         <Route
           path="/"
-          element={<GroupMemberSubPage group={group} />}
+          element={<GroupTermineSubPage group={group} />}
         />
+
+        <Route path="termine" element={<GroupTermineSubPage group={group} />} />
 
         <Route path="Pinnwand" element={<GroupPinnwandSubPage />} />
         <Route

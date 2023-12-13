@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
+import moment from "moment";
+
 import VerificationCodeWrapper from "./VerificationCodeWrapper";
 import MySelect from "./MySelect";
 import myInput from "./MyInput";
@@ -59,19 +61,16 @@ const mapStateToProps = (state, ownProps) => {
         groupDescription: "Group Test description",
         joinedGroups: [ownProps.groupId],
         groupSelfModerated: false,
+        meetingStartDate: moment(new Date()).format("YYYY-MM-DD"),
+			  meetingTime: moment(new Date()).format("hh:mm"),
       },
     };
   }
   return {
     initialValues: {
-      alias: "Fritz",
-      email: "frit.meyer@allesfritz.de",
-      password: "fritz-Meyer1",
-      passwordConfirmation: "fritz-Meyer1",
-      gender: "male",
-      groupName: "Group Test",
-      groupDescription: "Group Test description",
       groupSelfModerated: false,
+      meetingStartDate: moment(new Date()).format("YYYY-MM-DD"),
+			meetingTime: moment(new Date()).format("hh:mm"),
     },
   };
 };

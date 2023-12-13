@@ -38,7 +38,7 @@ const MySelect = ({
       {options.map((opt, idx) => (
         <label
           key={idx}
-          htmlFor={`opt-${idx}`}
+          htmlFor={`opt-${opt.value}`}
           className={`relative cursor-pointer my-2 border ${
             Array.isArray(input.value)
               ? input.value.indexOf(opt.value) !== -1
@@ -53,7 +53,7 @@ const MySelect = ({
 
           <input
             type={isMultiSelect() ? "checkbox" : "radio"}
-            id={`opt-${idx}`}
+            id={`opt-${opt.value}`}
             name={`${input.name}[${idx}]`}
             value={opt.value}
             checked={
