@@ -188,7 +188,13 @@ export const groupThemeOptions = [
     program:
       "https://drive.google.com/uc?export=download&id=1HbArHcswi9qezNbTiyEmEAx1a8r187uy",
   },
-  { label: "Andere*", value: "Andere*" },
+  {
+    label: "Andere*",
+    value: "Andere*",
+    program:
+      "https://drive.google.com/uc?export=download&id=10dUfmzccf06HIJCV3j89UTqhR5lpwzoo",
+  },
+  // { label: "Andere*", value: "Andere*" },
 ];
 
 const moderatingOptions = [
