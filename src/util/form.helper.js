@@ -19,8 +19,7 @@ export const number = (value) =>
 export const isMinAge = (value, minAge) => {
   const today = new Date()
   today.setFullYear(today.getFullYear() - 18)
-  debugger
-  if (value < today) {
+  if (new Date(value) < today) {
     return undefined
   } else{
     return `Muss mindestens ${minAge} Jahre alt sein`;
