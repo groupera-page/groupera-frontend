@@ -70,7 +70,6 @@ const MultiStepGroupCreate = () => {
     setIsModerator(values.groupSelfModerated);
     if (step.onSubmit) {
       try {
-        debugger
         const response = await dispatch(step.onSubmit(values));
         if (response.error) throw Error(response.error.message);
 
