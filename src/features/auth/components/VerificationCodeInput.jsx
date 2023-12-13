@@ -35,7 +35,7 @@ const VerificationCodeInput = ({
     <input
       type="text"
       value={char}
-      className="border rounded-md p-1 w-20 border-BORDER_PRIMARY text-lg text-center bg-BG_PRIMARY"
+      className="border rounded-md p-1 w-16 border-BORDER_PRIMARY text-lg text-center bg-BG_PRIMARY"
       onChange={handleChange}
       onKeyDown={(e) => handleKey(e, index)}
       onFocus={handleFocus}

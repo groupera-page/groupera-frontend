@@ -73,10 +73,10 @@ const SignUp = () => {
   };
 
   return (
-    <div className="flex w-full h-full md:justify-center  md:mt-[4vh] pb-20 bg-BG_PRIMARY md:bg-BG_GRAY">
+    <div className="md:flex w-full h-full md:justify-center md:mt-[4vh] pb-20 bg-BG_PRIMARY md:bg-BG_GRAY">
       <div
-        className="min-h-[90vh] lg:min-h-[90vh] md:w-3/4 lg:w-1/2
-      px-4 rounded md:shadow-md bg-BG_PRIMARY md:px-8 lg:px-28 pt-4 pb-4"
+        className="min-h-[90vh]  md:w-3/4 lg:w-1/2
+      px-4 rounded md:shadow-md bg-BG_PRIMARY md:px-8 lg:px-26 pt-4 pb-4"
       >
         <div className="pb-3 flex justify-center">
           <img src={logoSvg} alt="logo" className="lg:w-40 w-28" />

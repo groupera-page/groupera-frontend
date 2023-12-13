@@ -2,7 +2,8 @@ import {
   authFields,
   chooseFunnelField,
   groupExperienceField,
-  groupFields, meetingFields,
+  groupFields,
+  meetingFields,
 } from "../../../util/form.helper";
 import { registerUser, verifyEmail } from "../authSlice";
 
@@ -30,7 +31,7 @@ export const userProfileStep = {
         groupTheme: values.groupTheme,
         chooseFunnel: values.chooseFunnel,
       },
-      terms: values.terms
+      terms: values.terms,
     }),
 };
 
@@ -78,9 +79,8 @@ export const groupInfoStep = {
 };
 
 export const groupCreateSuccessStep = {
-  type: "success"
+  type: "success",
 };
-
 
 export const groupSettingsStep = {
   header: "Möchtest Du die Gruppe moderieren?",
@@ -99,7 +99,13 @@ export const groupDownloadStep = {
 export const groupMeetingStep = {
   header: "Gruppentreffen planen",
   desc: "Du kannst alle Angaben jederzeit in den Gruppeneinstellungen ändern",
-  fields: [meetingFields.startDate, meetingFields.recurrenceType, meetingFields.recurrenceDays, meetingFields.time, meetingFields.duration],
+  fields: [
+    meetingFields.startDate,
+    meetingFields.recurrenceType,
+    meetingFields.recurrenceDays,
+    meetingFields.time,
+    meetingFields.duration,
+  ],
   goBackOption: true,
 };
 

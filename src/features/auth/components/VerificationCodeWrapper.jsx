@@ -46,8 +46,8 @@ const VerificationCodeWrapper = ({
   };
 
   return (
-    <div className="mx-10">
-      <div className="flex justify-center gap-2 my-2">
+    <div className="mx-10 flex flex-col items-center">
+      <div className="flex  gap-1 my-2 w-fit">
         {code.map((char, index) => (
           <VerificationCodeInput
             // style={{ display: "flex", columnGap: "10px" }}
