@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import AuthForm from "../components/AuthForm";
@@ -14,8 +14,8 @@ import GroupFinishStep from "../../../components/Signup/StepFormComponents/Group
 const SignUp = () => {
   const [searchParams] = useSearchParams();
   const { type, steps, stepCount, joinGroupId } = getFunnelSteps(searchParams);
-  const [createdGroupId, setCreatedGroupId] = useState()
-  const [isModerator, setIsModerator] = useState()
+  const [createdGroupId, setCreatedGroupId] = useState();
+  const [isModerator, setIsModerator] = useState();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -31,16 +31,15 @@ const SignUp = () => {
         switch (type) {
           case "chooseFunnelCreate":
           case "createGroupFunnel":
-            isModerator ?
-              navigate(`/groups/${createdGroupId}`)
-            :
-              navigate(`/groups`)
-            break
+            isModerator
+              ? navigate(`/groups/${createdGroupId}`)
+              : navigate(`/groups`);
+            break;
           case "chooseFunnel":
             break;
           case "joinGroupFunnel":
-            navigate(`/groups/${joinGroupId}`)
-            break
+            navigate(`/groups/${joinGroupId}`);
+            break;
           default:
             navigate("/");
         }
@@ -52,15 +51,14 @@ const SignUp = () => {
   };
 
   const handleSubmit = async (values) => {
-
-    setIsModerator(values.groupSelfModerated)
+    setIsModerator(values.groupSelfModerated);
     if (step.onSubmit) {
       try {
         const response = await dispatch(step.onSubmit(values));
         if (response.error) throw Error(response.error.message);
 
         if (response.payload && response.payload.group) {
-          setCreatedGroupId(response.payload.group.id)
+          setCreatedGroupId(response.payload.group.id);
         }
 
         await handleLastSubmit();
@@ -96,45 +94,54 @@ const SignUp = () => {
                 <p className="paragraph-sm text-TEXT_LIGHTGRAY ">{step.desc}</p>
               )}
             </div>
-            {
-              step.type !== "success" ? (
-                <AuthForm
-                  fields={step.fields}
-                  onSubmit={handleSubmit}
-                  groupId={joinGroupId}
-                >
-                  <div className="flex justify-end gap-8 mt-8">
-                    {!isFirstStep && step.goBackOption && (
-                      <PrimaryButton
-                        type={"button"}
-                        handleButtonClick={back}
-                        isInversed={true}
-                        isLarge={true}
-                      >
-                        <div className="flex items-center ">
-                          <BsArrowLeft
-                            className="w-5 mr-3 text-PURPLE_PRIMARY"
-                            size={18}
-                          />
-                          Zurück
-                        </div>
-                      </PrimaryButton>
-                    )}
-                    <PrimaryButton type={"submit"} isLarge={true}>
+            {step.type !== "success" ? (
+              <AuthForm
+                fields={step.fields}
+                onSubmit={handleSubmit}
+                groupId={joinGroupId}
+              >
+                <div className="flex justify-end gap-8 mt-8">
+                  {!isFirstStep && step.goBackOption && (
+                    <PrimaryButton
+                      type={"button"}
+                      handleButtonClick={back}
+                      isInversed={true}
+                      isLarge={true}
+                    >
                       <div className="flex items-center ">
-                        {isLastStep ? "Submit" : "Weiter"}
-                        <BsArrowRight
-                          className="w-5 ml-3 text-BG_PRIMARY"
+                        <BsArrowLeft
+                          className="w-5 mr-3 text-PURPLE_PRIMARY"
                           size={18}
                         />
+                        Zurück
                       </div>
                     </PrimaryButton>
-                  </div>
-                </AuthForm>
-              ) : [
-                <GroupFinishStep key="groupFinishStep" groupId={createdGroupId} isModerator={isModerator}/>,
+                  )}
+                  <PrimaryButton type={"submit"} isLarge={true}>
+                    <div className="flex items-center ">
+                      Weiter
+                      {/* {isLastStep ? "Submit" : "Weiter"} */}
+                      <BsArrowRight
+                        className="w-5 ml-3 text-BG_PRIMARY"
+                        size={18}
+                      />
+                    </div>
+                  </PrimaryButton>
+                </div>
+              </AuthForm>
+            ) : (
+              [
+                <GroupFinishStep
+                  key="groupFinishStep"
+                  groupId={createdGroupId}
+                  isModerator={isModerator}
+                />,
                 <div className="flex justify-end gap-8 mt-8" key={"buttons"}>
-                  <PrimaryButton type={"submit"} isLarge={true} handleButtonClick={handleLastSubmit}>
+                  <PrimaryButton
+                    type={"submit"}
+                    isLarge={true}
+                    handleButtonClick={handleLastSubmit}
+                  >
                     <div className="flex items-center ">
                       Weiter
                       <BsArrowRight
@@ -143,9 +150,9 @@ const SignUp = () => {
                       />
                     </div>
                   </PrimaryButton>
-                </div>
+                </div>,
               ]
-            }
+            )}
           </div>
           {/*  img */}
         </div>

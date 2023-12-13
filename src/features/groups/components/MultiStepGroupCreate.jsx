@@ -124,7 +124,8 @@ const MultiStepGroupCreate = () => {
                 )}
                 <PrimaryButton type={"submit"} isLarge={true}>
                   <div className="flex items-center ">
-                    {isLastStep ? "Submit" : "Weiter"}
+                    Weiter
+                    {/* {isLastStep ? "Submit" : "Weiter"} */}
                     <BsArrowRight
                       className="w-5 ml-3 text-BG_PRIMARY"
                       size={18}
