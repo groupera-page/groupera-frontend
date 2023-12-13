@@ -8,7 +8,6 @@ export const isEmail = (value) => {
   // if(!value) return false
   return value && !!value.match(emailRegex);
 };
-
 export const required = (value) =>
   value ? undefined : "Das Feld darf nicht leer sein";
 export const isTrue = (value) =>
@@ -17,14 +16,14 @@ export const number = (value) =>
   value && isNaN(Number(value)) ? "Es muss eine Nummer sein" : undefined;
 
 export const isMinAge = (value, minAge) => {
-  const today = new Date()
-  today.setFullYear(today.getFullYear() - 18)
+  const today = new Date();
+  today.setFullYear(today.getFullYear() - 18);
   if (new Date(value) < today) {
-    return undefined
-  } else{
+    return undefined;
+  } else {
     return `Muss mindestens ${minAge} Jahre alt sein`;
   }
-}
+};
 
 export const email = (value) =>
   // value && !isEmail(value) ? "Invalid email address" : undefined;
@@ -49,10 +48,16 @@ export const minArrayLength = (value, minLength) =>
 
 const containNumberRegex = /\d+/;
 const containCapsLetterRegex = /[A-Z]/;
+const containSpecialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
+
 export const includeNumber = (value) =>
   containNumberRegex.test(value) ? undefined : " Eine Zahl benötigt";
 export const includeCapital = (value) =>
   containCapsLetterRegex.test(value) ? undefined : "Ein Großbuchstabe benötigt";
+export const includeSpecialChar = (value) =>
+  containSpecialCharRegex.test(value)
+    ? undefined
+    : "Ein Sonderzeichen benötigt";
 
 export const passwordConfirmation = (value, allValues) =>
   value !== allValues.password
@@ -101,6 +106,7 @@ export const authFields = {
       (value) => minLength(value, 8),
       includeNumber,
       includeCapital,
+      includeSpecialChar,
     ],
   },
   passwordConfirmation: {
@@ -108,10 +114,7 @@ export const authFields = {
     name: "passwordConfirmation",
     label: "Passwort bestätigen",
     placeholder: "Passwort bestätigen",
-    validate: [
-      required,
-      passwordConfirmation,
-    ],
+    validate: [required, passwordConfirmation],
   },
   authCode: {
     type: "authCode",
