@@ -47,9 +47,9 @@ export default function GroupOverviewContent({ group, clamp, isDetailPage }) {
           Keine Treffen geplant
         </div>
       )}
-      <div className=" break-words">
+      <div className="break-words">
         <p
-          className={`${clamp ? "line-clamp-5" : ""} ${
+          className={` ${clamp ? "line-clamp-5" : ""} ${
             isDetailPage ? "paragraph-md lg:paragraph-lg" : "paragraph-md"
           }`}
         >
