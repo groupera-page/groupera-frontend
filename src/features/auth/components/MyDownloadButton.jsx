@@ -1,9 +1,11 @@
 import React from "react";
 import { BsDownload } from "react-icons/bs";
-import {groupThemeOptions} from "../../../util/form.helper";
+import { groupThemeOptions } from "../../../util/form.helper";
 
 export default function MyDownloadButton({ input }) {
-  const chosenTheme = groupThemeOptions.find(opt => opt.value === input.value)
+  const chosenTheme = groupThemeOptions.find(
+    (opt) => opt.value === input.value
+  );
 
   return (
     <div>
@@ -26,7 +28,13 @@ export default function MyDownloadButton({ input }) {
       <div className="bg-BG_PRIMARY my-4 paragraph-lg">
         <a href={chosenTheme.program} download="Depressions_Manual.pdf">
           <div className="flex flex-row justify-between cursor-pointer border border-BORDER_PRIMARY rounded-md  p-4 items-center hover:shadow-md">
-            <div>{chosenTheme.label}_Programm</div>
+            <div>
+              {chosenTheme.label === "Sonstige"
+                ? "Groupera"
+                : chosenTheme.label}
+              _Programm
+            </div>
+
             <BsDownload className=" text-PURPLE_PRIMARY" size={22} />
           </div>
         </a>
