@@ -104,6 +104,7 @@ export const authFields = {
     validate: [
       required,
       (value) => minLength(value, 8),
+      (value) => maxLength(value, 50),
       includeNumber,
       includeCapital,
       includeSpecialChar,
@@ -158,8 +159,8 @@ export const authFields = {
 
 export const groupThemeOptions = [
   {
-    label: "Depression",
-    value: "Depression",
+    label: "Depressionen",
+    value: "Depressionen",
     program:
       "https://drive.google.com/uc?export=download&id=1Itf0fW1k5PDWePohGNLPhJtr-QLTv2KC",
   },
