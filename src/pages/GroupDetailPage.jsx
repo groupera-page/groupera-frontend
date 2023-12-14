@@ -45,8 +45,29 @@ const GroupDetailPage = () => {
           group && <GroupDetailCard group={group} user={user} isAdmin={isAdmin} isMember={isMember} />
         }
         {
-          (isMember || isAdmin) &&
-          <GroupDetailTable group={group} />
+          group && group.verified ?
+            (isMember || isAdmin) &&
+            <GroupDetailTable group={group} />
+          :
+            isAdmin &&
+            <div className="mt-8">
+              <h6 className="mb-4">
+                Eir haben Deine Anfrage für diese Gruppe erhalten!
+              </h6>
+
+              <div className="paragraph-md my-4">
+                Wir sind dabei eine Moderation für die Gruppe zu organisieren.
+                Die nächsten Schritte werden wir dir per Email zusenden. Bis dahin
+                ist die Gruppe noch offline bis wir eine Moderation gefunden haben.
+              </div>
+
+              <div className="paragraph-md my-4">
+                Du hast Fragen vorab? Schicke eine Email an{" "}
+                <a href="mailto:help@groupera.de" className="text-PURPLE_PRIMARY">
+                  help@groupera.de
+                </a>
+              </div>
+            </div>
         }
       </div>
     </PageContainer>

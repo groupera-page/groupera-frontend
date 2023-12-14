@@ -44,39 +44,51 @@ const GroupDetailCard = ({ group, user, isAdmin, isMember }) => {
 
       <div className="lg:w-1/2 my-4">
         <div>
-            <GroupOverviewContent
-              group={group}
-              clamp={false}
-              isDetailPage={true}
-            />
-            <div className="flex justify-end my-4">
-              {!isMember && !isAdmin ? (
-                <PrimaryButton handleButtonClick={handleJoinGroup}>{`Mitglied werden`}</PrimaryButton>
-              ) : (
-                <MenuDropDown
-                  title={`${isAdmin ? "Du bist Admin" : "Du bist Mitglied"}`}
-                  topOffset={10}
-                  isButtonDropDown={true}
-                >
-                  <li className="">
-                    <PrimaryButton isInversed={true} handleButtonClick={isAdmin ? () => navigate(`/groups/${group.id}/edit`) : handleLeaveGroup}>
-                      {`${
-                        isAdmin ? "Gruppe bearbeiten" : "Gruppe verlassen"
-                      }`}
-                    </PrimaryButton>
-                  </li>
-                  {
-                    isAdmin &&
-                    <li className="">
-                      <PrimaryButton isInversed={true} handleButtonClick={handleDeleteGroup}>
-                        Gruppe löschen
-                      </PrimaryButton>
-                    </li>
-                  }
-                </MenuDropDown>
-              )}
-            </div>
-          </div>
+          <GroupOverviewContent
+            group={group}
+            clamp={false}
+            isDetailPage={true}
+          />
+          {
+            group.verified ?
+              (
+                <div className="flex justify-end my-4">
+                  {!isMember && !isAdmin ? (
+                    <PrimaryButton handleButtonClick={handleJoinGroup}>{`Mitglied werden`}</PrimaryButton>
+                  ) : (
+                    <MenuDropDown
+                      title={`${isAdmin ? "Du bist Admin" : "Du bist Mitglied"}`}
+                      topOffset={10}
+                      isButtonDropDown={true}
+                    >
+                      <li className="">
+                        <PrimaryButton isInversed={true} handleButtonClick={isAdmin ? () => navigate(`/groups/${group.id}/edit`) : handleLeaveGroup}>
+                          {`${
+                            isAdmin ? "Gruppe bearbeiten" : "Gruppe verlassen"
+                          }`}
+                        </PrimaryButton>
+                      </li>
+                      {
+                        isAdmin &&
+                        <li className="">
+                          <PrimaryButton isInversed={true} handleButtonClick={handleDeleteGroup}>
+                            Gruppe löschen
+                          </PrimaryButton>
+                        </li>
+                      }
+                    </MenuDropDown>
+                  )}
+                </div>
+              )
+            :
+              isAdmin &&
+              <div className="flex justify-end my-4">
+                <PrimaryButton isInversed={true} handleButtonClick={handleDeleteGroup}>
+                  Gruppe löschen
+                </PrimaryButton>
+              </div>
+          }
+        </div>
       </div>
     </div>
   );

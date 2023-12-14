@@ -97,12 +97,14 @@ const groupSlice = createSlice({
     builder
       .addCase(createGroup.fulfilled, (state, {payload}) => {
         state.loading = false
-        state.groups = [...state.groups, payload.group]
+        if (payload.group.verified) {
+          state.groups = [...state.groups, payload.group]
 
-        if (state.pagination.totalCount) {
-          state.pagination = {
-            ...state.pagination,
-            totalCount: state.pagination.totalCount + 1
+          if (state.pagination.totalCount) {
+            state.pagination = {
+              ...state.pagination,
+              totalCount: state.pagination.totalCount + 1
+            }
           }
         }
       })
