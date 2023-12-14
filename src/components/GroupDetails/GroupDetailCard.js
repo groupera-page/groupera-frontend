@@ -52,6 +52,14 @@ const GroupDetailCard = ({ group, user, isAdmin, isMember }) => {
                       }`}
                     </PrimaryButton>
                   </li>
+                  {
+                    isAdmin &&
+                    <li className="">
+                      <PrimaryButton isInversed={true} handleButtonClick={isAdmin ? () => navigate(`/groups/${group.id}/edit`) : handleLeaveGroup}>
+                        Gruppe löschen
+                      </PrimaryButton>
+                    </li>
+                  }
                 </MenuDropDown>
               )}
             </div>
