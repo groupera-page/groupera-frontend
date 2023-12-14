@@ -1,20 +1,16 @@
 import React from "react";
 import GroupPreviewCard from "./GroupPreviewCard";
 
-const GroupCardContainer = ({
-  groups,
-  showGroupCount = true,
-}) => {
+const GroupCardContainer = ({ groups, showGroupCount = true }) => {
   return (
     <div>
       {showGroupCount && (
-        <div className="paragraph-lg font-bold opacity-100">
-          {
-            groups.length === 0 ?
-              '0 Gruppen gefunden'
-              :
-              `${groups.length} ${groups.length === 1 ? "Gruppe" : "Gruppen"} gefunden`
-          }
+        <div className="paragraph-md font-bold opacity-100 my-2.5">
+          {groups.length === 0
+            ? "0 Gruppen gefunden"
+            : `${groups.length} ${
+                groups.length === 1 ? "Gruppe" : "Gruppen"
+              } gefunden`}
         </div>
       )}
 
@@ -25,6 +21,6 @@ const GroupCardContainer = ({
       </div>
     </div>
   );
-}
+};
 
-export default GroupCardContainer
+export default GroupCardContainer;
