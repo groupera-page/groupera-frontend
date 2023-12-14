@@ -26,6 +26,7 @@ export const userProfileStep = {
       email: values.email,
       password: values.password,
       gender: values.gender,
+      dob: values.dob,
       questions: {
         experience: values.experience,
         groupTheme: values.groupTheme,
