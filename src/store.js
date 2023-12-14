@@ -7,6 +7,14 @@ import groupsReducer from "./features/groups/groupSlice";
 import alertReducer from "./features/alert/alertSlice";
 import mockDataSlice from "./mockDataSlice";
 
+let middlewares = []
+
+console.log(process.env.NODE_ENV)
+
+if (['development', 'staging'].includes(process.env.NODE_ENV)) {
+  middlewares = [logger]
+}
+
 export const store = configureStore({
   reducer: {
     auth: authReducer,
@@ -37,5 +45,5 @@ export const store = configureStore({
     // }),
     mockData: mockDataSlice,
   },
-  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(logger)
+  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(...middlewares),
 });
