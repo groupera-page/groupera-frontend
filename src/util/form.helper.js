@@ -99,6 +99,7 @@ export const authFields = {
     validate: [
       required,
       (value) => minLength(value, 8),
+      (value) => maxLength(value, 50),
       includeNumber,
       includeCapital,
     ],
