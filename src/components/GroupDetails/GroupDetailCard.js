@@ -7,7 +7,7 @@ import MenuDropDown from "../Navigation/Menus/MenuDropDown";
 import PrimaryButton from "../Buttons/PrimaryButton";
 import LazyLoadImg from "../LazyLoadImg";
 
-import {joinGroup, leaveGroup} from "../../features/groups/groupSlice";
+import {deleteGroup, joinGroup, leaveGroup} from "../../features/groups/groupSlice";
 
 const GroupDetailCard = ({ group, user, isAdmin, isMember }) => {
   const dispatch = useDispatch()
@@ -19,6 +19,19 @@ const GroupDetailCard = ({ group, user, isAdmin, isMember }) => {
 
   const handleLeaveGroup = () => {
     dispatch(leaveGroup({groupId: group.id, memberId: user.id}))
+  }
+
+  const handleDeleteGroup = async () => {
+    try {
+      const response = await dispatch(deleteGroup(group.id));
+
+      if (response.error) throw Error(response.error.message);
+
+      navigate("/groups");
+    } catch (e) {
+      // handle the error response
+      console.log(e);
+    }
   }
 
   return (
@@ -55,7 +68,7 @@ const GroupDetailCard = ({ group, user, isAdmin, isMember }) => {
                   {
                     isAdmin &&
                     <li className="">
-                      <PrimaryButton isInversed={true} handleButtonClick={isAdmin ? () => navigate(`/groups/${group.id}/edit`) : handleLeaveGroup}>
+                      <PrimaryButton isInversed={true} handleButtonClick={handleDeleteGroup}>
                         Gruppe löschen
                       </PrimaryButton>
                     </li>
