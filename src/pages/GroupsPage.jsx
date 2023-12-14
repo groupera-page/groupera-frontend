@@ -116,9 +116,9 @@ export default function GroupsPage() {
         />
       </div>
 
-      {filter.groups.length > 0 && (
-        <GroupCardContainer groups={filter.groups} showGroupCount={true} />
-      )}
+      {/* {filter.groups.length > 0 && ( */}
+      <GroupCardContainer groups={filter.groups} showGroupCount={true} />
+      {/* )} */}
     </PageContainer>
   );
 }
