@@ -192,7 +192,7 @@ export const groupThemeOptions = [
     label: "Angehörige/r von Menschen mit Erkrankungen",
     value: "Angehörige/r von Menschen mit Erkrankungen",
     program:
-      "https://drive.google.com/uc?export=download&id=1iacvuMd7zVMAdN0mucpwDEEutYnm5Ms",
+      "https://drive.google.com/uc?export=download&id=1iacvuMd7zVMAdN0mucpwDEEutYnm5Ms_",
   },
   {
     label: "Chronische Erkrankungen, körperliche Einschränkungen",
