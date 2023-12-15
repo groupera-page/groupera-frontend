@@ -10,6 +10,7 @@ import MyImgInput from "../../groups/components/MyImgInput";
 import MyDownloadButton from "./MyDownloadButton";
 import MyTextarea from "./MyTextarea";
 import MySimpleSelect from "./MySimpleSelect";
+import MyDatePicker from "./MyDatePicker";
 
 export const renderField = (field) => {
   switch (field.type) {
@@ -17,21 +18,21 @@ export const renderField = (field) => {
     case "inlineSelect":
       return <Field key={field.name} component={MySelect} {...field} />;
     case "authCode":
-      return <Field
-        key={field.name}
-        component={VerificationCodeWrapper}
-        {...field}
-      />
+      return (
+        <Field
+          key={field.name}
+          component={VerificationCodeWrapper}
+          {...field}
+        />
+      );
     case "textarea":
-      return <Field
-        key={field.name}
-        component={MyTextarea}
-        {...field}
-      />
+      return <Field key={field.name} component={MyTextarea} {...field} />;
     case "imgCarousel":
       return <Field key={field.name} component={MyImgInput} {...field} />;
     case "pdfDownload":
       return <Field key={field.name} component={MyDownloadButton} {...field} />;
+    case "date":
+      return <Field key={field.name} component={MyDatePicker} {...field} />;
     case "checkbox":
       return <Field key={field.name} component={MySimpleSelect} {...field} />;
     default:
@@ -62,7 +63,7 @@ const mapStateToProps = (state, ownProps) => {
         joinedGroups: [ownProps.groupId],
         groupSelfModerated: false,
         meetingStartDate: moment(new Date()).format("YYYY-MM-DD"),
-			  meetingTime: moment(new Date()).format("hh:mm"),
+        meetingTime: moment(new Date()).format("hh:mm"),
       },
     };
   }
@@ -70,7 +71,7 @@ const mapStateToProps = (state, ownProps) => {
     initialValues: {
       groupSelfModerated: false,
       meetingStartDate: moment(new Date()).format("YYYY-MM-DD"),
-			meetingTime: moment(new Date()).format("hh:mm"),
+      meetingTime: moment(new Date()).format("hh:mm"),
     },
   };
 };

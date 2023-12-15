@@ -12,8 +12,9 @@ export const userProfileStep = {
   desc: "Du kannst Deine Informationen jederzeit in den Einstellungen ändern.",
   fields: [
     authFields.alias,
-    authFields.email,
     authFields.dob,
+    authFields.email,
+
     authFields.gender,
     authFields.password,
     authFields.passwordConfirmation,
