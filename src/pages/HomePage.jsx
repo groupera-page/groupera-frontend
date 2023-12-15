@@ -63,7 +63,7 @@ const Home = () => {
                 user.nextMeeting ? "Dein nächster Termin" : "Keine Termine"
               }
               desc={
-                user.nextMeeting?.length > 0
+                user.nextMeeting
                   ? ""
                   : "Keine Gruppe in der du Mitglied bist hat kommende Termine."
               }
