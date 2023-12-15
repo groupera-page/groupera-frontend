@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import VerificationCodeInput from "./VerificationCodeInput";
 import { AiOutlineWarning } from "react-icons/ai";
+import SecondaryButton from "../../../components/Buttons/SecondaryButton";
 
 const VerificationCodeWrapper = ({
   codeLength = 4,
@@ -60,6 +61,7 @@ const VerificationCodeWrapper = ({
           />
         ))}
       </div>
+      <SecondaryButton>Code erneut senden</SecondaryButton>
 
       {touched && error && (
         <div className="flex px-4 gap-2 items-right bg-BG_PRIMARY text-PURPLE_PRIMARY border border-PURPLE_PRIMARY rounded-md p-1 my-1">
