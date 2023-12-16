@@ -52,7 +52,7 @@ const GroupDetailPage = () => {
             isAdmin &&
             <div className="mt-8">
               <h6 className="mb-4">
-                Eir haben Deine Anfrage für diese Gruppe erhalten!
+                Wir haben Deine Anfrage für diese Gruppe erhalten!
               </h6>
 
               <div className="paragraph-md my-4">
