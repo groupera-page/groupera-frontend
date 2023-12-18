@@ -6,7 +6,7 @@ import PrimaryButton from "../../../components/Buttons/PrimaryButton";
 import {groupFields} from "../../../util/form.helper";
 import MyImgInput from "./MyImgInput";
 import MyInput from "../../auth/components/MyInput";
-import {Link, useNavigate, useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {BsTrash3} from "react-icons/bs";
 import {IoSettingsOutline} from "react-icons/io5";
 import LazyLoadImg from "../../../components/LazyLoadImg";
@@ -55,9 +55,9 @@ let GroupEditForm = ({handleSubmit, reset, group}) => {
 
 			<div className={"col-span-2"}>
 				{
-					group.meetings.map(meeting => {
+					group.meetings.map((meeting, idx) => {
 						return (
-							<div className="bg-BG_PRIMARY rounded-md border border-BORDER_PRIMARY p-4 my-4 ">
+							<div key={idx} className="bg-BG_PRIMARY rounded-md border border-BORDER_PRIMARY p-4 my-4 ">
 								<ul className="flex flex-wrap justify-between items-center paragraph-lg">
 									<li>
 										<ul className="flex flex-wrap gap-4 lg:gap-12 items-center">
@@ -89,7 +89,7 @@ let GroupEditForm = ({handleSubmit, reset, group}) => {
 					})
 				}
 
-				<div className="flex justify-end mb-8 gap-8">
+				{/*<div className="flex justify-end mb-8 gap-8">*/}
 				  {/*<ul className="flex gap-8 lg:hidden items-center">*/}
 				  {/*  <Link to={`/groups/${groupId}/edit/event`}>*/}
 				  {/*    <li className="cursor-pointer text-TEXT_LIGHTGRAY hover:text-PURPLE_PRIMARY">*/}
@@ -100,10 +100,10 @@ let GroupEditForm = ({handleSubmit, reset, group}) => {
 				  {/*    <BsTrash3 size={28} />*/}
 				  {/*  </li>*/}
 				  {/*</ul>*/}
-				  <Link to={`/groups/${groupId}/edit/event`}>
-				    <PrimaryButton>Termin hinzufügen</PrimaryButton>
-				  </Link>
-				</div>
+				  {/*<Link to={`/groups/${groupId}/edit/event`}>*/}
+				  {/*  <PrimaryButton>Termin hinzufügen</PrimaryButton>*/}
+				  {/*</Link>*/}
+				{/*</div>*/}
 			</div>
 
 			<div className="flex gap-4 col-span-2 justify-end">
