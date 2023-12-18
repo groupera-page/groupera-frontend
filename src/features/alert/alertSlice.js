@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
-import { registerUser } from "../auth/authSlice";
+import {registerUser, resendEmailVerificationCode} from "../auth/authSlice";
 import {
   isAuthenticated,
   logInUser,
@@ -96,6 +96,9 @@ const alertSlice = createSlice({
       })
       .addCase(updateProfile.rejected, (state) => {
         state.items.push(getNewAlert("error", "Etwas ist schiefgegangen", "Dein Profil konnte nicht geupdated werden."));
+      })
+      .addCase(resendEmailVerificationCode.fulfilled, (state) => {
+        state.items.push(getNewAlert("success", "Email gesendet", "Ein neuer Verifizierungscode wurde an Deine Email adresse gesendet"));
       });
   },
 });

@@ -30,6 +30,11 @@ const verifyEmail = (body) => {
     })
 };
 
+const resendEmailVerificationCode = (email) => {
+  return noRefreshRequest
+    .patch(`/auth/resendEmailVerification`, {email})
+};
+
 
 // const acceptInvite = (token, nickName, fullName, password) => {
 //   return api
@@ -81,6 +86,7 @@ const authService = {
   refreshToken,
   getCurrentUser,
   getResetPasswordInstr,
+  resendEmailVerificationCode
   // updatePassword,
   // acceptInvite,
   // checkUpdatePasswordToken,

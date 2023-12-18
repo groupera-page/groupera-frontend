@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import VerificationCodeInput from "./VerificationCodeInput";
 import { AiOutlineWarning } from "react-icons/ai";
+import {useDispatch, useSelector} from "react-redux";
+import {resendEmailVerificationCode} from "../authSlice";
 
 const VerificationCodeWrapper = ({
   codeLength = 4,
@@ -10,6 +12,8 @@ const VerificationCodeWrapper = ({
 }) => {
   const emptyCode = Array(codeLength).fill("");
   const [code, setCode] = useState(emptyCode);
+  const dispatch = useDispatch()
+  const email = useSelector((state) => state.form.authForm?.values?.email);
 
   const handleCode = (e, value, index) => {
     const newCode = [...code];
@@ -45,6 +49,10 @@ const VerificationCodeWrapper = ({
     }
   };
 
+  const handleResendVerificationCode = () => {
+    dispatch(resendEmailVerificationCode(email))
+  }
+
   return (
     <div className="mx-10 flex flex-col items-center">
       <div className="flex  gap-1 my-2 w-fit">
@@ -69,6 +77,7 @@ const VerificationCodeWrapper = ({
           {error}
         </div>
       )}
+      {<span className="paragraph-sm text-blue-600 my-1 cursor-pointer" onClick={handleResendVerificationCode}>Code erneut senden</span>}
       {hint && <span className="paragraph-tiny my-1">{hint}</span>}
     </div>
   );

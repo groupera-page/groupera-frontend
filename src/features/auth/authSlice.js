@@ -29,6 +29,13 @@ export const verifyEmail = createAsyncThunk(
   },
 );
 
+export const resendEmailVerificationCode = createAsyncThunk(
+  "auth/resendEmailVerificationCode",
+  async (email) => {
+    const result = await authService.resendEmailVerificationCode(email)
+    return result.data
+  },
+);
 
 export const logInUser = createAsyncThunk(
   "auth/login",
