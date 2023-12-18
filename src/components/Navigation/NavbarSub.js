@@ -20,7 +20,7 @@ export default function NavbarSub({ subPages }) {
           >
             <NavLink
               to={page.toLocaleLowerCase()}
-              isActive={() => pathname.includes(page.toLocaleLowerCase())}
+              // isActive={() => pathname.includes(page.toLocaleLowerCase())}
             >
               <div className="flex flex-row items-center">
                 <div

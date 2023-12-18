@@ -8,7 +8,7 @@ const GroupMeetingItem = ({meeting}) => {
     >
       <div className="md:hidden grid grid-cols-3 py-2 items-center px-2 border rounded-2xl md:border-none w-full">
         <div className="paragraph-sm col-span-2">
-          <div>{moment(meeting.startDate).format("dd, Do MMMM YYYY")}</div>
+          <div>{moment(meeting.startDate).format("dd, Do MMM YYYY")}</div>
           {moment(meeting.startDate).format("HH:mm")} Uhr
         </div>
         <div className="paragraph-sm">{meeting.duration} min</div>

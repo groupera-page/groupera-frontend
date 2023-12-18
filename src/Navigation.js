@@ -73,7 +73,7 @@ function Navigation() {
               }
             />
             <Route
-              path="/groups/:groupId/edit/event"
+              path="/groups/:groupId/edit/event/:eventId"
               element={
                 <>
                   <ScrollToTop>

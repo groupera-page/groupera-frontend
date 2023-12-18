@@ -49,6 +49,22 @@ export const updateGroup = createAsyncThunk(
   }
 );
 
+export const createGroupMeeting = createAsyncThunk(
+  "groups/createOneMeeting",
+  async ({groupId, body}) => {
+    const result = await groupService.createOneMeeting(groupId, body)
+    return result.data;
+  }
+);
+
+export const updateGroupMeeting = createAsyncThunk(
+  "groups/updateOneMeeting",
+  async ({meetingId, body}) => {
+    const result = await groupService.updateOneMeeting(meetingId, body)
+    return result.data;
+  }
+);
+
 export const deleteGroup = createAsyncThunk(
   "groups/deleteOne",
   async (groupId) => {
