@@ -30,20 +30,23 @@ const chooseFunnelCreateSteps = [
   {
     ...groupSettingsStep,
     goBackOption: false,
-    onSubmit: (values) => createGroup({
-      name: values.groupName,
-      description: values.groupDescription,
-      selfModerated: values.groupSelfModerated,
-      topic: values.groupTheme,
-      firstMeeting: {
-        startDate: new Date(`${values.meetingStartDate} ${values.meetingTime}`),
-        recurrence: {
-          type: values.meetingRecurrenceType,
-          days: values.meetingRecurrenceDays
-        },
-        duration: values.meetingDuration
-      }
-    }) // todo add img
+    onSubmit: (values) => {
+      const startDate = new Date(`${values.meetingStartDate} ${values.meetingTime}`)
+      createGroup({
+        name: values.groupName,
+        description: values.groupDescription,
+        selfModerated: values.groupSelfModerated,
+        topic: values.groupTheme,
+        firstMeeting: {
+          startDate: startDate,
+          recurrence: {
+            type: values.meetingRecurrenceType,
+            days: [startDate.getDay()]
+          },
+          duration: values.meetingDuration
+        }
+      })
+    } // todo add img
   },
   groupCreateSuccessStep
 ]
@@ -86,20 +89,23 @@ const createGroupFunnelSteps = [
   {
     ...groupSettingsStep,
     goBackOption: false,
-    onSubmit: (values) => createGroup({
-      name: values.groupName,
-      description: values.groupDescription,
-      selfModerated: values.groupSelfModerated,
-      topic: values.groupTheme,
-      firstMeeting: {
-        startDate: new Date(`${values.meetingStartDate} ${values.meetingTime}`),
-        recurrence: {
-          type: values.meetingRecurrenceType,
-          days: values.meetingRecurrenceDays
-        },
-        duration: values.meetingDuration
-      }
-    }), // todo add img
+    onSubmit: (values) => {
+      const startDate = new Date(`${values.meetingStartDate} ${values.meetingTime}`)
+      createGroup({
+        name: values.groupName,
+        description: values.groupDescription,
+        selfModerated: values.groupSelfModerated,
+        topic: values.groupTheme,
+        firstMeeting: {
+          startDate: startDate,
+          recurrence: {
+            type: values.meetingRecurrenceType,
+            days: [startDate.getDay()]
+          },
+          duration: values.meetingDuration
+        }
+      })
+    }, // todo add img
     groupCreateSuccessStep
   },
 ]

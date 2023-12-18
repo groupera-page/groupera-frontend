@@ -24,23 +24,25 @@ const steps = [
   groupDownloadStep,
   {
     ...groupSettingsStep,
-    onSubmit: (values) =>
-      createGroup({
+    onSubmit: (values) => {
+      const startDate = new Date(
+  `${values.meetingStartDate} ${values.meetingTime}`
+      )
+      return createGroup({
         name: values.groupName,
         description: values.groupDescription,
         selfModerated: values.groupSelfModerated,
         topic: values.groupTheme,
         firstMeeting: {
-          startDate: new Date(
-            `${values.meetingStartDate} ${values.meetingTime}`
-          ),
+          startDate: startDate,
           recurrence: {
             type: values.meetingRecurrenceType,
-            days: values.meetingRecurrenceDays,
+            days: [startDate.getDay()],
           },
           duration: values.meetingDuration,
         },
-      }),
+      })
+    }
   },
   groupCreateSuccessStep,
 ];

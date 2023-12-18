@@ -103,7 +103,6 @@ export const groupMeetingStep = {
   fields: [
     meetingFields.startDate,
     meetingFields.recurrenceType,
-    meetingFields.recurrenceDays,
     meetingFields.time,
     meetingFields.duration,
   ],

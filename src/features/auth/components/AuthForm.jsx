@@ -60,7 +60,7 @@ const mapStateToProps = (state, ownProps) => {
         groupName: "Group Test",
         groupDescription: "Group Test description",
         joinedGroups: [ownProps.groupId],
-        groupSelfModerated: false,
+        groupSelfModerated: true,
         meetingStartDate: moment(new Date()).format("YYYY-MM-DD"),
 			  meetingTime: moment(new Date()).format("hh:mm"),
       },
@@ -68,7 +68,7 @@ const mapStateToProps = (state, ownProps) => {
   }
   return {
     initialValues: {
-      groupSelfModerated: false,
+      groupSelfModerated: true,
       meetingStartDate: moment(new Date()).format("YYYY-MM-DD"),
 			meetingTime: moment(new Date()).format("hh:mm"),
     },
