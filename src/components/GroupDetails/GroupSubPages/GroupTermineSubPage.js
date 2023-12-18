@@ -101,7 +101,7 @@ export default function GroupTermineSubPage({ group }) {
         {group.meetings &&
           group.meetings.length > 0 &&
           group.meetings.map((meeting) => (
-            <div className="">
+            <div key={meeting.id}>
               <GroupMeetingItem meeting={meeting} />
             </div>
           ))}
