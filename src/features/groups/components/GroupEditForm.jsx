@@ -1,28 +1,26 @@
 import {Field, reduxForm} from "redux-form";
 import React from "react";
-import {connect, useDispatch, useSelector} from "react-redux";
+import {connect, useSelector} from "react-redux";
 import SecondaryButton from "../../../components/Buttons/SecondaryButton";
 import PrimaryButton from "../../../components/Buttons/PrimaryButton";
 import {groupFields} from "../../../util/form.helper";
 import MyImgInput from "./MyImgInput";
 import MyInput from "../../auth/components/MyInput";
 import {useNavigate, useParams} from "react-router-dom";
-import {BsTrash3} from "react-icons/bs";
 import {IoSettingsOutline} from "react-icons/io5";
 import LazyLoadImg from "../../../components/LazyLoadImg";
 import moment from "moment/moment";
 import getFormattedDate from "../../../util/formatMeetingDate";
-import {deleteGroupMeeting} from "../groupSlice";
 
 let GroupEditForm = ({handleSubmit, reset, group}) => {
 	const navigate = useNavigate()
 	const {groupId} = useParams()
-	const dispatch = useDispatch()
+	// const dispatch = useDispatch()
 	const formImg = useSelector((state) => state.form.editGroupForm?.values?.img);
 
-	const handleDeleteEvent = (meetingId) => {
-		dispatch(deleteGroupMeeting(meetingId))
-	}
+	// const handleDeleteEvent = (meetingId) => {
+	// 	dispatch(deleteGroupMeeting(meetingId))
+	// }
 
 	return (
 		<form onSubmit={handleSubmit} className="my-2 lg:grid grid-cols-2 gap-12 gap-y-5 lg:mx-0 items-start">
@@ -78,9 +76,9 @@ let GroupEditForm = ({handleSubmit, reset, group}) => {
 											<li className="cursor-pointer text-TEXT_LIGHTGRAY hover:text-PURPLE_PRIMARY">
 												<IoSettingsOutline size={22} onClick={() => navigate(`event/${meeting.id}`)} />
 											</li>
-											<li className="cursor-pointer text-TEXT_LIGHTGRAY hover:text-PURPLE_PRIMARY">
-												<BsTrash3 size={22} onClick={() => handleDeleteEvent(meeting.id)} />
-											</li>
+											{/*<li className="cursor-pointer text-TEXT_LIGHTGRAY hover:text-PURPLE_PRIMARY">*/}
+											{/*	<BsTrash3 size={22} onClick={() => handleDeleteEvent(meeting.id)} />*/}
+											{/*</li>*/}
 										</ul>
 									</li>
 								</ul>

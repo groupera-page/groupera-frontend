@@ -47,7 +47,7 @@ const GroupMeetingItem = ({meeting, isNext}) => {
       >
         <div className={"col-span-2"}>{moment(meeting.startDate).format("dd, Do MMMM YYYY")}</div>
         <div>{moment(meeting.startDate).format("HH:mm")} Uhr</div>
-        <div>{meeting.duration}</div>
+        <div>{meeting.duration} min</div>
         {
           isNext &&
           <div className={"flex flex-col gap-1 items-center"}>
