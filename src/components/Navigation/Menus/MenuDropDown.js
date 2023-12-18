@@ -42,9 +42,9 @@ export default function MenuDropDown({
             <div className="flex items-center cursor-pointer transition-all duration-300">
               <div className="mr-2 ">{title}</div>
               {openMenuDropDown ? (
-                <AiOutlineUp className="text-BG_PRIMARY" size={15} />
+                <AiOutlineUp className="text-BG_PRIMARY" size={12} />
               ) : (
-                <AiOutlineDown className="text-BG_PRIMARY" size={15} />
+                <AiOutlineDown className="text-BG_PRIMARY" size={12} />
               )}
             </div>
           </PrimaryButton>
@@ -60,23 +60,26 @@ export default function MenuDropDown({
               </div>
 
               {openMenuDropDown ? (
-                <AiOutlineUp size={20} className="text-TEXT_PRIMARY mr-2" />
+                <AiOutlineUp size={12} className="text-TEXT_PRIMARY mr-2" />
               ) : (
-                <AiOutlineDown size={20} className="text-TEXT_PRIMARY mr-2" />
+                <AiOutlineDown size={12} className="text-TEXT_PRIMARY mr-2" />
               )}
             </div>
           </div>
         )}
 
         <div
-          className={`transition-all duration-300 absolute bg-BG_PRIMARY rounded-md shadow-xl border top-${topOffset}  ${
+          className={`transition-all duration-300 absolute bg-BG_PRIMARY rounded-md border top-${topOffset}  ${
             openMenuDropDown
-              ? "opacity-100 -right-1 left-auto"
+              ? "opacity-100 -right-0 left-auto"
               : "opacity-0 left-full text-sm"
           } `}
         >
           {openMenuDropDown && (
-            <ul className="flex flex-col w-fit" onClick={handleCloseThisMenu}>
+            <ul
+              className="flex flex-col w-fit bg-BG_GRAY"
+              onClick={handleCloseThisMenu}
+            >
               {children}
             </ul>
           )}

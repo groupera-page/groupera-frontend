@@ -10,7 +10,7 @@ const GroupDetailTable = ({ group }) => {
   const subPages = ["Termine", "MitgliederInnen", "Unterlagen"];
 
   return (
-    <div className=" my-8">
+    <div className=" my-12">
       <NavbarSub subPages={subPages} />
 
       <Routes>
