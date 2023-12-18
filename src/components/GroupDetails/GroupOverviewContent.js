@@ -1,5 +1,5 @@
 import React from "react";
-import getFormatedDate from "../../util/formatMeetingDate";
+import getFormattedDate from "../../util/formatMeetingDate";
 
 export default function GroupOverviewContent({ group, clamp, isDetailPage }) {
   return (
@@ -32,8 +32,8 @@ export default function GroupOverviewContent({ group, clamp, isDetailPage }) {
         >
           <span>
             {group.meetings
-              .map((meeting) => getFormatedDate(meeting))
-              .join(", ")}
+              .map((meeting) => getFormattedDate(meeting))
+              .join(" & ")}
           </span>
         </div>
       ) : (

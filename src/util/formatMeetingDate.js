@@ -14,7 +14,7 @@ const translateDay = {
 	6: "Sa"
 }
 
-const getFormatedDate = (meeting, withTime=true) => {
+const getFormattedDate = (meeting, withTime=true) => {
 	const translatedType = translateType[meeting.recurrence.type]
 	const translatedDays = meeting.recurrence.days.map(d => translateDay[d])
 
@@ -37,7 +37,7 @@ const getFormatedDate = (meeting, withTime=true) => {
 
 }
 
-export default getFormatedDate
+export default getFormattedDate
 
 export const isNowBetween = (startDate, endDate) => {
 	const now = new Date();

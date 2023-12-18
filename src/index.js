@@ -14,6 +14,8 @@ import reportWebVitals from './reportWebVitals';
 
 import './index.css';
 
+import "./util/moment.helpers"
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(

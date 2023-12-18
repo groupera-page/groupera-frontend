@@ -1,7 +1,7 @@
 import React from "react";
 import SecondaryButton from "../Buttons/SecondaryButton";
 import { Link } from "react-router-dom";
-import getFormatedDate from "../../util/formatMeetingDate";
+import getFormattedDate from "../../util/formatMeetingDate";
 
 const OverviewGroupItem = ({ group }) => (
   <div>
@@ -17,7 +17,7 @@ const OverviewGroupItem = ({ group }) => (
           <p className="paragraph-sm text-TEXT_PRIMARY lg:mt-1">
             {group.meetings && group.meetings.length > 0
               ? <span>
-                {group.meetings.map((meeting) => getFormatedDate(meeting)).join(', ')}
+                {group.meetings.map((meeting) => getFormattedDate(meeting)).join(', ')}
               </span>
               : "Kein Termin geplant"}
           </p>
