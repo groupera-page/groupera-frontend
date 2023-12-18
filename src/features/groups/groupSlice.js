@@ -65,6 +65,14 @@ export const updateGroupMeeting = createAsyncThunk(
   }
 );
 
+export const deleteGroupMeeting = createAsyncThunk(
+  "groups/deleteOneMeeting",
+  async (meetingId) => {
+    await groupService.destroyOneMeeting(meetingId)
+    return meetingId;
+  }
+);
+
 export const deleteGroup = createAsyncThunk(
   "groups/deleteOne",
   async (groupId) => {
@@ -185,6 +193,17 @@ const groupSlice = createSlice({
       })
       .addCase(deleteGroup.fulfilled, (state, {payload}) => {
         state.groups = state.groups.filter(group => group.id !== payload)
+      })
+      .addCase(deleteGroupMeeting.fulfilled, (state, {payload}) => {
+        state.groups = state.groups.map(group => {
+          if (group.meetings.some(m => m.id === payload)) {
+            return {
+              ...group,
+              meetings: group.meetings.filter(m => m.id !== payload)
+            }
+          }
+          return group
+        })
       })
   }
 });
