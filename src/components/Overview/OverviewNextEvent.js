@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import PrimaryButton from "../Buttons/PrimaryButton";
-import getFormattedDate, { isNowBetween } from "../../util/formatMeetingDate";
+import { isNowBetween } from "../../util/formatMeetingDate";
+import moment from "moment/moment";
 
 const OverviewNextEvent = ({ nextEvent }) => {
   const [joinEventWarning, setJoinEventWarning] = useState(false);
@@ -47,7 +48,7 @@ const OverviewNextEvent = ({ nextEvent }) => {
                   {nextEvent.group.name}
                 </p>
                 <p className="paragraph-sm text-TEXT_PRIMARY lg:mt-2">
-                  {getFormattedDate(nextEvent.meeting)}
+                  {moment(nextEvent.meeting.startDate).format("dddd, Do MMMM YYYY")}
                 </p>
               </div>
             </div>
