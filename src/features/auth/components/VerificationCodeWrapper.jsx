@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import VerificationCodeInput from "./VerificationCodeInput";
 import { AiOutlineWarning } from "react-icons/ai";
-import SecondaryButton from "../../../components/Buttons/SecondaryButton";
 
 const VerificationCodeWrapper = ({
   codeLength = 4,
@@ -11,6 +10,12 @@ const VerificationCodeWrapper = ({
 }) => {
   const emptyCode = Array(codeLength).fill("");
   const [code, setCode] = useState(emptyCode);
+
+  const [isResendCode, setisResendCode] = useState(false);
+
+  const handleResendCode = () => {
+    setisResendCode(true);
+  };
 
   const handleCode = (e, value, index) => {
     const newCode = [...code];
@@ -61,7 +66,16 @@ const VerificationCodeWrapper = ({
           />
         ))}
       </div>
-      <SecondaryButton>Code erneut senden</SecondaryButton>
+
+      <button
+        type="button"
+        className={`paragraph-tiny my-2 ${
+          isResendCode ? "text-PURPLE_PRIMARY" : "text-BLUE_DARKBLUE"
+        }`}
+        onClick={handleResendCode}
+      >
+        Code erneut senden
+      </button>
 
       {touched && error && (
         <div className="flex px-4 gap-2 items-right bg-BG_PRIMARY text-PURPLE_PRIMARY border border-PURPLE_PRIMARY rounded-md p-1 my-1">
@@ -71,7 +85,8 @@ const VerificationCodeWrapper = ({
           {error}
         </div>
       )}
-      {hint && <span className="paragraph-tiny my-1">{hint}</span>}
+
+      {/* {hint && <span className="paragraph-tiny my-1">{hint}</span>} */}
     </div>
   );
 };

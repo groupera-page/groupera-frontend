@@ -8,6 +8,7 @@ module.exports = {
         PURPLE_SECONDARY: "rgb(155, 65, 115)",
         BLUE_PRIMARY: "rgb(172, 215, 235)",
         BLUE_SECONDARY: "rgb(162, 200, 225)",
+        BLUE_DARKBLUE: "rgb(24, 24, 125)",
         YELLOW_PRIMARY: "#F9F5E6",
         //Primary white
         BG_PRIMARY: "#FCFCFC",
@@ -19,7 +20,7 @@ module.exports = {
         TEXT_GRAY: "#495057",
         TEXT_LIGHTGRAY: "#8590A6",
 
-        BORDER_PRIMARY: "#ADB5BD"
+        BORDER_PRIMARY: "#ADB5BD",
       },
       boxShadow: {
         RIGHT: "8px 0 4px -4px rgba(0, 0, 0.0, 0.08)",

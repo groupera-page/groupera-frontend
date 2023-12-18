@@ -115,7 +115,8 @@ export const authFields = {
     type: "authCode",
     name: "authCode",
     label: "Auth Code",
-    hint: "Du findest den Code in deinen Emails",
+    // hint: "Du findest den Code in deinen Emails",
+    hint: "",
     validate: [required, (value) => minLength(value, 4)],
   },
   dob: {
