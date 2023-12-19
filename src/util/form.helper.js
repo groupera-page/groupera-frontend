@@ -79,8 +79,8 @@ export const authFields = {
   alias: {
     type: "text",
     name: "alias",
-    label: "Alias",
-    placeholder: "Dein Alias",
+    label: "Nutzername",
+    placeholder: "Dein Nutzername",
     hint: "Bitte gib hier Deinen Namen ein, mit dem Du in der Gruppe angesprochen werden möchtest und der für andere Mitglieder:innen angezeigt werden darf.",
     validate: [required],
   },
