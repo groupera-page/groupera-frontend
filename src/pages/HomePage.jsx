@@ -45,7 +45,13 @@ const Home = () => {
     );
   }
 
-  const allUserGroups = [...user.joinedGroups, ...user.moderatedGroups];
+  let allUserGroups = [];
+  if (user.joinedGroups && user.joinedGroups.length > 0) {
+    allUserGroups.push(...user.joinedGroups)
+  }
+  if (user.moderatedGroups && user.moderatedGroups.length > 0) {
+    allUserGroups.push(...user.moderatedGroups)
+  }
 
   return (
     <PageContainer>
