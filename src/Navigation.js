@@ -16,6 +16,8 @@ import GroupEventPage from "./pages/GroupEventPage";
 import GroupDetailPage from "./pages/GroupDetailPage";
 import ProfilePage from "./pages/ProfilePage";
 import MultiStepGroupCreate from "./features/groups/components/MultiStepGroupCreate";
+import RequestResetPassword from "./features/auth/pages/RequestResetPassword";
+import ResetPassword from "./features/auth/pages/ResetPassword";
 
 function Navigation() {
   return (
@@ -25,6 +27,8 @@ function Navigation() {
           <Route path="/auth" element={<ProtectionLayout protect={false}/>}>
             <Route path="/auth/login" element={ <Login/> } />
             <Route path="/auth/signup" element={ <SignUp/> } />
+            <Route path="/auth/resetPassword/:resetPasswordToken" element={ <ResetPassword/> } />
+            <Route path="/auth/forgotPassword" element={ <RequestResetPassword/> } />
           </Route>
           <Route element={<ProtectionLayout/>}>
             <Route

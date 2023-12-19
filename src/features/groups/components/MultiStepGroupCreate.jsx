@@ -56,7 +56,7 @@ const MultiStepGroupCreate = () => {
   const { currentStepIndex, step, isFirstStep, isLastStep, back, next } =
     useMultistepHook(steps);
 
-  const handleLastSubmit = async () => {
+  const handleLastSubmit = () => {
     if (!isLastStep) {
       next();
     } else {
@@ -79,14 +79,14 @@ const MultiStepGroupCreate = () => {
           setCreatedGroupId(response.payload.group.id);
         }
 
-        await handleLastSubmit();
+        handleLastSubmit();
       } catch (e) {
         console.log("Error", e);
       }
       // handle the response
       // if an error than don't go to next step but show the error, otherwise proceed to next step.
     } else {
-      await handleLastSubmit();
+      handleLastSubmit();
     }
   };
 

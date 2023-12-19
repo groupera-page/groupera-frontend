@@ -32,7 +32,7 @@ const chooseFunnelCreateSteps = [
     goBackOption: false,
     onSubmit: (values) => {
       const startDate = new Date(`${values.meetingStartDate} ${values.meetingTime}`)
-      createGroup({
+      return createGroup({
         name: values.groupName,
         description: values.groupDescription,
         selfModerated: values.groupSelfModerated,
@@ -91,7 +91,7 @@ const createGroupFunnelSteps = [
     goBackOption: false,
     onSubmit: (values) => {
       const startDate = new Date(`${values.meetingStartDate} ${values.meetingTime}`)
-      createGroup({
+      return createGroup({
         name: values.groupName,
         description: values.groupDescription,
         selfModerated: values.groupSelfModerated,

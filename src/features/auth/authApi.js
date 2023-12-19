@@ -35,6 +35,18 @@ const resendEmailVerificationCode = (email) => {
     .patch(`/auth/resendEmailVerification`, {email})
 };
 
+const requestResetPassword = (email) => {
+  return noRefreshRequest
+    .patch(`/auth/resetPasswordRequest`, {email})
+};
+
+const resetPassword = (token, password) => {
+  return noRefreshRequest
+    .patch(`/auth/resetPassword/${token}`, {password}, {
+      withCredentials: true
+    })
+};
+
 
 // const acceptInvite = (token, nickName, fullName, password) => {
 //   return api
@@ -86,7 +98,9 @@ const authService = {
   refreshToken,
   getCurrentUser,
   getResetPasswordInstr,
-  resendEmailVerificationCode
+  resendEmailVerificationCode,
+  resetPassword,
+  requestResetPassword
   // updatePassword,
   // acceptInvite,
   // checkUpdatePasswordToken,
