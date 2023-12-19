@@ -7,7 +7,7 @@ import groupsReducer from "./features/groups/groupSlice";
 import alertReducer from "./features/alert/alertSlice";
 import mockDataSlice from "./mockDataSlice";
 
-let middlewares = [logger]
+let middlewares = []
 
 if (['development', 'staging'].includes(process.env.NODE_ENV)) {
   middlewares = [logger]

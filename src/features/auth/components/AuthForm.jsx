@@ -52,13 +52,6 @@ const mapStateToProps = (state, ownProps) => {
   if (ownProps.groupId) {
     return {
       initialValues: {
-        alias: "Fritz",
-        email: "frit.meyer@allesfritz.de",
-        password: "fritz-Meyer1",
-        passwordConfirmation: "fritz-Meyer1",
-        gender: "male",
-        groupName: "Group Test",
-        groupDescription: "Group Test description",
         joinedGroups: [ownProps.groupId],
         groupSelfModerated: true,
         meetingStartDate: moment(new Date()).format("YYYY-MM-DD"),
