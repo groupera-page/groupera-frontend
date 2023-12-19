@@ -34,9 +34,9 @@ const ResetPassword = () => {
       <div className="lg:flex justify-center">
         <div className="flex flex-col items-center mt-10 gap-5 ">
           <img src={logoSvg} alt="logo" className="w-60 mb-12" />
-          <h2 className="mb-5">Anmelden</h2>
+          <h2 className="mb-5">Neues Passwort erstellen</h2>
           <div className="paragraph-sm">
-            jetzt einloggen und alle Gruppen und Termine sehen
+            hier kannst du Dein neues Passwort erstellen.
           </div>
           <div className="max-w-sm lg:px-4">
             <AuthForm

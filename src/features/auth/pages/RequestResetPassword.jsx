@@ -32,7 +32,7 @@ const RequestResetPassword = () => {
           <img src={logoSvg} alt="logo" className="w-60 mb-12" />
           <h2 className="mb-5">Passwort vergessen?</h2>
           <div className="paragraph-sm">
-            jetzt einloggen und alle Gruppen und Termine sehen
+            Wir schicken dir eine Email mit einem Link wo du dein Passwort zurücksetzen kannst.
           </div>
           <div className="max-w-sm lg:px-4">
             <AuthForm
