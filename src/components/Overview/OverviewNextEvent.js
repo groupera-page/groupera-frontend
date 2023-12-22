@@ -2,9 +2,11 @@ import { useState, useEffect } from "react";
 import PrimaryButton from "../Buttons/PrimaryButton";
 import { isNowBetween } from "../../util/formatMeetingDate";
 import moment from "moment/moment";
+import {useNavigate} from "react-router-dom";
 
 const OverviewNextEvent = ({ nextEvent }) => {
   const [joinEventWarning, setJoinEventWarning] = useState(false);
+  const navigate = useNavigate()
 
   const handleButtonClick = () => {
     // setJoinEventWarning((prev) => !prev);
@@ -16,6 +18,8 @@ const OverviewNextEvent = ({ nextEvent }) => {
 
     if (!isNowBetween(new Date(nextEvent.meeting.startDate), endTime)) {
       setJoinEventWarning(true);
+    } else{
+      navigate(`/meeting/${nextEvent.meeting.roomId}`)
     }
   };
 
