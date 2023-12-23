@@ -6,9 +6,6 @@ import {
   ChevronDownIcon,
   DotsHorizontalIcon,
 } from "@heroicons/react/outline";
-import recordingBlink from "../../static/animations/recording-blink.json";
-import useIsRecording from "../../hooks/useIsRecording";
-import RecordingIcon from "../../icons/Bottombar/RecordingIcon";
 import MicOnIcon from "../../icons/Bottombar/MicOnIcon";
 import MicOffIcon from "../../icons/Bottombar/MicOffIcon";
 import WebcamOnIcon from "../../icons/Bottombar/WebcamOnIcon";
@@ -176,67 +173,6 @@ export function BottomBar({
         onClick={RaiseHand}
         tooltip={"Raise Hand"}
         Icon={RaiseHandIcon}
-      />
-    );
-  };
-
-  const RecordingBTN = () => {
-    const { startRecording, stopRecording, recordingState } = useMeeting();
-    const defaultOptions = {
-      loop: true,
-      autoplay: true,
-      animationData: recordingBlink,
-      rendererSettings: {
-        preserveAspectRatio: "xMidYMid slice",
-      },
-      height: 64,
-      width: 160,
-    };
-
-    const isRecording = useIsRecording();
-    const isRecordingRef = useRef(isRecording);
-
-    useEffect(() => {
-      isRecordingRef.current = isRecording;
-    }, [isRecording]);
-
-    const { isRequestProcessing } = useMemo(
-      () => ({
-        isRequestProcessing:
-          recordingState === Constants.recordingEvents.RECORDING_STARTING ||
-          recordingState === Constants.recordingEvents.RECORDING_STOPPING,
-      }),
-      [recordingState]
-    );
-
-    const _handleClick = () => {
-      const isRecording = isRecordingRef.current;
-
-      if (isRecording) {
-        stopRecording();
-      } else {
-        startRecording();
-      }
-    };
-
-    return (
-      <OutlinedButton
-        Icon={RecordingIcon}
-        onClick={_handleClick}
-        isFocused={isRecording}
-        tooltip={
-          recordingState === Constants.recordingEvents.RECORDING_STARTED
-            ? "Stop Recording"
-            : recordingState === Constants.recordingEvents.RECORDING_STARTING
-            ? "Starting Recording"
-            : recordingState === Constants.recordingEvents.RECORDING_STOPPED
-            ? "Start Recording"
-            : recordingState === Constants.recordingEvents.RECORDING_STOPPING
-            ? "Stopping Recording"
-            : "Start Recording"
-        }
-        lottieOption={isRecording ? defaultOptions : null}
-        isRequestProcessing={isRequestProcessing}
       />
     );
   };
@@ -717,7 +653,6 @@ export function BottomBar({
       WEBCAM: "WEBCAM",
       MIC: "MIC",
       RAISE_HAND: "RAISE_HAND",
-      RECORDING: "RECORDING",
       PIP: "PIP",
       MEETING_ID_COPY: "MEETING_ID_COPY",
     }),
@@ -741,7 +676,6 @@ export function BottomBar({
       <LeaveBTN />
       <MicBTN />
       <WebCamBTN />
-      <RecordingBTN />
       <OutlinedButton Icon={DotsHorizontalIcon} onClick={handleClickFAB} />
       <Transition appear show={Boolean(open)} as={Fragment}>
         <Dialog
@@ -799,12 +733,6 @@ export function BottomBar({
                                 isMobile={isMobile}
                                 isTab={isTab}
                               />
-                            ) : icon ===
-                              BottomBarButtonTypes.MEETING_ID_COPY ? (
-                              <MeetingIdCopyBTN
-                                isMobile={isMobile}
-                                isTab={isTab}
-                              />
                             ) : icon === BottomBarButtonTypes.PIP ? (
                               <PipBTN isMobile={isMobile} isTab={isTab} />
                             ) : null}
@@ -822,10 +750,7 @@ export function BottomBar({
     </div>
   ) : (
     <div className="md:flex lg:px-2 xl:px-6 pb-2 px-2 hidden">
-      <MeetingIdCopyBTN />
-
       <div className="flex flex-1 items-center justify-center" ref={tollTipEl}>
-        <RecordingBTN />
         <RaiseHandBTN isMobile={isMobile} isTab={isTab} />
         <MicBTN />
         <WebCamBTN />

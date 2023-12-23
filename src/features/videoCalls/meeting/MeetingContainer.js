@@ -82,32 +82,6 @@ export function MeetingContainer({
   const _handleMeetingLeft = () => {
     setIsMeetingLeft(true);
   };
-
-  const _handleOnRecordingStateChanged = ({ status }) => {
-    if (
-      status === Constants.recordingEvents.RECORDING_STARTED ||
-      status === Constants.recordingEvents.RECORDING_STOPPED
-    ) {
-      toast(
-        `${
-          status === Constants.recordingEvents.RECORDING_STARTED
-            ? "Meeting recording is started"
-            : "Meeting recording is stopped."
-        }`,
-        {
-          position: "bottom-left",
-          autoClose: 4000,
-          hideProgressBar: true,
-          closeButton: false,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        }
-      );
-    }
-  };
-
   function onParticipantJoined(participant) {
     // Change quality to low, med or high based on resolution
     participant && participant.setQuality("high");
@@ -191,7 +165,6 @@ export function MeetingContainer({
     onMeetingJoined,
     onMeetingLeft,
     onError: _handleOnError,
-    onRecordingStateChanged: _handleOnRecordingStateChanged,
   });
 
   const isPresenting = mMeeting.presenterId ? true : false;
@@ -260,7 +233,7 @@ export function MeetingContainer({
   });
 
   return (
-    <div className="fixed inset-0">
+    <div className="fixed inset-0 pt-16">
       <div ref={containerRef} className="h-full flex flex-col bg-gray-800">
         {typeof localParticipantAllowedJoin === "boolean" ? (
           localParticipantAllowedJoin ? (

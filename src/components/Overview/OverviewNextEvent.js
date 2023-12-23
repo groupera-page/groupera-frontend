@@ -11,12 +11,17 @@ const OverviewNextEvent = ({ nextEvent }) => {
   const handleButtonClick = () => {
     // setJoinEventWarning((prev) => !prev);
     if (!nextEvent) return;
+    const startTime = new Date(nextEvent.meeting.startDate);
     const endTime = new Date(nextEvent.meeting.startDate);
     endTime.setMinutes(
       new Date(endTime).getMinutes() + nextEvent.meeting.duration
     );
 
-    if (!isNowBetween(new Date(nextEvent.meeting.startDate), endTime)) {
+    startTime.setMinutes(
+      startTime.getMinutes() - 5
+    )
+
+    if (!isNowBetween(startTime, endTime)) {
       setJoinEventWarning(true);
     } else{
       navigate(`/meeting/${nextEvent.meeting.roomId}`)

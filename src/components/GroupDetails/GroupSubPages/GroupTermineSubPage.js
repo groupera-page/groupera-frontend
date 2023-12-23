@@ -2,20 +2,29 @@ import React, {useEffect, useState} from "react";
 import moment from "moment";
 import PrimaryButton from "../../Buttons/PrimaryButton";
 import {isNowBetween} from "../../../util/formatMeetingDate";
+import {useNavigate} from "react-router-dom";
 
 const GroupMeetingItem = ({meeting, isNext}) => {
   const [joinEventWarning, setJoinEventWarning] = useState(false);
+  const navigate = useNavigate()
 
   const handleJoinMeeting = () => {
     // setJoinEventWarning((prev) => !prev);
     if (!meeting) return;
+    const startTime = new Date(meeting.startDate);
     const endTime = new Date(meeting.startDate);
     endTime.setMinutes(
       new Date(endTime).getMinutes() + meeting.duration
     );
 
+    startTime.setMinutes(
+      startTime.getMinutes() - 5
+    )
+
     if (!isNowBetween(new Date(meeting.startDate), endTime)) {
       setJoinEventWarning(true);
+    } else{
+      navigate(`/meeting/${meeting.roomId}`)
     }
   };
 

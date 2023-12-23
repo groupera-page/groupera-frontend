@@ -48,8 +48,8 @@ const ChatInput = ({ inputHeight }) => {
       className="w-full flex items-center px-2"
       style={{ height: inputHeight }}
     >
-      <div class="relative  w-full">
-        <span class="absolute inset-y-0 right-0 flex mr-2 rotate-90 ">
+      <div className="relative  w-full">
+        <span className="absolute inset-y-0 right-0 flex mr-2 rotate-90 ">
           <button
             disabled={message.length < 2}
             type="submit"

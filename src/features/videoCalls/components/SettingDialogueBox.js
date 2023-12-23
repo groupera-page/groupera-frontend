@@ -228,7 +228,7 @@ export default function SettingDialogueBox({
                         <div className="w-full">
                           <div className="grid container grid-flow-col">
                             <div className="grid grid-cols-12">
-                              <div class="col-span-7">
+                              <div className="col-span-7">
                                 <div className="flex flex-col mt-6">
                                   <p className="text-sm text-left text-white font-bold">
                                     Microphone
@@ -325,7 +325,7 @@ export default function SettingDialogueBox({
                                 </div>
                               </div>
 
-                              <div class="col-span-5">
+                              <div className="col-span-5">
                                 <div className="p-4 relative mt-0 md:mt-10 ">
                                   <div
                                     className="flex flex-1 relative w-1/2 md:w-full h-1/2 md:h-auto overflow-hidden rounded"
