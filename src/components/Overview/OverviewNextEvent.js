@@ -57,7 +57,12 @@ const OverviewNextEvent = ({ nextEvent }) => {
                   {nextEvent.group.name}
                 </p>
                 <p className="paragraph-sm text-TEXT_PRIMARY lg:mt-2">
-                  {moment(nextEvent.meeting.startDate).format("dddd, Do MMMM YYYY")}
+                  {moment(nextEvent.meeting.startDate).format(
+                    "dddd, Do MMMM YYYY"
+                  )}
+                </p>
+                <p className="paragraph-sm text-TEXT_PRIMARY lg:mt-2">
+                  {moment(nextEvent.meeting.startDate).format("HH:mm")} Uhr
                 </p>
               </div>
             </div>
