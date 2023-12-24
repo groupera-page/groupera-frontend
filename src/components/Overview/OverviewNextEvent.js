@@ -21,11 +21,11 @@ const OverviewNextEvent = ({ nextEvent }) => {
       startTime.getMinutes() - 5
     )
 
-    if (!isNowBetween(startTime, endTime)) {
-      setJoinEventWarning(true);
-    } else{
+    // if (!isNowBetween(startTime, endTime)) {
+    //   setJoinEventWarning(true);
+    // } else{
       navigate(`/meeting/${nextEvent.meeting.roomId}`)
-    }
+    // }
   };
 
   useEffect(() => {
