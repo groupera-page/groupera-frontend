@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
-import { registerUser } from "../auth/authSlice";
+import {registerUser, resendEmailVerificationCode, requestPasswordReset, resetPassword} from "../auth/authSlice";
 import {
   isAuthenticated,
   logInUser,
@@ -46,7 +46,6 @@ const alertSlice = createSlice({
           )
         );
       })
-
       .addCase(refreshToken.rejected, (state) => {
         state.items.push(
           getNewAlert(
@@ -96,6 +95,18 @@ const alertSlice = createSlice({
       })
       .addCase(updateProfile.rejected, (state) => {
         state.items.push(getNewAlert("error", "Etwas ist schiefgegangen", "Dein Profil konnte nicht geupdated werden."));
+      })
+      .addCase(resendEmailVerificationCode.fulfilled, (state) => {
+        state.items.push(getNewAlert("success", "Email gesendet", "Ein neuer Verifizierungscode wurde an Deine Email adresse gesendet"));
+      })
+      .addCase(requestPasswordReset.fulfilled, (state) => {
+        state.items.push(getNewAlert("success", "Email gesendet", "Ein Link zum Passwort zurücksetzen wurde an Deine Email adresse gesendet"));
+      })
+      .addCase(resetPassword.rejected, (state) => {
+        state.items.push(getNewAlert("error", "Token ungültig", "Bitte fordere einen neuen Link an um dein Passwort zurückzusetzen."));
+      })
+      .addCase(resetPassword.fulfilled, (state) => {
+        state.items.push(getNewAlert("success", "Passwort erfolgreich geändert", "Dein Passwort wurde erfolgreich geändert und Du bist eingeloggt."));
       });
   },
 });

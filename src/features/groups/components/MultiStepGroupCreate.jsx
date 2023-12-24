@@ -24,23 +24,25 @@ const steps = [
   groupDownloadStep,
   {
     ...groupSettingsStep,
-    onSubmit: (values) =>
-      createGroup({
+    onSubmit: (values) => {
+      const startDate = new Date(
+  `${values.meetingStartDate} ${values.meetingTime}`
+      )
+      return createGroup({
         name: values.groupName,
         description: values.groupDescription,
         selfModerated: values.groupSelfModerated,
         topic: values.groupTheme,
         firstMeeting: {
-          startDate: new Date(
-            `${values.meetingStartDate} ${values.meetingTime}`
-          ),
+          startDate: startDate,
           recurrence: {
             type: values.meetingRecurrenceType,
-            days: values.meetingRecurrenceDays,
+            days: [startDate.getDay()],
           },
           duration: values.meetingDuration,
         },
-      }),
+      })
+    }
   },
   groupCreateSuccessStep,
 ];
@@ -58,7 +60,7 @@ const MultiStepGroupCreate = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const handleLastSubmit = async () => {
+  const handleLastSubmit = () => {
     if (!isLastStep) {
       next();
       handleScrollToTop();
@@ -82,14 +84,14 @@ const MultiStepGroupCreate = () => {
           setCreatedGroupId(response.payload.group.id);
         }
 
-        await handleLastSubmit();
+        handleLastSubmit();
       } catch (e) {
         console.log("Error", e);
       }
       // handle the response
       // if an error than don't go to next step but show the error, otherwise proceed to next step.
     } else {
-      await handleLastSubmit();
+      handleLastSubmit();
     }
   };
 

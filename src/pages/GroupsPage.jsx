@@ -20,7 +20,7 @@ export default function GroupsPage() {
   );
 
   const [filter, setFilter] = useState({
-    groups: groups || [],
+    groups: groups.filter(group => group.verified) || [],
     searchTerm: "",
   });
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ export default function GroupsPage() {
   useEffect(() => {
     setFilter({
       searchTerm: "",
-      groups,
+      groups: groups.filter(group => group.verified),
     });
   }, [groups]);
 
@@ -41,12 +41,13 @@ export default function GroupsPage() {
     if (filter.topic === topic && !filter.searchTerm) {
       setFilter({
         searchTerm: "",
-        groups: groups || [],
+        groups: groups.filter(group => group.verified) || [],
       });
     } else if (filter.topic === topic && filter.searchTerm) {
       setFilter({
         searchTerm: filter.searchTerm,
         groups: groups.filter((group) =>
+          group.verified &&
           group.name.toLowerCase().includes(filter.searchTerm.toLowerCase())
         ),
       });
@@ -56,6 +57,7 @@ export default function GroupsPage() {
         topic,
         groups: groups.filter(
           (group) =>
+            group.verified &&
             group.topic === topic &&
             group.name.toLowerCase().includes(filter.searchTerm.toLowerCase())
         ),
@@ -64,7 +66,7 @@ export default function GroupsPage() {
       setFilter({
         ...filter,
         topic,
-        groups: groups.filter((group) => group.topic === topic),
+        groups: groups.filter((group) => group.verified && group.topic === topic),
       });
     }
   };
@@ -73,7 +75,7 @@ export default function GroupsPage() {
       setFilter({
         ...filter,
         searchTerm: "",
-        groups: groups.filter((group) => group.topic === filter.topic),
+        groups: groups.filter((group) => group.verified && group.topic === filter.topic),
       });
     } else if (filter.topic) {
       setFilter({
@@ -81,6 +83,7 @@ export default function GroupsPage() {
         searchTerm,
         groups: groups.filter(
           (group) =>
+            group.verified &&
             group.topic === filter.topic &&
             group.name.toLowerCase().includes(searchTerm.toLowerCase())
         ),
@@ -89,6 +92,7 @@ export default function GroupsPage() {
       setFilter({
         searchTerm,
         groups: groups.filter((group) =>
+          group.verified &&
           group.name.toLowerCase().includes(searchTerm.toLowerCase())
         ),
       });

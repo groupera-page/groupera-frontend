@@ -2,7 +2,7 @@ import React from "react";
 import { groupThemeOptions } from "../../util/form.helper";
 
 const GroupTopicFilter = ({ onFilter, selectedTopic }) => {
-  console.log(selectedTopic);
+  // console.log(selectedTopic);
   return (
     <div className="overflow-x-auto">
       <div className="flex space-x-2 mt-2 white whitespace-nowrap">

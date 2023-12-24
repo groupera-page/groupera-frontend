@@ -300,7 +300,7 @@ export const meetingFields = {
   recurrenceType: {
     type: "inlineSelect",
     name: "meetingRecurrenceType",
-    label: "In welchem Rythmus soll sich die Gruppe sich treffen?",
+    label: "In welchem Rhythmus soll sich die Gruppe treffen?",
     options: meetingRecurrenceTypes,
     validate: [required],
   },
@@ -313,7 +313,7 @@ export const meetingFields = {
   startDate: {
     type: "date",
     name: "meetingStartDate",
-    label: "Ab wann startet die Gruppe?",
+    label: "Wann soll das erste Gruppen-Meeting stattfinden?",
     validate: [required],
   },
   time: {

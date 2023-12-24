@@ -45,7 +45,13 @@ const Home = () => {
     );
   }
 
-  const allUserGroups = [...user.joinedGroups, ...user.moderatedGroups];
+  let allUserGroups = [];
+  if (user.joinedGroups && user.joinedGroups.length > 0) {
+    allUserGroups.push(...user.joinedGroups)
+  }
+  if (user.moderatedGroups && user.moderatedGroups.length > 0) {
+    allUserGroups.push(...user.moderatedGroups)
+  }
 
   return (
     <PageContainer>
@@ -78,8 +84,8 @@ const Home = () => {
             <OverviewCard
               title={"Deine Gruppen"}
               desc={
-                user.joinedGroups?.length > 0
-                  ? "Über die Gruppen kannst du dich für die nächsten Termine anmelden."
+                user.joinedGroups?.length > 0 || user.moderatedGroups?.length > 0
+                  ? "Über die Gruppen kannst du an dem nächsten Termin teilnehmen."
                   : "Du bist noch keiner Gruppe beigetreten. "
               }
             >

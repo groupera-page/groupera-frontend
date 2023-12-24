@@ -1,4 +1,4 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, isAnyOf} from "@reduxjs/toolkit";
 
 import authService from "./authApi";
 
@@ -29,6 +29,29 @@ export const verifyEmail = createAsyncThunk(
   },
 );
 
+export const resendEmailVerificationCode = createAsyncThunk(
+  "auth/resendEmailVerificationCode",
+  async (email) => {
+    const result = await authService.resendEmailVerificationCode(email)
+    return result.data
+  },
+);
+
+export const requestPasswordReset = createAsyncThunk(
+  "auth/requestPasswordReset",
+  async (email) => {
+    const result = await authService.requestResetPassword(email)
+    return result.data
+  },
+);
+
+export const resetPassword = createAsyncThunk(
+  "auth/resetPassword",
+  async ({token, password}) => {
+    const result = await authService.resetPassword(token, password)
+    return result.data
+  },
+);
 
 export const logInUser = createAsyncThunk(
   "auth/login",
@@ -131,19 +154,6 @@ const authSlice = createSlice({
         state.loading = false;
         state.error = action.error.message
       })
-      .addCase(logInUser.fulfilled, (state, {payload}) => {
-        state.loading = false;
-        if (payload.error) {
-          state.error = payload.error;
-          // eslint-disable-next-line no-alert
-          alert(payload.error);
-        } else {
-          tokenService.updateLocalAuthToken(payload.authToken);
-          tokenService.setUser(payload.user);
-          state.token = payload.authToken;
-          state.user = payload.user;
-        }
-      })
       .addCase(updateProfile.fulfilled, (state, {payload}) => {
         tokenService.setUser({...state.user, ...payload})
         state.user = {...state.user, ...payload};
@@ -169,6 +179,22 @@ const authSlice = createSlice({
           moderatedGroups: state.user.moderatedGroups ? state.user.moderatedGroups.filter(g => g.id !== payload) : []
         };
       })
+      .addMatcher(
+        isAnyOf(logInUser.fulfilled, resetPassword.fulfilled),
+        (state, {payload}) => {
+          state.loading = false;
+          if (payload.error) {
+            state.error = payload.error;
+            // eslint-disable-next-line no-alert
+            alert(payload.error);
+          } else {
+            tokenService.updateLocalAuthToken(payload.authToken);
+            tokenService.setUser(payload.user);
+            state.token = payload.authToken;
+            state.user = payload.user;
+          }
+        }
+      )
   }
 });
 

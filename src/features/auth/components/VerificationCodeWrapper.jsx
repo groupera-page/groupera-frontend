@@ -1,21 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import VerificationCodeInput from "./VerificationCodeInput";
 import { AiOutlineWarning } from "react-icons/ai";
+import {useDispatch, useSelector} from "react-redux";
+import {resendEmailVerificationCode} from "../authSlice";
 
 const VerificationCodeWrapper = ({
   codeLength = 4,
   input,
-  hint,
   meta: { touched, error },
 }) => {
   const emptyCode = Array(codeLength).fill("");
   const [code, setCode] = useState(emptyCode);
-
-  const [isResendCode, setisResendCode] = useState(false);
-
-  const handleResendCode = () => {
-    setisResendCode(true);
-  };
+  const dispatch = useDispatch()
+  const email = useSelector((state) => state.form.authForm?.values?.email);
 
   const handleCode = (e, value, index) => {
     const newCode = [...code];
@@ -51,6 +48,10 @@ const VerificationCodeWrapper = ({
     }
   };
 
+  const handleResendVerificationCode = () => {
+    dispatch(resendEmailVerificationCode(email))
+  }
+
   return (
     <div className="mx-10 flex flex-col items-center">
       <div className="flex  gap-1 my-2 w-fit">
@@ -69,10 +70,8 @@ const VerificationCodeWrapper = ({
 
       <button
         type="button"
-        className={`paragraph-tiny my-2 ${
-          isResendCode ? "text-PURPLE_PRIMARY" : "text-BLUE_DARKBLUE"
-        }`}
-        onClick={handleResendCode}
+        className={`paragraph-tiny my-2 "text-BLUE_DARKBLUE`}
+        onClick={handleResendVerificationCode}
       >
         Code erneut senden
       </button>

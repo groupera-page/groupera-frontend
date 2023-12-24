@@ -41,7 +41,7 @@ export const authStep = {
   header: "Verifiziere deine Emailadresse",
   desc: "Wir haben Dir einen 4 stelligen Verifizierungscode per E-Mail geschickt.",
   fields: [authFields.authCode],
-  goBackOption: true,
+  goBackOption: false,
   onSubmit: (values) =>
     verifyEmail({
       authCode: values.authCode,
@@ -104,7 +104,6 @@ export const groupMeetingStep = {
   fields: [
     meetingFields.startDate,
     meetingFields.recurrenceType,
-    meetingFields.recurrenceDays,
     meetingFields.time,
     meetingFields.duration,
   ],

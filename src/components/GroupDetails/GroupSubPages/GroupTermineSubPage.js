@@ -1,23 +1,30 @@
-import { useState, useEffect } from "react";
+import React, {useEffect, useState} from "react";
 import moment from "moment";
-import getFormatedDate, { isNowBetween } from "../../../util/formatMeetingDate";
 import PrimaryButton from "../../Buttons/PrimaryButton";
+import {isNowBetween} from "../../../util/formatMeetingDate";
+import {useNavigate} from "react-router-dom";
 
-const GroupMeetingItem = ({ meeting }) => {
+const GroupMeetingItem = ({meeting, isNext}) => {
   const [joinEventWarning, setJoinEventWarning] = useState(false);
+  const navigate = useNavigate()
 
-  const handleButtonClick = (nextEvent) => {
-    // Implement same logic as in Overviewnextevent!
-    // if (!nextEvent) return;
-    // const endTime = new Date(nextEvent.meeting.startDate);
-    // endTime.setMinutes(
-    //   new Date(endTime).getMinutes() + nextEvent.meeting.duration
-    // );
+  const handleJoinMeeting = () => {
+    if (!meeting) return;
+    const startTime = new Date(meeting.startDate);
+    const endTime = new Date(meeting.startDate);
+    endTime.setMinutes(
+      new Date(endTime).getMinutes() + meeting.duration
+    );
 
-    // if (!isNowBetween(new Date(nextEvent.meeting.startDate), endTime)) {
-    //   setJoinEventWarning(true);
-    // }
-    setJoinEventWarning(true);
+    startTime.setMinutes(
+      startTime.getMinutes() - 5
+    )
+
+    if (!isNowBetween(new Date(meeting.startDate), endTime)) {
+      setJoinEventWarning(true);
+    } else{
+      navigate(`/meeting/${meeting.roomId}`)
+    }
   };
 
   useEffect(() => {
@@ -33,42 +40,47 @@ const GroupMeetingItem = ({ meeting }) => {
   }, [joinEventWarning]);
 
   return (
-    <div>
-      <div
-        key={meeting.id}
-        className="flex items-center bg-BG_GRAY paragraph-lg "
-      >
-        <div className="md:hidden grid grid-cols-3 py-2 items-center px-2 border rounded-2xl md:border-none w-full">
-          <div className=" paragraph-sm col-span-3">
-            {getFormatedDate(meeting)}
-            {/*{moment(meeting.startDate).format("HH:mm")} Uhr*/}
-            <div className="flex justify-between">
-              {" "}
-              <div className="paragraph-sm">{meeting.duration} min</div>
-              <PrimaryButton handleButtonClick={handleButtonClick}>
-                Videokonferenz
-              </PrimaryButton>
-            </div>
+    <div
+      className="flex items-center bg-BG_GRAY paragraph-lg "
+    >
+      <div className="md:hidden grid grid-cols-3 py-2 gap-y-2 items-center px-2 border rounded-2xl md:border-none w-full">
+        <div className="paragraph-sm col-span-2">
+          <div>{moment(meeting.startDate).format("dd, Do MMM YYYY")}</div>
+          {moment(meeting.startDate).format("HH:mm")} Uhr
+        </div>
+        <div className="paragraph-sm">{meeting.duration} min</div>
+        {
+          isNext &&
+          <div className={"flex flex-col col-span-3 gap-1 items-center"}>
+            <PrimaryButton isInversed={true} handleButtonClick={handleJoinMeeting}>Videokonferenz</PrimaryButton>
+            {
+              joinEventWarning &&
+              <div className="text-center paragraph-sm text-PURPLE_PRIMARY">
+                Dein Termin hat noch nicht begonnen.
+              </div>
+            }
           </div>
-        </div>
-
-        <div
-          key={meeting.id}
-          className="hidden md:grid grid-cols-5 py-2 items-center mx-2 border rounded-md md:border-none w-full paragraph-md"
-        >
-          <div>{getFormatedDate(meeting, false)}</div>
-          <div>{moment(meeting.startDate).format("HH:mm")} Uhr</div>
-          <div>{meeting.duration}</div>
-          <PrimaryButton handleButtonClick={handleButtonClick}>
-            Videokonferenz
-          </PrimaryButton>
-        </div>
+        }
       </div>
-      {joinEventWarning && (
-        <div className="flex justify-center paragraph-md text-PURPLE_PRIMARY transition-opacity duration-300">
-          Dein Termin hat noch nicht begonnen.
-        </div>
-      )}
+      <div
+        className="hidden md:grid grid-cols-5 py-2 items-center mx-2 border rounded-md md:border-none w-full paragraph-md"
+      >
+        <div className={"col-span-2"}>{moment(meeting.startDate).format("dd, Do MMMM YYYY")}</div>
+        <div>{moment(meeting.startDate).format("HH:mm")} Uhr</div>
+        <div>{meeting.duration} min</div>
+        {
+          isNext &&
+          <div className={"flex flex-col gap-1 items-center"}>
+            <PrimaryButton isInversed={true} handleButtonClick={handleJoinMeeting}>Videokonferenz</PrimaryButton>
+            {
+              joinEventWarning &&
+              <div className="text-center paragraph-sm text-PURPLE_PRIMARY">
+                Dein Termin hat noch nicht begonnen.
+              </div>
+            }
+          </div>
+        }
+      </div>
     </div>
   );
 };
@@ -92,19 +104,17 @@ export default function GroupTermineSubPage({ group }) {
         <div
           className={`hidden md:grid md:grid-cols-5 mx-2 paragraph-tiny text-black border-b border-BORDER_PRIMARY pb-4`}
         >
-          <div>Datum</div>
+          <div className={"col-span-2"}>Datum</div>
           <div>Uhrzeit</div>
           <div>Dauer</div>
           <div></div>
         </div>
-
-        {group.meetings &&
-          group.meetings.length > 0 &&
-          group.meetings.map((meeting) => (
-            <div key={meeting.id}>
-              <GroupMeetingItem meeting={meeting} />
-            </div>
-          ))}
+        {group.futureMeetings &&
+          group.futureMeetings.length > 0 &&
+          group.futureMeetings.slice(0, 8).map((meeting, idx) => {
+            return <GroupMeetingItem key={idx} isNext={idx===0} meeting={meeting}/>
+          })
+        }
       </div>
     </div>
   );

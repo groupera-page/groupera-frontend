@@ -5,7 +5,7 @@ import AuthForm from "../components/AuthForm";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import PrimaryButton from "../../../components/Buttons/PrimaryButton";
-import { authFields } from "../../../util/form.helper";
+import {authFields, required} from "../../../util/form.helper";
 import { logInUser } from "../authSlice";
 
 const Login = () => {
@@ -34,17 +34,25 @@ const Login = () => {
           <div className="paragraph-sm">
             jetzt einloggen und alle Gruppen und Termine sehen
           </div>
-          <div className="max-w-xs lg:px-4">
+          <div className="max-w-sm lg:px-4">
             <AuthForm
-              fields={[authFields.email, authFields.password]}
+              fields={[authFields.email, {...authFields.password, validate: [required]}]}
               onSubmit={handleSubmit}
             >
               <div className="flex flex-col items-center">
-                <div className="my-8 paragraph-sm">
-                  Du hast noch kein Konto?{" "}
-                  <Link to={"/auth/signup"} className="text-PURPLE_SECONDARY">
-                    Jetzt Registrieren
-                  </Link>
+                <div className="flex flex-col gap-4 my-4 items-center">
+                  <div className="paragraph-sm">
+                    Du hast noch kein Konto?{" "}
+                    <Link to={"/auth/signup"} className="text-PURPLE_SECONDARY">
+                      Jetzt Registrieren
+                    </Link>
+                  </div>
+                  <div className="paragraph-sm text-center">
+                    Du hast dein Passwort vergessen?{" "}
+                    <Link to={"/auth/forgotPassword"} className="text-PURPLE_SECONDARY">
+                      Passwort zurücksetzen
+                    </Link>
+                  </div>
                 </div>
                 <PrimaryButton type="submit" isLarge={true}>
                   Anmelden

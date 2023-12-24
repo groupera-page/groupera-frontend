@@ -30,6 +30,28 @@ const updateOne = (groupId, body) => {
     })
 };
 
+const createOneMeeting = (groupId, body) => {
+  return api
+    .post(`/group/${groupId}/meeting`, body, {
+      withCredentials: true
+    })
+};
+
+const updateOneMeeting = (meetingId, body) => {
+  return api
+    .patch(`/meeting/${meetingId}`, body, {
+      withCredentials: true
+    })
+};
+
+const destroyOneMeeting = (meetingId) => {
+  return api
+    .delete(`/meeting/${meetingId}`, {
+      withCredentials: true
+    })
+};
+
+
 const destroy = (groupId) => {
   return api
     .delete(`/group/${groupId}`, {
@@ -59,7 +81,10 @@ const groupService = {
   updateOne,
   destroy,
   join,
-  leave
+  leave,
+  createOneMeeting,
+  updateOneMeeting,
+  destroyOneMeeting
 };
 
 export default groupService;

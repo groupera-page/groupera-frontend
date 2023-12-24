@@ -10,7 +10,7 @@ let GroupCreateForm = (props) => <SharedForm {...props}/>
 const mapStateToProps = () => {
 	return {
 		initialValues: {
-			groupSelfModerated: false,
+			groupSelfModerated: true,
 			meetingStartDate: moment(new Date()).format("YYYY-MM-DD"),
 			meetingTime: moment(new Date()).format("hh:mm"),
 		},

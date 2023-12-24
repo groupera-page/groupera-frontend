@@ -17,7 +17,6 @@ export const updateProfile = createAsyncThunk(
     if (result.status === 200) {
       return formValues
     }
-    // debugger
     return result.data
   },
 );
