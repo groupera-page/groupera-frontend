@@ -4,6 +4,9 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux'
 import {CookiesProvider} from "react-cookie";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { store } from "./store";
 
 import setupInterceptors from "./api/axiosInterceptors";
@@ -21,6 +24,23 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <CookiesProvider>
     <Provider store={store}>
+      <ToastContainer
+        toastClassName={() =>
+          "relative flex py-4 px-3 rounded overflow-hidden cursor-pointer bg-white shadow-lg"
+        }
+        bodyClassName={() => "text-black text-base font-normal"}
+        position="bottom-left"
+        autoClose={4000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeButton={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <Navigation />
     </Provider>
   </CookiesProvider>

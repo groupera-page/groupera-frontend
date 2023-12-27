@@ -7,7 +7,6 @@ import {resendEmailVerificationCode} from "../authSlice";
 const VerificationCodeWrapper = ({
   codeLength = 4,
   input,
-  hint,
   meta: { touched, error },
 }) => {
   const emptyCode = Array(codeLength).fill("");
@@ -69,6 +68,14 @@ const VerificationCodeWrapper = ({
         ))}
       </div>
 
+      <button
+        type="button"
+        className={`paragraph-tiny my-2 "text-BLUE_DARKBLUE`}
+        onClick={handleResendVerificationCode}
+      >
+        Code erneut senden
+      </button>
+
       {touched && error && (
         <div className="flex px-4 gap-2 items-right bg-BG_PRIMARY text-PURPLE_PRIMARY border border-PURPLE_PRIMARY rounded-md p-1 my-1">
           <div>
@@ -77,8 +84,8 @@ const VerificationCodeWrapper = ({
           {error}
         </div>
       )}
-      {<span className="paragraph-sm text-blue-600 my-1 cursor-pointer" onClick={handleResendVerificationCode}>Code erneut senden</span>}
-      {hint && <span className="paragraph-tiny my-1">{hint}</span>}
+
+      {/* {hint && <span className="paragraph-tiny my-1">{hint}</span>} */}
     </div>
   );
 };

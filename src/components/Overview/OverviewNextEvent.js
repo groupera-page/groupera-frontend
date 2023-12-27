@@ -2,20 +2,29 @@ import { useState, useEffect } from "react";
 import PrimaryButton from "../Buttons/PrimaryButton";
 import { isNowBetween } from "../../util/formatMeetingDate";
 import moment from "moment/moment";
+import {useNavigate} from "react-router-dom";
 
 const OverviewNextEvent = ({ nextEvent }) => {
   const [joinEventWarning, setJoinEventWarning] = useState(false);
+  const navigate = useNavigate()
 
   const handleButtonClick = () => {
     // setJoinEventWarning((prev) => !prev);
     if (!nextEvent) return;
+    const startTime = new Date(nextEvent.meeting.startDate);
     const endTime = new Date(nextEvent.meeting.startDate);
     endTime.setMinutes(
       new Date(endTime).getMinutes() + nextEvent.meeting.duration
     );
 
-    if (!isNowBetween(new Date(nextEvent.meeting.startDate), endTime)) {
+    startTime.setMinutes(
+      startTime.getMinutes() - 5
+    )
+
+    if (!isNowBetween(startTime, endTime)) {
       setJoinEventWarning(true);
+    } else{
+      navigate(`/meeting/${nextEvent.meeting.roomId}`)
     }
   };
 
@@ -48,7 +57,12 @@ const OverviewNextEvent = ({ nextEvent }) => {
                   {nextEvent.group.name}
                 </p>
                 <p className="paragraph-sm text-TEXT_PRIMARY lg:mt-2">
-                  {moment(nextEvent.meeting.startDate).format("dddd, Do MMMM YYYY")}
+                  {moment(nextEvent.meeting.startDate).format(
+                    "dddd, Do MMMM YYYY"
+                  )}
+                </p>
+                <p className="paragraph-sm text-TEXT_PRIMARY lg:mt-2">
+                  {moment(nextEvent.meeting.startDate).format("HH:mm")} Uhr
                 </p>
               </div>
             </div>

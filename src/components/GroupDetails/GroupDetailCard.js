@@ -1,25 +1,29 @@
 import React from "react";
-import {useDispatch} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import GroupOverviewContent from "./GroupOverviewContent";
 import MenuDropDown from "../Navigation/Menus/MenuDropDown";
 import PrimaryButton from "../Buttons/PrimaryButton";
 import LazyLoadImg from "../LazyLoadImg";
 
-import {deleteGroup, joinGroup, leaveGroup} from "../../features/groups/groupSlice";
+import {
+  deleteGroup,
+  joinGroup,
+  leaveGroup,
+} from "../../features/groups/groupSlice";
 
 const GroupDetailCard = ({ group, user, isAdmin, isMember }) => {
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleJoinGroup = () => {
-    dispatch(joinGroup(group.id))
-  }
+    dispatch(joinGroup(group.id));
+  };
 
   const handleLeaveGroup = () => {
-    dispatch(leaveGroup({groupId: group.id, memberId: user.id}))
-  }
+    dispatch(leaveGroup({ groupId: group.id, memberId: user.id }));
+  };
 
   const handleDeleteGroup = async () => {
     try {
@@ -32,14 +36,12 @@ const GroupDetailCard = ({ group, user, isAdmin, isMember }) => {
       // handle the error response
       console.log(e);
     }
-  }
+  };
 
   return (
     <div className="my-2 lg:flex gap-12 lg:mx-0 ">
       <div className="flex lg:w-1/2 relative items-center">
-        <LazyLoadImg
-          img={group.img}
-        />
+        <LazyLoadImg img={group.img} />
       </div>
 
       <div className="lg:w-1/2 my-4">
@@ -49,49 +51,67 @@ const GroupDetailCard = ({ group, user, isAdmin, isMember }) => {
             clamp={false}
             isDetailPage={true}
           />
-          {
-            group.verified ?
-              (
-                <div className="flex justify-end my-4">
-                  {!isMember && !isAdmin ? (
-                    <PrimaryButton handleButtonClick={handleJoinGroup}>{`Mitglied werden`}</PrimaryButton>
-                  ) : (
-                    <MenuDropDown
-                      title={`${isAdmin ? "Du bist Admin" : "Du bist Mitglied"}`}
-                      topOffset={10}
-                      isButtonDropDown={true}
-                    >
-                      <li className="">
-                        <PrimaryButton isInversed={true} handleButtonClick={isAdmin ? () => navigate(`/groups/${group.id}/edit`) : handleLeaveGroup}>
-                          {`${
-                            isAdmin ? "Gruppe bearbeiten" : "Gruppe verlassen"
-                          }`}
-                        </PrimaryButton>
-                      </li>
-                      {
-                        isAdmin &&
-                        <li className="">
-                          <PrimaryButton isInversed={true} handleButtonClick={handleDeleteGroup}>
-                            Gruppe löschen
-                          </PrimaryButton>
-                        </li>
+          {group.verified ? (
+            <div className="flex justify-end my-2">
+              {!isMember && !isAdmin ? (
+                <PrimaryButton
+                  handleButtonClick={handleJoinGroup}
+                  border={false}
+                >{`Mitglied werden`}</PrimaryButton>
+              ) : (
+                <MenuDropDown
+                  title={`${isAdmin ? "Du bist Admin" : "Du bist Mitglied"}`}
+                  topOffset={10}
+                  isButtonDropDown={true}
+                >
+                  <li className="">
+                    <PrimaryButton
+                      isInversed={true}
+                      border={false}
+                      handleButtonClick={
+                        isAdmin
+                          ? () => navigate(`/groups/${group.id}/edit`)
+                          : handleLeaveGroup
                       }
-                    </MenuDropDown>
+                    >
+                      {`${isAdmin ? "Gruppe bearbeiten" : "Gruppe verlassen"}`}
+                    </PrimaryButton>
+                  </li>
+                  <hr className="border-l " />
+
+                  {isAdmin && (
+                    <li className="">
+                      <PrimaryButton
+                        isInversed={true}
+                        stretch={true}
+                        handleButtonClick={handleDeleteGroup}
+                        border={false}
+                      >
+                        Gruppe löschen
+                      </PrimaryButton>
+                    </li>
                   )}
-                </div>
-              )
-            :
-              isAdmin &&
+                </MenuDropDown>
+              )}
+            </div>
+          ) : (
+            isAdmin && (
               <div className="flex justify-end my-4">
-                <PrimaryButton isInversed={true} handleButtonClick={handleDeleteGroup}>
+                <PrimaryButton
+                  isInversed={true}
+                  stretch={true}
+                  handleButtonClick={handleDeleteGroup}
+                  border={false}
+                >
                   Gruppe löschen
                 </PrimaryButton>
               </div>
-          }
+            )
+          )}
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default GroupDetailCard;

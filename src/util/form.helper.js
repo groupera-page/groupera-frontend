@@ -79,8 +79,8 @@ export const authFields = {
   alias: {
     type: "text",
     name: "alias",
-    label: "Alias",
-    placeholder: "Dein Alias",
+    label: "Anzeigename",
+    placeholder: "Dein Anzeigename",
     hint: "Bitte gib hier Deinen Namen ein, mit dem Du in der Gruppe angesprochen werden möchtest und der für andere Mitglieder:innen angezeigt werden darf.",
     validate: [required],
   },
@@ -115,7 +115,8 @@ export const authFields = {
     type: "authCode",
     name: "authCode",
     label: "Auth Code",
-    hint: "Du findest den Code in deinen Emails",
+    // hint: "Du findest den Code in deinen Emails",
+    hint: "",
     validate: [required, (value) => minLength(value, 4)],
   },
   dob: {

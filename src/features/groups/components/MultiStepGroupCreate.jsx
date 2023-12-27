@@ -56,9 +56,14 @@ const MultiStepGroupCreate = () => {
   const { currentStepIndex, step, isFirstStep, isLastStep, back, next } =
     useMultistepHook(steps);
 
+  const handleScrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   const handleLastSubmit = () => {
     if (!isLastStep) {
       next();
+      handleScrollToTop();
     } else {
       if (isModerator) {
         navigate(`/groups/${createdGroupId}`);

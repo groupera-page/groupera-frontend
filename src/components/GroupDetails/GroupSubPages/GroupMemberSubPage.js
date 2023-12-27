@@ -2,11 +2,7 @@ import React from "react";
 
 const GroupMemberSubPage = ({ group }) => {
   if (!group.members || group.members.length === 0) {
-    return (
-      <div className="mt-8">
-        No Members yet
-      </div>
-    )
+    return <div className="mt-8 paragraph-md">Noch keine MitgliederInnen</div>;
   }
 
   return (
@@ -46,6 +42,6 @@ const GroupMemberSubPage = ({ group }) => {
       ))}
     </div>
   );
-}
+};
 
 export default GroupMemberSubPage;
