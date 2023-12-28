@@ -8,12 +8,14 @@ import {
   BsPeopleFill,
 } from "react-icons/bs";
 import { CiLogout } from "react-icons/ci";
-import { useDispatch } from "react-redux";
-import { logout } from "../../features/auth/authSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {logout, selectAuth} from "../../features/auth/authSlice";
 
 const Navigation = ({ handleMenuMobile }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const {user} = useSelector(selectAuth)
 
   // const [cookies, setCookie, removeCookie] = useCookies(['refreshToken']);
 
@@ -92,6 +94,22 @@ const Navigation = ({ handleMenuMobile }) => {
             )}
           </NavLink>
         </li>
+        {user.role === "admin" && <li className="flex relative">
+          <NavLink to="/admin-overview" onClick={() => handleMenuMobile()}>
+            {({isActive}) => (
+              <>
+                <div className="flex flex-row items-center">
+                  <div className="relative group paragraph-lg">
+                    Admin
+                    <div className={`${!isActive ? "" : "hidden"} `}>
+                      <HoverUnderline/>
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
+          </NavLink>
+        </li>}
       </ul>
       <div
         className={`flex items-center text-TEXT_PRIMARY cursor-pointer`}
