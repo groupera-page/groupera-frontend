@@ -2,7 +2,7 @@ import React from "react";
 import { BsSearch } from "react-icons/bs";
 
 export default function Searchbox({
-  placeholderText="Gib hier deine Suche ein...",
+  placeholderText = "Gib hier deine Suche ein...",
   searchTerm = "",
   onSearch,
 }) {
