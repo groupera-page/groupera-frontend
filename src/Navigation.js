@@ -45,9 +45,7 @@ const SimpleNavbar = () => {
 };
 
 function Navigation() {
-  const underConstruction = true;
-
-  if (underConstruction) {
+  if (process.env.REACT_APP_CONSTRUCTION === "true") {
     return <EMGSlate />;
   }
   return (
