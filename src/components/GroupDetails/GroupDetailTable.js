@@ -1,8 +1,8 @@
 import React from "react";
-import GroupTermineSubPage from "./GroupSubPages/GroupTermineSubPage";
-import GroupPinnwandSubPage from "./GroupSubPages/GroupPinnwandSubPage";
-import GroupMemberSubPage from "./GroupSubPages/GroupMemberSubPage";
-import GroupDocumentSubPage from "./GroupSubPages/GroupDocumentSubPage";
+import GroupTermineSubPage from "../../pages/GroupSubPages/GroupTermineSubPage";
+import GroupPinnwandSubPage from "../../pages/GroupSubPages/GroupPinnwandSubPage";
+import GroupMemberSubPage from "../../pages/GroupSubPages/GroupMemberSubPage";
+import GroupDocumentSubPage from "../../pages/GroupSubPages/GroupDocumentSubPage";
 import NavbarSub from "../Navigation/NavbarSub";
 import { Routes, Route } from "react-router-dom";
 
