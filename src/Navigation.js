@@ -26,7 +26,9 @@ import ResetPassword from "./features/auth/pages/ResetPassword";
 import VideoApp from "./features/videoCalls/VideoApp";
 import React from "react";
 import logoSvg from "./assets/imgLogos/logoNoBg.svg";
+
 import EMGSlate from "./pages/EMGSlate";
+import AdminOverview from "./features/admin/AdminOverview";
 
 const SimpleNavbar = () => {
   const navigate = useNavigate();
@@ -71,6 +73,15 @@ function Navigation() {
                 <>
                   <SimpleNavbar />
                   <VideoApp />
+                </>
+              }
+            />
+            <Route
+              path="admin-overview"
+              element={
+                <>
+                  <MenusContainer />
+                  <AdminOverview />
                 </>
               }
             />

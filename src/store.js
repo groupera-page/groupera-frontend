@@ -4,6 +4,7 @@ import { reducer as formReducer } from "redux-form"
 
 import authReducer from "./features/auth/authSlice";
 import groupsReducer from "./features/groups/groupSlice";
+import usersReducer from "./features/admin/userSlice";
 import alertReducer from "./features/alert/alertSlice";
 import mockDataSlice from "./mockDataSlice";
 
@@ -17,6 +18,7 @@ export const store = configureStore({
   reducer: {
     auth: authReducer,
     groups: groupsReducer,
+    users: usersReducer,
     alerts: alertReducer,
     form: formReducer,
     // form: formReducer.plugin({
