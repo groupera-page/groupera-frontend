@@ -22,10 +22,8 @@ export const ageValidation = (date, updateFields) => {
   updateFields({ age: userAge });
 
   if (userAge < 18) {
-    console.log("18-");
     updateFields({ isMinor: true });
   } else {
-    console.log("18+");
     updateFields({ isMinor: false });
   }
 };
