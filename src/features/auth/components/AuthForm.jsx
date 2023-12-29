@@ -31,8 +31,8 @@ export const renderField = (field) => {
       return <Field key={field.name} component={MyImgInput} {...field} />;
     case "pdfDownload":
       return <Field key={field.name} component={MyDownloadButton} {...field} />;
-    case "date":
-      return <Field key={field.name} component={MyDatePicker} {...field} />;
+    // case "date":
+    //   return <Field key={field.name} component={MyDatePicker} {...field} />;
     case "checkbox":
       return <Field key={field.name} component={MySimpleSelect} {...field} />;
     default:

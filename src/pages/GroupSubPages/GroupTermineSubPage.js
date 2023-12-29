@@ -1,29 +1,25 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import moment from "moment";
-import PrimaryButton from "../../Buttons/PrimaryButton";
-import {isNowBetween} from "../../../util/formatMeetingDate";
-import {useNavigate} from "react-router-dom";
+import PrimaryButton from "../../components/Buttons/PrimaryButton";
+import { isNowBetween } from "./../../util/formatMeetingDate";
+import { useNavigate } from "react-router-dom";
 
-const GroupMeetingItem = ({meeting, isNext}) => {
+const GroupMeetingItem = ({ meeting, isNext }) => {
   const [joinEventWarning, setJoinEventWarning] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleJoinMeeting = () => {
     if (!meeting) return;
     const startTime = new Date(meeting.startDate);
     const endTime = new Date(meeting.startDate);
-    endTime.setMinutes(
-      new Date(endTime).getMinutes() + meeting.duration
-    );
+    endTime.setMinutes(new Date(endTime).getMinutes() + meeting.duration);
 
-    startTime.setMinutes(
-      startTime.getMinutes() - 5
-    )
+    startTime.setMinutes(startTime.getMinutes() - 5);
 
     if (!isNowBetween(new Date(meeting.startDate), endTime)) {
       setJoinEventWarning(true);
-    } else{
-      navigate(`/meeting/${meeting.roomId}`)
+    } else {
+      navigate(`/meeting/${meeting.roomId}`);
     }
   };
 
@@ -40,46 +36,50 @@ const GroupMeetingItem = ({meeting, isNext}) => {
   }, [joinEventWarning]);
 
   return (
-    <div
-      className="flex items-center bg-BG_GRAY paragraph-lg "
-    >
+    <div className="flex items-center bg-BG_GRAY paragraph-lg ">
       <div className="md:hidden grid grid-cols-3 py-2 gap-y-2 items-center px-2 border rounded-2xl md:border-none w-full">
         <div className="paragraph-sm col-span-2">
           <div>{moment(meeting.startDate).format("dd, Do MMM YYYY")}</div>
           {moment(meeting.startDate).format("HH:mm")} Uhr
         </div>
         <div className="paragraph-sm">{meeting.duration} min</div>
-        {
-          isNext &&
+        {isNext && (
           <div className={"flex flex-col col-span-3 gap-1 items-center"}>
-            <PrimaryButton isInversed={true} handleButtonClick={handleJoinMeeting}>Videokonferenz</PrimaryButton>
-            {
-              joinEventWarning &&
+            <PrimaryButton
+              isInversed={true}
+              handleButtonClick={handleJoinMeeting}
+            >
+              Videokonferenz
+            </PrimaryButton>
+            {joinEventWarning && (
               <div className="text-center paragraph-sm text-PURPLE_PRIMARY">
                 Dein Termin hat noch nicht begonnen.
               </div>
-            }
+            )}
           </div>
-        }
+        )}
       </div>
-      <div
-        className="hidden md:grid grid-cols-5 py-2 items-center mx-2 border rounded-md md:border-none w-full paragraph-md"
-      >
-        <div className={"col-span-2"}>{moment(meeting.startDate).format("dd, Do MMMM YYYY")}</div>
+      <div className="hidden md:grid grid-cols-5 py-2 items-center mx-2 border rounded-md md:border-none w-full paragraph-md">
+        <div className={"col-span-2"}>
+          {moment(meeting.startDate).format("dd, Do MMMM YYYY")}
+        </div>
         <div>{moment(meeting.startDate).format("HH:mm")} Uhr</div>
         <div>{meeting.duration} min</div>
-        {
-          isNext &&
+        {isNext && (
           <div className={"flex flex-col gap-1 items-center"}>
-            <PrimaryButton isInversed={true} handleButtonClick={handleJoinMeeting}>Videokonferenz</PrimaryButton>
-            {
-              joinEventWarning &&
+            <PrimaryButton
+              isInversed={true}
+              handleButtonClick={handleJoinMeeting}
+            >
+              Videokonferenz
+            </PrimaryButton>
+            {joinEventWarning && (
               <div className="text-center paragraph-sm text-PURPLE_PRIMARY">
                 Dein Termin hat noch nicht begonnen.
               </div>
-            }
+            )}
           </div>
-        }
+        )}
       </div>
     </div>
   );
@@ -112,9 +112,14 @@ export default function GroupTermineSubPage({ group }) {
         {group.futureMeetings &&
           group.futureMeetings.length > 0 &&
           group.futureMeetings.slice(0, 8).map((meeting, idx) => {
-            return <GroupMeetingItem key={idx} isNext={idx===0} meeting={meeting}/>
-          })
-        }
+            return (
+              <GroupMeetingItem
+                key={idx}
+                isNext={idx === 0}
+                meeting={meeting}
+              />
+            );
+          })}
       </div>
     </div>
   );

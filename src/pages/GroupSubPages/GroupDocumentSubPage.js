@@ -1,6 +1,6 @@
 import React from "react";
 import { BsDownload } from "react-icons/bs";
-import {groupThemeOptions} from "../../../util/form.helper";
+import { groupThemeOptions } from "./../../util/form.helper";
 
 const GroupDocumentSubPage = ({ group }) => {
   const chosenTheme = groupThemeOptions.find(
@@ -19,6 +19,6 @@ const GroupDocumentSubPage = ({ group }) => {
       </div>
     </div>
   );
-}
+};
 
 export default GroupDocumentSubPage;
