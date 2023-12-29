@@ -1,7 +1,7 @@
 import React from "react";
-import ProfileSubPage from "./ProfileSubPages/ProfileSubPage";
-import UserSettingsSubPage from "./ProfileSubPages/UserSettingsSubPage";
-import UserSubscriptionSubPage from "./ProfileSubPages/UserSubscriptionSubPage";
+import ProfileSubPage from "../../pages/ProfileSubPages/ProfileSubPage";
+import UserSettingsSubPage from "../../pages/ProfileSubPages/UserSettingsSubPage";
+import UserSubscriptionSubPage from "../../pages/ProfileSubPages/UserSubscriptionSubPage";
 import NavbarSub from "../Navigation/NavbarSub";
 import { Routes, Route } from "react-router-dom";
 

@@ -1,25 +1,27 @@
-import PrimaryButton from "../../Buttons/PrimaryButton";
-import {useDispatch, useSelector} from "react-redux";
-import {selectAuth} from "../../../features/auth/authSlice";
-import ProfileEditForm from "../../../features/profile/components/ProfileEditForm";
-import {updateProfile} from "../../../features/profile/profileSlice";
+import PrimaryButton from "../../components/Buttons/PrimaryButton";
+import { useDispatch, useSelector } from "react-redux";
+import { selectAuth } from "./../../features/auth/authSlice";
+import ProfileEditForm from "./../../features/profile/components/ProfileEditForm";
+import { updateProfile } from "./../../features/profile/profileSlice";
 
 export default function ProfileSubPage() {
-  const {user} = useSelector(selectAuth)
-  const dispatch = useDispatch()
+  const { user } = useSelector(selectAuth);
+  const dispatch = useDispatch();
 
   const handleUpdate = async (values) => {
     try {
-      const response = await dispatch(updateProfile({
-        alias: values.alias,
-      }))
-      if (!response) throw Error("something went wrong")
+      const response = await dispatch(
+        updateProfile({
+          alias: values.alias,
+        })
+      );
+      if (!response) throw Error("something went wrong");
     } catch (e) {
       // handle the response
       // if an error than don't go to next step but show the error, otherwise proceed to next step.
-      console.log("Error", e)
+      console.log("Error", e);
     }
-  }
+  };
 
   return (
     <div className="flex flex-col p-4 ">
@@ -30,7 +32,7 @@ export default function ProfileSubPage() {
         </div>
       </div>
       <div className={"max-w-lg"}>
-        <ProfileEditForm onSubmit={handleUpdate} user={user}/>
+        <ProfileEditForm onSubmit={handleUpdate} user={user} />
       </div>
       {/* <hr className="border-l border-BORDER_PRIMARY my-4" />
       <div className="flex flex-col ">
