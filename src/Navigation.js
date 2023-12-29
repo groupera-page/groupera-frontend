@@ -1,5 +1,10 @@
-import {BrowserRouter as Router, Routes, Route, useNavigate} from "react-router-dom";
-import {ThemeProvider} from "styled-components";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useNavigate,
+} from "react-router-dom";
+import { ThemeProvider } from "styled-components";
 
 import styleTheme from "./styleTheme";
 import ProtectionLayout from "./layouts/ProtectionLayout";
@@ -21,35 +26,56 @@ import ResetPassword from "./features/auth/pages/ResetPassword";
 import VideoApp from "./features/videoCalls/VideoApp";
 import React from "react";
 import logoSvg from "./assets/imgLogos/logoNoBg.svg";
+
+import EMGSlate from "./pages/EMGSlate";
 import AdminOverview from "./features/admin/AdminOverview";
 
 const SimpleNavbar = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <div className="bg-BG_GRAY flex justify-center h-16 items-center fixed w-full shadow-md z-10">
-      <img src={logoSvg} onClick={() => navigate("/")} alt="logo" className="lg:w-32 w-20 cursor-pointer" />
+      <img
+        src={logoSvg}
+        onClick={() => navigate("/")}
+        alt="logo"
+        className="lg:w-32 w-20 cursor-pointer"
+      />
     </div>
-  )
-}
+  );
+};
 
 function Navigation() {
+  const underConstruction = true;
+
+  if (underConstruction) {
+    return <EMGSlate />;
+  }
   return (
     <ThemeProvider theme={styleTheme}>
       <Router>
         <Routes>
-          <Route path="/auth" element={<ProtectionLayout protect={false}/>}>
-            <Route path="/auth/login" element={ <Login/> } />
-            <Route path="/auth/signup" element={ <SignUp/> } />
-            <Route path="/auth/resetPassword/:resetPasswordToken" element={ <ResetPassword/> } />
-            <Route path="/auth/forgotPassword" element={ <RequestResetPassword/> } />
+          <Route path="/auth" element={<ProtectionLayout protect={false} />}>
+            <Route path="/auth/login" element={<Login />} />
+            <Route path="/auth/signup" element={<SignUp />} />
+            <Route
+              path="/auth/resetPassword/:resetPasswordToken"
+              element={<ResetPassword />}
+            />
+            <Route
+              path="/auth/forgotPassword"
+              element={<RequestResetPassword />}
+            />
           </Route>
-          <Route element={<ProtectionLayout/>}>
-            <Route path="meeting/:meetingId" element={
-              <>
-                <SimpleNavbar/>
-                <VideoApp/>
-              </>
-            } />
+          <Route element={<ProtectionLayout />}>
+            <Route
+              path="meeting/:meetingId"
+              element={
+                <>
+                  <SimpleNavbar />
+                  <VideoApp />
+                </>
+              }
+            />
             <Route
               path="admin-overview"
               element={
@@ -138,7 +164,7 @@ function Navigation() {
             {/*<Route path="/profile" element={<div>Profile</div>} />*/}
           </Route>
         </Routes>
-        <AlertsWrapper/>
+        <AlertsWrapper />
       </Router>
     </ThemeProvider>
   );
