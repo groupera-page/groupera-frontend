@@ -36,8 +36,8 @@ const GroupMeetingItem = ({ meeting, isNext }) => {
   }, [joinEventWarning]);
 
   return (
-    <div className="flex items-center bg-BG_GRAY paragraph-lg ">
-      <div className="md:hidden grid grid-cols-3 py-2 gap-y-2 items-center px-2 border rounded-2xl md:border-none w-full">
+    <div className="flex items-center  paragraph-lg ">
+      <div className="bg-BG_GRAY md:hidden grid grid-cols-3 py-2 gap-y-2 items-center px-2 border rounded-2xl md:border-none w-full">
         <div className="paragraph-sm col-span-2">
           <div>{moment(meeting.startDate).format("dd, Do MMM YYYY")}</div>
           {moment(meeting.startDate).format("HH:mm")} Uhr

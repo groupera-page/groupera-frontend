@@ -93,6 +93,7 @@ function Navigation() {
               path="/"
               element={
                 <>
+                  <ScrollToTop />
                   <Home />
                 </>
               }
@@ -102,9 +103,8 @@ function Navigation() {
               path="/groups"
               element={
                 <>
-                  <ScrollToTop>
-                    <GroupsPage />
-                  </ScrollToTop>
+                  <ScrollToTop />
+                  <GroupsPage />
                 </>
               }
             />
@@ -113,9 +113,8 @@ function Navigation() {
               path="/groups/group/create"
               element={
                 <>
-                  <ScrollToTop>
-                    <MultiStepGroupCreate />
-                  </ScrollToTop>
+                  <ScrollToTop />
+                  <MultiStepGroupCreate />
                 </>
               }
             />
@@ -124,9 +123,8 @@ function Navigation() {
               path="/groups/:groupId/edit"
               element={
                 <>
-                  <ScrollToTop>
-                    <GroupEditPage />
-                  </ScrollToTop>
+                  <ScrollToTop />
+                  <GroupEditPage />
                 </>
               }
             />
@@ -134,9 +132,8 @@ function Navigation() {
               path="/groups/:groupId/edit/event/:eventId"
               element={
                 <>
-                  <ScrollToTop>
-                    <GroupEventPage />
-                  </ScrollToTop>
+                  <ScrollToTop />
+                  <GroupEventPage />
                 </>
               }
             />
