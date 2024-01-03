@@ -1,7 +1,7 @@
 import React from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import "../../../components/Signup/StepFormComponents/datepicker-override.css";
+import "../../../styling/datepicker-override.css";
 import de from "date-fns/locale/de";
 import { AiOutlineCalendar } from "react-icons/ai";
 import { AiOutlineWarning } from "react-icons/ai";

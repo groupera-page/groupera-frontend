@@ -9,7 +9,7 @@ import StepIndicator from "../components/RegStepper";
 import { setAuthToken } from "../authSlice";
 import PrimaryButton from "../../../components/Buttons/PrimaryButton";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
-import GroupFinishStep from "../../../components/Signup/StepFormComponents/GroupSteps/GroupFinishStep";
+import GroupFinishStep from "./GroupFinishStep";
 
 const SignUp = () => {
   const [searchParams] = useSearchParams();
