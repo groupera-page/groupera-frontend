@@ -23,7 +23,7 @@ export default function MenusContainer() {
   }, [openMenuMobile]);
 
   return (
-    <div className="lg:flex">
+    <>
       <MenuSidebar
         openMenuMobile={openMenuMobile}
         handleMenuMobile={handleMenuMobile}
@@ -37,6 +37,6 @@ export default function MenusContainer() {
         openMenuMobile={openMenuMobile}
         handleMenuMobile={handleMenuMobile}
       />
-    </div>
+    </>
   );
 }
