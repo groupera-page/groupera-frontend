@@ -5,10 +5,8 @@ import {
   useNavigate,
 } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
-
 import styleTheme from "./styleTheme";
 import ProtectionLayout from "./layouts/ProtectionLayout";
-
 import Home from "./pages/HomePage";
 import Login from "./features/auth/pages/Login";
 import SignUp from "./features/auth/pages/SignUp";
@@ -51,6 +49,7 @@ function Navigation() {
   return (
     <ThemeProvider theme={styleTheme}>
       <Router>
+        <MenusContainer />
         <Routes>
           <Route path="/auth" element={<ProtectionLayout protect={false} />}>
             <Route path="/auth/login" element={<Login />} />
@@ -64,7 +63,14 @@ function Navigation() {
               element={<RequestResetPassword />}
             />
           </Route>
-          <Route element={<ProtectionLayout />}>
+
+          <Route
+            element={
+              <>
+                <ProtectionLayout />
+              </>
+            }
+          >
             <Route
               path="meeting/:meetingId"
               element={
@@ -74,11 +80,11 @@ function Navigation() {
                 </>
               }
             />
+
             <Route
               path="admin-overview"
               element={
                 <>
-                  <MenusContainer />
                   <AdminOverview />
                 </>
               }
@@ -87,7 +93,6 @@ function Navigation() {
               path="/"
               element={
                 <>
-                  <MenusContainer />
                   <Home />
                 </>
               }
@@ -98,7 +103,6 @@ function Navigation() {
               element={
                 <>
                   <ScrollToTop>
-                    <MenusContainer />
                     <GroupsPage />
                   </ScrollToTop>
                 </>
@@ -110,7 +114,6 @@ function Navigation() {
               element={
                 <>
                   <ScrollToTop>
-                    <MenusContainer />
                     <MultiStepGroupCreate />
                   </ScrollToTop>
                 </>
@@ -122,7 +125,6 @@ function Navigation() {
               element={
                 <>
                   <ScrollToTop>
-                    <MenusContainer />
                     <GroupEditPage />
                   </ScrollToTop>
                 </>
@@ -133,7 +135,6 @@ function Navigation() {
               element={
                 <>
                   <ScrollToTop>
-                    <MenusContainer />
                     <GroupEventPage />
                   </ScrollToTop>
                 </>
@@ -144,7 +145,6 @@ function Navigation() {
               path="/groups/:groupId/*"
               element={
                 <>
-                  <MenusContainer />
                   <GroupDetailPage />
                 </>
               }
@@ -154,7 +154,6 @@ function Navigation() {
               path="/profile/*"
               element={
                 <>
-                  <MenusContainer />
                   <ProfilePage />
                 </>
               }

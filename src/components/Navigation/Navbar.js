@@ -33,13 +33,13 @@ const Navbar = ({ handleMenuMobile, openMenuMobile }) => {
 
       <div className="flex items-center justify-end lg:mr-14 z-20 h-16">
         {!openMenuMobile && (
-          <div className="border-l border-gray-300 h-8 mx-2 "></div>
+          <div className="border-l border-gray-300 h-8"></div>
         )}
         <MenuDropDown
           openMenuMobile={openMenuMobile}
           title={truncateString(user.alias, 10)}
         >
-          <div className="">
+          <div>
             <NavLink to={`/profile/Profil`}>
               <li className="p-2 flex justify-center whitespace-nowrap paragraph-lg ">
                 <div className="mr- paragraph-lg relative">
