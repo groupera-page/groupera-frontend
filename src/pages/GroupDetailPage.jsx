@@ -5,9 +5,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import PrimaryButton from "../components/Buttons/PrimaryButton";
 import { BsArrowLeft } from "react-icons/bs";
 import GroupDetailCard from "../components/GroupDetails/GroupDetailCard";
-import GroupDetailTable from "../components/GroupDetails/GroupDetailTable";
+import TableContainer from "../components/Globals/TableContainer";
 import { selectAuth } from "../features/auth/authSlice";
 import { findGroup } from "../features/groups/groupSlice";
+import { Routes, Route } from "react-router-dom";
+import GroupMeetingsSubPage from "./GroupSubPages/GroupMeetingsSubPage";
+import GroupPinnwandSubPage from "./GroupSubPages/GroupPinnwandSubPage";
+import GroupMemberSubPage from "./GroupSubPages/GroupMemberSubPage";
+import GroupDocumentSubPage from "./GroupSubPages/GroupDocumentSubPage";
 
 const GroupDetailPage = () => {
   const { groupId } = useParams();
@@ -28,6 +33,8 @@ const GroupDetailPage = () => {
     // if (group) return
     dispatch(findGroup(groupId));
   }, []);
+
+  const subPages = ["Termine", "MitgliederInnen", "Unterlagen"];
 
   return (
     <PageContainer>
@@ -53,7 +60,31 @@ const GroupDetailPage = () => {
           />
         )}
         {group && group.verified
-          ? (isMember || isAdmin) && <GroupDetailTable group={group} />
+          ? (isMember || isAdmin) && (
+              <TableContainer subPages={subPages}>
+                <Routes>
+                  <Route
+                    path="/"
+                    element={<GroupMeetingsSubPage group={group} />}
+                  />
+
+                  <Route
+                    path={subPages[0]}
+                    element={<GroupMeetingsSubPage group={group} />}
+                  />
+
+                  <Route path="Pinnwand" element={<GroupPinnwandSubPage />} />
+                  <Route
+                    path={subPages[1]}
+                    element={<GroupMemberSubPage group={group} />}
+                  />
+                  <Route
+                    path={subPages[2]}
+                    element={<GroupDocumentSubPage group={group} />}
+                  />
+                </Routes>
+              </TableContainer>
+            )
           : isAdmin && (
               <div className="mt-8">
                 <h6 className="mb-4">

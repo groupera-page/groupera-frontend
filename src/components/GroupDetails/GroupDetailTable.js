@@ -1,5 +1,5 @@
 import React from "react";
-import GroupTermineSubPage from "../../pages/GroupSubPages/GroupTermineSubPage";
+import GroupMeetingsSubPage from "../../pages/GroupSubPages/GroupMeetingsSubPage";
 import GroupPinnwandSubPage from "../../pages/GroupSubPages/GroupPinnwandSubPage";
 import GroupMemberSubPage from "../../pages/GroupSubPages/GroupMemberSubPage";
 import GroupDocumentSubPage from "../../pages/GroupSubPages/GroupDocumentSubPage";
@@ -14,9 +14,12 @@ const GroupDetailTable = ({ group }) => {
       <NavbarSub subPages={subPages} />
 
       <Routes>
-        <Route path="/" element={<GroupTermineSubPage group={group} />} />
+        <Route path="/" element={<GroupMeetingsSubPage group={group} />} />
 
-        <Route path="Termine" element={<GroupTermineSubPage group={group} />} />
+        <Route
+          path="Termine"
+          element={<GroupMeetingsSubPage group={group} />}
+        />
 
         <Route path="Pinnwand" element={<GroupPinnwandSubPage />} />
         <Route
