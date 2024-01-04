@@ -10,7 +10,7 @@ const fadeInVariants = {
   exit: { opacity: 0 },
 };
 
-const LazyLoadImg = ({ img }) => {
+const LazyLoadImg = ({ img, customStyling }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   if (!img.public_id) {
@@ -23,7 +23,7 @@ const LazyLoadImg = ({ img }) => {
         <motion.img
           src={overlayImage}
           alt="Placeholder"
-          className="rounded-md object-cover filter blur-md"
+          className={`rounded-md object-cover filter blur-md ${customStyling}`}
         />
       )}
       <motion.div
@@ -32,7 +32,7 @@ const LazyLoadImg = ({ img }) => {
         exit="exit"
         variants={fadeInVariants}
         transition={{ duration: 0.3 }}
-        className="rounded-t-md overflow-hidden"
+        className={`rounded-t-md overflow-hidden ${customStyling}`}
       >
         <Image
           cloudName="di8ujuqae"
