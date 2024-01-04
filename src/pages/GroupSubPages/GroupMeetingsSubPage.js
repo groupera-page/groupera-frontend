@@ -88,18 +88,16 @@ const GroupMeetingItem = ({ meeting, isNext }) => {
 export default function GroupMeetingsSubPage({ group }) {
   if (!group.meetings || group.meetings.length === 0) {
     return (
-      <div className="mt-6">
-        <div className="flex items-center bg-BG_GRAY paragraph-lg ">
-          <div className="grid grid-cols-3 py-2 items-center px-2 border rounded-2xl md:border-none w-full">
-            <div className="paragraph-md">Keine Termine</div>
-          </div>
+      <div className="flex items-center bg-BG_GRAY paragraph-lg ">
+        <div className="grid grid-cols-3 py-2 items-center px-2 border rounded-2xl md:border-none w-full">
+          <div className="paragraph-md">Keine Termine</div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="grid grid-cols-1 mt-6 gap-2 p-2">
+    <div className="grid grid-cols-1 gap-2 p-2">
       <div
         className={`hidden md:grid md:grid-cols-5 mx-2 paragraph-tiny text-black border-b border-BORDER_PRIMARY pb-4`}
       >

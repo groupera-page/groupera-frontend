@@ -1,9 +1,9 @@
 import React from "react";
 import NavbarSub from "../Navigation/NavbarSub";
 
-export default function TableContainer({ subPages, children }) {
+export default function TableContainer({ subPages, children, hasBorder }) {
   return (
-    <div className="shadow-md border rounded-lg w-full ">
+    <div className={`${hasBorder ? "shadow-md border rounded-lg w-full" : ""}`}>
       <NavbarSub subPages={subPages} />
       {children}
     </div>

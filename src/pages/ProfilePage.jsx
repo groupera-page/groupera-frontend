@@ -11,7 +11,7 @@ export default function ProfilePage({ user }) {
   return (
     <PageContainer>
       <div className="lg:pb-0 w-full mt-4 lg:mt-10 lg:p-14">
-        <TableContainer subPages={subPages}>
+        <TableContainer subPages={subPages} hasBorder={true}>
           <Routes>
             <Route path={subPages[0]} element={<ProfileSubPage />} />
             <Route

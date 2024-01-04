@@ -2,11 +2,13 @@ import React from "react";
 
 const GroupMemberSubPage = ({ group }) => {
   if (!group.members || group.members.length === 0) {
-    return <div className="mt-8 paragraph-md">Noch keine MitgliederInnen</div>;
+    return (
+      <div className="mt-6 mx-4 paragraph-md">Noch keine MitgliederInnen</div>
+    );
   }
 
   return (
-    <div className="mt-8">
+    <div className="mt-4">
       <div className="flex bg-BG_GRAY py-2 justify-center">
         <div className="w-full border-b border-TEXT_GRAY">
           <div className="flex justify-between items-center mb-4 ">
