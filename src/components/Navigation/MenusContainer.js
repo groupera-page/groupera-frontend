@@ -19,7 +19,7 @@ export default function MenusContainer() {
     const openMenu = openMenuDropDown ? false : true;
     setOpenMenuDropDown(openMenu);
   }
-  console.log(isMeetingRoute);
+
   // Prevent scrolling when mobile menu is open
   useEffect(() => {
     if (openMenuMobile) {

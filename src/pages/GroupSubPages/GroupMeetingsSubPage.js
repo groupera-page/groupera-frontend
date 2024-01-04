@@ -95,6 +95,7 @@ export default function GroupMeetingsSubPage({ group }) {
       </div>
     );
   }
+  console.log(group);
 
   return (
     <div className="grid grid-cols-1 gap-2 p-2">
