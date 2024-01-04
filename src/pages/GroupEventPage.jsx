@@ -1,10 +1,10 @@
-import React, {useEffect} from "react";
-import PageContainer from "../components/Globals/PageContainer";
+import React, { useEffect } from "react";
+import PageContainer from "../components/GlobalLayout/PageContainer";
 import MeetingEditForm from "../features/groups/components/MeetingEditForm";
-import {useNavigate, useParams} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {findGroup, updateGroupMeeting} from "../features/groups/groupSlice";
-import {selectAuth} from "../features/auth/authSlice";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { findGroup, updateGroupMeeting } from "../features/groups/groupSlice";
+import { selectAuth } from "../features/auth/authSlice";
 
 const GroupEventPage = () => {
   const { groupId, eventId } = useParams();
@@ -16,7 +16,7 @@ const GroupEventPage = () => {
   );
   const { user } = useSelector(selectAuth);
 
-  const meeting = group?.meetings.find(m => m.id === eventId)
+  const meeting = group?.meetings.find((m) => m.id === eventId);
 
   // const isMember = group?.members?.length > 0 && group.members.some(m => m.id === user.id)
   const isAdmin = user.id === group?.moderator.id;
@@ -28,7 +28,7 @@ const GroupEventPage = () => {
 
   const handleUpdate = async (values) => {
     if (!isAdmin) return;
-    const startDate = new Date(`${values.startDate} ${values.time}`)
+    const startDate = new Date(`${values.startDate} ${values.time}`);
     try {
       const response = await dispatch(
         updateGroupMeeting({
@@ -56,13 +56,12 @@ const GroupEventPage = () => {
     <PageContainer>
       <div className="flex flex-col w-full mt-4 lg:mt-24 lg:pl-28">
         <h3 className="mb-1">Termin bearbeiten</h3>
-        {
-          meeting &&
-          <MeetingEditForm onSubmit={handleUpdate} meeting={meeting}/>
-        }
+        {meeting && (
+          <MeetingEditForm onSubmit={handleUpdate} meeting={meeting} />
+        )}
       </div>
     </PageContainer>
   );
-}
+};
 
 export default GroupEventPage;

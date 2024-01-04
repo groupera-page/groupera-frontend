@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
-import PageContainer from "../components/Globals/PageContainer";
+import PageContainer from "../components/GlobalLayout/PageContainer";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import PrimaryButton from "../components/Buttons/PrimaryButton";
 import { BsArrowLeft } from "react-icons/bs";
 import GroupDetailCard from "../components/GroupDetails/GroupDetailCard";
-import TableContainer from "../components/Globals/TableContainer";
+import TableContainer from "../components/GlobalLayout/TableContainer";
 import { selectAuth } from "../features/auth/authSlice";
 import { findGroup } from "../features/groups/groupSlice";
 import { Routes, Route } from "react-router-dom";
@@ -38,7 +38,7 @@ const GroupDetailPage = () => {
 
   return (
     <PageContainer>
-      <div className="flex flex-col w-full lg:mx-14 mt-4 lg:mt-10 lg:pr-28">
+      <div className="flex flex-col w-full lg:px-14 pt-4 lg:pt-10 lg:pr-28">
         <div className="mb-4">
           <PrimaryButton
             isInversed={true}

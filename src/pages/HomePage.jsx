@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import PageContainer from "../components/Globals/PageContainer";
+import PageContainer from "../components/GlobalLayout/PageContainer";
 import PrimaryButton from "../components/Buttons/PrimaryButton";
 import OverviewGroupItem from "../components/Overview/OverviewGroupItem";
 

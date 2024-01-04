@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import PageContainer from "../components/Globals/PageContainer";
+import PageContainer from "../components/GlobalLayout/PageContainer";
 import GroupCardContainer from "../components/GroupSearch/GroupCardContainer";
 import { useDispatch, useSelector } from "react-redux";
 import {
