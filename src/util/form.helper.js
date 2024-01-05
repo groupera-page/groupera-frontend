@@ -320,6 +320,7 @@ export const meetingFields = {
     type: "date",
     name: "meetingStartDate",
     label: "Wann soll das erste Gruppen-Meeting stattfinden?",
+    min: new Date().toISOString().split("T")[0],
     validate: [required],
   },
   time: {
