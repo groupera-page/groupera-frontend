@@ -11,8 +11,8 @@ export default function NavbarSub({ subPages }) {
     !pathname.includes("unterlagen");
 
   return (
-    <div className="border-BORDER_PRIMARY border-b overflow-scroll">
-      <ul className="flex">
+    <div className="overflow-scroll">
+      <ul className="flex border-BORDER_PRIMARY border-b ">
         {subPages.map((page, index) => (
           <li
             className="flex relative hover:shadow-md rounded-md paragraph-lead text-TEXT_GRAY"

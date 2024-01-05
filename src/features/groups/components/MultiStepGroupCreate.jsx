@@ -15,7 +15,7 @@ import {
 } from "../../auth/util/funnelSteps";
 import { createGroup } from "../groupSlice";
 import GroupCreateForm from "./GroupCreateForm";
-import GroupFinishStep from "../../../components/Signup/StepFormComponents/GroupSteps/GroupFinishStep";
+import GroupFinishStep from "../../auth/pages/GroupFinishStep.jsx";
 
 const steps = [
   groupThemeStep,
@@ -26,8 +26,8 @@ const steps = [
     ...groupSettingsStep,
     onSubmit: (values) => {
       const startDate = new Date(
-  `${values.meetingStartDate} ${values.meetingTime}`
-      )
+        `${values.meetingStartDate} ${values.meetingTime}`
+      );
       return createGroup({
         name: values.groupName,
         description: values.groupDescription,
@@ -41,8 +41,8 @@ const steps = [
           },
           duration: values.meetingDuration,
         },
-      })
-    }
+      });
+    },
   },
   groupCreateSuccessStep,
 ];

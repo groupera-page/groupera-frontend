@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
 import PrimaryButton from "../../components/Buttons/PrimaryButton";
-import { isNowBetween } from "./../../util/formatMeetingDate";
+import { isNowBetween } from "../../util/formatMeetingDate";
 import { useNavigate } from "react-router-dom";
 
 const GroupMeetingItem = ({ meeting, isNext }) => {
@@ -36,8 +36,8 @@ const GroupMeetingItem = ({ meeting, isNext }) => {
   }, [joinEventWarning]);
 
   return (
-    <div className="flex items-center bg-BG_GRAY paragraph-lg ">
-      <div className="md:hidden grid grid-cols-3 py-2 gap-y-2 items-center px-2 border rounded-2xl md:border-none w-full">
+    <div className="flex items-center  paragraph-lg ">
+      <div className="bg-BG_GRAY md:hidden grid grid-cols-3 py-2 gap-y-2 items-center px-2 border rounded-2xl md:border-none w-full">
         <div className="paragraph-sm col-span-2">
           <div>{moment(meeting.startDate).format("dd, Do MMM YYYY")}</div>
           {moment(meeting.startDate).format("HH:mm")} Uhr
@@ -85,42 +85,35 @@ const GroupMeetingItem = ({ meeting, isNext }) => {
   );
 };
 
-export default function GroupTermineSubPage({ group }) {
+export default function GroupMeetingsSubPage({ group }) {
   if (!group.meetings || group.meetings.length === 0) {
     return (
-      <div className="mt-6">
-        <div className="flex items-center bg-BG_GRAY paragraph-lg ">
-          <div className="grid grid-cols-3 py-2 items-center px-2 border rounded-2xl md:border-none w-full">
-            <div className="paragraph-md">Keine Termine</div>
-          </div>
+      <div className="flex items-center bg-BG_GRAY paragraph-lg ">
+        <div className="grid grid-cols-3 py-2 items-center px-2 border rounded-2xl md:border-none w-full">
+          <div className="paragraph-md">Keine Termine</div>
         </div>
       </div>
     );
   }
+  console.log(group);
 
   return (
-    <div>
-      <div className="grid grid-cols-1 mt-6 gap-2">
-        <div
-          className={`hidden md:grid md:grid-cols-5 mx-2 paragraph-tiny text-black border-b border-BORDER_PRIMARY pb-4`}
-        >
-          <div className={"col-span-2"}>Datum</div>
-          <div>Uhrzeit</div>
-          <div>Dauer</div>
-          <div></div>
-        </div>
-        {group.futureMeetings &&
-          group.futureMeetings.length > 0 &&
-          group.futureMeetings.slice(0, 8).map((meeting, idx) => {
-            return (
-              <GroupMeetingItem
-                key={idx}
-                isNext={idx === 0}
-                meeting={meeting}
-              />
-            );
-          })}
+    <div className="grid grid-cols-1 gap-2 p-2">
+      <div
+        className={`hidden md:grid md:grid-cols-5 mx-2 paragraph-tiny text-black border-b border-BORDER_PRIMARY pb-4`}
+      >
+        <div className={"col-span-2"}>Datum</div>
+        <div>Uhrzeit</div>
+        <div>Dauer</div>
+        <div></div>
       </div>
+      {group.futureMeetings &&
+        group.futureMeetings.length > 0 &&
+        group.futureMeetings.slice(0, 8).map((meeting, idx) => {
+          return (
+            <GroupMeetingItem key={idx} isNext={idx === 0} meeting={meeting} />
+          );
+        })}
     </div>
   );
 }
