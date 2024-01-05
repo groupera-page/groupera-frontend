@@ -9,7 +9,10 @@ export const isEmail = (value) => {
   return value && !!value.match(emailRegex);
 };
 export const required = (value) =>
-  value ? undefined : "Das Feld darf nicht leer sein";
+  value && value.trim().length >= 3
+    ? undefined
+    : "Das Feld muss mindestens drei Zeichen lang sein";
+
 export const isTrue = (value) =>
   value === true ? undefined : "Terms müssen akzeptiert sein";
 export const number = (value) =>
