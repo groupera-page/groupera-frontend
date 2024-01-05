@@ -53,7 +53,7 @@ export default function MenuDropDown({
             className={`flex items-center cursor-pointer transition-all duration-300 h-full `}
           >
             <div className="flex text-TEXT_PRIMARY items-center ">
-              <div className="mr-2 paragraph-lg relative">
+              <div className="mx-2 paragraph-lg relative">
                 <div className="group text-lg line-clamp-1">
                   {title} <HoverUnderline />
                 </div>

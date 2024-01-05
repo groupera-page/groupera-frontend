@@ -4,17 +4,17 @@ import MenuDropDown from "./Menus/MenuDropDown";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import HoverUnderline from "../Effects/HoverUnderline";
-import {selectAuth} from "../../features/auth/authSlice";
+import { selectAuth } from "../../features/auth/authSlice";
 
 const truncateString = (str, maxLength) => {
   return str.length > maxLength ? str.substring(0, maxLength) + "..." : str;
 };
 
 const Navbar = ({ handleMenuMobile, openMenuMobile }) => {
-  const {user} = useSelector(selectAuth)
+  const { user } = useSelector(selectAuth);
 
   return (
-    <div className="bg-BG_GRAY lg:bg-BG_PRIMARY flex justify-between items-center lg:fixed  text-gray-600 w-full shadow-md z-10 ">
+    <div className="bg-BG_GRAY lg:bg-BG_PRIMARY flex justify-between items-center lg:fixed text-gray-600 w-full shadow-md z-10 ">
       <div className="w-1/4">
         <div className="lg:hidden ">
           <Hamburger
@@ -31,12 +31,15 @@ const Navbar = ({ handleMenuMobile, openMenuMobile }) => {
         <img src={logoSvg} alt="logo" className="lg:w-32 w-20" />
       </div>
 
-      <div className="flex items-center justify-end lg:mr-14  w-1/3 lg:w-1/4 z-20 h-16 ">
+      <div className="flex items-center justify-end lg:mr-14 z-20 h-16">
         {!openMenuMobile && (
-          <div className="border-l border-gray-300 h-8 mx-2 "></div>
+          <div className="border-l border-gray-300 h-8"></div>
         )}
-        <MenuDropDown openMenuMobile={openMenuMobile} title={truncateString(user.alias, 10)}>
-          <div className="">
+        <MenuDropDown
+          openMenuMobile={openMenuMobile}
+          title={truncateString(user.alias, 10)}
+        >
+          <div>
             <NavLink to={`/profile/Profil`}>
               <li className="p-2 flex justify-center whitespace-nowrap paragraph-lg ">
                 <div className="mr- paragraph-lg relative">
@@ -66,6 +69,6 @@ const Navbar = ({ handleMenuMobile, openMenuMobile }) => {
       </div>
     </div>
   );
-}
+};
 
 export default Navbar;

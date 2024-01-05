@@ -2,7 +2,14 @@ import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 import MenuMobile from "./Menus/MenuMobile";
 import MenuSidebar from "./Menus/MenuSideBar";
+import { useSelector } from "react-redux";
+import { selectAuth } from "../../features/auth/authSlice";
+import { useLocation } from "react-router-dom";
+
 export default function MenusContainer() {
+  const { user } = useSelector(selectAuth);
+  const location = useLocation();
+  const isMeetingRoute = location.pathname.includes("meeting/");
   const [openMenuMobile, setOpenMenuMobile] = useState(false);
   const [openMenuDropDown, setOpenMenuDropDown] = useState(false);
   function handleMenuMobile(openMenuMobile) {
@@ -22,8 +29,8 @@ export default function MenusContainer() {
     }
   }, [openMenuMobile]);
 
-  return (
-    <div className="lg:flex">
+  return user && !isMeetingRoute ? (
+    <>
       <MenuSidebar
         openMenuMobile={openMenuMobile}
         handleMenuMobile={handleMenuMobile}
@@ -37,6 +44,6 @@ export default function MenusContainer() {
         openMenuMobile={openMenuMobile}
         handleMenuMobile={handleMenuMobile}
       />
-    </div>
-  );
+    </>
+  ) : null;
 }

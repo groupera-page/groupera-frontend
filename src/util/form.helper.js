@@ -10,6 +10,12 @@ export const isEmail = (value) => {
 };
 export const required = (value) =>
   value ? undefined : "Das Feld darf nicht leer sein";
+
+export const minCharRequired = (value) =>
+  value && value.trim().length >= 3
+    ? undefined
+    : "Das Feld muss min. 3 Zeichen beinhalten";
+
 export const isTrue = (value) =>
   value === true ? undefined : "Terms müssen akzeptiert sein";
 export const number = (value) =>
@@ -123,6 +129,7 @@ export const authFields = {
     type: "date",
     name: "dob",
     label: "Geburtstag",
+    max: new Date().toISOString().split("T")[0],
     validate: [required, (value) => isMinAge(value, 18)],
   },
   gender: {
@@ -238,7 +245,7 @@ export const groupFields = {
     label: "Wie soll deine Gruppe heißen?",
     placeholder: "Name",
     hint: "Bitte gib den Gruppen Namen ein.",
-    validate: [required, (value) => maxLength(value, 70)],
+    validate: [minCharRequired, (value) => maxLength(value, 70)],
   },
   description: {
     type: "textarea",
@@ -246,7 +253,7 @@ export const groupFields = {
     label: "Wie würdest du deine Gruppe beschreiben?",
     placeholder: "Kurze Gruppenbeschreibung",
     maxLength: 500,
-    validate: [required, (value) => maxLength(value, 500)],
+    validate: [minCharRequired, (value) => maxLength(value, 500)],
   },
   selfModerated: {
     type: "inlineSelect",
@@ -314,8 +321,10 @@ export const meetingFields = {
     type: "date",
     name: "meetingStartDate",
     label: "Wann soll das erste Gruppen-Meeting stattfinden?",
+    min: new Date().toISOString().split("T")[0],
     validate: [required],
   },
+
   time: {
     type: "time",
     name: "meetingTime",

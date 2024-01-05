@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import PageContainer from "../components/Globals/PageContainer";
+import PageContainer from "../components/GlobalLayout/PageContainer";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import PrimaryButton from "../components/Buttons/PrimaryButton";

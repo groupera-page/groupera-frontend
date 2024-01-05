@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import VerificationCodeInput from "./VerificationCodeInput";
-import { AiOutlineWarning } from "react-icons/ai";
-import {useDispatch, useSelector} from "react-redux";
-import {resendEmailVerificationCode} from "../authSlice";
+import ErrorField from "./ErrorField";
+import { useDispatch, useSelector } from "react-redux";
+import { resendEmailVerificationCode } from "../authSlice";
 
 const VerificationCodeWrapper = ({
   codeLength = 4,
@@ -11,7 +11,7 @@ const VerificationCodeWrapper = ({
 }) => {
   const emptyCode = Array(codeLength).fill("");
   const [code, setCode] = useState(emptyCode);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const email = useSelector((state) => state.form.authForm?.values?.email);
 
   const handleCode = (e, value, index) => {
@@ -49,8 +49,8 @@ const VerificationCodeWrapper = ({
   };
 
   const handleResendVerificationCode = () => {
-    dispatch(resendEmailVerificationCode(email))
-  }
+    dispatch(resendEmailVerificationCode(email));
+  };
 
   return (
     <div className="mx-10 flex flex-col items-center">
@@ -76,14 +76,7 @@ const VerificationCodeWrapper = ({
         Code erneut senden
       </button>
 
-      {touched && error && (
-        <div className="flex px-4 gap-2 items-right bg-BG_PRIMARY text-PURPLE_PRIMARY border border-PURPLE_PRIMARY rounded-md p-1 my-1">
-          <div>
-            <AiOutlineWarning size={26} />
-          </div>
-          {error}
-        </div>
-      )}
+      {touched && error && <ErrorField errorText={error} />}
 
       {/* {hint && <span className="paragraph-tiny my-1">{hint}</span>} */}
     </div>
