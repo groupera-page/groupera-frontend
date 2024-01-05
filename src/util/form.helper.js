@@ -129,6 +129,7 @@ export const authFields = {
     type: "date",
     name: "dob",
     label: "Geburtstag",
+    max: new Date().toISOString().split("T")[0],
     validate: [required, (value) => isMinAge(value, 18)],
   },
   gender: {
@@ -323,6 +324,7 @@ export const meetingFields = {
     min: new Date().toISOString().split("T")[0],
     validate: [required],
   },
+
   time: {
     type: "time",
     name: "meetingTime",

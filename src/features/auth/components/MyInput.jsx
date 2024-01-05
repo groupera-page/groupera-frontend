@@ -8,6 +8,7 @@ const MyInput = ({
   type,
   hint,
   min,
+  max,
   meta: { touched, error },
 }) => (
   <div className="my-2.5">
@@ -18,6 +19,7 @@ const MyInput = ({
         placeholder={placeholder || label}
         type={type}
         min={min}
+        max={max}
         className="w-full paragraph-md rounded-md py-2 px-4  placeholder-TEXT_PRIMARY bg-BG_PRIMARY border border-BORDER_PRIMARY"
       />
     </div>
