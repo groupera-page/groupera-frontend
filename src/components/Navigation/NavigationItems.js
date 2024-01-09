@@ -8,14 +8,14 @@ import {
   BsPeopleFill,
 } from "react-icons/bs";
 import { CiLogout } from "react-icons/ci";
-import {useDispatch, useSelector} from "react-redux";
-import {logout, selectAuth} from "../../features/auth/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { logout, selectAuth } from "../../features/auth/authSlice";
 
 const Navigation = ({ handleMenuMobile }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const {user} = useSelector(selectAuth)
+  const { user } = useSelector(selectAuth);
 
   // const [cookies, setCookie, removeCookie] = useCookies(['refreshToken']);
 
@@ -34,9 +34,9 @@ const Navigation = ({ handleMenuMobile }) => {
   };
 
   return (
-    <div className="flex flex-col justify-between h-1/2 lg:h-full mx-5 lg:pb-20">
-      <ul className="list-none flex flex-col gap-5 ">
-        <li className="flex relative ">
+    <div className="flex flex-col justify-between h-1/2 lg:h-full mx-5 lg:pb-20 ">
+      <ul className="list-none flex flex-col gap-5">
+        <li className="flex relative">
           <NavLink to="/" onClick={() => handleMenuMobile()}>
             {({ isActive }) => (
               <>
@@ -54,7 +54,7 @@ const Navigation = ({ handleMenuMobile }) => {
                       size={32}
                     />
                   </div>
-                  <div className="relative group paragraph-lg">
+                  <div className="paragraph-lg">
                     Übersicht
                     <div className={`${!isActive ? "" : "hidden"} `}>
                       <HoverUnderline />
@@ -83,7 +83,7 @@ const Navigation = ({ handleMenuMobile }) => {
                       size={32}
                     />
                   </div>
-                  <div className="relative group paragraph-lg">
+                  <div className="paragraph-lg">
                     Gruppen
                     <div className={`${!isActive ? "" : "hidden"} `}>
                       <HoverUnderline />
@@ -94,22 +94,24 @@ const Navigation = ({ handleMenuMobile }) => {
             )}
           </NavLink>
         </li>
-        {user.role === "admin" && <li className="flex relative">
-          <NavLink to="/admin-overview" onClick={() => handleMenuMobile()}>
-            {({isActive}) => (
-              <>
-                <div className="flex flex-row items-center">
-                  <div className="relative group paragraph-lg">
-                    Admin
-                    <div className={`${!isActive ? "" : "hidden"} `}>
-                      <HoverUnderline/>
+        {user.role === "admin" && (
+          <li className="flex relative">
+            <NavLink to="/admin-overview" onClick={() => handleMenuMobile()}>
+              {({ isActive }) => (
+                <>
+                  <div className="flex flex-row items-center">
+                    <div className="relative group paragraph-lg">
+                      Admin
+                      <div className={`${!isActive ? "" : "hidden"} `}>
+                        <HoverUnderline />
+                      </div>
                     </div>
                   </div>
-                </div>
-              </>
-            )}
-          </NavLink>
-        </li>}
+                </>
+              )}
+            </NavLink>
+          </li>
+        )}
       </ul>
       <div
         className={`flex items-center text-TEXT_PRIMARY cursor-pointer`}

@@ -4,7 +4,7 @@ const GroupFinishStep = ({ groupId, isModerator }) => {
   const [isCopied, setIsCopied] = useState(false);
 
   function copyToClipboard() {
-    const textToCopy = `https://app.groupera.de/groups/${groupId}`; // Replace with actual group link
+    const textToCopy = `https://app.groupera.de/groups/${groupId}`;
 
     const textarea = document.createElement("textarea");
     textarea.value = textToCopy;

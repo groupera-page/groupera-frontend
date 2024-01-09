@@ -1,17 +1,17 @@
 import { configureStore } from "@reduxjs/toolkit";
-import logger from "redux-logger"
-import { reducer as formReducer } from "redux-form"
+import logger from "redux-logger";
+import { reducer as formReducer } from "redux-form";
 
 import authReducer from "./features/auth/authSlice";
 import groupsReducer from "./features/groups/groupSlice";
 import usersReducer from "./features/admin/userSlice";
 import alertReducer from "./features/alert/alertSlice";
-import mockDataSlice from "./mockDataSlice";
+// import mockDataSlice from "./mockDataSlice";
 
-let middlewares = []
+let middlewares = [];
 
-if (['development', 'staging'].includes(process.env.NODE_ENV)) {
-  middlewares = [logger]
+if (["development", "staging"].includes(process.env.NODE_ENV)) {
+  middlewares = [logger];
 }
 
 export const store = configureStore({
@@ -43,7 +43,8 @@ export const store = configureStore({
     //     }
     //   }
     // }),
-    mockData: mockDataSlice,
+    // mockData: mockDataSlice,
   },
-  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(...middlewares),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(...middlewares),
 });

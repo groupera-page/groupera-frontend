@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import PageContainer from "../components/Globals/PageContainer";
+import PageContainer from "../components/GlobalLayout/PageContainer";
 import PrimaryButton from "../components/Buttons/PrimaryButton";
 import OverviewGroupItem from "../components/Overview/OverviewGroupItem";
 
@@ -38,7 +38,7 @@ const Home = () => {
 
   if (!user?.joinedGroups) {
     return (
-      <div className="flex justify-center items-center p-12 lg:mt-20">
+      <div className="">
         <div className="animate-spin rounded-full border-t-4 border-PURPLE_PRIMARY border-solid h-12 w-12 mr-3"></div>
         {/* <h3>Laden...</h3> */}
       </div>
@@ -47,59 +47,55 @@ const Home = () => {
 
   let allUserGroups = [];
   if (user.joinedGroups && user.joinedGroups.length > 0) {
-    allUserGroups.push(...user.joinedGroups)
+    allUserGroups.push(...user.joinedGroups);
   }
   if (user.moderatedGroups && user.moderatedGroups.length > 0) {
-    allUserGroups.push(...user.moderatedGroups)
+    allUserGroups.push(...user.moderatedGroups);
   }
 
   return (
     <PageContainer>
-      <div className="w-full h-full lg:pr-20 ">
-        <div className="flex flex-col mt-14 lg:mt-11">
-          <h6>{`Hallo ${user.alias}`}</h6>
-          <div className="paragraph-sm md:paragraph-lg">
-            hier sind alle wichtigen Infos für dich zusammengestellt.
-          </div>
+      <div className="flex flex-col pt-14 lg:pt-11">
+        <h6>{`Hallo ${user.alias}`}</h6>
+        <div className="paragraph-sm md:paragraph-lg">
+          hier sind alle wichtigen Infos für dich zusammengestellt.
         </div>
-        <div className="flex flex-col lg:flex-row-reverse gap-2 lg:gap-11 mt-6 md:mt-10">
-          <div className="lg:w-1/2">
-            <OverviewCard
-              title={
-                user.nextMeeting ? "Dein nächster Termin" : "Keine Termine"
-              }
-              desc={
-                user.nextMeeting
-                  ? ""
-                  : "Keine Gruppe in der du Mitglied bist hat kommende Termine."
-              }
-            >
-              {user.nextMeeting && (
-                <OverviewNextEvent nextEvent={user.nextMeeting} />
-              )}
-            </OverviewCard>
-          </div>
+      </div>
+      <div className="flex flex-col lg:flex-row-reverse gap-2 lg:gap-11 mt-6 md:mt-10">
+        <div className="lg:w-1/2">
+          <OverviewCard
+            title={user.nextMeeting ? "Dein nächster Termin" : "Keine Termine"}
+            desc={
+              user.nextMeeting
+                ? ""
+                : "Keine Gruppe in der du Mitglied bist hat kommende Termine."
+            }
+          >
+            {user.nextMeeting && (
+              <OverviewNextEvent nextEvent={user.nextMeeting} />
+            )}
+          </OverviewCard>
+        </div>
 
-          <div className="lg:w-1/2">
-            <OverviewCard
-              title={"Deine Gruppen"}
-              desc={
-                user.joinedGroups?.length > 0 || user.moderatedGroups?.length > 0
-                  ? "Über die Gruppen kannst du an dem nächsten Termin teilnehmen."
-                  : "Du bist noch keiner Gruppe beigetreten. "
-              }
-            >
-              {allUserGroups.length > 0 &&
-                allUserGroups.map((group) => (
-                  <OverviewGroupItem key={group.id} group={group} />
-                ))}
-              <div className="flex flex-col items-center mt-4 mb-2 ">
-                <Link to={`/groups`}>
-                  <PrimaryButton isLarge={true}> Gruppen finden</PrimaryButton>
-                </Link>
-              </div>
-            </OverviewCard>
-          </div>
+        <div className="lg:w-1/2">
+          <OverviewCard
+            title={"Deine Gruppen"}
+            desc={
+              user.joinedGroups?.length > 0 || user.moderatedGroups?.length > 0
+                ? "Über die Gruppen kannst du an dem nächsten Termin teilnehmen."
+                : "Du bist noch keiner Gruppe beigetreten. "
+            }
+          >
+            {allUserGroups.length > 0 &&
+              allUserGroups.map((group) => (
+                <OverviewGroupItem key={group.id} group={group} />
+              ))}
+            <div className="flex flex-col items-center mt-4 mb-2 ">
+              <Link to={`/groups`}>
+                <PrimaryButton isLarge={true}> Gruppen finden</PrimaryButton>
+              </Link>
+            </div>
+          </OverviewCard>
         </div>
       </div>
     </PageContainer>

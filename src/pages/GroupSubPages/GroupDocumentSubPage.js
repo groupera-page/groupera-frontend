@@ -8,15 +8,13 @@ const GroupDocumentSubPage = ({ group }) => {
   );
 
   return (
-    <div>
-      <div className="flex bg-BG_GRAY border-b border-TEXT_GRAY paragraph-lg mb-20">
-        <a href={chosenTheme.program} download="Depressions_Manual.pdf">
-          <div className="flex items-center my-4 font-bold">
-            {group.topic}__Programm
-            <BsDownload className="w-5 mx-5 text-PURPLE_PRIMARY" size={32} />
-          </div>
-        </a>
-      </div>
+    <div className="flex bg-BG_GRAY border-b border-TEXT_GRAY paragraph-lg mb-20 p-3">
+      <a href={chosenTheme.program} download="Depressions_Manual.pdf">
+        <div className="flex items-center my-4 font-bold">
+          {group.topic}__Programm
+          <BsDownload className="w-5 mx-5 text-PURPLE_PRIMARY" size={32} />
+        </div>
+      </a>
     </div>
   );
 };

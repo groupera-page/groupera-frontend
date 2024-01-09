@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import PageContainer from "../components/Globals/PageContainer";
+import PageContainer from "../components/GlobalLayout/PageContainer";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import PrimaryButton from "../components/Buttons/PrimaryButton";
-import {BsArrowLeft} from "react-icons/bs";
+import { BsArrowLeft } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
 import { selectAuth } from "../features/auth/authSlice";
@@ -56,7 +56,7 @@ const GroupEditPage = () => {
 
   if (!group) {
     return (
-      <div className="flex justify-center items-center p-12 lg:mt-20">
+      <div className="">
         <div className="animate-spin rounded-full border-t-4 border-PURPLE_PRIMARY border-solid h-12 w-12 mr-3"></div>
         {/* <h3>Laden...</h3> */}
       </div>

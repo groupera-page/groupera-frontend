@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function MenuSidebar({ openMenuMobile, handleMenuMobile }) {
   return (
-    <div className="bg-BG_PRIMARY border-r h-full fixed hidden lg:block z-50 ">
+    <div className="bg-BG_PRIMARY border-r h-full fixed hidden lg:block z-50 w-42">
       <div className="flex justify-center my-5">
         <Link to="/">
           <img src={logoSvg} alt="logo" className="w-24" />
