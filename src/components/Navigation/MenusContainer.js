@@ -31,15 +31,16 @@ export default function MenusContainer() {
 
   return user && !isMeetingRoute ? (
     <>
-      <MenuSidebar
-        openMenuMobile={openMenuMobile}
-        handleMenuMobile={handleMenuMobile}
-      />
       <Navbar
         handleMenuMobile={handleMenuMobile}
         handleMenuDropDown={handleMenuDropDown}
         openMenuMobile={openMenuMobile}
       />
+      <MenuSidebar
+        openMenuMobile={openMenuMobile}
+        handleMenuMobile={handleMenuMobile}
+      />
+
       <MenuMobile
         openMenuMobile={openMenuMobile}
         handleMenuMobile={handleMenuMobile}
